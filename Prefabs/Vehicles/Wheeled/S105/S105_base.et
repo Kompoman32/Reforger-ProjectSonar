@@ -24,10 +24,13 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      Position RegisteringComponentSlotInfo "{5EFCE8533944C12A}" {
       PivotID ""
       Offset -0.0728 0.7349 0.7178
-      Angles 0 180 0
+      Angles 90 90 90
       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DeactivatePhysicsOnAtaching 1
       RegisterActions 1
      }
+     Radius 0.3
+     Omnidirectional 1
     }
    }
   }

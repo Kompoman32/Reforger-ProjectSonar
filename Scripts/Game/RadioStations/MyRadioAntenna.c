@@ -33,8 +33,14 @@ class MyRadioAntennaComponent: ScriptComponent
 		{
 			s_Instance = null;
 			
-			if (Replication.IsServer) {
-				SCR_BaseGameMode.Cast(GetGame().GetGameMode()).GetOnPlayerConnected().Remove(OnPlayerConnected);
+			if (Replication.IsServer()) {
+				SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
+				if (gm)
+				{
+					ScriptInvokerBase<SCR_BaseGameMode_PlayerId> invoker = gm.GetOnPlayerConnected();	
+					if (invoker) 
+						invoker.Remove(OnPlayerConnected);
+				}
 			}
 			
 			foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)

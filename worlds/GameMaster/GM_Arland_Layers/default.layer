@@ -3683,9 +3683,14 @@ GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStations
 }
 MusicManager : "{359452CCDBDD03F5}Prefabs/Sounds/Music/MusicManager_Campaign.et" {
 }
-GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et" {
- coords 1392.547 36.132 2365.699
+$grp GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et" {
+ {
+  coords 1392.547 36.132 2365.699
+ }
+ {
+  coords 1399.056 35.791 2358.674
+ }
 }
-Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.et" {
+Vehicle MyCar : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.et" {
  coords 1397.021 36.358 2353.312
 }

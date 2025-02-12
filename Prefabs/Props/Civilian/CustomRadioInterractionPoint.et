@@ -13,6 +13,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
      }
      Radius 10
      Height 10
+     FilterActionsUsingCache 0
     }
    }
    additionalActions {
@@ -23,7 +24,6 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
      UIInfo UIInfo "{647F275B109A17FD}" {
       Name "#RT_RadioOnOffActionName"
      }
-     "Inventory action" 1
     }
     MyRadioVolumeAction "{6484BB4D77EB6236}" {
      ParentContextList {

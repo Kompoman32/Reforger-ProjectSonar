@@ -47,6 +47,11 @@ class MyRadioComponent: ScriptComponent
 	
 	override void EOnActivate(IEntity owner) 
 	{		
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
+		
+
 		if (!MyRadioAntennaComponent.s_Instance) return;
 		
 		if (b_state) {
@@ -57,6 +62,10 @@ class MyRadioComponent: ScriptComponent
 	
 	override void EOnDeactivate(IEntity owner) 
 	{		
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
+		
 		if (!MyRadioAntennaComponent.s_Instance) return;
 		
 		MyRadioAntennaComponent.s_Instance.Disconnect(this);
@@ -257,5 +266,44 @@ class MyRadioComponent: ScriptComponent
 	void onRplSetVolume()
 	{	
 		ResetPlay();
+	}
+	
+	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent damageManager)
+	{
+		Print(damageManager.GetOwner().GetID());
+	
+		//Vehicle was repaired.
+		if (damageManager.GetState() != EDamageState.DESTROYED)
+			return;
+		
+		IEntity vehicle = damageManager.GetOwner();
+	
+		ActionsManagerComponent actionsManager = ActionsManagerComponent.Cast(vehicle.FindComponent(ActionsManagerComponent));
+	
+		if (!actionsManager) return;
+	
+		//array<EntitySlotInfo> vehicleSlotInfos = {};
+		UserActionContext context = actionsManager.GetContext("CustomRadio");
+	
+		if (!context) return;
+	
+		array<BaseUserAction> outActions = {};
+	
+		context.GetActionsList(outActions);		
+	
+		MyRadioAction foundedAction;
+	
+		foreach (BaseUserAction action: outActions)
+		{
+			if (action.Type() == MyRadioAction) 
+			{
+				foundedAction = MyRadioAction.Cast(action);
+				break;
+			}
+		}
+	
+		if (!foundedAction || foundedAction.m_RadioComponent != this) return;
+		
+		StopPlay();
 	}
 }
