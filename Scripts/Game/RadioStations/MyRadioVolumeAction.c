@@ -15,12 +15,38 @@ class MyRadioVolumeAction extends SCR_AdjustSignalAction
 			m_fTargetValue = m_radioComp.GetVolume() / m_volumeMultiplier;
 		}
 	}
+
+	override protected bool OnLoadActionData(ScriptBitReader reader)
+	{		
+		if (!m_radioComp) return true;
+
+		float oldTargetValue = m_fTargetValue;
+		float newTargetValue;
+		
+		reader.ReadFloat(newTargetValue);
+		
+		GetGame().GetCallqueue().Remove(HandleLoadActionData);
+		GetGame().GetCallqueue().CallLater(HandleLoadActionData, 500, false, newTargetValue);
+		return true;
+	}
+	
+	protected void HandleLoadActionData(float newTargetValue) 
+	{
+		float oldTargetValue = m_fTargetValue;
+		
+		if (oldTargetValue != newTargetValue) {
+			m_fTargetValue = newTargetValue;
+			SetSignalValue(newTargetValue);
+			
+			m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+		}
+	}
 	
 	override bool CanBeShownScript(IEntity user)
 	{
 		if (!m_radioComp) return false;
 		
-		return m_radioComp.GetState();
+		return m_radioComp.Enabled();
 	}
 	
 	override void OnActionStart(IEntity pUserEntity)
@@ -36,7 +62,7 @@ class MyRadioVolumeAction extends SCR_AdjustSignalAction
 		
 		super.HandleAction(value);
 		
-		m_radioComp.SetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
 	}
 	
 	override void HandleActionDecrease(float value) 
@@ -46,7 +72,7 @@ class MyRadioVolumeAction extends SCR_AdjustSignalAction
 		super.HandleActionDecrease(value);
 		
 
-		m_radioComp.SetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
 	}
 	
 	override bool GetActionNameScript(out string outName )

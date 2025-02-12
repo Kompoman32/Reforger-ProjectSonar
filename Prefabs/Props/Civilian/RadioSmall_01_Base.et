@@ -7,9 +7,8 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
    Enabled 0
   }
-  MyRadioComponent "{648546181955390A}" {
-  }
   RadioBroadcastComponent "{55210012F7D026E6}" {
+   Enabled 0
    TurnOnAction SCR_TurnOnAction "{565E9648693583C9}" {
     ParentContextList {
     }
@@ -20,16 +19,21 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   }
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {
-    UserActionContext "{52E71719FB29C551}" {
-     ContextName "RADIO"
-     Position RegisteringComponentSlotInfo "{52E7171928800124}" {
+    UserActionContext "{648A958BAD78891F}" {
+     ContextName "CustomRadio"
+     Position RegisteringComponentSlotInfo CustomRadio {
+      Offset -0.1323 0.0288 0.0537
       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      DisablePhysicsInteraction 1
       RegisterActions 1
      }
+     Omnidirectional 0
+     LineOfSightCheck 1
     }
    }
    AllowCrossHierarchy 1
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   "Rpl State Override" Runtime
   }
  }
 }

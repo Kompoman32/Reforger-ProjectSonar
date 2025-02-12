@@ -20,11 +20,13 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{620B4176F337A15D}" {
+     ContextName "CustomRadio"
      Position RegisteringComponentSlotInfo "{5EFCE8533944C12A}" {
       PivotID ""
-      Offset 0.068 0.7349 0.7178
+      Offset -0.0728 0.7349 0.7178
       Angles 0 180 0
       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      RegisterActions 1
      }
     }
    }

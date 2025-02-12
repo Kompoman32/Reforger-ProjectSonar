@@ -95,6 +95,9 @@ $grp GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
  {
   coords 6461.276 162.074 6471.448
  }
+ {
+  coords 6462.638 161.942 6479.712
+ }
 }
 Vehicle M1025_armed_M2HB1 : "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et" {
  coords 6426.052 162.094 6487.89
@@ -117,7 +120,9 @@ Vehicle M1 : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
  coords 6437.43 162.189 6490.656
 }
 Vehicle S105_white1 : "{63880E311299A016}Prefabs/Vehicles/Wheeled/S105/S105_white.et" {
- coords 6457.792 162.098 6475.933
+ coords 6577.32 157.904 6544.77
+ angleX -1.79
+ angleZ 4.465
 }
 $grp GenericEntity : "{818571DF82B787FF}PrefabsEditable/Auto/Props/Civilian/E_RadioSmall_01_black.et" {
  {
@@ -133,28 +138,8 @@ Vehicle UAZ452_base1 : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452
 Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_base.et" {
  coords 6421.286 161.939 6472.416
 }
-Vehicle M923A1 : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
- components {
-  RadioBroadcastSoundComponent "{620B213895ED12D8}" {
-   Enabled 0
-  }
-  RadioBroadcastComponent "{620B21389E117A26}" {
-   Enabled 0
-  }
-  ActionsManagerComponent "{C97BE5489221AE18}" {
-   ActionContexts {
-    UserActionContext "{620B41763774FDA8}" {
-     Position RegisteringComponentSlotInfo "{5190BB256410F300}" {
-      PivotID "v_body"
-      Offset 0.2578 0.976 0.7217
-      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      RegisterActions 1
-     }
-    }
-   }
-  }
- }
- coords 6445.592 162.277 6494.213
+Vehicle M923A2 : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
+ coords 6444.683 162.247 6493.665
 }
 Vehicle M998_covered_long1 : "{9B1BF9644E0378D6}Prefabs/Vehicles/Wheeled/M998/M998_covered_long.et" {
  coords 6411.724 161.777 6484.061
@@ -224,14 +209,23 @@ Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{620B4176F337A15D}" {
+     Position RegisteringComponentSlotInfo "{5EFCE8533944C12A}" {
+     }
     }
    }
   }
  }
- coords 6462.393 161.989 6475.359
- angleY 179.131
+ coords 6463.435 161.968 6477.391
 }
 Vehicle M151A1 : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
+ components {
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{648A958C5148D874}" {
+    }
+   }
+  }
+ }
  coords 6450.552 162.356 6497.339
 }
 GenericEntity : "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et" {

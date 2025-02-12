@@ -16,12 +16,17 @@ class MyRadioComponent: ScriptComponent
 	protected vector m_ownerTransform[4];
 	protected AudioHandle m_currentTrack = AudioHandle.Invalid;
 	MyRadioStationComponent m_radioStation;
+	[RplProp()]
 	int m_radioStationIndex = 0;
 	
 	protected SignalsManagerComponent m_signalManager;
 	
+	[RplProp(onRplName: "onRplSetEnableDisable")]
 	protected bool b_state;
+	[RplProp(onRplName: "onRplSetVolume")]
 	protected float m_volume = 50;
+	
+	
 	protected float m_volumeToSignalDivider = 100;
 	
 	protected void ~MyRadioComponent() 
@@ -30,20 +35,12 @@ class MyRadioComponent: ScriptComponent
 	}
 	
 	override void OnPostInit(IEntity owner)
-	{
-		Print(owner.GetName());
-		
+	{		
 		m_owner = owner;
 		
 		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
 		
-		
-		if (MyRadioAntennaComponent.s_Instance) {	
-			MyRadioAntennaComponent.s_Instance.Connect(this);
-		}
-		
-		Print("Radio Inited");
-		Print(owner);
+		PrintFormat("Radio Inited %1: %2", owner.GetName(), owner);
 		
 		EOnActivate(owner);
 	}
@@ -52,9 +49,8 @@ class MyRadioComponent: ScriptComponent
 	{		
 		if (!MyRadioAntennaComponent.s_Instance) return;
 		
-		MyRadioAntennaComponent.s_Instance.Connect(this);
-		
 		if (b_state) {
+			MyRadioAntennaComponent.s_Instance.Connect(this);
 			StartPlay();
 		}
 	}
@@ -64,22 +60,39 @@ class MyRadioComponent: ScriptComponent
 		if (!MyRadioAntennaComponent.s_Instance) return;
 		
 		MyRadioAntennaComponent.s_Instance.Disconnect(this);
-		
-		StopPlaying();
+		StopPlay();
 	}
 	
 	override void EOnFrame(IEntity owner, float timeSlice) 
 	{
-		if (!GetState() || !MyRadioAntennaComponent.s_Instance) return;
+		if (!Enabled() || !MyRadioAntennaComponent.s_Instance) return;
 		
 		m_owner.GetTransform(m_ownerTransform);
 		AudioSystem.SetSoundTransformation(m_currentTrack, m_ownerTransform);	
 	}
 	
-	bool GetState() {
+	bool Enabled() {
 		return b_state;
 	}
 	
+	void ActionEnableDisable(bool enable)
+	{
+		b_state = enable;
+		onRplSetEnableDisable();
+		//	Rpc(RpcAsk_ActionEnableDisable, enable)
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	void RpcAsk_ActionEnableDisable(bool enable)
+	{
+		if (b_state == enable) { return; }
+		
+		b_state = enable;
+		
+		Replication.BumpMe();
+	}
+	
+	/** Enable Radio / Executed on Server **/
 	void Enable() {		
 		if (!MyRadioAntennaComponent.s_Instance) 
 		{
@@ -92,25 +105,40 @@ class MyRadioComponent: ScriptComponent
 			m_radioStation = MyRadioAntennaComponent.s_Instance.GetRadioStation(m_radioStationIndex);
 		}
 		
+		MyRadioAntennaComponent.s_Instance.Connect(this);
+		
 		StartPlay();
 		
 		SetEventMask(m_owner, EntityEvent.FRAME);
 	}
 	
-		
+	/** Disable Radio / Executed on Server **/
 	void Disable() {
-		 b_state = false;	
+		b_state = false;	
 
-		StopPlaying();
+		MyRadioAntennaComponent.s_Instance.Disconnect(this);
+	
+		StopPlay();
 		SetEventMask(m_owner, EntityEvent.INIT);
 	}
 	
-	void Change() {
+	/** on state change after BumpMe **/
+	protected void onRplSetEnableDisable() 
+	{
+		if (b_state)
+		{
+			Enable();
+		} else {
+			Disable();
+		}
+	}
+	
+	void ChangeStation() {
 		if (!b_state || !MyRadioAntennaComponent.s_Instance) {
 			return;
 		}
 				
-		StopPlaying();
+		StopPlay();
 		
 		++m_radioStationIndex;
 		
@@ -142,7 +170,7 @@ class MyRadioComponent: ScriptComponent
 		
 		if (!trackInfo)		
 		{
-			Print("Cant get track info", LogLevel.WARNING);
+			PrintFormat("Cant get track info. RadioStation index: %1", m_radioStationIndex);
 			return;
 		}
 		
@@ -154,16 +182,6 @@ class MyRadioComponent: ScriptComponent
 		m_owner.GetTransform(m_ownerTransform);
 		// Play event
 		m_currentTrack = AudioSystem.PlayEvent(trackInfo.m_projectFile, SOUND_EVENT_NAME, m_ownerTransform, signalNames, signalValues);
-	}
-	
-	void StopPlaying() {
-		AudioSystem.TerminateSound(m_currentTrack);
-	}
-	
-	void Reset()
-	{
-		StopPlaying();
-		StartPlay();
 	}
 	
 	protected void GetPlaySignals(MyRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
@@ -204,19 +222,40 @@ class MyRadioComponent: ScriptComponent
 		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));	
 	}
 	
-	void SetVolume(float volume)
+	void StopPlay() {
+		AudioSystem.TerminateSound(m_currentTrack);
+	}
+	
+	void ResetPlay()
+	{
+		StopPlay();
+
+		if (!b_state || !MyRadioAntennaComponent.s_Instance)
+		{
+			return;
+		}
+		
+		StartPlay();
+	}
+	
+	float GetVolume()
+	{
+		return m_volume;
+	}
+	
+	void ActionSetVolume(float volume)
 	{
 		volume = Math.Clamp(volume, 0, 100);
 		
 		if (volume == m_volume) return;
 		
-		m_volume = volume;
-		
-		Reset();
-	}
+		m_volume = volume;		
 
-	float GetVolume()
-	{
-		return m_volume;
+		ResetPlay();
+	}
+	
+	void onRplSetVolume()
+	{	
+		ResetPlay();
 	}
 }

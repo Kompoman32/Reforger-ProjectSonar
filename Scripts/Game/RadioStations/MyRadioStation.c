@@ -34,8 +34,9 @@ class MyRadioStationComponent: ScriptComponent
 		m_owner = owner;
 	}
 	
-	MyRadioStationTrackInfo GetNewTrack() {
+	MyRadioStationTrackInfo GetNewTrack() {		
 		if (!m_TracksLengths || m_TracksLengths.Count() == 0 && m_djTracksLengths.Count() == 0) {
+			PrintFormat("Get new track (%1): %2", m_radiostationName, null);
 			return null;
 		}
 		
@@ -53,6 +54,12 @@ class MyRadioStationComponent: ScriptComponent
 			tracks = m_djTracksLengths;
 		}
 		
+		if (tracks.Count() == 0) 
+		{
+			PrintFormat("Get new track  (%1): %2", m_radiostationName, null);
+			return null;
+		}
+		
 		auto trackIndex = Math.RandomInt(0, tracks.Count());
 		auto trackLength = tracks.Get(trackIndex);
 		
@@ -64,7 +71,7 @@ class MyRadioStationComponent: ScriptComponent
 		newTrack.b_isDJ = isDJ;
 		
 		
-		
+		PrintFormat("Get new track  (%1): %2", m_radiostationName, newTrack);
 		return newTrack;
 	}	
 }

@@ -8,7 +8,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
   ActionsManagerComponent "{6484BB4D311EB733}" {
    ActionContexts {
     UserActionContext "{6484BB4D0F7DDB94}" {
-     ContextName "RADIO"
+     ContextName "CustomRadio"
      Position PointInfo "{648A958814AA2E4F}" {
      }
      Radius 10
@@ -18,7 +18,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
    additionalActions {
     MyRadioAction "{6484BB4D6BBDD79D}" {
      ParentContextList {
-      "RADIO"
+      "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
       Name "#RT_RadioOnOffActionName"
@@ -27,7 +27,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
     }
     MyRadioVolumeAction "{6484BB4D77EB6236}" {
      ParentContextList {
-      "RADIO"
+      "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
       Name "#RT_RadioVolumeActionName"
@@ -43,7 +43,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
     }
     MyRadioAction "{6484BB4D7EB3BBCD}" {
      ParentContextList {
-      "RADIO"
+      "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
       Name "#RT_RadioStationActionName"
@@ -51,16 +51,6 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
      CanAggregate 1
      "Sort Priority" 2
      m_eActionType Change
-    }
-    BaseUserAction "{6488CC760AB6A4C0}" {
-     ParentContextList {
-      "RADIO"
-     }
-     UIInfo UIInfo "{6488CC76024F837C}" {
-      Name "HEHE"
-     }
-     ActionTitle "TEST"
-     CanAggregate 1
     }
    }
   }

@@ -14,6 +14,13 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     93 88 103 103 99 7 14 13 9 15 35 10 15 58 33 97 75 45 51 34 181 59 52 57 68 68 34 23 31 65 93 22 35 13 13
    }
   }
+  MyRadioStationComponent "{648AFC42901C56F8}" {
+   m_radiostationName "TestStation"
+   m_stationAudioProject "{015996D2E5AB8769}Sounds/RadioBroadcast/TestRadioBroadcast.acp"
+   m_TracksLengths {
+    154 217 256 215
+   }
+  }
   SCR_EditableEntityComponent "{64851B9EA6BEFFD5}" {
    m_UIInfo SCR_EditableEntityUIInfo "{64851B9D882F212F}" {
     Name "#RT_AntennaPropName"
@@ -26,11 +33,45 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     }
    }
    m_bStatic 1
-   m_Flags PLACEABLE
+   m_Flags 16385
   }
   SCR_FactionAffiliationComponent "{5CB6D5B3749D59C3}" {
    Enabled 0
    "faction affiliation" "US"
+  }
+  ActionsManagerComponent "{648B0D0CA8D63DD1}" {
+   ActionContexts {
+    UserActionContext "{648B0D0CA4DFED48}" {
+     ContextName "antenna"
+     Position PointInfo "{648B0D0CBEBE40CA}" {
+      Offset 0 1.5737 0.1406
+     }
+    }
+   }
+   additionalActions {
+    MyAntennaDebugAction "{648B0D0C868D0A24}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo UIInfo "{648B0D0DC6FD1379}" {
+      Name "Clear Antenna Instance"
+     }
+     CanAggregate 1
+    }
+    MyAntennaDebugAction "{64971637DC5E6E1D}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo UIInfo "{64971637DC5E6E73}" {
+      Name "Update all radios"
+     }
+     CanAggregate 1
+     m_eActionType UpdateRadios
+    }
+   }
+  }
+  RplComponent "{5CB6D5B3749D59BC}" {
+   "Rpl State Override" Runtime
   }
  }
 }

@@ -9,7 +9,7 @@ class MyRadioAction: ScriptedUserAction
 	MyRadioComponent m_RadioComponent;
 	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyRadioActionEnum))]
-	EAudioSourceConfigurationFlag m_eActionType;
+	MyAntennaDebugActionEnum m_eActionType;
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
@@ -18,27 +18,16 @@ class MyRadioAction: ScriptedUserAction
 		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));		
 	}
 	
-	bool GetState() {
+	bool Enabled() {
 		if (!m_RadioComponent) 
 			return false;
 		
-		return m_RadioComponent.GetState();
-	}
-	
-	void SetState(bool enable) {
-		if (!m_RadioComponent)
-			return;
-		
-		if (GetState())
-			m_RadioComponent.Disable();
-		else
-			m_RadioComponent.Enable();
-		
+		return m_RadioComponent.Enabled();
 	}
 	
 	override bool CanBeShownScript(IEntity user)
 	{	
-		if (m_RadioComponent && !m_RadioComponent.GetState())
+		if (m_RadioComponent && !Enabled())
 		{
 			if (m_eActionType == MyRadioActionEnum.Change )
 				return false;
@@ -49,6 +38,11 @@ class MyRadioAction: ScriptedUserAction
 	
 	override bool CanBePerformedScript(IEntity user)
 	{
+		if (m_eActionType == MyRadioActionEnum.TurnOnOff && Enabled())
+		{
+			return true;
+		}
+		
 		if (!m_RadioComponent) 
 		{
 			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Radio";
@@ -67,21 +61,13 @@ class MyRadioAction: ScriptedUserAction
 			return false;
 		}
 		
-		if (m_RadioComponent.GetState() && m_eActionType == MyRadioActionEnum.Change && MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount() == 1)
+		if (m_RadioComponent.Enabled() && m_eActionType == MyRadioActionEnum.Change && MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount() == 1)
 		{
 			m_sCannotPerformReason = "#RT_Radio_CannotPerform_OneStation";
 			return false;
 		}
 		
 		return true;	
-	}
-	
-
-	
-	//------------------------------------------------------------------------------------------------
-	override bool HasLocalEffectOnlyScript()
-	{
-		return false;
 	}
 
 	//------------------------------------------------------------------------------------------------
@@ -97,13 +83,13 @@ class MyRadioAction: ScriptedUserAction
 		switch (m_eActionType)
 		{
 			case MyRadioActionEnum.TurnOnOff:
-			{
-				SetState(!GetState());
+			{				
+				m_RadioComponent.ActionEnableDisable(!Enabled());
 				break;
 			}
 			case MyRadioActionEnum.Change:
 			{
-				m_RadioComponent.Change();
+				m_RadioComponent.ChangeStation();
 				break;
 			}
 		}
@@ -117,15 +103,18 @@ class MyRadioAction: ScriptedUserAction
 		{
 			case MyRadioActionEnum.TurnOnOff:
 			{			
-				if (GetState())
+				if (Enabled())
 					outName += ": #AR-UserAction_State_Off";
 				else
 					outName += ": #AR-UserAction_State_On";
+				
+				outName+= " " + MyRadioAntennaComponent.s_Instance.GetRadioStationTrackTimeLeft(m_RadioComponent.m_radioStationIndex);
+
 				return true;
 			}
 			case MyRadioActionEnum.Change:
 			{
-				if (!m_RadioComponent) return false;
+				if (!m_RadioComponent || !m_RadioComponent.m_radioStation) return false;
 				
 				outName+= ": " + m_RadioComponent.m_radioStation.m_radiostationName;
 				

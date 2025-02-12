@@ -19,6 +19,8 @@ class MyRadioStationTrackInfo {
 
 	static bool Extract(MyRadioStationTrackInfo instance, ScriptCtx ctx, SSnapSerializerBase snapshot)
 	{
+		if (!instance) return true;
+		
 		// Fill a snapshot with values from an instance.
 		snapshot.SerializeString(instance.m_projectFile);
 		snapshot.SerializeInt(instance.m_trackIndex);
@@ -29,6 +31,8 @@ class MyRadioStationTrackInfo {
 
 	static bool Inject(SSnapSerializerBase snapshot, ScriptCtx ctx, MyRadioStationTrackInfo instance)
 	{
+		if (!instance) return true;
+		
 		// Fill an instance with values from snapshot.
 		snapshot.SerializeString(instance.m_projectFile);
 		snapshot.SerializeInt(instance.m_trackIndex);
@@ -71,6 +75,8 @@ class MyRadioStationTrackInfo {
 
 	static bool PropCompare(MyRadioStationTrackInfo instance, SSnapSerializerBase snapshot, ScriptCtx ctx)
 	{
+		if (!instance) return true;
+		
 		// Determine whether current values in instance are sufficiently different from
 		// an existing snapshot that it's worth creating new one.
 		// For float or vector values, it is possible to use some threshold to avoid creating too

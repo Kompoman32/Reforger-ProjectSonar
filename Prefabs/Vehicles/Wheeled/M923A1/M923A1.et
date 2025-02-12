@@ -1,3 +1,29 @@
 Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
  ID "BBCBA43A9778AE21"
+ components {
+  RadioBroadcastSoundComponent "{620B213895ED12D8}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B21389E117A26}" {
+   Enabled 0
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{648A958C8DE8BEE4}" {
+     UIInfo SCR_ActionContextUIInfo "{648A958C8DE8B14E}" {
+     }
+     ContextName "CustomRadio"
+     Position RegisteringComponentSlotInfo "{648A958C8DE8B14A}" {
+      PivotID "v_light_switch"
+      Offset 1.0574 -0.0543 0.0115
+      Angles 0 180 0
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      RegisterActions 1
+     }
+     Height 0
+     Omnidirectional 0
+    }
+   }
+  }
+ }
 }

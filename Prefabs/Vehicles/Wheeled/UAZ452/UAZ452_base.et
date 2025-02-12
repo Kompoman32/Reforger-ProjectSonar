@@ -12,7 +12,8 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{620B41755BD53A87}" {
+    UserActionContext "{648A958C66892541}" {
+     ContextName "CustomRadio"
      Position RegisteringComponentSlotInfo "{55A093A30AC3BD78}" {
       PivotID "v_body"
       Offset -0.1362 1.7314 0.6422
