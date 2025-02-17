@@ -41,6 +41,14 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{649F50FCD2539433}" {
+   Id "RT_Radio_ResetActionName"
+   Target_en_us "Punch radio"
+   Target_ru_ru "Ударить по радио"
+   Modified 1688166976
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_RadioOnOffActionName"
    Target_en_us "Radio"

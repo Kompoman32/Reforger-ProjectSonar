@@ -1,24 +1,49 @@
 class MyRadioVolumeAction extends SCR_AdjustSignalAction 
 {
-	MyRadioComponent m_radioComp;
+	IEntity p_OwnerEntity;
+	MyRadioComponent m_RadioComponent;
 	
 	protected float m_volumeMultiplier = 5;
+	
+	[Attribute("1", UIWidgets.CheckBox)]
+	bool m_inVehicle;
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		super.Init(pOwnerEntity, pManagerComponent);
+	
+		p_OwnerEntity = pOwnerEntity;	
+		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
 		
-		m_radioComp = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
+		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
 		
-		if (m_radioComp) 
+		if (m_RadioComponent) 
 		{
-			m_fTargetValue = m_radioComp.GetVolume() / m_volumeMultiplier;
+			m_fTargetValue = m_RadioComponent.GetVolume() / m_volumeMultiplier;
 		}
 	}
+	
+	void FindRadioComponent(IEntity pOwnerEntity)
+	{		
+		if (m_RadioComponent) return;
+		
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return;
+		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
+		if (!slot) {
+			slot = slotManager.GetSlotByName("radio");
+		};
+		if (!slot) return;
+		IEntity attachedEntity = slot.GetAttachedEntity();
+		if (!attachedEntity) return;
+
+		m_RadioComponent = MyRadioComponent.Cast(attachedEntity.FindComponent(MyRadioComponent));
+	}
+	
 
 	override protected bool OnLoadActionData(ScriptBitReader reader)
 	{		
-		if (!m_radioComp) return true;
+		if (!m_RadioComponent) return true;
 
 		float oldTargetValue = m_fTargetValue;
 		float newTargetValue;
@@ -38,46 +63,52 @@ class MyRadioVolumeAction extends SCR_AdjustSignalAction
 			m_fTargetValue = newTargetValue;
 			SetSignalValue(newTargetValue);
 			
-			m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+			m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
 		}
 	}
 	
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_radioComp) return false;
+		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent) return false;
 		
-		return m_radioComp.Enabled();
+		return m_RadioComponent.Enabled();
 	}
 	
 	override void OnActionStart(IEntity pUserEntity)
 	{
 		super.OnActionStart(pUserEntity);
 		
-		m_fTargetValue = m_radioComp.GetVolume() / m_volumeMultiplier;
+		if (m_RadioComponent)
+		{
+			m_fTargetValue = m_RadioComponent.GetVolume() / m_volumeMultiplier;
+		}
 	}
 	
 	override void HandleAction(float value) 
 	{
-		if (!m_radioComp) return;
+		if (!m_RadioComponent) return;
 		
 		super.HandleAction(value);
 		
-		m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
 	}
 	
 	override void HandleActionDecrease(float value) 
 	{
-		if (!m_radioComp) return;
+		if (!m_RadioComponent) return;
 
 		super.HandleActionDecrease(value);
 		
 
-		m_radioComp.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
 	}
 	
 	override bool GetActionNameScript(out string outName )
 	{		
-		outName = GetUIInfo().GetName()+": " + m_radioComp.GetVolume().ToString() + "%";
+		if (!m_RadioComponent) return false;
+		
+		outName = GetUIInfo().GetName()+": " + m_RadioComponent.GetVolume().ToString() + "%";
 		return true;
 	}
 	

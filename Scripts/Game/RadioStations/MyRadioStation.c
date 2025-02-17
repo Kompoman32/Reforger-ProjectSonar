@@ -12,6 +12,8 @@ class MyRadioStationComponentClass: ScriptComponentClass
 class MyRadioStationComponent: ScriptComponent 
 {
 	protected IEntity m_owner;
+	
+	private int m_lastTrackIndex = -1;
 
 		
 	[Attribute("", UIWidgets.EditBox, "Radiostation name")]
@@ -60,8 +62,10 @@ class MyRadioStationComponent: ScriptComponent
 			return null;
 		}
 		
-		auto trackIndex = Math.RandomInt(0, tracks.Count());
+		auto trackIndex = GetNewTrackIndex(isDJ);
 		auto trackLength = tracks.Get(trackIndex);
+		
+		m_lastTrackIndex = trackIndex;
 		
 		MyRadioStationTrackInfo newTrack = new MyRadioStationTrackInfo();
 		
@@ -74,4 +78,24 @@ class MyRadioStationComponent: ScriptComponent
 		PrintFormat("Get new track  (%1): %2", m_radiostationName, newTrack);
 		return newTrack;
 	}	
+	
+	int GetNewTrackIndex(bool isDJ)
+	{
+		array<int> tracks = m_TracksLengths;
+		
+		if (isDJ) tracks = m_djTracksLengths;
+		
+		if (tracks.Count() == 1) return 0;
+		
+		if (tracks.Count() == 2) return 2 - m_lastTrackIndex - 1;
+		
+		int index = Math.RandomInt(0, tracks.Count());
+		
+		while(index == m_lastTrackIndex) 
+		{
+			index = Math.RandomInt(0, tracks.Count());
+		}
+		
+		return index;		
+	}
 }

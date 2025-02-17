@@ -6,16 +6,6 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
   MyRadioComponent "{6484BB4D324A4331}" {
   }
   ActionsManagerComponent "{6484BB4D311EB733}" {
-   ActionContexts {
-    UserActionContext "{6484BB4D0F7DDB94}" {
-     ContextName "CustomRadio"
-     Position PointInfo "{648A958814AA2E4F}" {
-     }
-     Radius 10
-     Height 10
-     FilterActionsUsingCache 0
-    }
-   }
    additionalActions {
     MyRadioAction "{6484BB4D6BBDD79D}" {
      ParentContextList {

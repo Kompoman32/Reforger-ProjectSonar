@@ -1,21 +1,51 @@
 enum MyRadioActionEnum 
 {
 	TurnOnOff = 0,
-	Change = 1
+	Change = 1,
+	Reset = 2,
 }
 
 class MyRadioAction: ScriptedUserAction
 {
+	IEntity p_OwnerEntity;
 	MyRadioComponent m_RadioComponent;
 	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyRadioActionEnum))]
 	MyAntennaDebugActionEnum m_eActionType;
 	
+	[Attribute("1", UIWidgets.CheckBox)]
+	bool m_inVehicle;
+	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		super.Init(pOwnerEntity, pManagerComponent);
+		
+		p_OwnerEntity = pOwnerEntity;
 
-		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));		
+		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
+		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
+	}
+	
+	override bool CanBroadcastScript()
+	{
+		return m_eActionType != MyRadioActionEnum.Reset;
+	}
+	
+	void FindRadioComponent(IEntity pOwnerEntity)
+	{		
+		if (m_RadioComponent) return;
+		
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return;
+		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
+		if (!slot) {
+			slot = slotManager.GetSlotByName("radio");
+		};
+		if (!slot) return;
+		IEntity attachedEntity = slot.GetAttachedEntity();
+		if (!attachedEntity) return;
+
+		m_RadioComponent = MyRadioComponent.Cast(attachedEntity.FindComponent(MyRadioComponent));
 	}
 	
 	bool Enabled() {
@@ -27,7 +57,13 @@ class MyRadioAction: ScriptedUserAction
 	
 	override bool CanBeShownScript(IEntity user)
 	{	
-		if (m_RadioComponent && !Enabled())
+		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
+		
+		if (!m_RadioComponent || !MyRadioAntennaComponent.s_Instance) {
+			return m_eActionType == MyRadioActionEnum.TurnOnOff;
+		}
+		
+		if (!Enabled())
 		{
 			if (m_eActionType == MyRadioActionEnum.Change )
 				return false;
@@ -70,12 +106,6 @@ class MyRadioAction: ScriptedUserAction
 		return true;	
 	}
 
-	//------------------------------------------------------------------------------------------------
-	override bool CanBroadcastScript()
-	{
-		return true;
-	}
-
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {			
 		if (!m_RadioComponent) return;
 		
@@ -90,6 +120,11 @@ class MyRadioAction: ScriptedUserAction
 			case MyRadioActionEnum.Change:
 			{
 				m_RadioComponent.ChangeStation();
+				break;
+			}
+			case MyRadioActionEnum.Reset:
+			{
+				m_RadioComponent.Ask_Reset();
 				break;
 			}
 		}
@@ -107,8 +142,6 @@ class MyRadioAction: ScriptedUserAction
 					outName += ": #AR-UserAction_State_Off";
 				else
 					outName += ": #AR-UserAction_State_On";
-				
-				outName+= " " + MyRadioAntennaComponent.s_Instance.GetRadioStationTrackTimeLeft(m_RadioComponent.m_radioStationIndex);
 
 				return true;
 			}

@@ -19,18 +19,60 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{620B4176F337A15D}" {
+    UserActionContext "{649953148F11F959}" {
      ContextName "CustomRadio"
-     Position RegisteringComponentSlotInfo "{5EFCE8533944C12A}" {
-      PivotID ""
-      Offset -0.0728 0.7349 0.7178
-      Angles 90 90 90
-      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      DeactivatePhysicsOnAtaching 1
-      RegisterActions 1
+     Position PointInfo "{64995316DB26547D}" {
+      Offset -0.073 0.7384 0.7158
+      Angles 0 180 0
      }
-     Radius 0.3
-     Omnidirectional 1
+    }
+   }
+   additionalActions {
+    MyRadioAction "{64995314ECCCA47D}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F275B109A17FD}" {
+      Name "#RT_RadioOnOffActionName"
+     }
+    }
+    MyRadioVolumeAction "{64995314E584CED2}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{6483362772BCC09A}" {
+      Name "#RT_RadioVolumeActionName"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+    MyRadioAction "{64995314E39466FD}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F27517F5C458F}" {
+      Name "#RT_RadioStationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType Change
+    }
+    MyRadioAction "{649F50F2BC6EB65C}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{649F50F2BC6EB688}" {
+      Name "#RT_Radio_ResetActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType Reset
     }
    }
   }

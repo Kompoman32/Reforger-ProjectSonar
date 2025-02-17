@@ -40,7 +40,7 @@ class MyRadioComponent: ScriptComponent
 		
 		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
 		
-		PrintFormat("Radio Inited %1: %2", owner.GetName(), owner);
+		//PrintFormat("Radio Inited %1: %2", owner.GetName(), owner);
 		
 		EOnActivate(owner);
 	}
@@ -247,6 +247,34 @@ class MyRadioComponent: ScriptComponent
 		StartPlay();
 	}
 	
+	void Ask_Reset()
+	{
+		Rpc(RpcAsk_Reset)
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
+	void RpcAsk_Reset()
+	{
+		Rpc(RpcDo_Reset, b_state, m_volume, m_radioStationIndex)
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+	void RpcDo_Reset(bool state, float volume, int radioStationIndex)
+	{
+		b_state = state;
+		m_volume = volume;
+		m_radioStationIndex = radioStationIndex;
+	
+		StopPlay();
+	
+		if (b_state)
+		{
+			Enable();
+		} else {
+			Disable();
+		}
+	}
+	
 	float GetVolume()
 	{
 		return m_volume;
@@ -271,39 +299,26 @@ class MyRadioComponent: ScriptComponent
 	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent damageManager)
 	{
 		Print(damageManager.GetOwner().GetID());
-	
-		//Vehicle was repaired.
+
 		if (damageManager.GetState() != EDamageState.DESTROYED)
 			return;
 		
 		IEntity vehicle = damageManager.GetOwner();
 	
-		ActionsManagerComponent actionsManager = ActionsManagerComponent.Cast(vehicle.FindComponent(ActionsManagerComponent));
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(vehicle.FindComponent(SlotManagerComponent));
+		if (!slotManager) return;
+				EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
+		if (!slot) {
+			slot = slotManager.GetSlotByName("radio");
+		};
+		if (!slot) return;
+		IEntity attachedEntity = slot.GetAttachedEntity();
+		if (!attachedEntity) return;
+
+		MyRadioComponent radio = MyRadioComponent.Cast(attachedEntity.FindComponent(MyRadioComponent));
 	
-		if (!actionsManager) return;
+		if (!radio) return;
 	
-		//array<EntitySlotInfo> vehicleSlotInfos = {};
-		UserActionContext context = actionsManager.GetContext("CustomRadio");
-	
-		if (!context) return;
-	
-		array<BaseUserAction> outActions = {};
-	
-		context.GetActionsList(outActions);		
-	
-		MyRadioAction foundedAction;
-	
-		foreach (BaseUserAction action: outActions)
-		{
-			if (action.Type() == MyRadioAction) 
-			{
-				foundedAction = MyRadioAction.Cast(action);
-				break;
-			}
-		}
-	
-		if (!foundedAction || foundedAction.m_RadioComponent != this) return;
-		
-		StopPlay();
+		Disable();
 	}
 }

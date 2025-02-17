@@ -104,7 +104,13 @@ class MyRadioAntennaComponent: ScriptComponent
 		
 		PrintFormat("RadioStations: %1", names);
 		
-		SCR_BaseGameMode.Cast(GetGame().GetGameMode()).GetOnPlayerConnected().Insert(OnPlayerConnected);
+		SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
+		if (gm)
+		{
+			ScriptInvokerBase<SCR_BaseGameMode_PlayerId> invoker = gm.GetOnPlayerConnected();	
+			if (invoker) 
+				invoker.Insert(OnPlayerConnected);
+		}
 		
 		SetEventMask(m_owner, EntityEvent.FRAME);
 	}

@@ -9,13 +9,64 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{620B4173A7AE5495}" {
-     Position RegisteringComponentSlotInfo "{5E3EDDF5AE1E3A62}" {
-      Angles 0 180 0
-      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      DisablePhysicsInteraction 1
-      RegisterActions 1
+    UserActionContext "{64997DEB806BFEB7}" {
+     UIInfo SCR_ActionContextUIInfo "{64997DEB806BFEE8}" {
      }
+     ContextName "CustomRadio"
+     Position PointInfo "{64997DEB806BFEE4}" {
+      PivotID "v_body"
+      Offset -0.3773 -3.0145 0.9115
+     }
+     Radius 0.5
+     Height 0
+    }
+   }
+   additionalActions {
+    MyRadioAction "{64997DEBDBB3F685}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F275B109A17FD}" {
+      Name "#RT_RadioOnOffActionName"
+     }
+    }
+    MyRadioVolumeAction "{64997DEA2A7368F7}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{6483362772BCC09A}" {
+      Name "#RT_RadioVolumeActionName"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+    MyRadioAction "{64997DEA245EBE7D}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F27517F5C458F}" {
+      Name "#RT_RadioStationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType Change
+    }
+    MyRadioAction "{649F50FE32A7D9D0}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{649F50FE32A7D837}" {
+      Name "#RT_Radio_ResetActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType Reset
     }
    }
   }

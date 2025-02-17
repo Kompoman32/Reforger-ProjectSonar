@@ -12,17 +12,70 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{648A958C66892541}" {
-     ContextName "CustomRadio"
-     Position RegisteringComponentSlotInfo "{55A093A30AC3BD78}" {
-      PivotID "v_body"
-      Offset -0.1362 1.7314 0.6422
-      Angles 0 0 0
-      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      DisablePhysicsInteraction 1
-      RegisterActions 1
+    UserActionContext "{64997DE9E76B1FE9}" {
+     UIInfo SCR_ActionContextUIInfo "{64997DE9E76B1E7E}" {
      }
-     Omnidirectional 1
+     ContextName "CustomRadio"
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_light_switch"
+      Offset -0.0008 0.0589 0.8395
+      Angles 0 90 0
+     }
+     Radius 0.35
+     Height 0
+     Omnidirectional 0
+    }
+   }
+   additionalActions {
+    SCR_RefuelAtSupportStationAction "{5B02B547EDCF6F99}" {
+    }
+    SCR_RefuelAtSupportStationAction "{5B02B547EDCF6F99}" {
+    }
+    MyRadioAction "{64997DE90570E950}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F275B109A17FD}" {
+      Name "#RT_RadioOnOffActionName"
+     }
+    }
+    MyRadioVolumeAction "{64997DE9031C03C9}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{6483362772BCC09A}" {
+      Name "#RT_RadioVolumeActionName"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+    MyRadioAction "{64997DE91EC92F47}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{647F27517F5C458F}" {
+      Name "#RT_RadioStationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType Change
+    }
+    MyRadioAction "{649F50FDA2A53674}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{649F50FDA2A536A2}" {
+      Name "#RT_Radio_ResetActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType Reset
     }
    }
   }
