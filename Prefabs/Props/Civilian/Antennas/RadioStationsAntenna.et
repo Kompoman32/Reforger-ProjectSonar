@@ -1,26 +1,6 @@
 GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_02_base.et" {
  ID "F0DBA538AC2A0552"
  components {
-  MyRadioAntennaComponent "{6484D3B6441E8414}" {
-  }
-  MyRadioStationComponent "{6488A6AA0DAA3FFE}" {
-   m_radiostationName "Radio Everon"
-   m_stationAudioProject "{27AE8010D3B06093}Sounds/RadioBroadcast/RadioEveronRadioBroadcast.acp"
-   m_TracksLengths {
-    177 169 167 200 210 153 173 183 133 155 216 153 390 188 129
-   }
-   m_djProbability 0.2
-   m_djTracksLengths {
-    93 88 103 103 99 7 14 13 9 15 35 10 15 58 33 97 75 45 51 34 181 59 52 57 68 68 34 23 31 65 93 22 35 13 13
-   }
-  }
-  MyRadioStationComponent "{648AFC42901C56F8}" {
-   m_radiostationName "TestStation"
-   m_stationAudioProject "{015996D2E5AB8769}Sounds/RadioBroadcast/TestRadioBroadcast.acp"
-   m_TracksLengths {
-    154 217 256 215
-   }
-  }
   SCR_EditableEntityComponent "{64851B9EA6BEFFD5}" {
    m_UIInfo SCR_EditableEntityUIInfo "{64851B9D882F212F}" {
     Name "#RT_AntennaPropName"
@@ -49,15 +29,6 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     }
    }
    additionalActions {
-    MyAntennaDebugAction "{648B0D0C868D0A24}" {
-     ParentContextList {
-      "antenna"
-     }
-     UIInfo UIInfo "{648B0D0DC6FD1379}" {
-      Name "Clear Antenna Instance"
-     }
-     CanAggregate 1
-    }
     MyAntennaDebugAction "{64971637DC5E6E1D}" {
      ParentContextList {
       "antenna"

@@ -1,21 +1,9 @@
 
-
-
-class MyRadioStationComponentClass: ScriptComponentClass
-{
-	static override array<typename> Requires(IEntityComponentSource src)
-	{
-		return {MyRadioAntennaComponent};
-	}
-}
-
-class MyRadioStationComponent: ScriptComponent 
-{
-	protected IEntity m_owner;
-	
+[BaseContainerProps()]
+class CustomRadioStation
+{		
 	private int m_lastTrackIndex = -1;
-
-		
+	
 	[Attribute("", UIWidgets.EditBox, "Radiostation name")]
 	string m_radiostationName;
 	
@@ -30,11 +18,6 @@ class MyRadioStationComponent: ScriptComponent
 	
 	[Attribute("", UIWidgets.Slider, "DJ Tracks Lengths", "1 3600 1")]
 	ref array<int> m_djTracksLengths;
-	
-	override void OnPostInit(IEntity owner)
-	{
-		m_owner = owner;
-	}
 	
 	MyRadioStationTrackInfo GetNewTrack() {		
 		if (!m_TracksLengths || m_TracksLengths.Count() == 0 && m_djTracksLengths.Count() == 0) {
@@ -98,4 +81,6 @@ class MyRadioStationComponent: ScriptComponent
 		
 		return index;		
 	}
+	
+	
 }

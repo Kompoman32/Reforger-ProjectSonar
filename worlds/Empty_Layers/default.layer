@@ -186,10 +186,6 @@ $grp GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Bas
 Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
  coords 6508.678 161.833 6462.938
 }
-GenericEntity : "{CD743C9759844C68}PrefabsEditable/Auto/Props/Furniture/E_LampInterior_01.et" {
- coords 6459.838 162.123 6492.408
- angleY 179.989
-}
 Vehicle UH1H_base1 : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
  coords 6470.241 162.062 6476.543
 }

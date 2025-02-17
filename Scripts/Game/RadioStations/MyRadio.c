@@ -15,7 +15,10 @@ class MyRadioComponent: ScriptComponent
 	protected IEntity m_owner;
 	protected vector m_ownerTransform[4];
 	protected AudioHandle m_currentTrack = AudioHandle.Invalid;
-	MyRadioStationComponent m_radioStation;
+	
+	MyRadioAntennaSystem m_radioSystem;
+	CustomRadioStation m_radioStation;
+	
 	[RplProp()]
 	int m_radioStationIndex = 0;
 	
@@ -40,7 +43,11 @@ class MyRadioComponent: ScriptComponent
 		
 		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
 		
-		//PrintFormat("Radio Inited %1: %2", owner.GetName(), owner);
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (world) 
+		{
+			m_radioSystem = MyRadioAntennaSystem.Cast(world.FindSystem(MyRadioAntennaSystem));
+		}
 		
 		EOnActivate(owner);
 	}
@@ -52,10 +59,10 @@ class MyRadioComponent: ScriptComponent
 			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
 		
 
-		if (!MyRadioAntennaComponent.s_Instance) return;
+		if (!m_radioSystem) return;
 		
 		if (b_state) {
-			MyRadioAntennaComponent.s_Instance.Connect(this);
+			m_radioSystem.Connect(this);
 			StartPlay();
 		}
 	}
@@ -66,15 +73,15 @@ class MyRadioComponent: ScriptComponent
 		if (onVehicleDamageStateChanged)
 			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
 		
-		if (!MyRadioAntennaComponent.s_Instance) return;
+		if (!m_radioSystem) return;
 		
-		MyRadioAntennaComponent.s_Instance.Disconnect(this);
+		m_radioSystem.Disconnect(this);
 		StopPlay();
 	}
 	
 	override void EOnFrame(IEntity owner, float timeSlice) 
 	{
-		if (!Enabled() || !MyRadioAntennaComponent.s_Instance) return;
+		if (!Enabled() || !m_radioSystem) return;
 		
 		m_owner.GetTransform(m_ownerTransform);
 		AudioSystem.SetSoundTransformation(m_currentTrack, m_ownerTransform);	
@@ -103,7 +110,7 @@ class MyRadioComponent: ScriptComponent
 	
 	/** Enable Radio / Executed on Server **/
 	void Enable() {		
-		if (!MyRadioAntennaComponent.s_Instance) 
+		if (!m_radioSystem) 
 		{
 			return;
 		}
@@ -111,10 +118,10 @@ class MyRadioComponent: ScriptComponent
 		b_state = true;
 		
 		if (m_radioStation == null) {
-			m_radioStation = MyRadioAntennaComponent.s_Instance.GetRadioStation(m_radioStationIndex);
+			m_radioStation = m_radioSystem.GetRadioStation(m_radioStationIndex);
 		}
 		
-		MyRadioAntennaComponent.s_Instance.Connect(this);
+		m_radioSystem.Connect(this);
 		
 		StartPlay();
 		
@@ -125,7 +132,7 @@ class MyRadioComponent: ScriptComponent
 	void Disable() {
 		b_state = false;	
 
-		MyRadioAntennaComponent.s_Instance.Disconnect(this);
+		m_radioSystem.Disconnect(this);
 	
 		StopPlay();
 		SetEventMask(m_owner, EntityEvent.INIT);
@@ -143,7 +150,7 @@ class MyRadioComponent: ScriptComponent
 	}
 	
 	void ChangeStation() {
-		if (!b_state || !MyRadioAntennaComponent.s_Instance) {
+		if (!b_state || !m_radioSystem) {
 			return;
 		}
 				
@@ -151,12 +158,12 @@ class MyRadioComponent: ScriptComponent
 		
 		++m_radioStationIndex;
 		
-		if (m_radioStationIndex >= MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount()) 
+		if (m_radioStationIndex >= m_radioSystem.GetRadiostaionsCount()) 
 		{
 			m_radioStationIndex = 0;
 		}
 		
-		m_radioStation = MyRadioAntennaComponent.s_Instance.GetRadioStation(m_radioStationIndex);
+		m_radioStation = m_radioSystem.GetRadioStation(m_radioStationIndex);
 		
 		m_owner.GetTransform(m_ownerTransform);
 		PlayChangeSound();
@@ -170,12 +177,12 @@ class MyRadioComponent: ScriptComponent
 	
 	void StartPlay() 
 	{
-		if (m_radioStation == null || !MyRadioAntennaComponent.s_Instance) 
+		if (m_radioStation == null || !m_radioSystem) 
 		{
 			return;
 		}
 		
-		MyRadioStationTrackInfo trackInfo = MyRadioAntennaComponent.s_Instance.GetRadioStationTrack(m_radioStationIndex);
+		MyRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
 		
 		if (!trackInfo)		
 		{
@@ -195,7 +202,7 @@ class MyRadioComponent: ScriptComponent
 	
 	protected void GetPlaySignals(MyRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
 	{
-		float trackOffset = MyRadioAntennaComponent.s_Instance.GetRadioStationTrackOffset(m_radioStationIndex);
+		float trackOffset = m_radioSystem.GetRadioStationTrackOffset(m_radioStationIndex);
 
 		signalNames.Insert(BROADCAST_TYPE_SIGNAL);
 		signalNames.Insert(OFFSET_SIGNAL);
@@ -239,7 +246,7 @@ class MyRadioComponent: ScriptComponent
 	{
 		StopPlay();
 
-		if (!b_state || !MyRadioAntennaComponent.s_Instance)
+		if (!b_state || !m_radioSystem)
 		{
 			return;
 		}

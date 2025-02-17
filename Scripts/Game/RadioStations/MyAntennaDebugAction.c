@@ -1,11 +1,11 @@
 enum MyAntennaDebugActionEnum 
 {
-	Clear = 0,
-	UpdateRadios = 1
+	UpdateRadios = 1,
 }
 
 class MyAntennaDebugAction: ScriptedUserAction
 {
+	MyRadioAntennaSystem m_RadioSystem;
 	MyRadioComponent m_RadioComponent;
 	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyAntennaDebugActionEnum))]
@@ -13,7 +13,13 @@ class MyAntennaDebugAction: ScriptedUserAction
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
-		super.Init(pOwnerEntity, pManagerComponent);	
+		super.Init(pOwnerEntity, pManagerComponent);
+		
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (world) 
+		{
+			m_RadioSystem = MyRadioAntennaSystem.Cast(world.FindSystem(MyRadioAntennaSystem));
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -31,25 +37,11 @@ class MyAntennaDebugAction: ScriptedUserAction
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {					
 		switch (m_eActionType)
 		{
-			case MyAntennaDebugActionEnum.Clear:
-			{
-				if (MyRadioAntennaComponent.s_Instance) 
-				{
-					MyRadioAntennaComponent.s_Instance.SetEventMask(MyRadioAntennaComponent.s_Instance.m_owner, EntityEvent.INIT);
-					
-					Print("Instance Cleared");
-				}
-				
-				MyRadioAntennaComponent.s_Instance = null;
-				
-				break;
-			}
-			
 			case MyAntennaDebugActionEnum.UpdateRadios:
 			{
-				if (MyRadioAntennaComponent.s_Instance) 
+				if (m_RadioSystem) 
 				{
-					MyRadioAntennaComponent.s_Instance.AskTo_UpdateTracks();
+					m_RadioSystem.AskTo_UpdateTracks();
 				}
 			}
 		}

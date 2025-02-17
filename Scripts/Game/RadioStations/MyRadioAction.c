@@ -8,6 +8,7 @@ enum MyRadioActionEnum
 class MyRadioAction: ScriptedUserAction
 {
 	IEntity p_OwnerEntity;
+	MyRadioAntennaSystem m_RadioSystem;
 	MyRadioComponent m_RadioComponent;
 	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyRadioActionEnum))]
@@ -24,6 +25,12 @@ class MyRadioAction: ScriptedUserAction
 
 		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
+		
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (world) 
+		{
+			m_RadioSystem = MyRadioAntennaSystem.Cast(world.FindSystem(MyRadioAntennaSystem));
+		}
 	}
 	
 	override bool CanBroadcastScript()
@@ -48,6 +55,11 @@ class MyRadioAction: ScriptedUserAction
 		m_RadioComponent = MyRadioComponent.Cast(attachedEntity.FindComponent(MyRadioComponent));
 	}
 	
+	void FindRadioSystem()
+	{
+		
+	}
+	
 	bool Enabled() {
 		if (!m_RadioComponent) 
 			return false;
@@ -59,7 +71,7 @@ class MyRadioAction: ScriptedUserAction
 	{	
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
 		
-		if (!m_RadioComponent || !MyRadioAntennaComponent.s_Instance) {
+		if (!m_RadioComponent || !m_RadioSystem) {
 			return m_eActionType == MyRadioActionEnum.TurnOnOff;
 		}
 		
@@ -85,19 +97,19 @@ class MyRadioAction: ScriptedUserAction
 			return false;
 		}
 		
-		if (!MyRadioAntennaComponent.s_Instance)
+		if (!m_RadioSystem)
 		{
 			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Antenna";
 			return false;
 		}	
 		
-		if (MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount() == 0)
+		if (m_RadioSystem.GetRadiostaionsCount() == 0)
 		{
 			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Station";
 			return false;
 		}
 		
-		if (m_RadioComponent.Enabled() && m_eActionType == MyRadioActionEnum.Change && MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount() == 1)
+		if (m_RadioComponent.Enabled() && m_eActionType == MyRadioActionEnum.Change && m_RadioSystem.GetRadiostaionsCount() == 1)
 		{
 			m_sCannotPerformReason = "#RT_Radio_CannotPerform_OneStation";
 			return false;
