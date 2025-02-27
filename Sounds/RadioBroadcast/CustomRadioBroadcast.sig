@@ -12,7 +12,7 @@ AudioSignalResClass {
   IOPItemInputClass {
    id 31
    name "BroadcastType"
-   tl -88.417 -194.333
+   tl -62.417 -193.333
    children {
     37
    }
@@ -29,7 +29,7 @@ AudioSignalResClass {
   IOPItemInputClass {
    id 35
    name "DJTrackID"
-   tl -70.417 124.417
+   tl -58.417 124.417
    children {
     34
    }
@@ -37,7 +37,7 @@ AudioSignalResClass {
   IOPItemInputClass {
    id 41
    name "RadioVolume"
-   tl -71 220
+   tl -57 219
    children {
     40
    }
@@ -47,31 +47,31 @@ AudioSignalResClass {
   IOPItemOutputClass {
    id 33
    name "MusicTrackID"
-   tl 188.583 28.417
+   tl 185.583 12.417
    input 30
   }
   IOPItemOutputClass {
    id 34
    name "DJTrackID"
-   tl 189.583 124.417
+   tl 185.333 124.792
    input 35
   }
   IOPItemOutputClass {
    id 36
    name "Offset"
-   tl 180.583 -91.583
+   tl 185.833 -92.833
    input 32
   }
   IOPItemOutputClass {
    id 37
    name "BroadcastType"
-   tl 181.583 -194.333
+   tl 181.833 -192.583
    input 31
   }
   IOPItemOutputClass {
    id 40
    name "RadioVolume"
-   tl 167 221
+   tl 184 219
    input 41
   }
  }

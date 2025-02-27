@@ -70,7 +70,7 @@ AudioClass {
  sounds {
   SoundClass {
    id 1033
-   name "SOUND_RADIO"
+   name "SOUND_CUSTOM_RADIO"
    version 5
    tl 192 -115
    ins {
@@ -534,7 +534,7 @@ AudioClass {
    id 35844
    name "DJ"
    version 7
-   tl -700.679 -174.107
+   tl -700.679 -176.445
    ins {
     ConnectionsClass connections {
      id 0

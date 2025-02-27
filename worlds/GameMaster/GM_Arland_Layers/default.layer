@@ -3681,8 +3681,13 @@ Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Ba
 }
 MusicManager : "{359452CCDBDD03F5}Prefabs/Sounds/Music/MusicManager_Campaign.et" {
 }
-GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et" {
- coords 1398.81 35.862 2358.239
+$grp GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et" {
+ {
+  coords 1398.81 35.862 2358.239
+ }
+ {
+  coords 1404.01 35.924 2348.847
+ }
 }
 Vehicle Ural1 : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
  coords 1403.394 35.786 2364.285
@@ -3698,6 +3703,9 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
 }
 Vehicle M923A1 : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
  coords 1399.28 35.855 2364.402
+}
+GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
+ coords 1401.344 35.996 2350.732
 }
 Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S1203/S1203_transport_base.et" {
  coords 1399.308 35.887 2356.306

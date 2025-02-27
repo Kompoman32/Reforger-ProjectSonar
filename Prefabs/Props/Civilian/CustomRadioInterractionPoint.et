@@ -6,6 +6,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
   MyRadioComponent "{6484BB4D324A4331}" {
   }
   ActionsManagerComponent "{6484BB4D311EB733}" {
+   Enabled 0
    additionalActions {
     MyRadioAction "{6484BB4D6BBDD79D}" {
      ParentContextList {

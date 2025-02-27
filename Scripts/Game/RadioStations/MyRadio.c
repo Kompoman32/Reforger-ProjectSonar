@@ -4,7 +4,7 @@ class MyRadioComponentClass: ScriptComponentClass
 
 class MyRadioComponent: ScriptComponent 
 {
-	static string SOUND_EVENT_NAME = "SOUND_RADIO";
+	static string SOUND_EVENT_NAME = "SOUND_CUSTOM_RADIO";
 		
 	static string DJ_INDEX_SIGNAL= "DJTrackID";
 	static string MUSIC_INDEX_SIGNAL= "MusicTrackID";
@@ -30,7 +30,7 @@ class MyRadioComponent: ScriptComponent
 	protected float m_volume = 50;
 	
 	
-	protected float m_volumeToSignalDivider = 100;
+	protected float m_volumeToSignalDivider = 50;
 	
 	protected void ~MyRadioComponent() 
 	{
