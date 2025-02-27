@@ -1,0 +1,222 @@
+class MyRadioComponentClass: ScriptComponentClass
+{
+}
+
+class MyRadioComponent: ScriptComponent 
+{
+	static string SOUND_EVENT_NAME = "SOUND_RADIO";
+		
+	static string DJ_INDEX_SIGNAL= "DJTrackID";
+	static string MUSIC_INDEX_SIGNAL= "MusicTrackID";
+	static string OFFSET_SIGNAL= "Offset";
+	static string BROADCAST_TYPE_SIGNAL= "BroadcastType";
+	static string VOLUME_SIGNAL= "RadioVolume";
+	
+	protected IEntity m_owner;
+	protected vector m_ownerTransform[4];
+	protected AudioHandle m_currentTrack = AudioHandle.Invalid;
+	MyRadioStationComponent m_radioStation;
+	int m_radioStationIndex = 0;
+	
+	protected SignalsManagerComponent m_signalManager;
+	
+	protected bool b_state;
+	protected float m_volume = 50;
+	protected float m_volumeToSignalDivider = 100;
+	
+	protected void ~MyRadioComponent() 
+	{
+		EOnDeactivate(m_owner);
+	}
+	
+	override void OnPostInit(IEntity owner)
+	{
+		Print(owner.GetName());
+		
+		m_owner = owner;
+		
+		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
+		
+		
+		if (MyRadioAntennaComponent.s_Instance) {	
+			MyRadioAntennaComponent.s_Instance.Connect(this);
+		}
+		
+		Print("Radio Inited");
+		Print(owner);
+		
+		EOnActivate(owner);
+	}
+	
+	override void EOnActivate(IEntity owner) 
+	{		
+		if (!MyRadioAntennaComponent.s_Instance) return;
+		
+		MyRadioAntennaComponent.s_Instance.Connect(this);
+		
+		if (b_state) {
+			StartPlay();
+		}
+	}
+	
+	override void EOnDeactivate(IEntity owner) 
+	{		
+		if (!MyRadioAntennaComponent.s_Instance) return;
+		
+		MyRadioAntennaComponent.s_Instance.Disconnect(this);
+		
+		StopPlaying();
+	}
+	
+	override void EOnFrame(IEntity owner, float timeSlice) 
+	{
+		if (!GetState() || !MyRadioAntennaComponent.s_Instance) return;
+		
+		m_owner.GetTransform(m_ownerTransform);
+		AudioSystem.SetSoundTransformation(m_currentTrack, m_ownerTransform);	
+	}
+	
+	bool GetState() {
+		return b_state;
+	}
+	
+	void Enable() {		
+		if (!MyRadioAntennaComponent.s_Instance) 
+		{
+			return;
+		}
+		
+		b_state = true;
+		
+		if (m_radioStation == null) {
+			m_radioStation = MyRadioAntennaComponent.s_Instance.GetRadioStation(m_radioStationIndex);
+		}
+		
+		StartPlay();
+		
+		SetEventMask(m_owner, EntityEvent.FRAME);
+	}
+	
+		
+	void Disable() {
+		 b_state = false;	
+
+		StopPlaying();
+		SetEventMask(m_owner, EntityEvent.INIT);
+	}
+	
+	void Change() {
+		if (!b_state || !MyRadioAntennaComponent.s_Instance) {
+			return;
+		}
+				
+		StopPlaying();
+		
+		++m_radioStationIndex;
+		
+		if (m_radioStationIndex >= MyRadioAntennaComponent.s_Instance.GetRadiostaionsCount()) 
+		{
+			m_radioStationIndex = 0;
+		}
+		
+		m_radioStation = MyRadioAntennaComponent.s_Instance.GetRadioStation(m_radioStationIndex);
+		
+		m_owner.GetTransform(m_ownerTransform);
+		PlayChangeSound();
+		StartPlay();			
+	}
+	
+	void PlayChangeSound()
+	{
+		AudioSystem.PlayEvent("{0373401D5C6607B1}Sounds/RadioBroadcast/RadioBroadcast.acp", "SOUND_RADIO_TURN_ON", m_ownerTransform, {}, {});
+	}
+	
+	void StartPlay() 
+	{
+		if (m_radioStation == null || !MyRadioAntennaComponent.s_Instance) 
+		{
+			return;
+		}
+		
+		MyRadioStationTrackInfo trackInfo = MyRadioAntennaComponent.s_Instance.GetRadioStationTrack(m_radioStationIndex);
+		
+		if (!trackInfo)		
+		{
+			Print("Cant get track info", LogLevel.WARNING);
+			return;
+		}
+		
+		array<string> signalNames = {};
+		array<float> signalValues = {};
+		
+		GetPlaySignals(trackInfo, signalNames, signalValues);
+		
+		m_owner.GetTransform(m_ownerTransform);
+		// Play event
+		m_currentTrack = AudioSystem.PlayEvent(trackInfo.m_projectFile, SOUND_EVENT_NAME, m_ownerTransform, signalNames, signalValues);
+	}
+	
+	void StopPlaying() {
+		AudioSystem.TerminateSound(m_currentTrack);
+	}
+	
+	void Reset()
+	{
+		StopPlaying();
+		StartPlay();
+	}
+	
+	protected void GetPlaySignals(MyRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
+	{
+		float trackOffset = MyRadioAntennaComponent.s_Instance.GetRadioStationTrackOffset(m_radioStationIndex);
+
+		signalNames.Insert(BROADCAST_TYPE_SIGNAL);
+		signalNames.Insert(OFFSET_SIGNAL);
+		
+		if (trackInfo.b_isDJ)
+		{
+			signalNames.Insert(DJ_INDEX_SIGNAL);
+			signalValues.Insert(0);
+		}
+		else 
+		{
+			signalNames.Insert(MUSIC_INDEX_SIGNAL);
+			signalValues.Insert(1);
+		}
+		
+		signalValues.Insert(trackOffset);
+		signalValues.Insert(trackInfo.m_trackIndex);	
+		
+		signalNames.Insert(VOLUME_SIGNAL);
+		signalValues.Insert(GetVolume() / m_volumeToSignalDivider);
+		
+		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
+		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();
+		
+		signalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
+		signalNames.Insert(SCR_SoundManagerEntity.G_CURR_VEHICLE_COVERAGE_SIGNAL_NAME);
+		signalNames.Insert(SCR_SoundManagerEntity.G_IS_THIRD_PERSON_CAM_SIGNAL_NAME);
+		signalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
+		
+		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
+		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGCurrVehicleCoverageSignalIdx()));
+		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGIsThirdPersonCamSignalIdx()));
+		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));	
+	}
+	
+	void SetVolume(float volume)
+	{
+		volume = Math.Clamp(volume, 0, 100);
+		
+		if (volume == m_volume) return;
+		
+		m_volume = volume;
+		
+		Reset();
+	}
+
+	float GetVolume()
+	{
+		return m_volume;
+	}
+}

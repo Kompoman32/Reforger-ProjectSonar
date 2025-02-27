@@ -1,0 +1,23 @@
+Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
+ ID "57DA6675519A417B"
+ components {
+  RadioBroadcastSoundComponent "{620B213E836CEE92}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B213E8516E597}" {
+   Enabled 0
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B4173A7AE5495}" {
+     Position RegisteringComponentSlotInfo "{5E3EDDF5AE1E3A62}" {
+      Angles 0 180 0
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+    }
+   }
+  }
+ }
+}

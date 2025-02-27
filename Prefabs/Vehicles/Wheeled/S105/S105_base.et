@@ -1,0 +1,33 @@
+Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  RadioBroadcastSoundComponent "{620B2138A4C7E7F7}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B2138AFE37078}" {
+   Enabled 0
+  }
+  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    m_aAutoLabels {
+     0
+    }
+   }
+  }
+  SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
+   "faction affiliation" "CIV"
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B4176F337A15D}" {
+     Position RegisteringComponentSlotInfo "{5EFCE8533944C12A}" {
+      PivotID ""
+      Offset 0.068 0.7349 0.7178
+      Angles 0 180 0
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+     }
+    }
+   }
+  }
+ }
+}

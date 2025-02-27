@@ -1,0 +1,239 @@
+GameEntity {
+ coords 6459.09 162.119 6491.796
+}
+Vehicle M997_maxi_ambulance1 : "{00C9BBE426F7D459}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et" {
+ coords 6421.37 162.004 6485.521
+}
+Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Base.et" {
+ components {
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{621E95E53748D968}" {
+    }
+   }
+  }
+ }
+ coords 6459.809 162.59 6500.559
+}
+GenericEntity : "{2F2BBFDA3A2C73D4}Prefabs/Props/Civilian/RadioSmall_01_black.et" {
+ coords 6454.832 162.224 6492.673
+}
+$grp GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
+ {
+  components {
+   RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
+    Filenames +{
+    }
+    IncludeInactive 1
+   }
+   MeshObject "{5872F0EB7FA40561}" {
+    Object "{E8E19E66E4334DA9}CAR_RADIO/CAR_RADIO.xob"
+   }
+   RadioBroadcastComponent "{55210012F7D026E6}" {
+    TurnOnAction SCR_TurnOnAction "{565E9648693583C9}" {
+    }
+   }
+   RigidBody "{5872F0EB7DFB5A9D}" {
+    ResponseIndex "TinyDestructible"
+   }
+   SCR_DestructionMultiPhaseComponent "{5624A88D86EFE8BA}" : "{76DA308CC9E2AB84}Prefabs/Props/Core/DestructionMultiPhase_Base.ct" {
+    m_fBaseHealth 700
+    m_eMaterialSoundType BREAK_PLASTIC
+   }
+   ActionsManagerComponent "{52E71719F5BE5EBB}" {
+    ActionContexts {
+     UserActionContext "{52E71719FB29C551}" {
+      Position PointInfo "{647F2759E894FC2B}" {
+       Offset 2.1475 0 0.5786
+      }
+     }
+     UserActionContext "{6485461A5CBEAF92}" {
+      UIInfo SCR_ActionContextUIInfo "{6485461A59271C8C}" {
+      }
+      ContextName "RADIO"
+      Position RegisteringComponentSlotInfo RADIO {
+       Offset -0.129 0.0296 0.0486
+       Angles 0 180 0
+       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+       DisablePhysicsInteraction 1
+       RegisterActions 1
+      }
+     }
+     UserActionContext "{6485461D269DF314}" {
+      ContextName "RADIO2"
+     }
+     UserActionContext "{64854615DF9CD23B}" {
+      ContextName "RADIO"
+      Position RegisteringComponentSlotInfo "{64854615D707AA5A}" {
+       Offset -0.1289 0.0296 0.0537
+       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+       DisablePhysicsInteraction 1
+       RegisterActions 1
+      }
+      Radius 17.88
+      Height 16.42
+      Omnidirectional 0
+     }
+     UserActionContext "{6485461B2B767583}" {
+      ContextName "RADIO2"
+      Position PointInfo "{52E7171928800124}" {
+       Offset 0.9194 0.0296 0.0488
+      }
+     }
+    }
+   }
+   RplComponent "{5624A88DC2D9928D}" {
+    Enabled 1
+   }
+  }
+  coords 6446.02 163.183 6506.464
+  angleY 163.515
+ }
+ {
+  coords 6463.703 161.906 6481.31
+ }
+ {
+  coords 6461.276 162.074 6471.448
+ }
+}
+Vehicle M1025_armed_M2HB1 : "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et" {
+ coords 6426.052 162.094 6487.89
+}
+$grp GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et" {
+ {
+  coords 6457.641 162.146 6490.983
+ }
+ {
+  coords 6460.327 161.964 6483.42
+ }
+ {
+  coords 6461.154 161.976 6484.431
+ }
+}
+Vehicle Ural1 : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
+ coords 6446.792 162.294 6479.582
+}
+Vehicle M1 : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
+ coords 6437.43 162.189 6490.656
+}
+Vehicle S105_white1 : "{63880E311299A016}Prefabs/Vehicles/Wheeled/S105/S105_white.et" {
+ coords 6457.792 162.098 6475.933
+}
+$grp GenericEntity : "{818571DF82B787FF}PrefabsEditable/Auto/Props/Civilian/E_RadioSmall_01_black.et" {
+ {
+  coords 6457.992 162.156 6491.967
+ }
+ {
+  coords 6456.881 162.181 6492.441
+ }
+}
+Vehicle UAZ452_base1 : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
+ coords 6452.814 162.431 6501.564
+}
+Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469_base.et" {
+ coords 6421.286 161.939 6472.416
+}
+Vehicle M923A1 : "{9A0D72816DFFDB7F}Prefabs/Vehicles/Wheeled/M923A1/M923A1.et" {
+ components {
+  RadioBroadcastSoundComponent "{620B213895ED12D8}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B21389E117A26}" {
+   Enabled 0
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B41763774FDA8}" {
+     Position RegisteringComponentSlotInfo "{5190BB256410F300}" {
+      PivotID "v_body"
+      Offset 0.2578 0.976 0.7217
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      RegisterActions 1
+     }
+    }
+   }
+  }
+ }
+ coords 6445.592 162.277 6494.213
+}
+Vehicle M998_covered_long1 : "{9B1BF9644E0378D6}Prefabs/Vehicles/Wheeled/M998/M998_covered_long.et" {
+ coords 6411.724 161.777 6484.061
+}
+Vehicle Mi8_base1 : "{AFF6067A5CE8A852}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8_base.et" {
+ coords 6479.077 162.063 6475.459
+}
+Vehicle Mi8MT_base1 : "{AFF6067A5CE8A853}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_base.et" {
+ coords 6493.038 162.062 6461.458
+}
+Vehicle M1025_armed_base1 : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" {
+ coords 6430.731 162.125 6489.064
+}
+Vehicle M998_covered1 : "{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_covered.et" {
+ coords 6417.352 161.896 6484.221
+}
+$grp GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
+ {
+  components {
+   SlotManagerComponent "{64854617B6856C47}" {
+   }
+   ActionsManagerComponent "{52E71719F5BE5EBB}" {
+    ActionContexts {
+     UserActionContext "{64854615DF9CD23B}" {
+      Position RegisteringComponentSlotInfo "{64854615D707AA5A}" {
+      }
+      FilterActionsUsingCache 0
+      "Display UI At Reference Point" 0
+     }
+    }
+    AllowCrossHierarchy 1
+   }
+   RplComponent "{5624A88DC2D9928D}" {
+    "Parent Node From Parent Entity" 0
+   }
+  }
+  coords 6456.931 163.357 6492.128
+  Flags 3
+ }
+ {
+  components {
+   ActionsManagerComponent "{52E71719F5BE5EBB}" {
+    ActionContexts {
+     UserActionContext "{52E71719FB29C551}" {
+     }
+    }
+   }
+  }
+  coords 6456.931 163.357 6492.128
+ }
+}
+Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
+ coords 6508.678 161.833 6462.938
+}
+GenericEntity : "{CD743C9759844C68}PrefabsEditable/Auto/Props/Furniture/E_LampInterior_01.et" {
+ coords 6459.838 162.123 6492.408
+ angleY 179.989
+}
+Vehicle UH1H_base1 : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
+ coords 6470.241 162.062 6476.543
+}
+Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S1203/S1203_transport_base.et" {
+ coords 6415.453 161.835 6477.199
+}
+Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.et" {
+ components {
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B4176F337A15D}" {
+    }
+   }
+  }
+ }
+ coords 6462.393 161.989 6475.359
+ angleY 179.131
+}
+Vehicle M151A1 : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
+ coords 6450.552 162.356 6497.339
+}
+GenericEntity : "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et" {
+ coords 6455.778 162.192 6491.817
+}

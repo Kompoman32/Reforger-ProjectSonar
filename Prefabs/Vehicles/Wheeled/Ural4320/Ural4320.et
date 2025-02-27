@@ -1,0 +1,25 @@
+Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
+ ID "0000000000000001"
+ components {
+  RadioBroadcastSoundComponent "{620B213913B42255}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B21391724A76E}" {
+   Enabled 0
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B41752081717D}" {
+     Position RegisteringComponentSlotInfo "{51B13A1EA5147814}" {
+      PivotID "v_body"
+      Offset 0.6572 0.8609 0.8717
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+     VisibilityAngle 90
+    }
+   }
+  }
+ }
+}

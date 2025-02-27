@@ -1,0 +1,21 @@
+Vehicle : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  RadioBroadcastSoundComponent "{621E95E57E78E959}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{621E95E56FCD80D3}" {
+   Enabled 0
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{621E95E53748D968}" {
+     Position RegisteringComponentSlotInfo "{50AB795F40C207FC}" {
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      RegisterActions 1
+     }
+    }
+   }
+  }
+ }
+}

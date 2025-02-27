@@ -1,0 +1,35 @@
+GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et" {
+ ID "5246C095726F8F40"
+ components {
+  SignalsManagerComponent "{54B2D26FB0868A48}" {
+   Enabled 0
+  }
+  RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
+   Enabled 0
+  }
+  MyRadioComponent "{648546181955390A}" {
+  }
+  RadioBroadcastComponent "{55210012F7D026E6}" {
+   TurnOnAction SCR_TurnOnAction "{565E9648693583C9}" {
+    ParentContextList {
+    }
+   }
+  }
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   Static 0
+  }
+  ActionsManagerComponent "{52E71719F5BE5EBB}" {
+   ActionContexts {
+    UserActionContext "{52E71719FB29C551}" {
+     ContextName "RADIO"
+     Position RegisteringComponentSlotInfo "{52E7171928800124}" {
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+    }
+   }
+   AllowCrossHierarchy 1
+  }
+ }
+}

@@ -1,0 +1,29 @@
+Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  RadioBroadcastSoundComponent "{620B21397397D455}" {
+   Enabled 0
+  }
+  RadioBroadcastComponent "{620B21397685D5A3}" {
+   Enabled 0
+  }
+  SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
+   "faction affiliation" ""
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{620B41755BD53A87}" {
+     Position RegisteringComponentSlotInfo "{55A093A30AC3BD78}" {
+      PivotID "v_body"
+      Offset -0.1362 1.7314 0.6422
+      Angles 0 0 0
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+     Omnidirectional 1
+    }
+   }
+  }
+ }
+}

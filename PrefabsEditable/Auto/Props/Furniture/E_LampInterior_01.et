@@ -1,0 +1,94 @@
+GenericEntity : "{FA81E4DDBA1189AF}Prefabs/Props/Furniture/LampInterior_01.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  SignalsManagerComponent "{647F10FADCD19BD3}" {
+  }
+  SoundComponent "{647F10FA71F28F5F}" {
+  }
+  MyRadioComponent "{647F2758DCC471E4}" {
+  }
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   ResponseIndex "TinyDestructible"
+  }
+  SCR_EditableEntityComponent "{58AAE805B682C77C}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{5298E609432D192D}" {
+    Name "#AR-EditableEntity_LampInterior_01_Name"
+    m_Image "{63ED8F645E257931}UI/Textures/EditorPreviews/Auto/Props/Furniture/E_LampInterior_01.edds"
+    m_aAuthoredLabels {
+    }
+    m_aAutoLabels +{
+    }
+   }
+  }
+  SCR_PreviewEntityComponent "{58AAE805B6811FEE}" {
+   m_bRuntime 0
+   m_aEntries {
+    SCR_BasePreviewEntry "{58AAE805B6811B4D}" {
+     m_iParentID -1
+     m_Mesh "{89400D22902563C0}Assets/Props/Furniture/LampInterior_01/LampInterior_01.xob"
+     m_Flags 0
+     m_Shape MESH
+     m_iPivotID ""
+     m_vScale 1 1 1
+     m_vPosition 0 0 0
+     m_vAngles 0 0 0
+    }
+   }
+  }
+  ActionsManagerComponent "{647F275991937AFA}" {
+   ActionContexts {
+    UserActionContext "{647F2759EC5D6024}" {
+     ContextName "switch"
+     Position PointInfo "{647F2759E894FC2B}" {
+      Offset 0 0.9073 0.0264
+     }
+     Radius 2.34
+     Height 2.11
+    }
+   }
+   additionalActions {
+    MyRadioAction "{647F275AD48357BB}" {
+     ParentContextList {
+      "switch"
+     }
+     UIInfo UIInfo "{647F275B109A17FD}" {
+      Name "Лампа"
+     }
+     CanAggregate 1
+     m_eActionType TurnOnOff
+    }
+    MyRadioAction "{647F2751634338F0}" {
+     ParentContextList {
+      "switch"
+     }
+     UIInfo UIInfo "{647F27517F5C458F}" {
+      Name "Станция"
+      Description ""
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType Change
+    }
+    MyRadioVolumeAction "{6483362778365E85}" {
+     ParentContextList {
+      "switch"
+     }
+     UIInfo UIInfo "{6483362772BCC09A}" {
+      Name "Громкость"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+   }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+  }
+ }
+}

@@ -1,0 +1,72 @@
+GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  SignalsManagerComponent "{6484BB4D5C34418E}" {
+  }
+  MyRadioComponent "{6484BB4D324A4331}" {
+  }
+  ActionsManagerComponent "{6484BB4D311EB733}" {
+   ActionContexts {
+    UserActionContext "{6484BB4D0F7DDB94}" {
+     ContextName "RADIO"
+     Position PointInfo "{648A958814AA2E4F}" {
+     }
+     Radius 10
+     Height 10
+    }
+   }
+   additionalActions {
+    MyRadioAction "{6484BB4D6BBDD79D}" {
+     ParentContextList {
+      "RADIO"
+     }
+     UIInfo UIInfo "{647F275B109A17FD}" {
+      Name "#RT_RadioOnOffActionName"
+     }
+     "Inventory action" 1
+    }
+    MyRadioVolumeAction "{6484BB4D77EB6236}" {
+     ParentContextList {
+      "RADIO"
+     }
+     UIInfo UIInfo "{6483362772BCC09A}" {
+      Name "#RT_RadioVolumeActionName"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+    MyRadioAction "{6484BB4D7EB3BBCD}" {
+     ParentContextList {
+      "RADIO"
+     }
+     UIInfo UIInfo "{647F27517F5C458F}" {
+      Name "#RT_RadioStationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType Change
+    }
+    BaseUserAction "{6488CC760AB6A4C0}" {
+     ParentContextList {
+      "RADIO"
+     }
+     UIInfo UIInfo "{6488CC76024F837C}" {
+      Name "HEHE"
+     }
+     ActionTitle "TEST"
+     CanAggregate 1
+    }
+   }
+  }
+  RplComponent "{6484BB4DAA864782}" {
+  }
+  Hierarchy "{64854618DF834DE7}" {
+  }
+ }
+}
