@@ -48,6 +48,8 @@ class MyRadioAntennaSystem: GameSystem
 				{
 					somethingUpdated  = true;
 					m_radiostationsTimes[i] = timeNow_s.PlusSeconds(m_radiostationsTracks[i].m_trackSize);	
+				} else {
+					timeNow_s.PlusSeconds(10);
 				}
 			}
 		}

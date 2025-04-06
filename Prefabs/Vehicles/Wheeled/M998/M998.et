@@ -10,6 +10,8 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{648A958CC8081D6F}" {
+     UIInfo SCR_ActionContextUIInfo "{64B73949CCF13FE1}" {
+     }
      ContextName "CustomRadio"
      Position PointInfo "{620B2137E581321E}" {
       PivotID "v_body"

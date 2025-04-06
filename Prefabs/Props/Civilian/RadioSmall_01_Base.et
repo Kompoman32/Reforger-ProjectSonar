@@ -22,6 +22,8 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {
     UserActionContext "{649A0B374E79C808}" {
+     UIInfo SCR_ActionContextUIInfo "{64B7394A34C53D02}" {
+     }
      ContextName "CustomRadio"
      Position PointInfo "{649A0B374E79C87B}" {
       Offset -0.129 0.0296 0.0486
@@ -68,6 +70,18 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      "Sort Priority" 2
      m_eActionType Change
      m_inVehicle 0
+    }
+    MyRadioAction "{64B7394A05CE225F}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo UIInfo "{64B7394A05CE2283}" {
+      Name "#RT_Radio_ResetActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType Reset
+     m_inVehicle 1
     }
    }
   }

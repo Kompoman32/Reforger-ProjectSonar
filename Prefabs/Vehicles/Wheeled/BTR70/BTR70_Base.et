@@ -10,7 +10,14 @@ Vehicle : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{64995864F93CC256}" {
+     UIInfo SCR_ActionContextUIInfo "{64B73949613D6E53}" {
+     }
      ContextName "CustomRadio"
+     Position PointInfo "{64B739497CDF8EA9}" {
+      PivotID "v_body"
+      Offset 0.0371 0.6071 2.7823
+      Angles 0 180 0
+     }
     }
    }
    additionalActions {

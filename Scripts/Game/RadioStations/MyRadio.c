@@ -2,7 +2,7 @@ class MyRadioComponentClass: ScriptComponentClass
 {
 }
 
-class MyRadioComponent: ScriptComponent 
+class MyRadioComponent: ScriptComponent
 {
 	static string SOUND_EVENT_NAME = "SOUND_CUSTOM_RADIO";
 		
@@ -29,8 +29,10 @@ class MyRadioComponent: ScriptComponent
 	[RplProp(onRplName: "onRplSetVolume")]
 	protected float m_volume = 50;
 	
-	
 	protected float m_volumeToSignalDivider = 50;
+	
+	float m_signalInterionValue = 0;
+	float m_signalRoomSizeValue = 0;
 	
 	protected void ~MyRadioComponent() 
 	{
@@ -40,7 +42,6 @@ class MyRadioComponent: ScriptComponent
 	override void OnPostInit(IEntity owner)
 	{		
 		m_owner = owner;
-		
 		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
@@ -48,6 +49,9 @@ class MyRadioComponent: ScriptComponent
 		{
 			m_radioSystem = MyRadioAntennaSystem.Cast(world.FindSystem(MyRadioAntennaSystem));
 		}
+		
+		m_owner.GetTransform(m_ownerTransform);
+		calculateInteriorSignalValues();
 		
 		EOnActivate(owner);
 	}
@@ -85,6 +89,23 @@ class MyRadioComponent: ScriptComponent
 		
 		m_owner.GetTransform(m_ownerTransform);
 		AudioSystem.SetSoundTransformation(m_currentTrack, m_ownerTransform);	
+	}
+		
+	protected void calculateInteriorSignalValues() 
+	{
+		SoundWorld m_SoundWorld;
+		ChimeraWorld chimeraWorld = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (chimeraWorld)
+		{
+			m_SoundWorld = chimeraWorld.GetSoundWorld();
+		}
+		
+		if (m_SoundWorld) 
+		{				
+			RT_RadioInteriorRequestCallback rirc = new RT_RadioInteriorRequestCallback(this);
+			
+			m_SoundWorld.CalculateInterirorAt(m_ownerTransform, rirc);	
+		}			
 	}
 	
 	bool Enabled() {
@@ -196,6 +217,10 @@ class MyRadioComponent: ScriptComponent
 		GetPlaySignals(trackInfo, signalNames, signalValues);
 		
 		m_owner.GetTransform(m_ownerTransform);
+	
+	
+	
+	
 		// Play event
 		m_currentTrack = AudioSystem.PlayEvent(trackInfo.m_projectFile, SOUND_EVENT_NAME, m_ownerTransform, signalNames, signalValues);
 	}
@@ -227,15 +252,30 @@ class MyRadioComponent: ScriptComponent
 		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
 		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();
 		
+		//signalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
+		//signalNames.Insert(SCR_SoundManagerEntity.G_CURR_VEHICLE_COVERAGE_SIGNAL_NAME);
+		//signalNames.Insert(SCR_SoundManagerEntity.G_IS_THIRD_PERSON_CAM_SIGNAL_NAME);
+		//signalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
+	
+	
 		signalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
-		signalNames.Insert(SCR_SoundManagerEntity.G_CURR_VEHICLE_COVERAGE_SIGNAL_NAME);
-		signalNames.Insert(SCR_SoundManagerEntity.G_IS_THIRD_PERSON_CAM_SIGNAL_NAME);
 		signalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
+	
+		signalNames.Insert(SCR_AudioSource.DISTANCE_SINAL_NAME);
+		signalNames.Insert(SCR_AudioSource.INTERIOR_SIGNAL_NAME);
+		signalNames.Insert(SCR_AudioSource.ROOM_SIZE_SIGNAL_NAME);
 		
 		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
-		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGCurrVehicleCoverageSignalIdx()));
-		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGIsThirdPersonCamSignalIdx()));
-		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));	
+		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));
+	
+		signalValues.Insert(gameSignalsManager.GetSignalValue(AudioSystem.GetDistance(m_ownerTransform)));
+		signalValues.Insert(gameSignalsManager.GetSignalValue(m_signalInterionValue));
+		signalValues.Insert(gameSignalsManager.GetSignalValue(m_signalRoomSizeValue));
+	
+	
+		//signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGCurrVehicleCoverageSignalIdx()));
+		//signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGIsThirdPersonCamSignalIdx()));
+		
 	}
 	
 	void StopPlay() {

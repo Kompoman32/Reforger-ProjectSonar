@@ -20,6 +20,8 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{649953148F11F959}" {
+     UIInfo SCR_ActionContextUIInfo "{64B7394A2940169B}" {
+     }
      ContextName "CustomRadio"
      Position PointInfo "{64995316DB26547D}" {
       Offset -0.073 0.7384 0.7158

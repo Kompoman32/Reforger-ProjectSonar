@@ -130,8 +130,6 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{648A958D760F7979}" {
-     Position PointInfo "{5AD4F813E67BBB9B}" {
-     }
     }
    }
   }
@@ -145,7 +143,7 @@ Vehicle M998_covered_long1 : "{9B1BF9644E0378D6}Prefabs/Vehicles/Wheeled/M998/M9
  coords 6411.724 161.777 6484.061
 }
 Vehicle Mi8_base1 : "{AFF6067A5CE8A852}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8_base.et" {
- coords 6479.077 162.063 6475.459
+ coords 6482.789 162.403 6482.694
 }
 Vehicle Mi8MT_base1 : "{AFF6067A5CE8A853}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_base.et" {
  coords 6493.038 162.062 6461.458
@@ -176,8 +174,8 @@ $grp GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Bas
     "Parent Node From Parent Entity" 0
    }
   }
-  coords 6456.931 163.357 6492.128
   Flags 3
+  coords 6456.931 163.357 6492.128
  }
  {
   coords 6456.931 163.357 6492.128
@@ -187,9 +185,20 @@ Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi
  coords 6508.678 161.833 6462.938
 }
 Vehicle UH1H_base1 : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
- coords 6470.241 162.062 6476.543
+ coords 6470.241 163.399 6476.543
 }
 Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S1203/S1203_transport_base.et" {
+ components {
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   additionalActions {
+    MyRadioAction "{649F50FE27AB6C89}" {
+     UIInfo UIInfo "{649F50FD91F7EDCB}" {
+      Name "#RT_Radio_ResetActionName"
+     }
+    }
+   }
+  }
+ }
  coords 6415.453 161.835 6477.199
 }
 Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.et" {
