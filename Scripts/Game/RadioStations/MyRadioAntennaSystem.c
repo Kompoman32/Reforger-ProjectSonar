@@ -150,7 +150,11 @@ class MyRadioAntennaSystem: GameSystem
 		CustomRadioStation radiostation = m_radiostations[index];
 		MyRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
 		
-		PrintFormat("UpdateTrack: [%1]: %2", index, newTrack);
+		if (newTrack){
+			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", index, radiostation.m_radiostationName, newTrack.m_trackIndex, newTrack.m_trackSize);
+		} else {
+			PrintFormat("UpdateTrack %1:(%2) - tInd: null, tLen: null", index, radiostation.m_radiostationName);
+		}
 		
 		m_radiostationsTracks.Set(index, newTrack);
 	}

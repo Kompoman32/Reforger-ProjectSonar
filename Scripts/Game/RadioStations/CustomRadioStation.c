@@ -21,7 +21,6 @@ class CustomRadioStation
 	
 	MyRadioStationTrackInfo GetNewTrack() {		
 		if (!m_TracksLengths || m_TracksLengths.Count() == 0 && m_djTracksLengths.Count() == 0) {
-			PrintFormat("Get new track (%1): %2", m_radiostationName, null);
 			return null;
 		}
 		
@@ -41,7 +40,6 @@ class CustomRadioStation
 		
 		if (tracks.Count() == 0) 
 		{
-			PrintFormat("Get new track  (%1): %2", m_radiostationName, null);
 			return null;
 		}
 		
@@ -57,8 +55,6 @@ class CustomRadioStation
 		newTrack.m_trackSize = trackLength;
 		newTrack.b_isDJ = isDJ;
 		
-		
-		PrintFormat("Get new track  (%1): %2", m_radiostationName, newTrack);
 		return newTrack;
 	}	
 	

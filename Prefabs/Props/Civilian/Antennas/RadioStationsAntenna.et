@@ -3,7 +3,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
  components {
   SCR_EditableEntityComponent "{64851B9EA6BEFFD5}" {
    m_UIInfo SCR_EditableEntityUIInfo "{64851B9D882F212F}" {
-    Name "#RT_AntennaPropName"
+    Name "#RT_Radio-AntennaPropName"
     Icon "{3587F629EF942F58}UI/Textures/Editor/ContentBrowser/ContentBrowser_Theme_Infrastructure.edds"
     m_Image "{9AD6A77A64A91177}UI/Textures/EditorPreviews/Auto/Props/Military/Compositions/USSR/E_Antenna_01_USSR.edds"
     m_aAuthoredLabels {

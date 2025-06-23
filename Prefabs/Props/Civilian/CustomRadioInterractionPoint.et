@@ -13,7 +13,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
-      Name "#RT_RadioOnOffActionName"
+      Name "#RT_Radio-OnOffActionName"
      }
     }
     MyRadioVolumeAction "{6484BB4D77EB6236}" {
@@ -21,7 +21,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
-      Name "#RT_RadioVolumeActionName"
+      Name "#RT_Radio-VolumeActionName"
      }
      Duration -1
      CanAggregate 1
@@ -37,7 +37,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
-      Name "#RT_RadioStationActionName"
+      Name "#RT_Radio-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 2

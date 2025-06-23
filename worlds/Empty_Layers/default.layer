@@ -10,89 +10,75 @@ Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Ba
 GenericEntity : "{2F2BBFDA3A2C73D4}Prefabs/Props/Civilian/RadioSmall_01_black.et" {
  coords 6454.832 162.224 6492.673
 }
-$grp GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
- {
-  components {
-   RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
-    Filenames +{
-    }
-    IncludeInactive 1
+GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
+ components {
+  RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
+   Filenames +{
    }
-   MeshObject "{5872F0EB7FA40561}" {
-    Object "{E8E19E66E4334DA9}CAR_RADIO/CAR_RADIO.xob"
-   }
-   RadioBroadcastComponent "{55210012F7D026E6}" {
-    TurnOnAction SCR_TurnOnAction "{565E9648693583C9}" {
-    }
-   }
-   RigidBody "{5872F0EB7DFB5A9D}" {
-    ResponseIndex "TinyDestructible"
-   }
-   SCR_DestructionMultiPhaseComponent "{5624A88D86EFE8BA}" : "{76DA308CC9E2AB84}Prefabs/Props/Core/DestructionMultiPhase_Base.ct" {
-    m_fBaseHealth 700
-    m_eMaterialSoundType BREAK_PLASTIC
-   }
-   ActionsManagerComponent "{52E71719F5BE5EBB}" {
-    ActionContexts {
-     UserActionContext "{52E71719FB29C551}" {
-      Position PointInfo "{647F2759E894FC2B}" {
-       Offset 2.1475 0 0.5786
-      }
-     }
-     UserActionContext "{6485461A5CBEAF92}" {
-      UIInfo SCR_ActionContextUIInfo "{6485461A59271C8C}" {
-      }
-      ContextName "RADIO"
-      Position RegisteringComponentSlotInfo RADIO {
-       Offset -0.129 0.0296 0.0486
-       Angles 0 180 0
-       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-       DisablePhysicsInteraction 1
-       RegisterActions 1
-      }
-     }
-     UserActionContext "{6485461D269DF314}" {
-      ContextName "RADIO2"
-     }
-     UserActionContext "{64854615DF9CD23B}" {
-      ContextName "RADIO"
-      Position RegisteringComponentSlotInfo "{64854615D707AA5A}" {
-       Offset -0.1289 0.0296 0.0537
-       Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-       DisablePhysicsInteraction 1
-       RegisterActions 1
-      }
-      Radius 17.88
-      Height 16.42
-      Omnidirectional 0
-     }
-     UserActionContext "{6485461B2B767583}" {
-      ContextName "RADIO2"
-      Position PointInfo "{52E7171928800124}" {
-       Offset 0.9194 0.0296 0.0488
-      }
-     }
-    }
-   }
-   RplComponent "{5624A88DC2D9928D}" {
-    Enabled 1
+   IncludeInactive 1
+  }
+  MeshObject "{5872F0EB7FA40561}" {
+   Object "{E8E19E66E4334DA9}CAR_RADIO/CAR_RADIO.xob"
+  }
+  RadioBroadcastComponent "{55210012F7D026E6}" {
+   TurnOnAction SCR_TurnOnAction "{565E9648693583C9}" {
    }
   }
-  coords 6446.02 163.183 6506.464
-  angleY 163.515
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   ResponseIndex "TinyDestructible"
+  }
+  SCR_DestructionMultiPhaseComponent "{5624A88D86EFE8BA}" : "{76DA308CC9E2AB84}Prefabs/Props/Core/DestructionMultiPhase_Base.ct" {
+   m_fBaseHealth 700
+   m_eMaterialSoundType BREAK_PLASTIC
+  }
+  ActionsManagerComponent "{52E71719F5BE5EBB}" {
+   ActionContexts {
+    UserActionContext "{52E71719FB29C551}" {
+     Position PointInfo "{647F2759E894FC2B}" {
+      Offset 2.1475 0 0.5786
+     }
+    }
+    UserActionContext "{6485461A5CBEAF92}" {
+     UIInfo SCR_ActionContextUIInfo "{6485461A59271C8C}" {
+     }
+     ContextName "RADIO"
+     Position RegisteringComponentSlotInfo RADIO {
+      Offset -0.129 0.0296 0.0486
+      Angles 0 180 0
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+    }
+    UserActionContext "{6485461D269DF314}" {
+     ContextName "RADIO2"
+    }
+    UserActionContext "{64854615DF9CD23B}" {
+     ContextName "RADIO"
+     Position RegisteringComponentSlotInfo "{64854615D707AA5A}" {
+      Offset -0.1289 0.0296 0.0537
+      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
+      DisablePhysicsInteraction 1
+      RegisterActions 1
+     }
+     Radius 17.88
+     Height 16.42
+     Omnidirectional 0
+    }
+    UserActionContext "{6485461B2B767583}" {
+     ContextName "RADIO2"
+     Position PointInfo "{52E7171928800124}" {
+      Offset 0.9194 0.0296 0.0488
+     }
+    }
+   }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+  }
  }
- {
-  coords 6463.703 161.906 6481.31
- }
- {
-  coords 6461.276 162.074 6471.448
- }
- {
-  coords 6462.638 161.942 6479.712
- }
- {
-  coords 6456.03 162.319 6497.46
- }
+ coords 6446.02 163.183 6506.464
+ angleY 163.515
 }
 Vehicle M1025_armed_M2HB1 : "{3EA6F47D95867114}Prefabs/Vehicles/Wheeled/M998/M1025_armed_M2HB.et" {
  coords 6429.486 162.125 6489.826
@@ -193,7 +179,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
    additionalActions {
     MyRadioAction "{649F50FE27AB6C89}" {
      UIInfo UIInfo "{649F50FD91F7EDCB}" {
-      Name "#RT_Radio_ResetActionName"
+      Name "#RT_Radio-ResetActionName"
      }
     }
    }

@@ -27,7 +27,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
-      Name "#RT_RadioOnOffActionName"
+      Name "#RT_Radio-OnOffActionName"
      }
     }
     MyRadioVolumeAction "{64997DE8D01458F1}" {
@@ -35,7 +35,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
-      Name "#RT_RadioVolumeActionName"
+      Name "#RT_Radio-VolumeActionName"
      }
      Duration -1
      CanAggregate 1
@@ -51,7 +51,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
-      Name "#RT_RadioStationActionName"
+      Name "#RT_Radio-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 2
@@ -62,7 +62,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{649F50FE3C9EB30A}" {
-      Name "#RT_Radio_ResetActionName"
+      Name "#RT_Radio-ResetActionName"
      }
      CanAggregate 1
      "Sort Priority" 3

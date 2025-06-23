@@ -24,6 +24,9 @@ class MyRadioAction: ScriptedUserAction
 		p_OwnerEntity = pOwnerEntity;
 
 		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
+		
+		if (!m_inVehicle) {m_RadioComponent = null;}
+		
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
@@ -93,25 +96,25 @@ class MyRadioAction: ScriptedUserAction
 		
 		if (!m_RadioComponent) 
 		{
-			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Radio";
+			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Radio";
 			return false;
 		}
 		
 		if (!m_RadioSystem)
 		{
-			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Antenna";
+			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Antenna";
 			return false;
 		}	
 		
 		if (m_RadioSystem.GetRadiostaionsCount() == 0)
 		{
-			m_sCannotPerformReason = "#RT_Radio_CannotPerform_Station";
+			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Station";
 			return false;
 		}
 		
 		if (m_RadioComponent.Enabled() && m_eActionType == MyRadioActionEnum.Change && m_RadioSystem.GetRadiostaionsCount() == 1)
 		{
-			m_sCannotPerformReason = "#RT_Radio_CannotPerform_OneStation";
+			m_sCannotPerformReason = "#RT_Radio-CannotPerform_OneStation";
 			return false;
 		}
 		
@@ -119,8 +122,7 @@ class MyRadioAction: ScriptedUserAction
 	}
 
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {			
-		if (!m_RadioComponent) return;
-		
+		if (!m_RadioComponent) return;		
 		
 		switch (m_eActionType)
 		{
@@ -131,12 +133,12 @@ class MyRadioAction: ScriptedUserAction
 			}
 			case MyRadioActionEnum.Change:
 			{
-				m_RadioComponent.ChangeStation();
+				m_RadioComponent.ActionChangeStation();
 				break;
 			}
 			case MyRadioActionEnum.Reset:
 			{
-				m_RadioComponent.Ask_Reset();
+				m_RadioComponent.ActionReset();
 				break;
 			}
 		}
