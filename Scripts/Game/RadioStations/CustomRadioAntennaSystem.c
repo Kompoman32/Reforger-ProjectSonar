@@ -1,4 +1,4 @@
-class MyRadioAntennaSystem: GameSystem
+class CustomRadioAntennaSystem: GameSystem
 {
 //	protected ref array<SCR_VehicleDustPerWheel> m_Components = {};
 	
@@ -6,15 +6,15 @@ class MyRadioAntennaSystem: GameSystem
 	IEntity m_owner;
 	
 	[RplProp()]
-	protected ref array<ref MyRadioStationTrackInfo> m_radiostationsTracks = {};
+	protected ref array<ref CustomRadioStationTrackInfo> m_radiostationsTracks = {};
 	
 	
 	[RplProp()]
-	protected ref array<ref MyRadioStationTrackInfoTimestampWrapper> m_radiostationsTimesWrapers = {};
+	protected ref array<ref CustomRadioStationTrackInfoTimestampWrapper> m_radiostationsTimesWrapers = {};
 	protected ref array<WorldTimestamp> m_radiostationsTimes = {};
 	protected int m_radiostationsCount = 0;
 	
-	ref map<EntityID, MyRadioComponent> m_activeRadios = new map<EntityID, MyRadioComponent>;
+	ref map<EntityID, CustomRadioComponent> m_activeRadios = new map<EntityID, CustomRadioComponent>;
 	
 	[Attribute("", UIWidgets.Object)]
 	ref array<ref CustomRadioStation> m_radiostations;
@@ -88,7 +88,7 @@ class MyRadioAntennaSystem: GameSystem
 //				}
 //			}
 //			
-//			foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)
+//			foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
 //			{
 //				radio.StopPlay();
 //			}
@@ -148,7 +148,7 @@ class MyRadioAntennaSystem: GameSystem
 	void UpdateTrack(int index) 
 	{
 		CustomRadioStation radiostation = m_radiostations[index];
-		MyRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
+		CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
 		
 		if (newTrack){
 			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", index, radiostation.m_radiostationName, newTrack.m_trackIndex, newTrack.m_trackSize);
@@ -161,11 +161,11 @@ class MyRadioAntennaSystem: GameSystem
 	
 	void SendTimesToClients()
 	{
-		array<ref MyRadioStationTrackInfoTimestampWrapper> arr = {};
+		array<ref CustomRadioStationTrackInfoTimestampWrapper> arr = {};
 		
 		for (int i = 0; i < m_radiostationsTimes.Count(); ++i)
 		{
-			MyRadioStationTrackInfoTimestampWrapper wrapper = new MyRadioStationTrackInfoTimestampWrapper();
+			CustomRadioStationTrackInfoTimestampWrapper wrapper = new CustomRadioStationTrackInfoTimestampWrapper();
 			
 			wrapper.m_timestamp = m_radiostationsTimes[i];
 			arr.Insert(wrapper);
@@ -194,11 +194,11 @@ class MyRadioAntennaSystem: GameSystem
 	}
 	
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	void RpcDo_UpdateTracks(array<ref MyRadioStationTrackInfo> radiostationsTracks, array<ref MyRadioStationTrackInfoTimestampWrapper> radiostationsTimes)
+	void RpcDo_UpdateTracks(array<ref CustomRadioStationTrackInfo> radiostationsTracks, array<ref CustomRadioStationTrackInfoTimestampWrapper> radiostationsTimes)
 	{		
 		array<WorldTimestamp> arr = {};
 		
-		foreach (MyRadioStationTrackInfoTimestampWrapper x: radiostationsTimes)
+		foreach (CustomRadioStationTrackInfoTimestampWrapper x: radiostationsTimes)
 		{
 			arr.Insert(x.m_timestamp);
 		}
@@ -227,7 +227,7 @@ class MyRadioAntennaSystem: GameSystem
 		return m_radiostations[index];
 	}
 	
-	MyRadioStationTrackInfo GetRadioStationTrack(int index) {
+	CustomRadioStationTrackInfo GetRadioStationTrack(int index) {
 		if (index < 0 || index >= m_radiostations.Count())	 {
 			return null;
 		}
@@ -265,7 +265,7 @@ class MyRadioAntennaSystem: GameSystem
 	
 	void UpdateConnectedRadios(array<WorldTimestamp> radiostationsTimes) 
 	{		
-		foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)
+		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
 		{
 			int radioStationIndex = radio.m_radioStationIndex;
 			
@@ -279,18 +279,18 @@ class MyRadioAntennaSystem: GameSystem
 	
 	void ForceUpdateConnectedRadios()
 	{
-		foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)
+		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
 		{
 			radio.ResetPlay();
 		}
 	}
 	
-	void Connect(MyRadioComponent radio) 
+	void Connect(CustomRadioComponent radio) 
 	{
 		m_activeRadios.Set(radio.GetOwner().GetID(), radio);
 	}
 	
-	void Disconnect(MyRadioComponent radio) 
+	void Disconnect(CustomRadioComponent radio) 
 	{
 		m_activeRadios.Remove(radio.GetOwner().GetID());
 	}

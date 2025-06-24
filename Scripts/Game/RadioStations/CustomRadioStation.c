@@ -19,7 +19,7 @@ class CustomRadioStation
 	[Attribute("", UIWidgets.Slider, "DJ Tracks Lengths", "1 3600 1")]
 	ref array<int> m_djTracksLengths;
 	
-	MyRadioStationTrackInfo GetNewTrack() {		
+	CustomRadioStationTrackInfo GetNewTrack() {		
 		if (!m_TracksLengths || m_TracksLengths.Count() == 0 && m_djTracksLengths.Count() == 0) {
 			return null;
 		}
@@ -48,7 +48,7 @@ class CustomRadioStation
 		
 		m_lastTrackIndex = trackIndex;
 		
-		MyRadioStationTrackInfo newTrack = new MyRadioStationTrackInfo();
+		CustomRadioStationTrackInfo newTrack = new CustomRadioStationTrackInfo();
 		
 		newTrack.m_projectFile = m_stationAudioProject;
 		newTrack.m_trackIndex = trackIndex;

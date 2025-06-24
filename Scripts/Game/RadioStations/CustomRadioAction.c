@@ -1,18 +1,18 @@
-enum MyRadioActionEnum 
+enum CustomRadioActionEnum 
 {
 	TurnOnOff = 0,
 	Change = 1,
 	Reset = 2,
 }
 
-class MyRadioAction: ScriptedUserAction
+class CustomRadioAction: ScriptedUserAction
 {
 	IEntity p_OwnerEntity;
-	MyRadioAntennaSystem m_RadioSystem;
-	MyRadioComponent m_RadioComponent;
+	CustomRadioAntennaSystem m_RadioSystem;
+	CustomRadioComponent m_RadioComponent;
 	
-	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyRadioActionEnum))]
-	MyRadioActionEnum m_eActionType;
+	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(CustomRadioActionEnum))]
+	CustomRadioActionEnum m_eActionType;
 	
 	[Attribute("1", UIWidgets.CheckBox)]
 	bool m_inVehicle;
@@ -23,22 +23,22 @@ class MyRadioAction: ScriptedUserAction
 		
 		p_OwnerEntity = pOwnerEntity;
 
-		m_RadioComponent = MyRadioComponent.Cast(pOwnerEntity.FindComponent(MyRadioComponent));
+		m_RadioComponent = CustomRadioComponent.Cast(pOwnerEntity.FindComponent(CustomRadioComponent));
 		
-		if (!m_inVehicle) {m_RadioComponent = null;}
+		if (m_inVehicle) {m_RadioComponent = null;}
 		
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
 		{
-			m_RadioSystem = MyRadioAntennaSystem.Cast(world.FindSystem(MyRadioAntennaSystem));
+			m_RadioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
 		}
 	}
 	
 	override bool CanBroadcastScript()
 	{
-		return m_eActionType != MyRadioActionEnum.Reset;
+		return m_eActionType != CustomRadioActionEnum.Reset;
 	}
 	
 	void FindRadioComponent(IEntity pOwnerEntity)
@@ -55,7 +55,7 @@ class MyRadioAction: ScriptedUserAction
 		IEntity attachedEntity = slot.GetAttachedEntity();
 		if (!attachedEntity) return;
 
-		m_RadioComponent = MyRadioComponent.Cast(attachedEntity.FindComponent(MyRadioComponent));
+		m_RadioComponent = CustomRadioComponent.Cast(attachedEntity.FindComponent(CustomRadioComponent));
 	}
 	
 	void FindRadioSystem()
@@ -75,12 +75,12 @@ class MyRadioAction: ScriptedUserAction
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
 		
 		if (!m_RadioComponent || !m_RadioSystem) {
-			return m_eActionType == MyRadioActionEnum.TurnOnOff;
+			return m_eActionType == CustomRadioActionEnum.TurnOnOff;
 		}
 		
 		if (!Enabled())
 		{
-			if (m_eActionType == MyRadioActionEnum.Change )
+			if (m_eActionType == CustomRadioActionEnum.Change )
 				return false;
 		}
 		
@@ -89,32 +89,32 @@ class MyRadioAction: ScriptedUserAction
 	
 	override bool CanBePerformedScript(IEntity user)
 	{
-		if (m_eActionType == MyRadioActionEnum.TurnOnOff && Enabled())
+		if (m_eActionType == CustomRadioActionEnum.TurnOnOff && Enabled())
 		{
 			return true;
 		}
 		
 		if (!m_RadioComponent) 
 		{
-			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Radio";
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Radio";
 			return false;
 		}
 		
 		if (!m_RadioSystem)
 		{
-			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Antenna";
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Antenna";
 			return false;
 		}	
 		
 		if (m_RadioSystem.GetRadiostaionsCount() == 0)
 		{
-			m_sCannotPerformReason = "#RT_Radio-CannotPerform_Station";
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Station";
 			return false;
 		}
 		
-		if (m_RadioComponent.Enabled() && m_eActionType == MyRadioActionEnum.Change && m_RadioSystem.GetRadiostaionsCount() == 1)
+		if (m_RadioComponent.Enabled() && m_eActionType == CustomRadioActionEnum.Change && m_RadioSystem.GetRadiostaionsCount() == 1)
 		{
-			m_sCannotPerformReason = "#RT_Radio-CannotPerform_OneStation";
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_OneStation";
 			return false;
 		}
 		
@@ -126,17 +126,17 @@ class MyRadioAction: ScriptedUserAction
 		
 		switch (m_eActionType)
 		{
-			case MyRadioActionEnum.TurnOnOff:
+			case CustomRadioActionEnum.TurnOnOff:
 			{				
 				m_RadioComponent.ActionEnableDisable(!Enabled());
 				break;
 			}
-			case MyRadioActionEnum.Change:
+			case CustomRadioActionEnum.Change:
 			{
 				m_RadioComponent.ActionChangeStation();
 				break;
 			}
-			case MyRadioActionEnum.Reset:
+			case CustomRadioActionEnum.Reset:
 			{
 				m_RadioComponent.ActionReset();
 				break;
@@ -150,7 +150,7 @@ class MyRadioAction: ScriptedUserAction
 		
 		switch (m_eActionType)
 		{
-			case MyRadioActionEnum.TurnOnOff:
+			case CustomRadioActionEnum.TurnOnOff:
 			{			
 				if (Enabled())
 					outName += ": #AR-UserAction_State_Off";
@@ -159,7 +159,7 @@ class MyRadioAction: ScriptedUserAction
 
 				return true;
 			}
-			case MyRadioActionEnum.Change:
+			case CustomRadioActionEnum.Change:
 			{
 				if (!m_RadioComponent || !m_RadioComponent.m_radioStation) return false;
 				

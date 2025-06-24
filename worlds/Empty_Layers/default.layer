@@ -8,6 +8,9 @@ GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStations
  coords 6456.548 162.065 6478.709
  angleY 25.02
 }
+Vehicle LAV25_base1 : "{1B8EB269EECA2DF9}Prefabs/Vehicles/Wheeled/LAV25/LAV25_base.et" {
+ coords 6471.604 162.186 6503.955
+}
 Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Base.et" {
  coords 6459.809 162.59 6500.559
 }
@@ -101,6 +104,9 @@ $grp GenericEntity : "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterr
 Vehicle Ural1 : "{4597626AF36C0858}Prefabs/Vehicles/Wheeled/Ural4320/Ural4320.et" {
  coords 6446.792 162.294 6479.582
 }
+Vehicle BRDM2_base1 : "{532B5F3CF8496E59}Prefabs/Vehicles/Wheeled/BRDM2/BRDM2_base.et" {
+ coords 6466.525 162.247 6502.873
+}
 Vehicle M1 : "{5674FAEB9AB7BDD0}Prefabs/Vehicles/Wheeled/M998/M998.et" {
  coords 6421.38 161.99 6484.378
 }
@@ -181,9 +187,9 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
  components {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    additionalActions {
-    MyRadioAction "{649F50FE27AB6C89}" {
+    CustomRadioAction "{649F50FE27AB6C89}" {
      UIInfo UIInfo "{649F50FD91F7EDCB}" {
-      Name "#RT_Radio-ResetActionName"
+      Name "#Custom_Radio-ResetActionName"
      }
     }
    }
