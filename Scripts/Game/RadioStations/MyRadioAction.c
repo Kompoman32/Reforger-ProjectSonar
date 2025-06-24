@@ -12,7 +12,7 @@ class MyRadioAction: ScriptedUserAction
 	MyRadioComponent m_RadioComponent;
 	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(MyRadioActionEnum))]
-	MyAntennaDebugActionEnum m_eActionType;
+	MyRadioActionEnum m_eActionType;
 	
 	[Attribute("1", UIWidgets.CheckBox)]
 	bool m_inVehicle;

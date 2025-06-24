@@ -4,6 +4,10 @@ GameEntity {
 Vehicle M997_maxi_ambulance1 : "{00C9BBE426F7D459}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance.et" {
  coords 6425.467 162.086 6489.321
 }
+GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStationsAntenna.et" {
+ coords 6456.548 162.065 6478.709
+ angleY 25.02
+}
 Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Base.et" {
  coords 6459.809 162.59 6500.559
 }

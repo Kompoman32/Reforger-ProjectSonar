@@ -263,45 +263,27 @@ class MyRadioAntennaSystem: GameSystem
 		//return (timeNow_s - (time*1000 - trackSize*1000));
 	}
 	
-	void UpdateConnectedRadios(array<WorldTimestamp> oldRadiostationsTimes) 
+	void UpdateConnectedRadios(array<WorldTimestamp> radiostationsTimes) 
 	{		
 		foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)
 		{
 			int radioStationIndex = radio.m_radioStationIndex;
 			
-			auto time = oldRadiostationsTimes[radioStationIndex];
+			auto time = radiostationsTimes[radioStationIndex];
 			
-			if (Replication.IsServer() || Math.AbsFloat(time.DiffMilliseconds(m_radiostationsTimes[radioStationIndex])) > 0.1) {
+			if (Math.AbsFloat(time.DiffMilliseconds(m_radiostationsTimes[radioStationIndex])) > 0.1) {
 				radio.ResetPlay();
 			}			
 		}
 	}
 	
-
-
-	
-//	[RplRpc(RplChannel.Unreliable, RplRcver.Owner)]
-//	void RpcDo_ShowDUplicatedWarning()
-//	{
-//		SCR_HintManagerComponent.ShowCustomHint(
-//			"Only one instance of MyRadioAntennaComponent is allowed in the world! To reset antenna - delete all antennas and place new one. If it doesn't help active action on any antenna to clear saved Instance and place new antenna",
-//			"Error", 60,isTimerVisible: true
-//		);
-//	}
-	
-
-	
-	
-	
-	
-	
-		
-
-	
-	
-
-	
-	
+	void ForceUpdateConnectedRadios()
+	{
+		foreach (EntityID radioId, MyRadioComponent radio: m_activeRadios)
+		{
+			radio.ResetPlay();
+		}
+	}
 	
 	void Connect(MyRadioComponent radio) 
 	{
@@ -312,10 +294,4 @@ class MyRadioAntennaSystem: GameSystem
 	{
 		m_activeRadios.Remove(radio.GetOwner().GetID());
 	}
-	
-
-	
-	
-	
-	
 }

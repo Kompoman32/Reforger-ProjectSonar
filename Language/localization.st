@@ -45,21 +45,29 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
-  CustomStringTableItem "{649F50FCD2539433}" {
-   Id "RT_Radio-ResetActionName"
-   Target_en_us "Punch radio to fix"
-   Target_ru_ru "Ударить по радио для починки"
-   Status DEVELOPMENT_DONE
-   Modified 1705584661
-   Author "Kompoman32"
-   LastChanged "Kompoman32"
-  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_Radio-OnOffActionName"
    Target_en_us "Radio"
    Target_ru_ru "Радио"
    Status DEVELOPMENT_DONE
    Modified 1705584627
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{65AF622DF98AEA37}" {
+   Id "RT_Radio-RadioVolumeSetting"
+   Target_en_us "Radio volume boost"
+   Target_ru_ru "Буст громкости радио"
+   Modified 1705993250
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{649F50FCD2539433}" {
+   Id "RT_Radio-ResetActionName"
+   Target_en_us "Punch radio to fix"
+   Target_ru_ru "Ударить по радио для починки"
+   Status DEVELOPMENT_DONE
+   Modified 1705584661
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }

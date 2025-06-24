@@ -1,0 +1,211 @@
+HorizontalLayoutWidgetClass {
+ {
+  ScrollLayoutWidgetClass "{000000009881A4C7}" {
+   Prefab "{000000009881A4C7}"
+   {
+    VerticalLayoutWidgetClass "{00000000C099DEEF}" {
+     Prefab "{00000000C099DEEF}"
+     {
+      ButtonWidgetClass "{65AF1067DF1281AE}" {
+       Name "RadioVolumeBoost"
+       Slot LayoutSlot "{65AF1067DF128182}" {
+        Padding 4 4 4 4
+       }
+       Clipping False
+       Color 1 1 1 0
+       components {
+        SCR_ModularButtonComponent "{65AF106684C06BB9}" {
+         m_aEffects {
+          SCR_ButtonEffectColor "{5DB885898296DF89}" {
+           m_eEvents 6144
+           m_sWidgetName "LineHighlight"
+           m_fAnimationTime 0.1
+           m_cDefault 0 0 0 0
+           m_cHovered 0 0 0 0
+           m_cActivated 0 0 0 0
+           m_cActivatedHovered 0 0 0 0
+           m_cDisabled 0 0 0 0
+           m_cDisabledActivated 0 0 0 0
+           m_cClicked 0 0 0 0
+           m_cFocusGained 1 0.597 0.198 0.3
+           m_cFocusLost 0 0 0 0
+           m_cToggledOn 0 0 0 0
+           m_cToggledOff 0 0 0 0
+          }
+          SCR_ButtonEffectColor "{5D9EFC157A1E1706}" {
+           m_eEvents 24581
+           m_sWidgetName "Background"
+           m_fAnimationTime 0.1
+           m_cDefault 0 0 0 0.5
+           m_cHovered 0 0 0 0
+           m_cActivated 0 0 0 0
+           m_cActivatedHovered 0 0 0 0
+           m_cDisabled 0 0 0 0
+           m_cDisabledActivated 0 0 0 0
+           m_cClicked 0 0 0 0
+           m_cFocusGained 0 0 0 0
+           m_cFocusLost 0 0 0 0
+           m_cToggledOn 0 0 0 0
+           m_cToggledOff 0 0 0 0.5
+          }
+         }
+         m_bCanBeToggled 1
+         m_bToggledOnlyThroughApi 1
+         m_eEventReturnValue 2147483644
+        }
+        SCR_SliderComponent "{65AF327D06007F65}" {
+         m_sSoundClicked ""
+         m_bMouseOverToFocus 1
+         m_sLabel "#RT_Radio-RadioVolumeSetting"
+         m_fSizeWithLabel 56
+         m_fSizeWithoutLabel 40
+         m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"
+         m_fValue 0.5
+         m_fStep 0.5
+         m_sFormatText "%1%"
+         m_bRoundValue 1
+        }
+       }
+       {
+        SizeLayoutWidgetClass "{65AF1067E1F04149}" {
+         Name "SizeLayout"
+         Slot ButtonWidgetSlot "{65AF1067E1F041A3}" {
+          HorizontalAlign 3
+         }
+         Clipping False
+         AllowHeightOverride 1
+         HeightOverride 36
+         {
+          OverlayWidgetClass "{65AF1067F396B498}" {
+           Name "Overlay"
+           Slot AlignableSlot "{65AF1067F396B4EC}" {
+            HorizontalAlign 3
+            VerticalAlign 3
+            Padding 2 2 2 2
+           }
+           Clipping False
+           {
+            ImageWidgetClass "{65AF10660D161E84}" {
+             Name "LineHighlight"
+             Slot OverlayWidgetSlot "{65AF32793DC0577E}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+             }
+             Color 1 0.596 0.1961 1
+             Mask "{B6A3BBC9E9EAAD12}UI/Textures/Common/GradientTexture_Dither_1024x64_2.edds"
+             Progress 0.4
+             "Mask Mode" "Include Below"
+            }
+            SizeLayoutWidgetClass "{65AF1066090BA96E}" {
+             Name "TextSize"
+             Slot OverlayWidgetSlot "{65AF32793DC0574A}" {
+              Padding 146 0 0 0
+             }
+             "Z Order" 1
+             AllowWidthOverride 1
+             WidthOverride 100
+             {
+              TextWidgetClass "{65AF10660593902C}" {
+               Name "SliderText"
+               Slot AlignableSlot "{65AF10660593905E}" {
+                HorizontalAlign 0
+               }
+               Clipping Ancestor
+               Text ""
+               "Font Size" 20
+               "Min Font Size" 20
+               "Vertical Alignment" Center
+               FontProperties FontProperties "{65AF327868D2369D}" {
+                Font "{3E7733BAC8C831F6}UI/Fonts/RobotoCondensed/RobotoCondensed_Regular.fnt"
+                ShadowSize 16
+                ShadowOffset 0 0
+                ShadowOpacity 0.3
+               }
+               "Line Spacing" 10
+              }
+             }
+            }
+            ImageWidgetClass "{65AF106601E69357}" {
+             Name "Background"
+             Slot OverlayWidgetSlot "{65AF32793DC057A6}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+             }
+             Color 0 0 0 0.424
+            }
+            PanelWidgetClass "{65AF10661C6F4227}" {
+             Name "Border"
+             Slot OverlayWidgetSlot "{65AF32793DC057B5}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+              Padding -2 -2 -2 -2
+             }
+             "Is Visible" 0
+             Clipping False
+             Color 0.761 0.386 0.078 1
+             style outline_2px
+            }
+            HorizontalLayoutWidgetClass "{65AF1066187C019C}" {
+             Name "HorizontalLayout"
+             Slot OverlayWidgetSlot "{65AF32793DC05781}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+              Padding 8 8 8 8
+             }
+             {
+              HorizontalLayoutWidgetClass "{65AF106617679404}" {
+               Name "ContentLayout"
+               Slot LayoutSlot "{65AF32793DC05786}" {
+                SizeMode Fill
+               }
+               {
+                SliderWidgetClass "{65AF1066126E7E9D}" {
+                 Name "Slider"
+                 Slot LayoutSlot "{65AF32793DC05797}" {
+                  SizeMode Fill
+                 }
+                 Color 0.761 0.392 0.078 1
+                 components {
+                  SCR_EventHandlerComponent "{65AF327D68F62A31}" {
+                  }
+                 }
+                 Size 10 10
+                 maximum 300
+                 step 5
+                 current 100
+                }
+               }
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+      ButtonWidgetClass "{5594BE5A725D55BA}" {
+       Prefab "{5594BE5A725D55BA}"
+       {
+        SizeLayoutWidgetClass "{55387AC2CCC7E284}" {
+         Prefab "{55387AC2CCC7E284}"
+         {
+          OverlayWidgetClass "{55367D8E531FD623}" {
+           Prefab "{55367D8E531FD623}"
+           {
+            ImageWidgetClass "{5E4C99F1A95AF77F}" {
+             Prefab "{5E4C99F1A95AF77F}"
+             "Transition width" 0.1
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

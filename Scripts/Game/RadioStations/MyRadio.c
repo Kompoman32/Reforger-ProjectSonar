@@ -160,6 +160,7 @@ class MyRadioComponent: ScriptComponent
 		
 
 		Rpc(RpcDo_Reset, b_state, m_volume, m_radioStationIndex);
+		RpcDo_Reset(b_state, m_volume, m_radioStationIndex);
 	}
 	
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
@@ -188,9 +189,7 @@ class MyRadioComponent: ScriptComponent
 		
 		m_volume = volume;
 		
-		if (Replication.IsClient()) {
-			ResetPlay();			
-		}
+		ResetPlay();
 		
 		GetGame().GetCallqueue().Remove(ActionReset);
 		GetGame().GetCallqueue().CallLater(ActionReset, 300, false);
@@ -238,7 +237,6 @@ class MyRadioComponent: ScriptComponent
 		SetRadioStationVar();
 	
 		if (Replication.IsClient()) {
-	
 			GetGame().GetCallqueue().Remove(CheckSoundDistance);
 			GetGame().GetCallqueue().CallLater(CheckSoundDistance, 1000, true);
 		}
@@ -287,7 +285,21 @@ class MyRadioComponent: ScriptComponent
 		signalValues.Insert(trackOffset);
 		
 		signalNames.Insert(VOLUME_SIGNAL);
-		signalValues.Insert(GetVolume() / m_volumeToSignalDivider);
+		
+		float volume = GetVolume();
+		volume /= m_volumeToSignalDivider;
+		
+		
+		BaseContainer settings = GetGame().GetGameUserSettings().GetModule("SCR_AudioSettings");    		
+		if (settings) 
+		{
+			float settingsVolume;
+			settings.Get("m_fRadioVolumeBoost", settingsVolume);
+			settingsVolume /= 100;
+			volume *= settingsVolume;			
+		}
+		
+		signalValues.Insert(volume);
 		
 		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
 		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();	

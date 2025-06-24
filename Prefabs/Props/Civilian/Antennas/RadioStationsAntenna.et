@@ -29,7 +29,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     }
    }
    additionalActions {
-    MyAntennaDebugAction "{64971637DC5E6E1D}" {
+    CustomRadioAntennaDebugAction "{64971637DC5E6E1D}" {
      ParentContextList {
       "antenna"
      }
