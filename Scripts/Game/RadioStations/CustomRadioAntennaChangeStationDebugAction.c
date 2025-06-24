@@ -1,0 +1,99 @@
+class CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction 
+{
+	protected IEntity p_OwnerEntity;
+	protected CustomRadioAntennaSystem m_RadioSystem;
+	
+	int m_selectedRadioIndex = 0;
+	
+	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
+	{
+		super.Init(pOwnerEntity, pManagerComponent);
+	
+		p_OwnerEntity = pOwnerEntity;
+		
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (world) 
+		{
+			m_RadioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
+		}
+	}
+
+	override protected bool OnLoadActionData(ScriptBitReader reader)
+	{		
+		super.OnLoadActionData(reader);
+		
+		m_selectedRadioIndex = m_fTargetValue;
+		
+		return true;
+	}
+	
+	override bool CanBeShownScript(IEntity user)
+	{
+		if (!m_RadioSystem) return false;
+		
+		return true;
+	}
+	
+	override bool CanBePerformedScript(IEntity user)
+	{
+		if (!m_RadioSystem) 
+		{
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Antenna";
+			return false;
+		}	
+		
+		if (m_RadioSystem.GetRadiostaionsCount() == 0)
+		{
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Station";
+			return false;
+		}
+		
+		if (m_RadioSystem.GetRadiostaionsCount() == 1)
+		{
+			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_OneStation";
+			return false;
+		}
+		
+		return true;	
+	}
+	
+	override void OnActionStart(IEntity pUserEntity)
+	{
+		super.OnActionStart(pUserEntity);
+		
+		if (!m_RadioSystem) return;
+		
+		m_fTargetValue = m_selectedRadioIndex;
+	}
+	
+	override void HandleAction(float value) 
+	{
+		if (!m_RadioSystem) return;
+		
+		super.HandleAction(value);
+		
+		m_selectedRadioIndex = m_fTargetValue;
+		
+		Print("HandleAction");
+		Print(m_selectedRadioIndex);
+		
+		if (m_selectedRadioIndex >= m_RadioSystem.GetRadiostaionsCount()) 
+		{
+			m_selectedRadioIndex = 0;
+		}
+	}
+	
+	override bool GetActionNameScript(out string outName )
+	{		
+		if (!m_RadioSystem) return false;
+		
+		CustomRadioStation station = m_RadioSystem.m_radiostations[m_selectedRadioIndex];
+		
+		if (!station) return false;
+		
+		outName = GetUIInfo().GetName() + ": " + station.m_radiostationName;
+		
+		return true;
+	}
+	
+}

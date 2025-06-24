@@ -39,6 +39,30 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      CanAggregate 1
      m_eActionType UpdateRadios
     }
+    CustomRadioAntennaChangeStationDebugAction "{65B0FBDC244306BD}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo UIInfo "{65B0FBDEE3636F08}" {
+      Name "#Custom_Radio-StationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 1
+     "Max value" 99999
+     m_fAdjustmentStep 1
+     m_bLoopAction 1
+    }
+    CustomRadioAntennaDebugAction "{65B0FBD9734286EC}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo UIInfo "{65B0FBD973428725}" {
+      Name "Change Track"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType UpdateTrack
+    }
    }
   }
   RplComponent "{5CB6D5B3749D59BC}" {

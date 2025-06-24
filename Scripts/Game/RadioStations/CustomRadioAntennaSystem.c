@@ -177,17 +177,6 @@ class CustomRadioAntennaSystem: GameSystem
 		
 	}
 	
-	void AskTo_UpdateTracks()
-	{
-		Rpc(RpcAsk_UpdateTracks);
-	}
-	
-	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
-	void RpcAsk_UpdateTracks()
-	{
-		SendTimesToClients();
-	}
-	
 	void OnRplRpcDo_UpdateTracks()
 	{
 		RpcDo_UpdateTracks(m_radiostationsTracks, m_radiostationsTimesWrapers)
@@ -293,5 +282,28 @@ class CustomRadioAntennaSystem: GameSystem
 	void Disconnect(CustomRadioComponent radio) 
 	{
 		m_activeRadios.Remove(radio.GetOwner().GetID());
+	}
+	
+	
+	// -------------- DEBUG -------------- //
+	
+	void Debug_UpdateRadios()
+	{
+		SendTimesToClients();
+	}
+	
+	void Debug_UpdateTrack(int radioStationIndex)
+	{
+		m_radiostationsTimes[radioStationIndex] = null;
+	}
+	
+	void Debug_UpdateTrack_2(int radioStationIndex)
+	{		
+		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
+		{			
+			if (radioStationIndex != radio.m_radioStationIndex) continue;
+			
+			radio.ActionReset();	
+		}
 	}
 }

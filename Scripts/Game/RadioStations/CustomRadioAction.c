@@ -58,11 +58,6 @@ class CustomRadioAction: ScriptedUserAction
 		m_RadioComponent = CustomRadioComponent.Cast(attachedEntity.FindComponent(CustomRadioComponent));
 	}
 	
-	void FindRadioSystem()
-	{
-		
-	}
-	
 	bool Enabled() {
 		if (!m_RadioComponent) 
 			return false;

@@ -5,8 +5,8 @@ Vehicle M997_maxi_ambulance1 : "{00C9BBE426F7D459}Prefabs/Vehicles/Wheeled/M998/
  coords 6425.467 162.086 6489.321
 }
 GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStationsAntenna.et" {
- coords 6456.548 162.065 6478.709
- angleY 25.02
+ coords 6456.417 162.057 6478.082
+ angleY 23.955
 }
 Vehicle LAV25_base1 : "{1B8EB269EECA2DF9}Prefabs/Vehicles/Wheeled/LAV25/LAV25_base.et" {
  coords 6471.604 162.186 6503.955
@@ -15,7 +15,8 @@ Vehicle BTR70_Base1 : "{1C5FE7B7FF49BB8D}Prefabs/Vehicles/Wheeled/BTR70/BTR70_Ba
  coords 6459.809 162.59 6500.559
 }
 GenericEntity : "{2F2BBFDA3A2C73D4}Prefabs/Props/Civilian/RadioSmall_01_black.et" {
- coords 6454.832 162.224 6492.673
+ coords 6456.607 163.09 6478.908
+ angleY 99.673
 }
 GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
  components {
@@ -204,5 +205,6 @@ Vehicle M151A1 : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
  coords 6450.552 162.356 6497.339
 }
 GenericEntity : "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et" {
- coords 6455.778 162.192 6491.817
+ coords 6456.57 163.073 6477.542
+ angleY 80.262
 }

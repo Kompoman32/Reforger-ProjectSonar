@@ -1,6 +1,7 @@
 enum CustomRadioAntennaDebugActionEnum 
 {
 	UpdateRadios = 1,
+	UpdateTrack = 2,
 }
 
 class CustomRadioAntennaDebugAction: ScriptedUserAction
@@ -37,16 +38,43 @@ class CustomRadioAntennaDebugAction: ScriptedUserAction
 		return true;
 	}
 
-	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {					
+	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {
+		if (Replication.IsClient()) return;
+		
+					
 		switch (m_eActionType)
 		{
 			case CustomRadioAntennaDebugActionEnum.UpdateRadios:
 			{
 				if (m_RadioSystem) 
 				{
-					m_RadioSystem.AskTo_UpdateTracks();
+					m_RadioSystem.Debug_UpdateRadios();
 				}
+				break;
+			}
+			
+			case CustomRadioAntennaDebugActionEnum.UpdateTrack:
+			{
+				UpdateTrackOnRadios();
+				break;
 			}
 		}
+	}
+	
+	void UpdateTrackOnRadios() 
+	{
+		if (!m_RadioSystem) return;
+		
+		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_owner.FindComponent(ActionsManagerComponent));
+		
+		if (!am) return;
+		
+		CustomRadioAntennaChangeStationDebugAction action = CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(1));
+		
+		if (!action) return;
+				
+		m_RadioSystem.Debug_UpdateTrack(action.m_selectedRadioIndex);
+		
+		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, action.m_selectedRadioIndex);		
 	}
 }
