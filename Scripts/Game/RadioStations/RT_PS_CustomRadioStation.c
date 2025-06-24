@@ -1,6 +1,5 @@
-
 [BaseContainerProps()]
-class CustomRadioStation
+class RT_PS_CustomRadioStation
 {		
 	private int m_lastTrackIndex = -1;
 	
@@ -19,7 +18,7 @@ class CustomRadioStation
 	[Attribute("", UIWidgets.Slider, "DJ Tracks Lengths", "1 3600 1")]
 	ref array<int> m_djTracksLengths;
 	
-	CustomRadioStationTrackInfo GetNewTrack() {		
+	RT_PS_CustomRadioStationTrackInfo GetNewTrack() {		
 		if (!m_TracksLengths || m_TracksLengths.Count() == 0 && m_djTracksLengths.Count() == 0) {
 			return null;
 		}
@@ -48,7 +47,7 @@ class CustomRadioStation
 		
 		m_lastTrackIndex = trackIndex;
 		
-		CustomRadioStationTrackInfo newTrack = new CustomRadioStationTrackInfo();
+		RT_PS_CustomRadioStationTrackInfo newTrack = new RT_PS_CustomRadioStationTrackInfo();
 		
 		newTrack.m_projectFile = m_stationAudioProject;
 		newTrack.m_trackIndex = trackIndex;

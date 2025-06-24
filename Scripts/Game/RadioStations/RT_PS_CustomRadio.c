@@ -1,8 +1,8 @@
-class CustomRadioComponentClass: ScriptComponentClass
+class RT_PS_CustomRadioComponentClass: ScriptComponentClass
 {
 }
 
-class CustomRadioComponent: ScriptComponent
+class RT_PS_CustomRadioComponent: ScriptComponent
 {	
 	static string SOUND_EVENT_NAME = "SOUND_CUSTOM_RADIO";
 		
@@ -23,8 +23,8 @@ class CustomRadioComponent: ScriptComponent
 	protected bool b_lastIsAudiable = false;
 	protected AudioHandle m_currentTrack = AudioHandle.Invalid;
 	
-	CustomRadioAntennaSystem m_radioSystem;
-	CustomRadioStation m_radioStation;
+	RT_PS_CustomRadioAntennaSystem m_radioSystem;
+	RT_PS_CustomRadioStation m_radioStation;
 	
 	[RplProp()]
 	int m_radioStationIndex = 0;	
@@ -37,7 +37,7 @@ class CustomRadioComponent: ScriptComponent
 	float m_signalInterionValue = 0;
 	float m_signalRoomSizeValue = 0;
 	
-	protected void ~CustomRadioComponent() 
+	protected void ~RT_PS_CustomRadioComponent() 
 	{
 		EOnDeactivate(m_owner);
 	}
@@ -50,7 +50,7 @@ class CustomRadioComponent: ScriptComponent
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
 		{
-			m_radioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
+			m_radioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 		
 		m_owner.GetTransform(m_ownerTransform);
@@ -105,7 +105,7 @@ class CustomRadioComponent: ScriptComponent
 		
 		if (m_SoundWorld) 
 		{				
-			CustomRadioInteriorRequestCallback rirc = new CustomRadioInteriorRequestCallback(this);
+			RT_PS_CustomRadioInteriorRequestCallback rirc = new RT_PS_CustomRadioInteriorRequestCallback(this);
 			
 			m_SoundWorld.CalculateInterirorAt(m_ownerTransform, rirc);	
 		}			
@@ -241,7 +241,7 @@ class CustomRadioComponent: ScriptComponent
 			GetGame().GetCallqueue().CallLater(CheckSoundDistance, 1000, true);
 		}
 		
-		CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
+		RT_PS_CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
 		
 		if (!trackInfo)		
 		{
@@ -260,7 +260,7 @@ class CustomRadioComponent: ScriptComponent
 		m_currentTrack = AudioSystem.PlayEvent(trackInfo.m_projectFile, SOUND_EVENT_NAME, m_ownerTransform, signalNames, signalValues);
 	}
 	
-	protected void GetPlaySignals(CustomRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
+	protected void GetPlaySignals(RT_PS_CustomRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
 	{
 		float trackOffset = m_radioSystem.GetRadioStationTrackOffset(m_radioStationIndex);
 
@@ -357,7 +357,7 @@ class CustomRadioComponent: ScriptComponent
 		IEntity attachedEntity = slot.GetAttachedEntity();
 		if (!attachedEntity) return;
 
-		CustomRadioComponent radio = CustomRadioComponent.Cast(attachedEntity.FindComponent(CustomRadioComponent));
+		RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
 	
 		if (!radio) return;
 	
@@ -370,7 +370,7 @@ class CustomRadioComponent: ScriptComponent
 	
 		if (m_volume == 0) return;
 	
-		CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
+		RT_PS_CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
 	
 		if (!trackInfo) return;
 	

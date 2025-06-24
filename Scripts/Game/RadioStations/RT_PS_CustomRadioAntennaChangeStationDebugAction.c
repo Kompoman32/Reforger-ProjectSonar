@@ -1,7 +1,7 @@
-class CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction 
+class RT_PS_CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction 
 {
 	protected IEntity p_OwnerEntity;
-	protected CustomRadioAntennaSystem m_RadioSystem;
+	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	
 	int m_selectedRadioIndex = 0;
 	
@@ -14,7 +14,7 @@ class CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
 		{
-			m_RadioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
+			m_RadioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 	}
 
@@ -38,19 +38,19 @@ class CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction
 	{
 		if (!m_RadioSystem) 
 		{
-			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Antenna";
+			m_sCannotPerformReason = "#RT_PS-CannotPerform_Antenna";
 			return false;
 		}	
 		
 		if (m_RadioSystem.GetRadiostaionsCount() == 0)
 		{
-			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_Station";
+			m_sCannotPerformReason = "#RT_PS-CannotPerform_Station";
 			return false;
 		}
 		
 		if (m_RadioSystem.GetRadiostaionsCount() == 1)
 		{
-			m_sCannotPerformReason = "#Custom_Radio-CannotPerform_OneStation";
+			m_sCannotPerformReason = "#RT_PS-CannotPerform_OneStation";
 			return false;
 		}
 		
@@ -87,7 +87,7 @@ class CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalAction
 	{		
 		if (!m_RadioSystem) return false;
 		
-		CustomRadioStation station = m_RadioSystem.m_radiostations[m_selectedRadioIndex];
+		RT_PS_CustomRadioStation station = m_RadioSystem.m_radiostations[m_selectedRadioIndex];
 		
 		if (!station) return false;
 		

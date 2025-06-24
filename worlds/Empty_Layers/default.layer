@@ -188,9 +188,9 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
  components {
   ActionsManagerComponent "{C97BE5489221AE18}" {
    additionalActions {
-    CustomRadioAction "{649F50FE27AB6C89}" {
+    RT_PS_CustomRadioAction "{649F50FE27AB6C89}" {
      UIInfo UIInfo "{649F50FD91F7EDCB}" {
-      Name "#Custom_Radio-ResetActionName"
+      Name "#RT_PS-ResetActionName"
      }
     }
    }

@@ -31,20 +31,20 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     }
     SCR_RefuelAtSupportStationAction "{5B02B547EDCF6F99}" {
     }
-    CustomRadioAction "{64997DE90570E950}" {
+    RT_PS_CustomRadioAction "{64997DE90570E950}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
-      Name "#Custom_Radio-OnOffActionName"
+      Name "#RT_PS-OnOffActionName"
      }
     }
-    CustomRadioVolumeAction "{64997DE9031C03C9}" {
+    RT_PS_CustomRadioVolumeAction "{64997DE9031C03C9}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
-      Name "#Custom_Radio-VolumeActionName"
+      Name "#RT_PS-VolumeActionName"
      }
      Duration -1
      CanAggregate 1
@@ -55,23 +55,23 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      m_bManualAdjustment 1
      m_sActionDecrease "DeselectAction"
     }
-    CustomRadioAction "{64997DE91EC92F47}" {
+    RT_PS_CustomRadioAction "{64997DE91EC92F47}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
-      Name "#Custom_Radio-StationActionName"
+      Name "#RT_PS-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 2
      m_eActionType Change
     }
-    CustomRadioAction "{649F50FDA2A53674}" {
+    RT_PS_CustomRadioAction "{649F50FDA2A53674}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{649F50FDA2A536A2}" {
-      Name "#Custom_Radio-ResetActionName"
+      Name "#RT_PS-ResetActionName"
      }
      CanAggregate 1
      "Sort Priority" 3

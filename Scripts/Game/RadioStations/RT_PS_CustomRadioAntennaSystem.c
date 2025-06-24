@@ -1,4 +1,4 @@
-class CustomRadioAntennaSystem: GameSystem
+class RT_PS_CustomRadioAntennaSystem: GameSystem
 {
 //	protected ref array<SCR_VehicleDustPerWheel> m_Components = {};
 	
@@ -6,18 +6,18 @@ class CustomRadioAntennaSystem: GameSystem
 	IEntity m_owner;
 	
 	[RplProp()]
-	protected ref array<ref CustomRadioStationTrackInfo> m_radiostationsTracks = {};
+	protected ref array<ref RT_PS_CustomRadioStationTrackInfo> m_radiostationsTracks = {};
 	
 	
 	[RplProp()]
-	protected ref array<ref CustomRadioStationTrackInfoTimestampWrapper> m_radiostationsTimesWrapers = {};
+	protected ref array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> m_radiostationsTimesWrapers = {};
 	protected ref array<WorldTimestamp> m_radiostationsTimes = {};
 	protected int m_radiostationsCount = 0;
 	
-	ref map<EntityID, CustomRadioComponent> m_activeRadios = new map<EntityID, CustomRadioComponent>;
+	ref map<EntityID, RT_PS_CustomRadioComponent> m_activeRadios = new map<EntityID, RT_PS_CustomRadioComponent>;
 	
 	[Attribute("", UIWidgets.Object)]
-	ref array<ref CustomRadioStation> m_radiostations;
+	ref array<ref RT_PS_CustomRadioStation> m_radiostations;
 	
 
 	override static void InitInfo(WorldSystemInfo outInfo)
@@ -88,7 +88,7 @@ class CustomRadioAntennaSystem: GameSystem
 //				}
 //			}
 //			
-//			foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
+//			foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
 //			{
 //				radio.StopPlay();
 //			}
@@ -101,7 +101,7 @@ class CustomRadioAntennaSystem: GameSystem
 
 		array<string> names = {};
 		
-		foreach (CustomRadioStation x: m_radiostations)
+		foreach (RT_PS_CustomRadioStation x: m_radiostations)
 		{
 			names.Insert(x.m_radiostationName);
 		}
@@ -147,8 +147,8 @@ class CustomRadioAntennaSystem: GameSystem
 	
 	void UpdateTrack(int index) 
 	{
-		CustomRadioStation radiostation = m_radiostations[index];
-		CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
+		RT_PS_CustomRadioStation radiostation = m_radiostations[index];
+		RT_PS_CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
 		
 		if (newTrack){
 			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", index, radiostation.m_radiostationName, newTrack.m_trackIndex, newTrack.m_trackSize);
@@ -161,11 +161,11 @@ class CustomRadioAntennaSystem: GameSystem
 	
 	void SendTimesToClients()
 	{
-		array<ref CustomRadioStationTrackInfoTimestampWrapper> arr = {};
+		array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> arr = {};
 		
 		for (int i = 0; i < m_radiostationsTimes.Count(); ++i)
 		{
-			CustomRadioStationTrackInfoTimestampWrapper wrapper = new CustomRadioStationTrackInfoTimestampWrapper();
+			RT_PS_CustomRadioStationTrackInfoTimestampWrapper wrapper = new RT_PS_CustomRadioStationTrackInfoTimestampWrapper();
 			
 			wrapper.m_timestamp = m_radiostationsTimes[i];
 			arr.Insert(wrapper);
@@ -183,11 +183,11 @@ class CustomRadioAntennaSystem: GameSystem
 	}
 	
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	void RpcDo_UpdateTracks(array<ref CustomRadioStationTrackInfo> radiostationsTracks, array<ref CustomRadioStationTrackInfoTimestampWrapper> radiostationsTimes)
+	void RpcDo_UpdateTracks(array<ref RT_PS_CustomRadioStationTrackInfo> radiostationsTracks, array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> radiostationsTimes)
 	{		
 		array<WorldTimestamp> arr = {};
 		
-		foreach (CustomRadioStationTrackInfoTimestampWrapper x: radiostationsTimes)
+		foreach (RT_PS_CustomRadioStationTrackInfoTimestampWrapper x: radiostationsTimes)
 		{
 			arr.Insert(x.m_timestamp);
 		}
@@ -208,7 +208,7 @@ class CustomRadioAntennaSystem: GameSystem
 		return m_radiostations.Count();
 	}
 	
-	CustomRadioStation GetRadioStation(int index) {
+	RT_PS_CustomRadioStation GetRadioStation(int index) {
 		if (index < 0 || index >= m_radiostations.Count())	 {
 			return null;
 		}
@@ -216,7 +216,7 @@ class CustomRadioAntennaSystem: GameSystem
 		return m_radiostations[index];
 	}
 	
-	CustomRadioStationTrackInfo GetRadioStationTrack(int index) {
+	RT_PS_CustomRadioStationTrackInfo GetRadioStationTrack(int index) {
 		if (index < 0 || index >= m_radiostations.Count())	 {
 			return null;
 		}
@@ -254,7 +254,7 @@ class CustomRadioAntennaSystem: GameSystem
 	
 	void UpdateConnectedRadios(array<WorldTimestamp> radiostationsTimes) 
 	{		
-		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
 		{
 			int radioStationIndex = radio.m_radioStationIndex;
 			
@@ -268,18 +268,18 @@ class CustomRadioAntennaSystem: GameSystem
 	
 	void ForceUpdateConnectedRadios()
 	{
-		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
 		{
 			radio.ResetPlay();
 		}
 	}
 	
-	void Connect(CustomRadioComponent radio) 
+	void Connect(RT_PS_CustomRadioComponent radio) 
 	{
 		m_activeRadios.Set(radio.GetOwner().GetID(), radio);
 	}
 	
-	void Disconnect(CustomRadioComponent radio) 
+	void Disconnect(RT_PS_CustomRadioComponent radio) 
 	{
 		m_activeRadios.Remove(radio.GetOwner().GetID());
 	}
@@ -299,7 +299,7 @@ class CustomRadioAntennaSystem: GameSystem
 	
 	void Debug_UpdateTrack_2(int radioStationIndex)
 	{		
-		foreach (EntityID radioId, CustomRadioComponent radio: m_activeRadios)
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
 		{			
 			if (radioStationIndex != radio.m_radioStationIndex) continue;
 			

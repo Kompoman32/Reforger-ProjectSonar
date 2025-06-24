@@ -56,7 +56,7 @@ HorizontalLayoutWidgetClass {
         SCR_SliderComponent "{65AF327D06007F65}" {
          m_sSoundClicked ""
          m_bMouseOverToFocus 1
-         m_sLabel "#Custom_Radio-RadioVolumeSetting"
+         m_sLabel "#RT_PS-RadioVolumeSetting"
          m_fSizeWithLabel 56
          m_fSizeWithoutLabel 40
          m_sLabelLayout "{F003823FF141983C}UI/layouts/Menus/SettingsMenu/CustomWidgets/SettingsLabel.layout"

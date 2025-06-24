@@ -1,16 +1,16 @@
-enum CustomRadioAntennaDebugActionEnum 
+enum RT_PS_ECustomRadioAntennaDebugAction 
 {
 	UpdateRadios = 1,
 	UpdateTrack = 2,
 }
 
-class CustomRadioAntennaDebugAction: ScriptedUserAction
+class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 {
 	IEntity m_owner;
 	
-	CustomRadioAntennaSystem m_RadioSystem;
+	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	
-	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(CustomRadioAntennaDebugActionEnum))]
+	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAntennaDebugAction))]
 	EAudioSourceConfigurationFlag m_eActionType;
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
@@ -22,7 +22,7 @@ class CustomRadioAntennaDebugAction: ScriptedUserAction
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
 		{
-			m_RadioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
+			m_RadioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 	}
 	
@@ -44,7 +44,7 @@ class CustomRadioAntennaDebugAction: ScriptedUserAction
 					
 		switch (m_eActionType)
 		{
-			case CustomRadioAntennaDebugActionEnum.UpdateRadios:
+			case RT_PS_ECustomRadioAntennaDebugAction.UpdateRadios:
 			{
 				if (m_RadioSystem) 
 				{
@@ -53,7 +53,7 @@ class CustomRadioAntennaDebugAction: ScriptedUserAction
 				break;
 			}
 			
-			case CustomRadioAntennaDebugActionEnum.UpdateTrack:
+			case RT_PS_ECustomRadioAntennaDebugAction.UpdateTrack:
 			{
 				UpdateTrackOnRadios();
 				break;
@@ -69,7 +69,7 @@ class CustomRadioAntennaDebugAction: ScriptedUserAction
 		
 		if (!am) return;
 		
-		CustomRadioAntennaChangeStationDebugAction action = CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(1));
+		RT_PS_CustomRadioAntennaChangeStationDebugAction action = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(1));
 		
 		if (!action) return;
 				

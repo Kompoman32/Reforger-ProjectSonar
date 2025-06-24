@@ -7,7 +7,7 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   RadioBroadcastSoundComponent "{54B2D26E5EF7AA23}" {
    Enabled 0
   }
-  CustomRadioComponent "{649978F2EF7720B3}" {
+  RT_PS_CustomRadioComponent "{649978F2EF7720B3}" {
   }
   RadioBroadcastComponent "{55210012F7D026E6}" {
    Enabled 0
@@ -33,21 +33,21 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
     }
    }
    additionalActions {
-    CustomRadioAction "{649A0B371C18C37F}" {
+    RT_PS_CustomRadioAction "{649A0B371C18C37F}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
-      Name "#Custom_Radio-OnOffActionName"
+      Name "#RT_PS-OnOffActionName"
      }
      m_inVehicle 0
     }
-    CustomRadioVolumeAction "{649A0B3714AF8CED}" {
+    RT_PS_CustomRadioVolumeAction "{649A0B3714AF8CED}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
-      Name "#Custom_Radio-VolumeActionName"
+      Name "#RT_PS-VolumeActionName"
      }
      Duration -1
      CanAggregate 1
@@ -59,24 +59,24 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      m_sActionDecrease "DeselectAction"
      m_inVehicle 0
     }
-    CustomRadioAction "{649A0B376FEC84A7}" {
+    RT_PS_CustomRadioAction "{649A0B376FEC84A7}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
-      Name "#Custom_Radio-StationActionName"
+      Name "#RT_PS-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 2
      m_eActionType Change
      m_inVehicle 0
     }
-    CustomRadioAction "{64B7394A05CE225F}" {
+    RT_PS_CustomRadioAction "{64B7394A05CE225F}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{64B7394A05CE2283}" {
-      Name "#Custom_Radio-ResetActionName"
+      Name "#RT_PS-ResetActionName"
      }
      CanAggregate 1
      "Sort Priority" 3

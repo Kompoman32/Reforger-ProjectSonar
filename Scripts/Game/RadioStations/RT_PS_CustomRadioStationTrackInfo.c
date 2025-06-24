@@ -1,10 +1,10 @@
-class CustomRadioStationTrackInfo {
+class RT_PS_CustomRadioStationTrackInfo {
 	ResourceName m_projectFile;
 	int m_trackIndex;
 	int m_trackSize;
 	bool b_isDJ;
 
-	void CustomRadioStationTrackInfo() {}
+	void RT_PS_CustomRadioStationTrackInfo() {}
 	
 	
 	// ## Extract/Inject
@@ -17,7 +17,7 @@ class CustomRadioStationTrackInfo {
 	// Knowing what range of values can certain variable have and encoding that range in minimum number of bits required is key.
 	// If it is to assume the full range of values is needed, helpers that already implement those for different types can be used.
 
-	static bool Extract(CustomRadioStationTrackInfo instance, ScriptCtx ctx, SSnapSerializerBase snapshot)
+	static bool Extract(RT_PS_CustomRadioStationTrackInfo instance, ScriptCtx ctx, SSnapSerializerBase snapshot)
 	{
 		if (!instance) return true;
 		
@@ -29,7 +29,7 @@ class CustomRadioStationTrackInfo {
 		return true;
 	}
 
-	static bool Inject(SSnapSerializerBase snapshot, ScriptCtx ctx, CustomRadioStationTrackInfo instance)
+	static bool Inject(SSnapSerializerBase snapshot, ScriptCtx ctx, RT_PS_CustomRadioStationTrackInfo instance)
 	{
 		if (!instance) return true;
 		
@@ -73,7 +73,7 @@ class CustomRadioStationTrackInfo {
 		;
 	}
 
-	static bool PropCompare(CustomRadioStationTrackInfo instance, SSnapSerializerBase snapshot, ScriptCtx ctx)
+	static bool PropCompare(RT_PS_CustomRadioStationTrackInfo instance, SSnapSerializerBase snapshot, ScriptCtx ctx)
 	{
 		if (!instance) return true;
 		

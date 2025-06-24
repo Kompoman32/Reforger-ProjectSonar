@@ -1,7 +1,7 @@
-class CustomRadioVolumeAction extends SCR_AdjustSignalAction 
+class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction 
 {
 	IEntity p_OwnerEntity;
-	CustomRadioComponent m_RadioComponent;
+	RT_PS_CustomRadioComponent m_RadioComponent;
 	
 	protected float m_volumeMultiplier = 5;
 	
@@ -13,7 +13,7 @@ class CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		super.Init(pOwnerEntity, pManagerComponent);
 	
 		p_OwnerEntity = pOwnerEntity;	
-		m_RadioComponent = CustomRadioComponent.Cast(pOwnerEntity.FindComponent(CustomRadioComponent));
+		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
 		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
 		
@@ -37,7 +37,7 @@ class CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		IEntity attachedEntity = slot.GetAttachedEntity();
 		if (!attachedEntity) return;
 
-		m_RadioComponent = CustomRadioComponent.Cast(attachedEntity.FindComponent(CustomRadioComponent));
+		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
 	}
 	
 

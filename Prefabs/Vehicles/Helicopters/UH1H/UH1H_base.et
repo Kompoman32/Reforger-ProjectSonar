@@ -22,20 +22,20 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
     }
    }
    additionalActions {
-    CustomRadioAction "{64997DEBDBB3F685}" {
+    RT_PS_CustomRadioAction "{64997DEBDBB3F685}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F275B109A17FD}" {
-      Name "#Custom_Radio-OnOffActionName"
+      Name "#RT_PS-OnOffActionName"
      }
     }
-    CustomRadioVolumeAction "{64997DEA2A7368F7}" {
+    RT_PS_CustomRadioVolumeAction "{64997DEA2A7368F7}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{6483362772BCC09A}" {
-      Name "#Custom_Radio-VolumeActionName"
+      Name "#RT_PS-VolumeActionName"
      }
      Duration -1
      CanAggregate 1
@@ -46,23 +46,23 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
      m_bManualAdjustment 1
      m_sActionDecrease "DeselectAction"
     }
-    CustomRadioAction "{64997DEA245EBE7D}" {
+    RT_PS_CustomRadioAction "{64997DEA245EBE7D}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{647F27517F5C458F}" {
-      Name "#Custom_Radio-StationActionName"
+      Name "#RT_PS-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 2
      m_eActionType Change
     }
-    CustomRadioAction "{649F50FE32A7D9D0}" {
+    RT_PS_CustomRadioAction "{649F50FE32A7D9D0}" {
      ParentContextList {
       "CustomRadio"
      }
      UIInfo UIInfo "{649F50FE32A7D837}" {
-      Name "#Custom_Radio-ResetActionName"
+      Name "#RT_PS-ResetActionName"
      }
      CanAggregate 1
      "Sort Priority" 3

@@ -1,6 +1,6 @@
-class CustomRadioInteriorRequestCallback : InteriorRequestCallback
+class RT_PS_CustomRadioInteriorRequestCallback : InteriorRequestCallback
 {
-	protected CustomRadioComponent m_radio;
+	protected RT_PS_CustomRadioComponent m_radio;
 	
 	//------------------------------------------------------------------------------------------------	
 	override void OnCompleted(float interior, float roomSize)
@@ -10,7 +10,7 @@ class CustomRadioInteriorRequestCallback : InteriorRequestCallback
 	}
 	
 	//------------------------------------------------------------------------------------------------	
-	void CustomRadioInteriorRequestCallback(CustomRadioComponent radio)
+	void RT_PS_CustomRadioInteriorRequestCallback(RT_PS_CustomRadioComponent radio)
 	{
 		m_radio = radio;
 	}

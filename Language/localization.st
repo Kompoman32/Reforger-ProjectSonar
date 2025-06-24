@@ -2,7 +2,7 @@ StringTable {
  ItemClassName "CustomStringTableItem"
  Items {
   CustomStringTableItem "{6484D3ADFBD5A6FC}" {
-   Id "Custom_Radio-AntennaPropName"
+   Id "RT_PS-AntennaPropName"
    Target_en_us "Antenna with Radio"
    Target_ru_ru "Антенна с Радио"
    Status DEVELOPMENT_DONE
@@ -11,7 +11,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED04586E422}" {
-   Id "Custom_Radio-CannotPerform_Antenna"
+   Id "RT_PS-CannotPerform_Antenna"
    Target_en_us "No active radio antenna"
    Target_ru_ru "Нет активной радиоантенны"
    Modified 1705584648
@@ -19,7 +19,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED081C1C732}" {
-   Id "Custom_Radio-CannotPerform_OneStation"
+   Id "RT_PS-CannotPerform_OneStation"
    Target_en_us "No other radio stations"
    Target_ru_ru "Нет других радиостанций"
    Status DEVELOPMENT_DONE
@@ -28,7 +28,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED07D269C42}" {
-   Id "Custom_Radio-CannotPerform_Radio"
+   Id "RT_PS-CannotPerform_Radio"
    Target_en_us "Radio is broken"
    Target_ru_ru "Радио сломано"
    Status DEVELOPMENT_DONE
@@ -37,7 +37,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED0B3BB4444}" {
-   Id "Custom_Radio-CannotPerform_Station"
+   Id "RT_PS-CannotPerform_Station"
    Target_en_us "No radio stations"
    Target_ru_ru "Нет радиостанций"
    Status DEVELOPMENT_DONE
@@ -46,7 +46,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED364D7E339}" {
-   Id "Custom_Radio-OnOffActionName"
+   Id "RT_PS-OnOffActionName"
    Target_en_us "Radio"
    Target_ru_ru "Радио"
    Status DEVELOPMENT_DONE
@@ -55,7 +55,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{65AF622DF98AEA37}" {
-   Id "Custom_Radio-RadioVolumeSetting"
+   Id "RT_PS-RadioVolumeSetting"
    Target_en_us "Radio volume boost"
    Target_ru_ru "Буст громкости радио"
    Modified 1705993250
@@ -63,7 +63,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{649F50FCD2539433}" {
-   Id "Custom_Radio-ResetActionName"
+   Id "RT_PS-ResetActionName"
    Target_en_us "Punch radio to fix"
    Target_ru_ru "Ударить по радио для починки"
    Status DEVELOPMENT_DONE
@@ -72,7 +72,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED3743B271A}" {
-   Id "Custom_Radio-StationActionName"
+   Id "RT_PS-StationActionName"
    Target_en_us "Station"
    Target_ru_ru "Станция"
    Status DEVELOPMENT_DONE
@@ -81,7 +81,7 @@ StringTable {
    LastChanged "Kompoman32"
   }
   CustomStringTableItem "{64852ED349ECAA73}" {
-   Id "Custom_Radio-VolumeActionName"
+   Id "RT_PS-VolumeActionName"
    Target_en_us "Volume"
    Target_ru_ru "Громкость"
    Status DEVELOPMENT_DONE

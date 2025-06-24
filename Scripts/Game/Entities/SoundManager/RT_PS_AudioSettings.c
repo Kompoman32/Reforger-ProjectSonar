@@ -37,11 +37,11 @@ modded class SCR_SoundManagerEntity
 	private void UpdateConnectedRadios()
 	{
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
-		CustomRadioAntennaSystem radioSystem;
+		RT_PS_CustomRadioAntennaSystem radioSystem;
 		
 		if (world) 
 		{
-			radioSystem = CustomRadioAntennaSystem.Cast(world.FindSystem(CustomRadioAntennaSystem));
+			radioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 			radioSystem.ForceUpdateConnectedRadios();
 		}			
 	}

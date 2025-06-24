@@ -3,7 +3,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
  components {
   SCR_EditableEntityComponent "{64851B9EA6BEFFD5}" {
    m_UIInfo SCR_EditableEntityUIInfo "{64851B9D882F212F}" {
-    Name "#Custom_Radio-AntennaPropName"
+    Name "#RT_PS-AntennaPropName"
     Icon "{3587F629EF942F58}UI/Textures/Editor/ContentBrowser/ContentBrowser_Theme_Infrastructure.edds"
     m_Image "{9AD6A77A64A91177}UI/Textures/EditorPreviews/Auto/Props/Military/Compositions/USSR/E_Antenna_01_USSR.edds"
     m_aAuthoredLabels {
@@ -29,7 +29,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     }
    }
    additionalActions {
-    CustomRadioAntennaDebugAction "{64971637DC5E6E1D}" {
+    RT_PS_CustomRadioAntennaDebugAction "{64971637DC5E6E1D}" {
      ParentContextList {
       "antenna"
      }
@@ -39,12 +39,12 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      CanAggregate 1
      m_eActionType UpdateRadios
     }
-    CustomRadioAntennaChangeStationDebugAction "{65B0FBDC244306BD}" {
+    RT_PS_CustomRadioAntennaChangeStationDebugAction "{65B0FBDC244306BD}" {
      ParentContextList {
       "antenna"
      }
      UIInfo UIInfo "{65B0FBDEE3636F08}" {
-      Name "#Custom_Radio-StationActionName"
+      Name "#RT_PS-StationActionName"
      }
      CanAggregate 1
      "Sort Priority" 1
@@ -52,7 +52,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      m_fAdjustmentStep 1
      m_bLoopAction 1
     }
-    CustomRadioAntennaDebugAction "{65B0FBD9734286EC}" {
+    RT_PS_CustomRadioAntennaDebugAction "{65B0FBD9734286EC}" {
      ParentContextList {
       "antenna"
      }

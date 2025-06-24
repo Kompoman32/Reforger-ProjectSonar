@@ -1,7 +1,7 @@
-class CustomRadioStationTrackInfoTimestampWrapper {
+class RT_PS_CustomRadioStationTrackInfoTimestampWrapper {
 	WorldTimestamp m_timestamp;
 
-	void CustomRadioStationTrackInfoTimestampWrapper() {}
+	void RT_PS_CustomRadioStationTrackInfoTimestampWrapper() {}
 	
 	
 	// ## Extract/Inject
@@ -14,14 +14,14 @@ class CustomRadioStationTrackInfoTimestampWrapper {
 	// Knowing what range of values can certain variable have and encoding that range in minimum number of bits required is key.
 	// If it is to assume the full range of values is needed, helpers that already implement those for different types can be used.
 
-	static bool Extract(CustomRadioStationTrackInfoTimestampWrapper instance, ScriptCtx ctx, SSnapSerializerBase snapshot)
+	static bool Extract(RT_PS_CustomRadioStationTrackInfoTimestampWrapper instance, ScriptCtx ctx, SSnapSerializerBase snapshot)
 	{
 		// Fill a snapshot with values from an instance.
 		snapshot.SerializeBytes(instance.m_timestamp, 8);
 		return true;
 	}
 
-	static bool Inject(SSnapSerializerBase snapshot, ScriptCtx ctx, CustomRadioStationTrackInfoTimestampWrapper instance)
+	static bool Inject(SSnapSerializerBase snapshot, ScriptCtx ctx, RT_PS_CustomRadioStationTrackInfoTimestampWrapper instance)
 	{
 		// Fill an instance with values from snapshot.
 		snapshot.SerializeBytes(instance.m_timestamp, 8);
@@ -49,7 +49,7 @@ class CustomRadioStationTrackInfoTimestampWrapper {
 		return lhs.CompareSnapshots(rhs, 8);
 	}
 
-	static bool PropCompare(CustomRadioStationTrackInfoTimestampWrapper instance, SSnapSerializerBase snapshot, ScriptCtx ctx)
+	static bool PropCompare(RT_PS_CustomRadioStationTrackInfoTimestampWrapper instance, SSnapSerializerBase snapshot, ScriptCtx ctx)
 	{
 		// Determine whether current values in instance are sufficiently different from
 		// an existing snapshot that it's worth creating new one.
