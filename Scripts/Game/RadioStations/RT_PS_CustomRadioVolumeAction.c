@@ -1,12 +1,12 @@
 class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction 
 {
+	[Attribute("1", UIWidgets.CheckBox)]
+	bool m_bInVehicle;
+
 	IEntity p_OwnerEntity;
 	RT_PS_CustomRadioComponent m_RadioComponent;
 	
-	protected float m_volumeMultiplier = 5;
-	
-	[Attribute("1", UIWidgets.CheckBox)]
-	bool m_inVehicle;
+	protected float m_fVolumeMultiplier = 5;
 	
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
@@ -15,11 +15,11 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		p_OwnerEntity = pOwnerEntity;	
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
-		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(pOwnerEntity);
 		
 		if (m_RadioComponent) 
 		{
-			m_fTargetValue = m_RadioComponent.GetVolume() / m_volumeMultiplier;
+			m_fTargetValue = m_RadioComponent.GetVolume() / m_fVolumeMultiplier;
 		}
 	}
 	
@@ -55,21 +55,21 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		return true;
 	}
 	
-	protected void HandleLoadActionData(float newTargetValue) 
+	protected void HandleLoadActionData(float pNewTargetValue) 
 	{
 		float oldTargetValue = m_fTargetValue;
 		
-		if (oldTargetValue != newTargetValue) {
-			m_fTargetValue = newTargetValue;
-			SetSignalValue(newTargetValue);
+		if (oldTargetValue != pNewTargetValue) {
+			m_fTargetValue = pNewTargetValue;
+			SetSignalValue(pNewTargetValue);
 			
-			m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+			m_RadioComponent.ActionSetVolume(m_fTargetValue * m_fVolumeMultiplier);
 		}
 	}
 	
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(p_OwnerEntity);
 		if (!m_RadioComponent) return false;
 		
 		return m_RadioComponent.Enabled();
@@ -81,7 +81,7 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		
 		if (m_RadioComponent)
 		{
-			m_fTargetValue = m_RadioComponent.GetVolume() / m_volumeMultiplier;
+			m_fTargetValue = m_RadioComponent.GetVolume() / m_fVolumeMultiplier;
 		}
 	}
 	
@@ -91,7 +91,7 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		
 		super.HandleAction(value);
 		
-		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_fVolumeMultiplier);
 	}
 	
 	override void HandleActionDecrease(float value) 
@@ -101,10 +101,10 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		super.HandleActionDecrease(value);
 		
 
-		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_volumeMultiplier);
+		m_RadioComponent.ActionSetVolume(m_fTargetValue * m_fVolumeMultiplier);
 	}
 	
-	override bool GetActionNameScript(out string outName )
+	override bool GetActionNameScript(out string outName)
 	{		
 		if (!m_RadioComponent) return false;
 		

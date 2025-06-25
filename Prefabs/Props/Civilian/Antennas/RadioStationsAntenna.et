@@ -37,7 +37,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
       Name "Update all radios"
      }
      CanAggregate 1
-     m_eActionType UpdateRadios
+     m_eActionType UPDATE_RADIOS
     }
     RT_PS_CustomRadioAntennaChangeStationDebugAction "{65B0FBDC244306BD}" {
      ParentContextList {
@@ -61,7 +61,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      }
      CanAggregate 1
      "Sort Priority" 2
-     m_eActionType UpdateTrack
+     m_eActionType UPDATE_TRACK
     }
    }
   }

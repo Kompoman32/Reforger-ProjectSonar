@@ -41,7 +41,7 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
      }
      CanAggregate 1
      "Sort Priority" 2
-     m_eActionType Change
+     m_eActionType CHANGE
     }
    }
   }

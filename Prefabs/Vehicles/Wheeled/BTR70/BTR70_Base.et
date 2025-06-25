@@ -54,7 +54,7 @@ Vehicle : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
      }
      CanAggregate 1
      "Sort Priority" 2
-     m_eActionType Change
+     m_eActionType CHANGE
     }
     RT_PS_CustomRadioAction "{649F50FD676B0559}" {
      ParentContextList {
@@ -65,7 +65,7 @@ Vehicle : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
      }
      CanAggregate 1
      "Sort Priority" 3
-     m_eActionType Reset
+     m_eActionType RESET
     }
    }
   }

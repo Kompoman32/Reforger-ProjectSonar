@@ -34,7 +34,7 @@ modded class SCR_SoundManagerEntity
 		GetGame().GetCallqueue().CallLater(UpdateConnectedRadios, 300, false);
 	}
 	
-	private void UpdateConnectedRadios()
+	protected void UpdateConnectedRadios()
 	{
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		RT_PS_CustomRadioAntennaSystem radioSystem;

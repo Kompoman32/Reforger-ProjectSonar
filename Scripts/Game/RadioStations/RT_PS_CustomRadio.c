@@ -4,97 +4,57 @@ class RT_PS_CustomRadioComponentClass: ScriptComponentClass
 
 class RT_PS_CustomRadioComponent: ScriptComponent
 {	
-	static string SOUND_EVENT_NAME = "SOUND_CUSTOM_RADIO";
+	[RplProp()]
+	int m_iRadioStationIndex = 0;	
+	[RplProp()]
+	protected bool m_bState;
+	[RplProp()]
+	protected float m_fVolume = 50;
+
+	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
+	RT_PS_CustomRadioStation m_RadioStation;
+	
+	float m_fSignalInterionValue = 0;
+	float m_fSignalRoomSizeValue = 0;
+
+	protected IEntity m_Owner;
+	protected vector m_vOwnerTransform[4];
+
+	protected SignalsManagerComponent m_SignalManager;
+
+	protected float m_fMaxAudibaleDistance = 200;
+	protected bool m_bLastIsAudiable = false;
+	
+	protected AudioHandle m_CurrentTrack = AudioHandle.Invalid;
+	protected float m_fVolumeToSignalDivider = 50;
 		
-	static string DJ_INDEX_SIGNAL= "DJTrackID";
-	static string MUSIC_INDEX_SIGNAL= "MusicTrackID";
-	static string OFFSET_SIGNAL= "Offset";
-	static string BROADCAST_TYPE_SIGNAL= "BroadcastType";
-	static string VOLUME_SIGNAL= "RadioVolume";
+	static const string SOUND_EVENT_NAME = "SOUND_CUSTOM_RADIO";
+	static const string DJ_INDEX_SIGNAL= "DJTrackID";
+	static const string MUSIC_INDEX_SIGNAL= "MusicTrackID";
+	static const string OFFSET_SIGNAL= "Offset";
+	static const string BROADCAST_TYPE_SIGNAL= "BroadcastType";
+	static const string VOLUME_SIGNAL= "RadioVolume";
 	
-	protected float m_volumeToSignalDivider = 50;
-	protected float m_maxAudibaleDistance = 200;
-	
-	
-	protected SignalsManagerComponent m_signalManager;
-	
-	protected IEntity m_owner;
-	protected vector m_ownerTransform[4];
-	protected bool b_lastIsAudiable = false;
-	protected AudioHandle m_currentTrack = AudioHandle.Invalid;
-	
-	RT_PS_CustomRadioAntennaSystem m_radioSystem;
-	RT_PS_CustomRadioStation m_radioStation;
-	
-	[RplProp()]
-	int m_radioStationIndex = 0;	
-	[RplProp()]
-	protected bool b_state;
-	[RplProp()]
-	protected float m_volume = 50;
-	
-	
-	float m_signalInterionValue = 0;
-	float m_signalRoomSizeValue = 0;
-	
-	protected void ~RT_PS_CustomRadioComponent() 
-	{
-		EOnDeactivate(m_owner);
-	}
-	
+	//------------------------------------------------------------------------------------------------
 	override void OnPostInit(IEntity owner)
 	{		
-		m_owner = owner;
-		m_signalManager = SignalsManagerComponent.Cast(m_owner.FindComponent(SignalsManagerComponent));
+		m_Owner = owner;
+		m_SignalManager = SignalsManagerComponent.Cast(m_Owner.FindComponent(SignalsManagerComponent));
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
 		{
-			m_radioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
+			m_RadioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 		
-		m_owner.GetTransform(m_ownerTransform);
-		calculateInteriorSignalValues();
+		m_Owner.GetTransform(m_vOwnerTransform);
+		CalculateInteriorSignalValues();
 		
 		EOnActivate(owner);
 	}
-	
-	override void EOnActivate(IEntity owner) 
-	{		
-		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
-		if (onVehicleDamageStateChanged)
-			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
 		
-
-		if (!m_radioSystem) return;
-		
-		if (b_state) {			
-			m_radioSystem.Connect(this);
-			StartPlay();
-		}
-	}
-	
-	override void EOnDeactivate(IEntity owner) 
-	{		
-		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
-		if (onVehicleDamageStateChanged)
-			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
-		
-		if (!m_radioSystem) return;
-		
-		m_radioSystem.Disconnect(this);
-		StopPlay();
-	}
-	
-	override void EOnFrame(IEntity owner, float timeSlice) 
-	{
-		if (!Enabled() || !m_radioSystem) return;
-		
-		m_owner.GetTransform(m_ownerTransform);
-		AudioSystem.SetSoundTransformation(m_currentTrack, m_ownerTransform);
-	}
-		
-	protected void calculateInteriorSignalValues() 
+	//------------------------------------------------------------------------------------------------
+	protected void CalculateInteriorSignalValues() 
 	{
 		SoundWorld m_SoundWorld;
 		ChimeraWorld chimeraWorld = ChimeraWorld.CastFrom(GetGame().GetWorld());
@@ -107,73 +67,78 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		{				
 			RT_PS_CustomRadioInteriorRequestCallback rirc = new RT_PS_CustomRadioInteriorRequestCallback(this);
 			
-			m_SoundWorld.CalculateInterirorAt(m_ownerTransform, rirc);	
+			m_SoundWorld.CalculateInterirorAt(m_vOwnerTransform, rirc);	
 		}			
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	bool Enabled() {
-		return b_state;
+		return m_bState;
 	}
 	
-	void SetRadioStationVar() {
-		if (!m_radioSystem) return;
+	//------------------------------------------------------------------------------------------------
+	protected void SetRadioStationVar() {
+		if (!m_RadioSystem) return;
 		
-		m_radioStation = m_radioSystem.GetRadioStation(m_radioStationIndex);
+		m_RadioStation = m_RadioSystem.GetRadioStation(m_iRadioStationIndex);
 	}
 	
-	void ActionEnableDisable(bool enable)
+	//------------------------------------------------------------------------------------------------
+	void ActionEnableDisable(bool pEnable)
 	{		
 		if (Replication.IsClient()) {
 			return;
 		}			
 		
-		b_state = enable;
+		m_bState = pEnable;
 
 		ActionReset();
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void ActionChangeStation() {		
 		if (Replication.IsClient()) {
 			return;
 		}
 
 		
-		if (!b_state || !m_radioSystem) {
+		if (!m_bState || !m_RadioSystem) {
 			return;
 		}
 		
-		++m_radioStationIndex;
+		++m_iRadioStationIndex;
 		
-		if (m_radioStationIndex >= m_radioSystem.GetRadiostaionsCount()) 
+		if (m_iRadioStationIndex >= m_RadioSystem.GetRadiostaionsCount()) 
 		{
-			m_radioStationIndex = 0;
+			m_iRadioStationIndex = 0;
 		}
 		
 		ActionReset();
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void ActionReset()
 	{			
 		if (Replication.IsClient()) {
 			return;
 		}		
-		
 
-		Rpc(RpcDo_Reset, b_state, m_volume, m_radioStationIndex);
-		RpcDo_Reset(b_state, m_volume, m_radioStationIndex);
+		Rpc(RpcDo_Reset, m_bState, m_fVolume, m_iRadioStationIndex);
+		RpcDo_Reset(m_bState, m_fVolume, m_iRadioStationIndex);
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	void RpcDo_Reset(bool state, float volume, int radioStationIndex)
+	protected void RpcDo_Reset(bool pState, float pVolume, int pRadioStationIndex)
 	{			
-		b_state = state;
-		m_volume = volume;
-		m_radioStationIndex = radioStationIndex;
+		m_bState = pState;
+		m_fVolume = pVolume;
+		m_iRadioStationIndex = pRadioStationIndex;
 		SetRadioStationVar();
 	
 		StopPlay();
 	
-		if (b_state)
+		if (m_bState)
 		{
 			Enable();
 		} else {
@@ -181,13 +146,14 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		}
 	}
 	
-	void ActionSetVolume(float volume)
+	//------------------------------------------------------------------------------------------------
+	void ActionSetVolume(float pVolume)
 	{		
-		volume = Math.Clamp(volume, 0, 100);
+		pVolume = Math.Clamp(pVolume, 0, 100);
 		
-		if (volume == m_volume) return;
+		if (pVolume == m_fVolume) return;
 		
-		m_volume = volume;
+		m_fVolume = pVolume;
 		
 		ResetPlay();
 		
@@ -195,57 +161,61 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		GetGame().GetCallqueue().CallLater(ActionReset, 300, false);
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void Enable() {		
-		if (!m_radioSystem) 
+		if (!m_RadioSystem) 
 		{
 			return;
 		}
 		
-		b_state = true;	
+		m_bState = true;	
 	
 		SetRadioStationVar();
 		
-		m_radioSystem.Connect(this);
+		m_RadioSystem.Connect(this);
 		
 		StartPlay();
 		
-		SetEventMask(m_owner, EntityEvent.FRAME);
+		SetEventMask(m_Owner, EntityEvent.FRAME);
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void Disable() {
-		b_state = false;	
-		b_lastIsAudiable = false;
+		m_bState = false;	
+		m_bLastIsAudiable = false;
 
-		m_radioSystem.Disconnect(this);
+		m_RadioSystem.Disconnect(this);
 	
 		StopPlay();
-		SetEventMask(m_owner, EntityEvent.INIT);
+		SetEventMask(m_Owner, EntityEvent.INIT);
 	}
 	
-	void PlayChangeSound()
+	//------------------------------------------------------------------------------------------------
+	protected void PlayChangeSound()
 	{
-		AudioSystem.PlayEvent("{0373401D5C6607B1}Sounds/RadioBroadcast/RadioBroadcast.acp", "SOUND_RADIO_TURN_ON", m_ownerTransform, {}, {});
+		AudioSystem.PlayEvent("{0373401D5C6607B1}Sounds/RadioBroadcast/RadioBroadcast.acp", "SOUND_RADIO_TURN_ON", m_vOwnerTransform, {}, {});
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void StartPlay() 
 	{
-		if (!m_radioSystem) 
+		if (!m_RadioSystem) 
 		{
 			return;
 		}
 	
 		SetRadioStationVar();
 	
-		if (Replication.IsClient()) {
+		//if (Replicati1on.IsClient()) {
 			GetGame().GetCallqueue().Remove(CheckSoundDistance);
 			GetGame().GetCallqueue().CallLater(CheckSoundDistance, 1000, true);
-		}
+		//}
 		
-		RT_PS_CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
+		RT_PS_CustomRadioStationTrackInfo trackInfo = m_RadioSystem.GetRadioStationTrack(m_iRadioStationIndex);
 		
 		if (!trackInfo)		
 		{
-			PrintFormat("Cant get track info. RadioStation index: %1", m_radioStationIndex);
+			PrintFormat("Cant get track info. RadioStation index: %1", m_iRadioStationIndex);
 			return;
 		}
 		
@@ -254,40 +224,41 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		
 		GetPlaySignals(trackInfo, signalNames, signalValues);
 		
-		m_owner.GetTransform(m_ownerTransform);
+		m_Owner.GetTransform(m_vOwnerTransform);
 	
 		// Play event
-		m_currentTrack = AudioSystem.PlayEvent(trackInfo.m_projectFile, SOUND_EVENT_NAME, m_ownerTransform, signalNames, signalValues);
+		m_CurrentTrack = AudioSystem.PlayEvent(trackInfo.m_sProjectFile, SOUND_EVENT_NAME, m_vOwnerTransform, signalNames, signalValues);
 	}
 	
-	protected void GetPlaySignals(RT_PS_CustomRadioStationTrackInfo trackInfo, out array<string> signalNames, out array<float> signalValues) 
+	//------------------------------------------------------------------------------------------------
+	protected void GetPlaySignals(RT_PS_CustomRadioStationTrackInfo pTrackInfo, out array<string> pSignalNames, out array<float> pSignalValues) 
 	{
-		float trackOffset = m_radioSystem.GetRadioStationTrackOffset(m_radioStationIndex);
+		float trackOffset = m_RadioSystem.GetRadioStationTrackOffset(m_iRadioStationIndex);
 
-		signalNames.Insert(BROADCAST_TYPE_SIGNAL);
-		signalNames.Insert(DJ_INDEX_SIGNAL);	
-		signalNames.Insert(MUSIC_INDEX_SIGNAL);
+		pSignalNames.Insert(BROADCAST_TYPE_SIGNAL);
+		pSignalNames.Insert(DJ_INDEX_SIGNAL);	
+		pSignalNames.Insert(MUSIC_INDEX_SIGNAL);
 		
-		if (trackInfo.b_isDJ)
+		if (pTrackInfo.m_bIsDJ)
 		{
-			signalValues.Insert(0);
-			signalValues.Insert(trackInfo.m_trackIndex);
-			signalValues.Insert(0);
+			pSignalValues.Insert(0);
+			pSignalValues.Insert(pTrackInfo.m_iTrackIndex);
+			pSignalValues.Insert(0);
 		}
 		else 
 		{
-			signalValues.Insert(1);
-			signalValues.Insert(0);
-			signalValues.Insert(trackInfo.m_trackIndex);
+			pSignalValues.Insert(1);
+			pSignalValues.Insert(0);
+			pSignalValues.Insert(pTrackInfo.m_iTrackIndex);
 		}
 	
-		signalNames.Insert(OFFSET_SIGNAL);
-		signalValues.Insert(trackOffset);
+		pSignalNames.Insert(OFFSET_SIGNAL);
+		pSignalValues.Insert(trackOffset);
 		
-		signalNames.Insert(VOLUME_SIGNAL);
+		pSignalNames.Insert(VOLUME_SIGNAL);
 		
 		float volume = GetVolume();
-		volume /= m_volumeToSignalDivider;
+		volume /= m_fVolumeToSignalDivider;
 		
 		
 		BaseContainer settings = GetGame().GetGameUserSettings().GetModule("SCR_AudioSettings");    		
@@ -299,35 +270,35 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 			volume *= settingsVolume;			
 		}
 		
-		signalValues.Insert(volume);
+		pSignalValues.Insert(volume);
 		
 		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
 		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();	
 	
-		signalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
-		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
+		pSignalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
+		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
 	
-	
-		signalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
-		signalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));
-	
+		pSignalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
+		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));
 		
-		signalNames.Insert(SCR_AudioSource.INTERIOR_SIGNAL_NAME);
-		signalValues.Insert(gameSignalsManager.GetSignalValue(m_signalInterionValue));
+		pSignalNames.Insert(SCR_AudioSource.INTERIOR_SIGNAL_NAME);
+		pSignalValues.Insert(gameSignalsManager.GetSignalValue(m_fSignalInterionValue));
 	
-		signalNames.Insert(SCR_AudioSource.ROOM_SIZE_SIGNAL_NAME);
-		signalValues.Insert(gameSignalsManager.GetSignalValue(m_signalRoomSizeValue));		
+		pSignalNames.Insert(SCR_AudioSource.ROOM_SIZE_SIGNAL_NAME);
+		pSignalValues.Insert(gameSignalsManager.GetSignalValue(m_fSignalRoomSizeValue));		
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void StopPlay() {
-		AudioSystem.TerminateSound(m_currentTrack);
+		AudioSystem.TerminateSound(m_CurrentTrack);
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	void ResetPlay()
 	{	
 		StopPlay();
 
-		if (!b_state || !m_radioSystem)
+		if (!m_bState || !m_RadioSystem)
 		{
 			return;
 		}
@@ -335,17 +306,19 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		StartPlay();
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	float GetVolume()
 	{
-		return m_volume;
+		return m_fVolume;
 	}
 	
-	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent damageManager)
+	//------------------------------------------------------------------------------------------------
+	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent pDamageManager)
 	{
-		if (damageManager.GetState() != EDamageState.DESTROYED)
+		if (pDamageManager.GetState() != EDamageState.DESTROYED)
 			return;
 		
-		IEntity vehicle = damageManager.GetOwner();
+		IEntity vehicle = pDamageManager.GetOwner();
 	
 		SlotManagerComponent slotManager = SlotManagerComponent.Cast(vehicle.FindComponent(SlotManagerComponent));
 		if (!slotManager) return;
@@ -364,13 +337,17 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		Disable();
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	protected void CheckSoundDistance()
 	{
-		if (!b_state) return;
+		if (!m_bState) return;
+
+		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
+		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();
 	
-		if (m_volume == 0) return;
+		if (m_fVolume == 0) return;
 	
-		RT_PS_CustomRadioStationTrackInfo trackInfo = m_radioSystem.GetRadioStationTrack(m_radioStationIndex);
+		RT_PS_CustomRadioStationTrackInfo trackInfo = m_RadioSystem.GetRadioStationTrack(m_iRadioStationIndex);
 	
 		if (!trackInfo) return;
 	
@@ -397,31 +374,31 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		}	
 	
 		vector radioPos[4];
-		m_owner.GetWorldTransform(radioPos);
+		m_Owner.GetWorldTransform(radioPos);
 	
 		float distance = vector.Distance(radioPos[3], playerPos);
-		bool isAudible = distance < m_maxAudibaleDistance;	
+		bool isAudible = distance < m_fMaxAudibaleDistance;	
 	
-		//PrintFormat("CheckSoundDistance: l:%1 = %2 (%3) (%4 | %5)", b_lastIsAudiable , isAudible, distance, radioPos[3], playerPos);
-		//PrintFormat("CheckSoundDistance: l:%1 = %2 (%3) t:%4 %5", b_lastIsAudiable , isAudible, distance, m_currentTrack, AudioSystem.IsSoundPlayed(m_currentTrack));
+		//PrintFormat("CheckSoundDistance: l:%1 = %2 (%3) (%4 | %5)", m_bLastIsAudiable , isAudible, distance, radioPos[3], playerPos);
+		//PrintFormat("CheckSoundDistance: l:%1 = %2 (%3) t:%4 %5", m_bLastIsAudiable , isAudible, distance, m_CurrentTrack, AudioSystem.IsSoundPlayed(m_CurrentTrack));
 	
-		if (!b_lastIsAudiable && isAudible) {
+		if (!m_bLastIsAudiable && isAudible) {
 			ResetPlay();
 		}
 	
-		b_lastIsAudiable  = isAudible;
+		m_bLastIsAudiable  = isAudible;
 	
-		if (m_currentTrack == AudioHandle.Invalid) {
-			b_lastIsAudiable = false;
+		if (m_CurrentTrack == AudioHandle.Invalid) {
+			m_bLastIsAudiable = false;
 		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	override bool RplSave(ScriptBitWriter writer)
 	{
-		writer.WriteBool(b_state);
-		writer.WriteInt(m_radioStationIndex);
-		writer.WriteInt(m_volume);
+		writer.WriteBool(m_bState);
+		writer.WriteInt(m_iRadioStationIndex);
+		writer.WriteInt(m_fVolume);
 		
 		return true;
 	}
@@ -442,5 +419,49 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		GetGame().GetCallqueue().CallLater(RpcDo_Reset, 1000, false, state, volume, radioStationIndex);
 		
 		return true;
+	}
+
+	//------------------------------------------------------------------------------------------------
+	override void EOnActivate(IEntity owner) 
+	{		
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
+		
+
+		if (!m_RadioSystem) return;
+		
+		if (m_bState) {			
+			m_RadioSystem.Connect(this);
+			StartPlay();
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	override void EOnDeactivate(IEntity owner) 
+	{		
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
+		
+		if (!m_RadioSystem) return;
+		
+		m_RadioSystem.Disconnect(this);
+		StopPlay();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	override void EOnFrame(IEntity owner, float timeSlice) 
+	{
+		if (!Enabled() || !m_RadioSystem) return;
+		
+		m_Owner.GetTransform(m_vOwnerTransform);
+		AudioSystem.SetSoundTransformation(m_CurrentTrack, m_vOwnerTransform);
+	}
+
+	//------------------------------------------------------------------------------------------------
+	protected void ~RT_PS_CustomRadioComponent() 
+	{
+		EOnDeactivate(m_Owner);
 	}
 }

@@ -1,31 +1,28 @@
 class RT_PS_CustomRadioAntennaSystem: GameSystem
 {
-//	protected ref array<SCR_VehicleDustPerWheel> m_Components = {};
-	
-		
-	IEntity m_owner;
-	
-	[RplProp()]
-	protected ref array<ref RT_PS_CustomRadioStationTrackInfo> m_radiostationsTracks = {};
-	
-	
-	[RplProp()]
-	protected ref array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> m_radiostationsTimesWrapers = {};
-	protected ref array<WorldTimestamp> m_radiostationsTimes = {};
-	protected int m_radiostationsCount = 0;
-	
-	ref map<EntityID, RT_PS_CustomRadioComponent> m_activeRadios = new map<EntityID, RT_PS_CustomRadioComponent>;
-	
 	[Attribute("", UIWidgets.Object)]
-	ref array<ref RT_PS_CustomRadioStation> m_radiostations;
-	
+	ref array<ref RT_PS_CustomRadioStation> m_aRadiostations;
 
+	[RplProp()]
+	protected ref array<ref RT_PS_CustomRadioStationTrackInfo> m_aRadiostationsTracks = {};
+	
+	[RplProp()]
+	protected ref array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> m_aRadiostationsTimesWrapers = {};
+	
+	IEntity m_owner;
+
+	protected int m_iRadiostationsCount = 0;
+	protected ref array<WorldTimestamp> m_aRadiostationsTimes = {};
+	protected ref map<EntityID, RT_PS_CustomRadioComponent> m_activeRadios = new map<EntityID, RT_PS_CustomRadioComponent>;
+
+	//------------------------------------------------------------------------------------------------
 	override static void InitInfo(WorldSystemInfo outInfo)
 	{
 		super.InitInfo(outInfo);
-		outInfo.SetAbstract(true)/*.SetUnique(true)*/;
+		outInfo.SetAbstract(true);
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override protected void OnUpdate(ESystemPoint point)
 	{
 		super.OnUpdate();
@@ -39,15 +36,15 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		
 		bool somethingUpdated = false;
 		
-		for (int i = 0; i < m_radiostationsCount; ++i)
+		for (int i = 0; i < m_iRadiostationsCount; ++i)
 		{
-			if (timeNow_s.Greater(m_radiostationsTimes[i])) {
+			if (timeNow_s.Greater(m_aRadiostationsTimes[i])) {
 				UpdateTrack(i);
 				
-				if (m_radiostationsTracks[i])
+				if (m_aRadiostationsTracks[i])
 				{
 					somethingUpdated  = true;
-					m_radiostationsTimes[i] = timeNow_s.PlusSeconds(m_radiostationsTracks[i].m_trackSize);	
+					m_aRadiostationsTimes[i] = timeNow_s.PlusSeconds(m_aRadiostationsTracks[i].m_iTrackSize);	
 				} else {
 					timeNow_s.PlusSeconds(10);
 				}
@@ -60,6 +57,257 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		}
 	}
 	
+	//------------------------------------------------------------------------------------------------
+	protected void InitOnServer()
+	{		
+		PrintFormat("Antenna on Server Inited %1", this);
+
+		array<string> names = {};
+		
+		foreach (RT_PS_CustomRadioStation x: m_aRadiostations)
+		{
+			names.Insert(x.m_sRadiostationName);
+		}
+		
+		PrintFormat("RadioStations: %1", names);
+		
+		SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
+		if (gm)
+		{
+			ScriptInvokerBase<SCR_BaseGameMode_PlayerId> invoker = gm.GetOnPlayerConnected();	
+			if (invoker) 
+				invoker.Insert(OnPlayerConnected);
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void InitOnClient()
+	{
+				
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void InitRadioStations()
+	{								
+		ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		WorldTimestamp t;
+		
+		if (world) {
+			t = world.GetServerTimestamp()
+		}
+		
+		foreach (auto x: m_aRadiostations)
+		{
+			m_aRadiostationsTimes.Insert(t);
+			m_aRadiostationsTracks.Insert(null);
+		}
+		
+		m_iRadiostationsCount = m_aRadiostations.Count();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnPlayerConnected(int playerId)
+	{
+		SendTimesToClients();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void UpdateTrack(int pIndex) 
+	{
+		RT_PS_CustomRadioStation radiostation = m_aRadiostations[pIndex];
+		RT_PS_CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
+		
+		if (newTrack){
+			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", pIndex, radiostation.m_sRadiostationName, newTrack.m_iTrackIndex, newTrack.m_iTrackSize);
+		} else {
+			PrintFormat("UpdateTrack %1:(%2) - tInd: null, tLen: null", pIndex, radiostation.m_sRadiostationName);
+		}
+		
+		m_aRadiostationsTracks.Set(pIndex, newTrack);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void SendTimesToClients()
+	{
+		array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> arr = {};
+		
+		for (int i = 0; i < m_aRadiostationsTimes.Count(); ++i)
+		{
+			RT_PS_CustomRadioStationTrackInfoTimestampWrapper wrapper = new RT_PS_CustomRadioStationTrackInfoTimestampWrapper();
+			
+			wrapper.m_Timestamp = m_aRadiostationsTimes[i];
+			arr.Insert(wrapper);
+		}
+		
+		
+		RpcDo_UpdateTracks(m_aRadiostationsTracks, arr);
+		Rpc(RpcDo_UpdateTracks, m_aRadiostationsTracks, arr);
+		
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+	protected void RpcDo_UpdateTracks(array<ref RT_PS_CustomRadioStationTrackInfo> pRadiostationsTracks, array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> pRadiostationsTimes)
+	{		
+		array<string> radioStationNames = {};
+		array<int> tracksIndexes= {};
+		array<WorldTimestamp> newRadiostationsTimes = {};
+		
+		foreach (RT_PS_CustomRadioStationTrackInfoTimestampWrapper x: pRadiostationsTimes)
+		{
+			if (x) {
+				newRadiostationsTimes.Insert(x.m_Timestamp);
+			} else {
+				newRadiostationsTimes.Insert(null);
+			}
+		}
+
+		foreach (RT_PS_CustomRadioStationTrackInfo x: pRadiostationsTracks)
+		{
+			if (x) {
+				tracksIndexes.Insert(x.m_iTrackIndex);
+			} else {
+				tracksIndexes.Insert(-1);
+			}
+		}
+		
+		foreach (RT_PS_CustomRadioStation x: m_aRadiostations)
+		{
+			if (x) {
+				radioStationNames.Insert(x.m_sRadiostationName);
+			} else {
+				radioStationNames.Insert("null");
+			}
+		}
+		
+		auto oldRadiostationsTimes= m_aRadiostationsTimes;
+		
+		m_aRadiostationsTracks = pRadiostationsTracks;
+		m_aRadiostationsTimesWrapers = pRadiostationsTimes;
+		m_aRadiostationsTimes = newRadiostationsTimes;
+		
+		PrintFormat("Tracks Updated. Stations: %1 | Tracks: %2 | Times: %3", radioStationNames, tracksIndexes, newRadiostationsTimes);
+		
+		UpdateConnectedRadios(oldRadiostationsTimes);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	int GetRadiostaionsCount() 
+	{
+		return m_aRadiostations.Count();
+	}
+	
+	RT_PS_CustomRadioStation GetRadioStation(int pIndex) {
+		if (pIndex < 0 || pIndex >= m_aRadiostations.Count())	 {
+			return null;
+		}
+		
+		return m_aRadiostations[pIndex];
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	RT_PS_CustomRadioStationTrackInfo GetRadioStationTrack(int pIndex) {
+		if (pIndex < 0 || pIndex >= m_aRadiostations.Count())	 {
+			return null;
+		}
+		
+		return m_aRadiostationsTracks[pIndex];
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	float GetRadioStationTrackOffset(int pIndex) {
+		if (pIndex < 0 || pIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pIndex])	 {
+			return 0;
+		}
+		
+		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
+		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
+		float trackSize = m_aRadiostationsTracks[pIndex].m_iTrackSize;
+		WorldTimestamp time = m_aRadiostationsTimes[pIndex];
+		
+		return trackSize*1000 - time.DiffMilliseconds(timeNow_s);
+		//return (timeNow_s - (time*1000 - trackSize*1000));
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	float GetRadioStationTrackTimeLeft(int pIndex) {
+		if (pIndex < 0 || pIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pIndex])	 {
+			return 0;
+		}
+		
+		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
+		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
+		float trackSize = m_aRadiostationsTracks[pIndex].m_iTrackSize;
+		WorldTimestamp time = m_aRadiostationsTimes[pIndex];
+		
+		return time.DiffMilliseconds(timeNow_s) / 1000;
+		//return (timeNow_s - (time*1000 - trackSize*1000));
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void UpdateConnectedRadios(array<WorldTimestamp> pRadiostationsTimes) 
+	{		
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
+		{
+			int radioStationIndex = radio.m_iRadioStationIndex;
+			
+			auto time = pRadiostationsTimes[radioStationIndex];
+			
+			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 0.1) {
+				radio.ResetPlay();
+			}			
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void ForceUpdateConnectedRadios()
+	{
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
+		{
+			radio.ResetPlay();
+		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Connect(RT_PS_CustomRadioComponent pRadio) 
+	{
+		m_activeRadios.Set(pRadio.GetOwner().GetID(), pRadio);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Disconnect(RT_PS_CustomRadioComponent pRadio) 
+	{
+		m_activeRadios.Remove(pRadio.GetOwner().GetID());
+	}
+	
+	
+	// -------------- DEBUG -------------- //
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_UpdateRadios()
+	{
+		SendTimesToClients();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_UpdateTrack(int pRadioStationIndex)
+	{
+		m_aRadiostationsTimes[pRadioStationIndex] = null;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_UpdateTrack_2(int pRadioStationIndex)
+	{		
+		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
+		{			
+			if (pRadioStationIndex != radio.m_iRadioStationIndex) continue;
+			
+			radio.ActionReset();	
+		}
+	}
+
+
+	//------------------------------------------------------------------------------------------------
 	override event protected void OnStarted()
 	{
 		InitRadioStations();
@@ -72,6 +320,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		}
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override event protected void OnStopped()
 	{
 //		if (s_Instance == this)
@@ -93,217 +342,5 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 //				radio.StopPlay();
 //			}
 //		}
-	}
-	
-	void InitOnServer()
-	{		
-		PrintFormat("Antenna on Server Inited %1", this);
-
-		array<string> names = {};
-		
-		foreach (RT_PS_CustomRadioStation x: m_radiostations)
-		{
-			names.Insert(x.m_radiostationName);
-		}
-		
-		PrintFormat("RadioStations: %1", names);
-		
-		SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
-		if (gm)
-		{
-			ScriptInvokerBase<SCR_BaseGameMode_PlayerId> invoker = gm.GetOnPlayerConnected();	
-			if (invoker) 
-				invoker.Insert(OnPlayerConnected);
-		}
-	}
-	
-	void InitOnClient()
-	{
-				
-	}
-	
-	protected void InitRadioStations()
-	{								
-		ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
-		WorldTimestamp t;
-		
-		if (world) {
-			t = world.GetServerTimestamp()
-		}
-		
-		foreach (auto x: m_radiostations)
-		{
-			m_radiostationsTimes.Insert(t);
-			m_radiostationsTracks.Insert(null);
-		}
-		
-		m_radiostationsCount = m_radiostations.Count();
-	}
-	
-	protected void OnPlayerConnected(int playerId)
-	{
-		SendTimesToClients();
-	}
-	
-	void UpdateTrack(int index) 
-	{
-		RT_PS_CustomRadioStation radiostation = m_radiostations[index];
-		RT_PS_CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
-		
-		if (newTrack){
-			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", index, radiostation.m_radiostationName, newTrack.m_trackIndex, newTrack.m_trackSize);
-		} else {
-			PrintFormat("UpdateTrack %1:(%2) - tInd: null, tLen: null", index, radiostation.m_radiostationName);
-		}
-		
-		m_radiostationsTracks.Set(index, newTrack);
-	}
-	
-	void SendTimesToClients()
-	{
-		array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> arr = {};
-		
-		for (int i = 0; i < m_radiostationsTimes.Count(); ++i)
-		{
-			RT_PS_CustomRadioStationTrackInfoTimestampWrapper wrapper = new RT_PS_CustomRadioStationTrackInfoTimestampWrapper();
-			
-			wrapper.m_timestamp = m_radiostationsTimes[i];
-			arr.Insert(wrapper);
-		}
-		
-		
-		RpcDo_UpdateTracks(m_radiostationsTracks, arr);
-		Rpc(RpcDo_UpdateTracks, m_radiostationsTracks, arr);
-		
-	}
-	
-	void OnRplRpcDo_UpdateTracks()
-	{
-		RpcDo_UpdateTracks(m_radiostationsTracks, m_radiostationsTimesWrapers)
-	}
-	
-	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	void RpcDo_UpdateTracks(array<ref RT_PS_CustomRadioStationTrackInfo> radiostationsTracks, array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> radiostationsTimes)
-	{		
-		array<WorldTimestamp> arr = {};
-		
-		foreach (RT_PS_CustomRadioStationTrackInfoTimestampWrapper x: radiostationsTimes)
-		{
-			arr.Insert(x.m_timestamp);
-		}
-		
-		auto oldRadiostationsTimes= m_radiostationsTimes;
-		
-		m_radiostationsTracks = radiostationsTracks;
-		m_radiostationsTimesWrapers = radiostationsTimes;
-		m_radiostationsTimes = arr;
-		
-		PrintFormat("Tracks Updated. Times: %1", m_radiostationsTimes);
-		
-		UpdateConnectedRadios(oldRadiostationsTimes);
-	}
-	
-	int GetRadiostaionsCount() 
-	{
-		return m_radiostations.Count();
-	}
-	
-	RT_PS_CustomRadioStation GetRadioStation(int index) {
-		if (index < 0 || index >= m_radiostations.Count())	 {
-			return null;
-		}
-		
-		return m_radiostations[index];
-	}
-	
-	RT_PS_CustomRadioStationTrackInfo GetRadioStationTrack(int index) {
-		if (index < 0 || index >= m_radiostations.Count())	 {
-			return null;
-		}
-		
-		return m_radiostationsTracks[index];
-	}
-	
-	float GetRadioStationTrackOffset(int index) {
-		if (index < 0 || index >= m_radiostations.Count() || !m_radiostationsTracks[index])	 {
-			return 0;
-		}
-		
-		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
-		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
-		float trackSize = m_radiostationsTracks[index].m_trackSize;
-		WorldTimestamp time = m_radiostationsTimes[index];
-		
-		return trackSize*1000 - time.DiffMilliseconds(timeNow_s);
-		//return (timeNow_s - (time*1000 - trackSize*1000));
-	}
-	
-	float GetRadioStationTrackTimeLeft(int index) {
-		if (index < 0 || index >= m_radiostations.Count() || !m_radiostationsTracks[index])	 {
-			return 0;
-		}
-		
-		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
-		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
-		float trackSize = m_radiostationsTracks[index].m_trackSize;
-		WorldTimestamp time = m_radiostationsTimes[index];
-		
-		return time.DiffMilliseconds(timeNow_s) / 1000;
-		//return (timeNow_s - (time*1000 - trackSize*1000));
-	}
-	
-	void UpdateConnectedRadios(array<WorldTimestamp> radiostationsTimes) 
-	{		
-		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
-		{
-			int radioStationIndex = radio.m_radioStationIndex;
-			
-			auto time = radiostationsTimes[radioStationIndex];
-			
-			if (Math.AbsFloat(time.DiffMilliseconds(m_radiostationsTimes[radioStationIndex])) > 0.1) {
-				radio.ResetPlay();
-			}			
-		}
-	}
-	
-	void ForceUpdateConnectedRadios()
-	{
-		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
-		{
-			radio.ResetPlay();
-		}
-	}
-	
-	void Connect(RT_PS_CustomRadioComponent radio) 
-	{
-		m_activeRadios.Set(radio.GetOwner().GetID(), radio);
-	}
-	
-	void Disconnect(RT_PS_CustomRadioComponent radio) 
-	{
-		m_activeRadios.Remove(radio.GetOwner().GetID());
-	}
-	
-	
-	// -------------- DEBUG -------------- //
-	
-	void Debug_UpdateRadios()
-	{
-		SendTimesToClients();
-	}
-	
-	void Debug_UpdateTrack(int radioStationIndex)
-	{
-		m_radiostationsTimes[radioStationIndex] = null;
-	}
-	
-	void Debug_UpdateTrack_2(int radioStationIndex)
-	{		
-		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
-		{			
-			if (radioStationIndex != radio.m_radioStationIndex) continue;
-			
-			radio.ActionReset();	
-		}
 	}
 }

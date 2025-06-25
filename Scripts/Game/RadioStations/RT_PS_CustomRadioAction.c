@@ -1,22 +1,23 @@
 enum RT_PS_ECustomRadioAction 
 {
-	TurnOnOff = 0,
-	Change = 1,
-	Reset = 2,
+	TURN_ON_OFF = 0,
+	CHANGE = 1,
+	RESET = 2,
 }
 
 class RT_PS_CustomRadioAction: ScriptedUserAction
 {
-	IEntity p_OwnerEntity;
-	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
-	RT_PS_CustomRadioComponent m_RadioComponent;
-	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAction))]
 	RT_PS_ECustomRadioAction m_eActionType;
 	
 	[Attribute("1", UIWidgets.CheckBox)]
-	bool m_inVehicle;
-	
+	bool m_bInVehicle;
+
+	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
+	protected RT_PS_CustomRadioComponent m_RadioComponent;
+	protected IEntity p_OwnerEntity;
+
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		super.Init(pOwnerEntity, pManagerComponent);
@@ -25,9 +26,9 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
-		if (m_inVehicle) {m_RadioComponent = null;}
+		if (m_bInVehicle) {m_RadioComponent = null;}
 		
-		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(pOwnerEntity);
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
@@ -36,12 +37,14 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		}
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override bool CanBroadcastScript()
 	{
-		return m_eActionType != RT_PS_ECustomRadioAction.Reset;
+		return m_eActionType != RT_PS_ECustomRadioAction.RESET;
 	}
 	
-	void FindRadioComponent(IEntity pOwnerEntity)
+	//------------------------------------------------------------------------------------------------
+	protected void FindRadioComponent(IEntity pOwnerEntity)
 	{		
 		if (m_RadioComponent) return;
 		
@@ -58,33 +61,37 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
 	}
 	
-	bool Enabled() {
+	//------------------------------------------------------------------------------------------------
+	protected bool Enabled()
+	{
 		if (!m_RadioComponent) 
 			return false;
 		
 		return m_RadioComponent.Enabled();
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{	
-		if (!m_RadioComponent && m_inVehicle) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(p_OwnerEntity);
 		
 		if (!m_RadioComponent || !m_RadioSystem) {
-			return m_eActionType == RT_PS_ECustomRadioAction.TurnOnOff;
+			return m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF;
 		}
 		
 		if (!Enabled())
 		{
-			if (m_eActionType == RT_PS_ECustomRadioAction.Change )
+			if (m_eActionType == RT_PS_ECustomRadioAction.CHANGE )
 				return false;
 		}
 		
 		return true;
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
 	{
-		if (m_eActionType == RT_PS_ECustomRadioAction.TurnOnOff && Enabled())
+		if (m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF && Enabled())
 		{
 			return true;
 		}
@@ -107,7 +114,7 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 			return false;
 		}
 		
-		if (m_RadioComponent.Enabled() && m_eActionType == RT_PS_ECustomRadioAction.Change && m_RadioSystem.GetRadiostaionsCount() == 1)
+		if (m_RadioComponent.Enabled() && m_eActionType == RT_PS_ECustomRadioAction.CHANGE && m_RadioSystem.GetRadiostaionsCount() == 1)
 		{
 			m_sCannotPerformReason = "#RT_PS-CannotPerform_OneStation";
 			return false;
@@ -116,22 +123,24 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		return true;	
 	}
 
-	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {			
+	//------------------------------------------------------------------------------------------------
+	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) 
+	{			
 		if (!m_RadioComponent) return;		
 		
 		switch (m_eActionType)
 		{
-			case RT_PS_ECustomRadioAction.TurnOnOff:
+			case RT_PS_ECustomRadioAction.TURN_ON_OFF:
 			{				
 				m_RadioComponent.ActionEnableDisable(!Enabled());
 				break;
 			}
-			case RT_PS_ECustomRadioAction.Change:
+			case RT_PS_ECustomRadioAction.CHANGE:
 			{
 				m_RadioComponent.ActionChangeStation();
 				break;
 			}
-			case RT_PS_ECustomRadioAction.Reset:
+			case RT_PS_ECustomRadioAction.RESET:
 			{
 				m_RadioComponent.ActionReset();
 				break;
@@ -139,13 +148,14 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		}
 	}
 	
+	//------------------------------------------------------------------------------------------------
 	override bool GetActionNameScript(out string outName)
 	{		
 		outName = GetUIInfo().GetName();
 		
 		switch (m_eActionType)
 		{
-			case RT_PS_ECustomRadioAction.TurnOnOff:
+			case RT_PS_ECustomRadioAction.TURN_ON_OFF:
 			{			
 				if (Enabled())
 					outName += ": #AR-UserAction_State_Off";
@@ -154,11 +164,11 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 
 				return true;
 			}
-			case RT_PS_ECustomRadioAction.Change:
+			case RT_PS_ECustomRadioAction.CHANGE:
 			{
-				if (!m_RadioComponent || !m_RadioComponent.m_radioStation) return false;
+				if (!m_RadioComponent || !m_RadioComponent.m_RadioStation) return false;
 				
-				outName+= ": " + m_RadioComponent.m_radioStation.m_radiostationName;
+				outName+= ": " + m_RadioComponent.m_RadioStation.m_sRadiostationName;
 				
 				return true;
 			}

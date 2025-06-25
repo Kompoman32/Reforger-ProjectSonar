@@ -40,7 +40,7 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      UIInfo UIInfo "{647F275B109A17FD}" {
       Name "#RT_PS-OnOffActionName"
      }
-     m_inVehicle 0
+     m_bInVehicle 0
     }
     RT_PS_CustomRadioVolumeAction "{649A0B3714AF8CED}" {
      ParentContextList {
@@ -57,7 +57,7 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      m_fAdjustmentStep 1
      m_bManualAdjustment 1
      m_sActionDecrease "DeselectAction"
-     m_inVehicle 0
+     m_bInVehicle 0
     }
     RT_PS_CustomRadioAction "{649A0B376FEC84A7}" {
      ParentContextList {
@@ -68,8 +68,8 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      }
      CanAggregate 1
      "Sort Priority" 2
-     m_eActionType Change
-     m_inVehicle 0
+     m_eActionType CHANGE
+     m_bInVehicle 0
     }
     RT_PS_CustomRadioAction "{64B7394A05CE225F}" {
      ParentContextList {
@@ -80,8 +80,8 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      }
      CanAggregate 1
      "Sort Priority" 3
-     m_eActionType Reset
-     m_inVehicle 1
+     m_eActionType RESET
+     m_bInVehicle 1
     }
    }
   }

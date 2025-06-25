@@ -55,7 +55,7 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
      }
      CanAggregate 1
      "Sort Priority" 2
-     m_eActionType Change
+     m_eActionType CHANGE
     }
     RT_PS_CustomRadioAction "{649F50FE0892C04C}" {
      ParentContextList {
@@ -66,7 +66,7 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
      }
      CanAggregate 1
      "Sort Priority" 3
-     m_eActionType Reset
+     m_eActionType RESET
     }
    }
   }

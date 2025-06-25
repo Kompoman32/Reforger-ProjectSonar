@@ -1,23 +1,23 @@
 enum RT_PS_ECustomRadioAntennaDebugAction 
 {
-	UpdateRadios = 1,
-	UpdateTrack = 2,
+	UPDATE_RADIOS = 1,
+	UPDATE_TRACK = 2,
 }
 
 class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 {
-	IEntity m_owner;
-	
-	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
-	
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAntennaDebugAction))]
-	EAudioSourceConfigurationFlag m_eActionType;
+	RT_PS_ECustomRadioAntennaDebugAction m_eActionType;
+
+	protected IEntity m_Owner;
+	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	
+	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
 	{
 		super.Init(pOwnerEntity, pManagerComponent);
 		
-		m_owner = pOwnerEntity;
+		m_Owner = pOwnerEntity;
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
@@ -38,13 +38,14 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		return true;
 	}
 
+	//------------------------------------------------------------------------------------------------
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {
 		if (Replication.IsClient()) return;
 		
 					
 		switch (m_eActionType)
 		{
-			case RT_PS_ECustomRadioAntennaDebugAction.UpdateRadios:
+			case RT_PS_ECustomRadioAntennaDebugAction.UPDATE_RADIOS:
 			{
 				if (m_RadioSystem) 
 				{
@@ -53,7 +54,7 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				break;
 			}
 			
-			case RT_PS_ECustomRadioAntennaDebugAction.UpdateTrack:
+			case RT_PS_ECustomRadioAntennaDebugAction.UPDATE_TRACK:
 			{
 				UpdateTrackOnRadios();
 				break;
@@ -61,11 +62,12 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		}
 	}
 	
-	void UpdateTrackOnRadios() 
+	//------------------------------------------------------------------------------------------------
+	protected void UpdateTrackOnRadios() 
 	{
 		if (!m_RadioSystem) return;
 		
-		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_owner.FindComponent(ActionsManagerComponent));
+		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_Owner.FindComponent(ActionsManagerComponent));
 		
 		if (!am) return;
 		
@@ -73,8 +75,8 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		
 		if (!action) return;
 				
-		m_RadioSystem.Debug_UpdateTrack(action.m_selectedRadioIndex);
+		m_RadioSystem.Debug_UpdateTrack(action.m_iSelectedRadioIndex);
 		
-		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, action.m_selectedRadioIndex);		
+		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, action.m_iSelectedRadioIndex);		
 	}
 }
