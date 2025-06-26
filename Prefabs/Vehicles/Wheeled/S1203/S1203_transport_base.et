@@ -13,11 +13,9 @@ Vehicle : "{4AE9D080927D3CB9}Prefabs/Vehicles/Wheeled/S1203/S1203_base.et" {
      UIInfo SCR_ActionContextUIInfo "{64B73949C5C0D37D}" {
      }
      ContextName "CustomRadio"
-     Position RegisteringComponentSlotInfo "{58DE8399ABE63424}" {
+     Position PointInfo "{58DE8399ABE63424}" {
       PivotID "v_body"
       Offset -0.0293 0.792 1.6528
-      Prefab "{44415BE74CEB8C5D}Prefabs/Props/Civilian/CustomRadioInterractionPoint.et"
-      RegisterActions 1
      }
     }
    }

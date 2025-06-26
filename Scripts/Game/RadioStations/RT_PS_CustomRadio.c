@@ -199,7 +199,7 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	void StartPlay() 
 	{
-		if (!m_RadioSystem) 
+		if (!m_RadioSystem || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) 
 		{
 			return;
 		}

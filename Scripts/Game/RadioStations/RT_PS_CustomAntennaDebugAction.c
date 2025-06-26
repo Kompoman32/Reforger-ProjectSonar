@@ -1,7 +1,8 @@
 enum RT_PS_ECustomRadioAntennaDebugAction 
 {
 	UPDATE_RADIOS = 1,
-	UPDATE_TRACK = 2,
+	OnOff_RADIOS = 2,
+	UPDATE_TRACK = 3
 }
 
 class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
@@ -31,6 +32,64 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 	{
 		return false;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	override bool GetActionNameScript(out string outName)
+	{		
+		if (!m_RadioSystem) return false;
+		
+		outName = GetUIInfo().GetName();
+		
+							
+		switch (m_eActionType)
+		{
+			case RT_PS_ECustomRadioAntennaDebugAction.UPDATE_TRACK:
+			{
+				int selectedRadioIndex = GetCurrentSelectedRadioStationIndex();
+				
+				if (selectedRadioIndex != 0 && !selectedRadioIndex) return false;
+				
+				int trackIndex = m_RadioSystem.GetRadioStationTrackIndex(selectedRadioIndex);
+				
+				if (trackIndex != 0 && !trackIndex) return false;
+				
+				RT_PS_CustomRadioStationTrackInfo track = m_RadioSystem.GetRadioStationTrack(selectedRadioIndex);
+				
+				if (!track) return false;
+				
+				bool isDj = track.m_bIsDJ;
+				float timeLeft = m_RadioSystem.GetRadioStationTrackTimeLeft(selectedRadioIndex);
+
+				
+				string trackName;
+				
+				if (isDj)
+				{
+					trackName = string.Format("DJ Track № %1", trackIndex);
+				}
+				else 
+				{
+					trackName = string.Format("Track № %1", trackIndex);
+				}
+				
+				outName += string.Format(" %1 - %2s", trackName, timeLeft);
+				break;
+			}
+			
+			case RT_PS_ECustomRadioAntennaDebugAction.OnOff_RADIOS:
+			{		
+				if (m_RadioSystem.m_bAllowRadios)
+					outName += ": #AR-UserAction_State_Off";
+				else
+					outName += ": #AR-UserAction_State_On";
+				
+				break;
+			}
+		}		
+		
+		return true;
+	}
+	
 
 	//------------------------------------------------------------------------------------------------
 	override bool CanBroadcastScript()
@@ -59,24 +118,42 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				UpdateTrackOnRadios();
 				break;
 			}
+			
+			case RT_PS_ECustomRadioAntennaDebugAction.OnOff_RADIOS:
+			{
+				if (m_RadioSystem) 
+				{
+					m_RadioSystem.Debug_On_Off_radios();
+				}
+				break;
+			}
 		}
+	}
+	
+	protected int GetCurrentSelectedRadioStationIndex()
+	{
+		if (!m_RadioSystem) return null;
+		
+		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_Owner.FindComponent(ActionsManagerComponent));
+		
+		if (!am) return null;
+		
+		RT_PS_CustomRadioAntennaChangeStationDebugAction action = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(2));
+		
+		if (!action) return null;
+		
+		return action.m_iSelectedRadioIndex;
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void UpdateTrackOnRadios() 
 	{
-		if (!m_RadioSystem) return;
+		int selectedRadioIndex = GetCurrentSelectedRadioStationIndex();
 		
-		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_Owner.FindComponent(ActionsManagerComponent));
-		
-		if (!am) return;
-		
-		RT_PS_CustomRadioAntennaChangeStationDebugAction action = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(1));
-		
-		if (!action) return;
+		if (selectedRadioIndex != 0 && !selectedRadioIndex) return;
 				
-		m_RadioSystem.Debug_UpdateTrack(action.m_iSelectedRadioIndex);
+		m_RadioSystem.Debug_UpdateTrack(selectedRadioIndex);
 		
-		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, action.m_iSelectedRadioIndex);		
+		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, selectedRadioIndex );		
 	}
 }

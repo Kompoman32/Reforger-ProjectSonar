@@ -80,9 +80,6 @@ class RT_PS_CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalA
 		
 		m_iSelectedRadioIndex = m_fTargetValue;
 		
-		Print("HandleAction");
-		Print(m_iSelectedRadioIndex);
-		
 		if (m_iSelectedRadioIndex >= m_RadioSystem.GetRadiostaionsCount()) 
 		{
 			m_iSelectedRadioIndex = 0;
@@ -90,11 +87,11 @@ class RT_PS_CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalA
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	override bool GetActionNameScript(out string outName )
+	override bool GetActionNameScript(out string outName)
 	{		
 		if (!m_RadioSystem) return false;
 		
-		RT_PS_CustomRadioStation station = m_RadioSystem.m_aRadiostations[m_iSelectedRadioIndex];
+		RT_PS_CustomRadioStation station = m_RadioSystem.GetRadioStation(m_iSelectedRadioIndex);
 		
 		if (!station) return false;
 		

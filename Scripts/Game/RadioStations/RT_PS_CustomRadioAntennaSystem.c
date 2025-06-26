@@ -9,6 +9,9 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	[RplProp()]
 	protected ref array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> m_aRadiostationsTimesWrapers = {};
 	
+	[RplProp()]
+	bool m_bAllowRadios = true;
+	
 	IEntity m_owner;
 
 	protected int m_iRadiostationsCount = 0;
@@ -197,48 +200,61 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		return m_aRadiostations.Count();
 	}
 	
-	RT_PS_CustomRadioStation GetRadioStation(int pIndex) {
-		if (pIndex < 0 || pIndex >= m_aRadiostations.Count())	 {
+	RT_PS_CustomRadioStation GetRadioStation(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count())	 {
 			return null;
 		}
 		
-		return m_aRadiostations[pIndex];
+		return m_aRadiostations[pStationIndex];
 	}
 	
-	//------------------------------------------------------------------------------------------------
-	RT_PS_CustomRadioStationTrackInfo GetRadioStationTrack(int pIndex) {
-		if (pIndex < 0 || pIndex >= m_aRadiostations.Count())	 {
+	int GetRadioStationTrackIndex(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count())	 {
 			return null;
 		}
 		
-		return m_aRadiostationsTracks[pIndex];
+		if (!m_aRadiostationsTracks[pStationIndex]) {
+			return null;
+		}
+		
+		return m_aRadiostationsTracks[pStationIndex].m_iTrackIndex;
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	float GetRadioStationTrackOffset(int pIndex) {
-		if (pIndex < 0 || pIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pIndex])	 {
+	RT_PS_CustomRadioStationTrackInfo GetRadioStationTrack(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count())	 {
+			return null;
+		}
+		
+		return m_aRadiostationsTracks[pStationIndex];
+	}
+	
+	
+	//------------------------------------------------------------------------------------------------
+	float GetRadioStationTrackOffset(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pStationIndex])	 {
 			return 0;
 		}
 		
 		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
 		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
-		float trackSize = m_aRadiostationsTracks[pIndex].m_iTrackSize;
-		WorldTimestamp time = m_aRadiostationsTimes[pIndex];
+		float trackSize = m_aRadiostationsTracks[pStationIndex].m_iTrackSize;
+		WorldTimestamp time = m_aRadiostationsTimes[pStationIndex];
 		
 		return trackSize*1000 - time.DiffMilliseconds(timeNow_s);
 		//return (timeNow_s - (time*1000 - trackSize*1000));
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	float GetRadioStationTrackTimeLeft(int pIndex) {
-		if (pIndex < 0 || pIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pIndex])	 {
+	float GetRadioStationTrackTimeLeft(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pStationIndex])	 {
 			return 0;
 		}
 		
 		// float timeNow_s = m_owner.GetWorld().GetWorldTime();
 		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
-		float trackSize = m_aRadiostationsTracks[pIndex].m_iTrackSize;
-		WorldTimestamp time = m_aRadiostationsTimes[pIndex];
+		float trackSize = m_aRadiostationsTracks[pStationIndex].m_iTrackSize;
+		WorldTimestamp time = m_aRadiostationsTimes[pStationIndex];
 		
 		return time.DiffMilliseconds(timeNow_s) / 1000;
 		//return (timeNow_s - (time*1000 - trackSize*1000));
@@ -252,6 +268,10 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			int radioStationIndex = radio.m_iRadioStationIndex;
 			
 			auto time = pRadiostationsTimes[radioStationIndex];
+			
+			if (Replication.IsServer()) {
+				radio.ResetPlay();
+			}
 			
 			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 0.1) {
 				radio.ResetPlay();
@@ -304,6 +324,39 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			
 			radio.ActionReset();	
 		}
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_On_Off_radios()
+	{		
+		Rpc(RPC_Do_Debug_Off_On_radios);
+		RPC_Do_Debug_Off_On_radios();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+	void RPC_Do_Debug_Off_On_radios()
+	{		
+		m_bAllowRadios = !m_bAllowRadios;
+		
+		if (Replication.IsServer()) 
+		{
+			ForceUpdateConnectedRadios();	
+		} 
+		else 
+		{
+			foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
+			{
+				if (m_bAllowRadios)
+				{
+					radio.StartPlay();
+				} else {
+					radio.StopPlay();
+				}
+			}
+		}
+		
+
 	}
 
 

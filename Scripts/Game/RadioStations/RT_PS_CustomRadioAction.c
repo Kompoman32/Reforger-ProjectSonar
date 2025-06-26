@@ -10,8 +10,8 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAction))]
 	RT_PS_ECustomRadioAction m_eActionType;
 	
-	[Attribute("1", UIWidgets.CheckBox)]
-	bool m_bInVehicle;
+	[Attribute("0", UIWidgets.CheckBox)]
+	bool m_bInStaticProp;
 
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	protected RT_PS_CustomRadioComponent m_RadioComponent;
@@ -26,9 +26,9 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
-		if (m_bInVehicle) {m_RadioComponent = null;}
+		if (!m_bInStaticProp) {m_RadioComponent = null;}
 		
-		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(pOwnerEntity);
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
@@ -73,9 +73,9 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{	
-		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(p_OwnerEntity);
 		
-		if (!m_RadioComponent || !m_RadioSystem) {
+		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) {
 			return m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF;
 		}
 		
@@ -90,19 +90,14 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	
 	//------------------------------------------------------------------------------------------------
 	override bool CanBePerformedScript(IEntity user)
-	{
-		if (m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF && Enabled())
-		{
-			return true;
-		}
-		
-		if (!m_RadioComponent) 
+	{		
+		if (!m_RadioComponent)
 		{
 			m_sCannotPerformReason = "#RT_PS-CannotPerform_Radio";
 			return false;
 		}
 		
-		if (!m_RadioSystem)
+		if (!m_RadioSystem || !m_RadioSystem.m_bAllowRadios)
 		{
 			m_sCannotPerformReason = "#RT_PS-CannotPerform_Antenna";
 			return false;
@@ -118,6 +113,11 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		{
 			m_sCannotPerformReason = "#RT_PS-CannotPerform_OneStation";
 			return false;
+		}
+		
+		if (m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF && Enabled())
+		{
+			return true;
 		}
 		
 		return true;	
@@ -152,6 +152,11 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	override bool GetActionNameScript(out string outName)
 	{		
 		outName = GetUIInfo().GetName();
+		
+		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios)
+		{
+			return true;
+		}
 		
 		switch (m_eActionType)
 		{

@@ -1,10 +1,11 @@
 class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction 
 {
-	[Attribute("1", UIWidgets.CheckBox)]
-	bool m_bInVehicle;
+	[Attribute("0", UIWidgets.CheckBox)]
+	bool m_bInStaticProp;
 
 	IEntity p_OwnerEntity;
-	RT_PS_CustomRadioComponent m_RadioComponent;
+	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
+	protected RT_PS_CustomRadioComponent m_RadioComponent;
 	
 	protected float m_fVolumeMultiplier = 5;
 	
@@ -15,11 +16,17 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		p_OwnerEntity = pOwnerEntity;	
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
-		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(pOwnerEntity);
 		
 		if (m_RadioComponent) 
 		{
 			m_fTargetValue = m_RadioComponent.GetVolume() / m_fVolumeMultiplier;
+		}
+		
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (world) 
+		{
+			m_RadioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 	}
 	
@@ -69,8 +76,8 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 	
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_RadioComponent && m_bInVehicle) FindRadioComponent(p_OwnerEntity);
-		if (!m_RadioComponent) return false;
+		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) return false;
 		
 		return m_RadioComponent.Enabled();
 	}
