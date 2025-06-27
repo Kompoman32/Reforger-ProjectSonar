@@ -60,7 +60,7 @@ Vehicle : "{4AE9D080927D3CB9}Prefabs/Vehicles/Wheeled/S1203/S1203_base.et" {
       "CustomRadio"
      }
      UIInfo UIInfo "{649F50FE27AB6CC0}" {
-      Name "#RT_PS-StationActionName"
+      Name "#RT_PS-ResetActionName"
      }
      CanAggregate 1
      "Sort Priority" 3

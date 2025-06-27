@@ -313,31 +313,6 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent pDamageManager)
-	{
-		if (pDamageManager.GetState() != EDamageState.DESTROYED)
-			return;
-		
-		IEntity vehicle = pDamageManager.GetOwner();
-	
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(vehicle.FindComponent(SlotManagerComponent));
-		if (!slotManager) return;
-				EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
-		if (!slot) {
-			slot = slotManager.GetSlotByName("radio");
-		};
-		if (!slot) return;
-		IEntity attachedEntity = slot.GetAttachedEntity();
-		if (!attachedEntity) return;
-
-		RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
-	
-		if (!radio) return;
-	
-		Disable();
-	}
-	
-	//------------------------------------------------------------------------------------------------
 	protected void CheckSoundDistance()
 	{
 		if (!m_bState) return;
@@ -424,11 +399,6 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	//------------------------------------------------------------------------------------------------
 	override void EOnActivate(IEntity owner) 
 	{		
-		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
-		if (onVehicleDamageStateChanged)
-			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
-		
-
 		if (!m_RadioSystem) return;
 		
 		if (m_bState) {			
@@ -439,11 +409,7 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	
 	//------------------------------------------------------------------------------------------------
 	override void EOnDeactivate(IEntity owner) 
-	{		
-		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
-		if (onVehicleDamageStateChanged)
-			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
-		
+	{				
 		if (!m_RadioSystem) return;
 		
 		m_RadioSystem.Disconnect(this);

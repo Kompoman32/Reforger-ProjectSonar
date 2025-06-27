@@ -65,7 +65,7 @@ Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
       Name "#RT_PS-ResetActionName"
      }
      CanAggregate 1
-     "Sort Priority" 2
+     "Sort Priority" 3
      m_eActionType RESET
     }
    }

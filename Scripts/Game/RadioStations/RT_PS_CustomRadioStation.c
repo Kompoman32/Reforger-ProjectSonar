@@ -10,8 +10,8 @@ class RT_PS_CustomRadioStation
 	[Attribute("", UIWidgets.Slider, "Tracks Lengths", "1 3600 1")]
 	ref array<int> m_aTracksLengths;
 	
-	[Attribute("", UIWidgets.Slider, "DJ Tracks probability", "0 1 0.1")]
-	float m_fDjProbability = 0.2;
+	[Attribute("0.2", UIWidgets.Slider, "DJ Tracks probability", "0 1 0.1")]
+	float m_fDjProbability;
 	
 	[Attribute("", UIWidgets.Slider, "DJ Tracks Lengths", "1 3600 1")]
 	ref array<int> m_aDjTracksLengths;

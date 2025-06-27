@@ -81,6 +81,10 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			if (invoker) 
 				invoker.Insert(OnPlayerConnected);
 		}
+		
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -192,6 +196,35 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		PrintFormat("Tracks Updated. Stations: %1 | Tracks: %2 | Times: %3", radioStationNames, tracksIndexes, newRadiostationsTimes);
 		
 		UpdateConnectedRadios(oldRadiostationsTimes);
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void OnVehicleDamaged(SCR_VehicleDamageManagerComponent pDamageManager)
+	{
+		if (pDamageManager.GetState() != EDamageState.DESTROYED)
+			return;
+		
+		IEntity vehicle = pDamageManager.GetOwner();
+	
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(vehicle.FindComponent(SlotManagerComponent));
+		if (!slotManager) return;
+		
+		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
+		if (!slot) 
+		{
+			slot = slotManager.GetSlotByName("radio");
+		};
+		
+		if (!slot) return;
+		
+		IEntity attachedEntity = slot.GetAttachedEntity();
+		if (!attachedEntity) return;
+
+		RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+	
+		if (!radio) return;
+	
+		radio.Disable();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -395,5 +428,12 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 //				radio.StopPlay();
 //			}
 //		}
+	}
+	
+	void ~RT_PS_CustomRadioAntennaSystem() 
+	{
+		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
+		if (onVehicleDamageStateChanged)
+			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
 	}
 }
