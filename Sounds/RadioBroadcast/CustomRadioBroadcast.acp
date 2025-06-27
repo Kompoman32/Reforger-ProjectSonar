@@ -496,39 +496,7 @@ AudioClass {
    Resampler FIR_8
    Samples {
     AudioBankSampleClass Sample {
-     Filename "{90BE4103B3C78C24}Sounds/RadioBroadcast/Samples/BACK2BACK.wav"
-    }
-    AudioBankSampleClass Sample {
-     Filename "{927927BCFB429FAE}Sounds/RadioBroadcast/Samples/DVRST - Close Eyes.wav"
-     Index 1
-    }
-    AudioBankSampleClass Sample {
-     Filename "{FD47680CE3A6CAA1}Sounds/RadioBroadcast/Samples/Dxrk - RAVE.wav"
-     Index 2
-    }
-    AudioBankSampleClass Sample {
-     Filename "{668FDA3D6BE9CA1B}Sounds/RadioBroadcast/Samples/g3ox_em - GigaChad Theme.wav"
-     Index 3
-    }
-    AudioBankSampleClass Sample {
-     Filename "{622AB0123E38008F}Sounds/RadioBroadcast/Samples/Hensonn-Sahara .wav"
-     Index 4
-    }
-    AudioBankSampleClass Sample {
-     Filename "{CE8C8DD5C749F02D}Sounds/RadioBroadcast/Samples/KORDHELL - MURDER IN MY MIND.wav"
-     Index 5
-    }
-    AudioBankSampleClass Sample {
-     Filename "{B28F559D20F0AB0F}Sounds/RadioBroadcast/Samples/KORDHELL - MURDER PLOT.wav"
-     Index 6
-    }
-    AudioBankSampleClass Sample {
-     Filename "{72E8FF1ED3C90A97}Sounds/RadioBroadcast/Samples/MoonDeity - NEON BLADE 2.wav"
-     Index 7
-    }
-    AudioBankSampleClass Sample {
-     Filename "{5E0D0A8A57A53757}Sounds/RadioBroadcast/Samples/Pharmacist - North Memphis.wav"
-     Index 8
+     Filename "{88E4C185F6CC5059}Sounds/RadioBroadcast/Samples/BroadcastRadio_Static_LP.wav"
     }
    }
   }
@@ -608,7 +576,7 @@ AudioClass {
    Resampler FIR_8
    Samples {
     AudioBankSampleClass Sample {
-     Filename "{90BE4103B3C78C24}Sounds/RadioBroadcast/Samples/BACK2BACK.wav"
+     Filename "{8CD73BB853B01DE0}Sounds/RadioBroadcast/Samples/DJ/RadioBroadcast_Jingle_01.wav"
     }
    }
   }
