@@ -1,0 +1,8 @@
+GenericEntity : "{3CF7EAA0F05546FF}Prefabs/Props/Furniture/PhoneTable_01_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  ActionsManagerComponent "{65C7120E3A327FCA}" {
+   Enabled 0
+  }
+ }
+}

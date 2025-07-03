@@ -9,6 +9,9 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 {
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAntennaDebugAction))]
 	RT_PS_ECustomRadioAntennaDebugAction m_eActionType;
+	
+	[Attribute("0", UIWidgets.CheckBox)]
+	bool m_bShowDebug;
 
 	protected IEntity m_Owner;
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
@@ -45,6 +48,10 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		{
 			case RT_PS_ECustomRadioAntennaDebugAction.UPDATE_TRACK:
 			{
+				if (!m_bShowDebug) {
+					break;
+				}
+				
 				int selectedRadioIndex = GetCurrentSelectedRadioStationIndex();
 				
 				if (selectedRadioIndex != 0 && !selectedRadioIndex) return false;
@@ -71,8 +78,9 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				{
 					trackName = string.Format("Track № %1", trackIndex);
 				}
-				
+
 				outName += string.Format(" %1 - %2s", trackName, timeLeft);
+				
 				break;
 			}
 			
@@ -138,11 +146,19 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		
 		if (!am) return null;
 		
-		RT_PS_CustomRadioAntennaChangeStationDebugAction action = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(am.FindAction(2));
+		array<BaseUserAction> actions = {};				
+		am.GetActionsList(actions);
 		
-		if (!action) return null;
+		foreach(BaseUserAction action: actions)
+		{
+			RT_PS_CustomRadioAntennaChangeStationDebugAction csAction = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(action);
+			if (csAction) 
+			{
+				return csAction.m_iSelectedRadioIndex;
+			}
+		}
 		
-		return action.m_iSelectedRadioIndex;
+		return null;
 	}
 	
 	//------------------------------------------------------------------------------------------------

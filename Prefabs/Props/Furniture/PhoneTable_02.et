@@ -1,0 +1,46 @@
+GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  ActionsManagerComponent "{65C7120A4AEF3AB8}" {
+   ActionContexts {
+    UserActionContext "{65C7120A480BC308}" {
+     ContextName "radio_call"
+     Position PointInfo "{65C7120D643FCA5D}" {
+      Offset 0.0068 0.1064 -0.0508
+     }
+     Height 0
+     Omnidirectional 0
+    }
+   }
+   additionalActions {
+    RT_PS_CustomRadioAntennaChangeStationDebugAction "{65C7120A47F253F3}" {
+     ParentContextList {
+      "radio_call"
+     }
+     UIInfo UIInfo "{65B0FBDEE3636F08}" {
+      Name "#RT_PS-StationActionName"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     "Max value" 99999
+     m_fAdjustmentStep 1
+     m_bLoopAction 1
+    }
+    RT_PS_CustomRadioAntennaDebugAction "{65C7120A45EB879C}" {
+     ParentContextList {
+      "radio_call"
+     }
+     UIInfo UIInfo "{65C7120D532270AF}" {
+      Name "Call to change track"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType UPDATE_TRACK
+    }
+   }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+  }
+ }
+}

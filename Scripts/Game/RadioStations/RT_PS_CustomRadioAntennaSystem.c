@@ -179,8 +179,13 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		foreach (int i,RT_PS_CustomRadioStation x: m_aRadiostations)
 		{
 			if (x) {
-				RT_PS_CustomRadioStationTrackInfo track = pRadiostationsTracks[i];
+				RT_PS_CustomRadioStationTrackInfo track;
 				string trackText;
+				
+				if (i < pRadiostationsTracks.Count() - 1)
+				{
+					track = pRadiostationsTracks[i];
+				}
 				
 				if (track) 
 				{
@@ -189,7 +194,13 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 					trackText = "null";
 				}
 				
-				radioStationsText += string.Format("    %1: [track: %2, serverTime: %3]", x.m_sRadiostationName, trackText, newRadiostationsTimes[i]) + "\n";
+				WorldTimestamp time;
+				if (i < newRadiostationsTimes.Count() - 1)
+				{
+					time = newRadiostationsTimes[i];
+				}
+				
+				radioStationsText += string.Format("    %1: [track: %2, serverTime: %3]", x.m_sRadiostationName, trackText, time) + "\n";
 			} else {
 				radioStationsText += "    Station null: [null]\n";
 			}
