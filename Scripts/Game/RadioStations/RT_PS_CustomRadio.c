@@ -215,7 +215,7 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		
 		if (!trackInfo)		
 		{
-			PrintFormat("Cant get track info. RadioStation index: %1", m_iRadioStationIndex);
+			Print(string.Format("Cant get track info. RadioStation index: %1", m_iRadioStationIndex), LogLevel.ERROR);
 			return;
 		}
 		

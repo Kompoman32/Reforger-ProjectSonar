@@ -63,7 +63,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	protected void InitOnServer()
 	{		
-		PrintFormat("Antenna on Server Inited %1", this);
+		Print(string.Format("Antenna on Server Inited %1", this), LogLevel.NORMAL);
 
 		array<string> names = {};
 		
@@ -72,7 +72,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			names.Insert(x.m_sRadiostationName);
 		}
 		
-		PrintFormat("RadioStations: %1", names);
+		Print(string.Format("RadioStations: %1", names), LogLevel.NORMAL);
 		
 		SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
 		if (gm)
@@ -125,9 +125,9 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		RT_PS_CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
 		
 		if (newTrack){
-			PrintFormat("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", pIndex, radiostation.m_sRadiostationName, newTrack.m_iTrackIndex, newTrack.m_iTrackSize);
+			Print(string.Format("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", pIndex, radiostation.m_sRadiostationName, newTrack.m_iTrackIndex, newTrack.m_iTrackSize), LogLevel.NORMAL);
 		} else {
-			PrintFormat("UpdateTrack %1:(%2) - tInd: null, tLen: null", pIndex, radiostation.m_sRadiostationName);
+			Print(string.Format("UpdateTrack %1:(%2) - tInd: null, tLen: null", pIndex, radiostation.m_sRadiostationName), LogLevel.NORMAL);
 		}
 		
 		m_aRadiostationsTracks.Set(pIndex, newTrack);
@@ -155,9 +155,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
 	protected void RpcDo_UpdateTracks(array<ref RT_PS_CustomRadioStationTrackInfo> pRadiostationsTracks, array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> pRadiostationsTimes)
-	{		
-		array<string> radioStationNames = {};
-		array<int> tracksIndexes= {};
+	{	
 		array<WorldTimestamp> newRadiostationsTimes = {};
 		
 		foreach (RT_PS_CustomRadioStationTrackInfoTimestampWrapper x: pRadiostationsTimes)
@@ -168,24 +166,6 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 				newRadiostationsTimes.Insert(null);
 			}
 		}
-
-		foreach (RT_PS_CustomRadioStationTrackInfo x: pRadiostationsTracks)
-		{
-			if (x) {
-				tracksIndexes.Insert(x.m_iTrackIndex);
-			} else {
-				tracksIndexes.Insert(-1);
-			}
-		}
-		
-		foreach (RT_PS_CustomRadioStation x: m_aRadiostations)
-		{
-			if (x) {
-				radioStationNames.Insert(x.m_sRadiostationName);
-			} else {
-				radioStationNames.Insert("null");
-			}
-		}
 		
 		auto oldRadiostationsTimes= m_aRadiostationsTimes;
 		
@@ -193,7 +173,29 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		m_aRadiostationsTimesWrapers = pRadiostationsTimes;
 		m_aRadiostationsTimes = newRadiostationsTimes;
 		
-		PrintFormat("Tracks Updated. Stations: %1 | Tracks: %2 | Times: %3", radioStationNames, tracksIndexes, newRadiostationsTimes);
+		// Debug
+		string radioStationsText = "";
+		
+		foreach (int i,RT_PS_CustomRadioStation x: m_aRadiostations)
+		{
+			if (x) {
+				RT_PS_CustomRadioStationTrackInfo track = pRadiostationsTracks[i];
+				string trackText;
+				
+				if (track) 
+				{
+					trackText = string.Format("%1 (%2s)", track.m_iTrackIndex, track.m_iTrackSize);
+				} else {
+					trackText = "null";
+				}
+				
+				radioStationsText += string.Format("    %1: [track: %2, serverTime: %3]", x.m_sRadiostationName, trackText, newRadiostationsTimes[i]) + "\n";
+			} else {
+				radioStationsText += "    Station null: [null]\n";
+			}
+		}
+		
+		Print(string.Format("Tracks Updated.\nStations:\n[\n%1]", radioStationsText), LogLevel.NORMAL);
 		
 		UpdateConnectedRadios(oldRadiostationsTimes);
 	}
