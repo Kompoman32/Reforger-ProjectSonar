@@ -4,6 +4,8 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   MeshObject "{5872F0EB7FA40561}" {
    Object "{8709DD4724365C41}Assets/Props/Furniture/PhoneTable_01/PhoneTable_01.xob"
   }
+  RT_PS_CallToRadioComponent "{65C89D6A2E1C8C86}" {
+  }
   RigidBody "{5872F0EB7DFB5A9D}" {
    ResponseIndex "TinyDestructible"
    ModelGeometry 1
@@ -11,9 +13,6 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   }
   SCR_DestructionMultiPhaseComponent "{5624A88D86EFE8BA}" {
    m_eMaterialSoundType BREAK_PLASTIC
-  }
-  RplComponent "{5624A88DC2D9928D}" {
-   Enabled 1
   }
   ActionsManagerComponent "{65C7120E3A327FCA}" {
    ActionContexts {
@@ -26,31 +25,20 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
     }
    }
    additionalActions {
-    RT_PS_CustomRadioAntennaChangeStationDebugAction "{65C7120D2F849C97}" {
-     ParentContextList {
-      "radio_call"
-     }
-     UIInfo UIInfo "{65B0FBDEE3636F08}" {
-      Name "#RT_PS-StationActionName"
-     }
-     CanAggregate 1
-     "Sort Priority" 2
-     "Max value" 99999
-     m_fAdjustmentStep 1
-     m_bLoopAction 1
-    }
-    RT_PS_CustomRadioAntennaDebugAction "{65C7120D2D8096D0}" {
+    RT_PS_CallToRadioAction "{65C7120D2D8096D0}" {
      ParentContextList {
       "radio_call"
      }
      UIInfo UIInfo "{65C7120D532270AF}" {
-      Name "Call to change track"
+      Name "#RT_PS-CallToRadioActionName"
      }
      CanAggregate 1
-     "Sort Priority" 3
-     m_eActionType UPDATE_TRACK
     }
    }
+  }
+  RplComponent "{5624A88DC2D9928D}" {
+   Enabled 1
+   "Rpl State Override" Runtime
   }
  }
 }

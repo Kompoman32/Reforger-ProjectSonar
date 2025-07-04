@@ -98,6 +98,14 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		return true;
 	}
 	
+	//------------------------------------------------------------------------------------------------
+	override bool CanBeShownScript(IEntity user)
+	{
+		if (SCR_ConfigurableDialogUi.GetCurrentDialog()) return false;
+		
+		return true;
+	}
+	
 
 	//------------------------------------------------------------------------------------------------
 	override bool CanBroadcastScript()
@@ -136,6 +144,16 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				break;
 			}
 		}
+	}
+	
+	private void OnConfirm(SCR_ConfigurableDialogUi dlg)
+	{
+		dlg.Close();
+	}
+	
+	private void OnCancel(SCR_ConfigurableDialogUi dlg)
+	{
+		dlg.Close();
 	}
 	
 	protected int GetCurrentSelectedRadioStationIndex()

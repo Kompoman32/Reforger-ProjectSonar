@@ -1,0 +1,213 @@
+FrameWidgetClass {
+ Name "rootFrame"
+ Slot LayoutSlot "{65C7288E6ECB02CE}" {
+ }
+ {
+  OverlayWidgetClass "{65C7288EA3376145}" {
+   Name "OverlayBackground"
+   Slot FrameWidgetSlot "{65C7288EA3376154}" {
+    Anchor 0 0 1 1
+    PositionX 0
+    OffsetLeft 0
+    PositionY 0
+    OffsetTop 0
+    SizeX -1920
+    OffsetRight 0
+    SizeY -1080
+    OffsetBottom 0
+   }
+   {
+    ScaleWidgetClass "{65C7288EBC8A832F}" {
+     Name "Scale0"
+     Slot OverlayWidgetSlot "{65C7288EBC8A8302}" {
+      HorizontalAlign 3
+      VerticalAlign 3
+     }
+     "Scale Mode" "Scale to fill"
+     {
+      BlurWidgetClass "{65C7288EB7C32958}" {
+       Name "Blur"
+       Slot AlignableSlot "{65C7288EB7C329AD}" {
+       }
+       Intensity 0.7
+      }
+     }
+    }
+   }
+  }
+  OverlayWidgetClass "{65C7288F4E20ED9C}" {
+   Name "OverlayBackground0"
+   Slot FrameWidgetSlot "{65C7288F4D402753}" {
+    Anchor 0 0 1 1
+    SizeX -1920
+    OffsetRight 0
+    SizeY -1080
+    OffsetBottom 0
+   }
+   {
+    SizeLayoutWidgetClass "{65C7288FDF68D3D7}" {
+     Name "SizeLayout0"
+     Slot OverlayWidgetSlot "{65C7288FDF68D228}" {
+     }
+     AllowWidthOverride 1
+     WidthOverride 1024
+     AllowHeightOverride 1
+     HeightOverride 1024
+     {
+      OverlayWidgetClass "{65C72888217860E9}" {
+       Name "Overlay0"
+       Slot AlignableSlot "{65C728883F9577EF}" {
+        HorizontalAlign 3
+        VerticalAlign 3
+       }
+       {
+        ImageWidgetClass "{65C7288F631FD53A}" {
+         Name "Background"
+         Slot OverlayWidgetSlot "{65C728B1D973E2ED}" {
+         }
+         Texture "{2D0D6CED18E8FA9E}UI/layouts/Menus/Dialogs/callToRadioBackground.edds"
+         Size 1024 1024
+        }
+        ButtonWidgetClass "{65C728882C630649}" : "{0114A06AD44D49BD}UI/layouts/WidgetLibrary/Buttons/DialogButtonCancel.layout" {
+         Name "CancelButton"
+         Slot OverlayWidgetSlot "{65C728882C630652}" {
+          HorizontalAlign 0
+          VerticalAlign 0
+          Padding 527.4 745.8 0 0
+         }
+         components {
+          SCR_InputButtonComponent "{5D346C3DD81D95CD}" {
+           m_sLabel "#RT_PS-CallToRadioCancel"
+          }
+         }
+        }
+        OverlayWidgetClass "{65C7288A4C53B1CE}" {
+         Name "Question"
+         Slot OverlayWidgetSlot "{65C7288A4C53B025}" {
+          HorizontalAlign 0
+          VerticalAlign 0
+          Padding 214.4 123.2 0 0
+         }
+         {
+          ImageWidgetClass "{65C7288A088CAAC4}" {
+           Name "Image0"
+           Slot OverlayWidgetSlot "{65C728B1D973E171}" {
+           }
+           Clipping True
+           Texture "{5086CC5CBCE8D743}UI/layouts/Menus/Dialogs/speech-bubble-top-left-medium-hi.edds"
+           Size 600 156
+           "Flip Horizontally" 1
+          }
+          SizeLayoutWidgetClass "{65C7288B19701876}" {
+           Name "SizeLayout0"
+           Slot OverlayWidgetSlot "{65C7288B19701842}" {
+            HorizontalAlign 0
+            VerticalAlign 0
+           }
+           AllowWidthOverride 1
+           WidthOverride 527
+           AllowHeightOverride 1
+           HeightOverride 156
+           {
+            OverlayWidgetClass "{65C728B531249058}" {
+             Name "Overlay0"
+             Slot AlignableSlot "{65C728B5312497AC}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+             }
+             {
+              ButtonWidgetClass "{65C728B55C6F671F}" : "{4B5AE6E64037FFB4}UI/layouts/WidgetLibrary/ComboBox/WLib_ComboBox.layout" {
+               Name "RadioStationsList"
+               Slot OverlayWidgetSlot "{65C728B55C6F677A}" {
+                HorizontalAlign 3
+                VerticalAlign 0
+                Padding 30 90 30 0
+               }
+               components {
+                SCR_ComboBoxComponent "{546B1D464BC32853}" {
+                 m_bUseLabel 0
+                }
+               }
+              }
+              TextWidgetClass "{65C7288A63B37A53}" {
+               Name "Text0"
+               Slot OverlayWidgetSlot "{65C728B1D973EB84}" {
+                VerticalAlign 0
+                Padding 0 35 0 0
+               }
+               Color 0 0 0 1
+               Text "#RT_PS-CallToRadioQuestion"
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+        OverlayWidgetClass "{65C7288B6AF51601}" {
+         Name "Answer"
+         Slot OverlayWidgetSlot "{65C7288A4C53B025}" {
+          HorizontalAlign 0
+          VerticalAlign 0
+          Padding 0 323.4 0 0
+         }
+         {
+          SizeLayoutWidgetClass "{65C7288B9ED32EC0}" {
+           Name "SizeLayout1"
+           Slot OverlayWidgetSlot "{65C7288B9ED32ED4}" {
+           }
+           AllowHeightOverride 1
+           HeightOverride 100
+           {
+            ImageWidgetClass "{65C7288B6AF4C28C}" {
+             Name "Image0"
+             Slot AlignableSlot "{65C7288B9E13389F}" {
+             }
+             Clipping True
+             Texture "{5086CC5CBCE8D743}UI/layouts/Menus/Dialogs/speech-bubble-top-left-medium-hi.edds"
+             Size 600 156
+            }
+           }
+          }
+          SizeLayoutWidgetClass "{65C7288B6AF4C28D}" {
+           Name "SizeLayout0"
+           Slot OverlayWidgetSlot "{65C7288B19701842}" {
+            HorizontalAlign 2
+            VerticalAlign 0
+           }
+           AllowWidthOverride 1
+           WidthOverride 527
+           AllowHeightOverride 1
+           HeightOverride 100
+           {
+            ButtonWidgetClass "{65C728B404735EDC}" : "{51898FF369FE5EB8}UI/layouts/WidgetLibrary/Buttons/DialogButtonConfirm.layout" {
+             Name "ConfirmButton"
+             Slot AlignableSlot "{65C728B404735ED5}" {
+              HorizontalAlign 3
+              VerticalAlign 3
+             }
+             components {
+              SCR_InputButtonComponent "{5D346C3DD81D95CD}" {
+               m_sLabel "#RT_PS-CallToRadioAnswer"
+               m_iHeightInPixel 60
+               m_LabelDefault 0 0 0 1
+              }
+             }
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+    FrameWidgetClass "{65C7288F6BE03397}" {
+     Name "Frame0"
+     Slot OverlayWidgetSlot "{65C7288F6BE033E0}" {
+     }
+    }
+   }
+  }
+ }
+}

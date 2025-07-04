@@ -10,6 +10,38 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{65C89D68BFE6DA41}" {
+   Id "RT_PS-CallToRadioActionName"
+   Target_en_us "Call to the radio"
+   Target_ru_ru "Позвонить на радио"
+   Modified 1707647852
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{65C89D68B2793496}" {
+   Id "RT_PS-CallToRadioAnswer"
+   Target_en_us "Yes"
+   Target_ru_ru "Да"
+   Modified 1707647875
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{65C89D693DE83D79}" {
+   Id "RT_PS-CallToRadioCancel"
+   Target_en_us "Hang up"
+   Target_ru_ru "Сбросить"
+   Modified 1707648053
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{65C89D68B635E387}" {
+   Id "RT_PS-CallToRadioQuestion"
+   Target_en_us "Want to change the track on the station?"
+   Target_ru_ru "Желаете сменить трек на станции?"
+   Modified 1707647976
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED04586E422}" {
    Id "RT_PS-CannotPerform_Antenna"
    Target_en_us "No active radio antenna"

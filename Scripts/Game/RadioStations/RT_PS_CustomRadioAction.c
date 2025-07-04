@@ -73,6 +73,8 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{	
+		if (SCR_ConfigurableDialogUi.GetCurrentDialog()) return false;
+		
 		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(p_OwnerEntity);
 		
 		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) {
