@@ -39,7 +39,7 @@ class RT_PS_CallToRadioDialog: SCR_ConfigurableDialogUi
 		
 		ButtonWidget cancelButton = ButtonWidget.Cast(GetRootWidget().FindAnyWidget("CancelButton"));
 		SCR_InputButtonComponent cancelButtonHandler= SCR_InputButtonComponent.Cast(cancelButton.FindHandler(SCR_InputButtonComponent));
-		BindButtonConfirm(cancelButtonHandler);
+		BindButtonCancel(cancelButtonHandler);
 	}
 	
 	int GetSelectedStationIndex()
