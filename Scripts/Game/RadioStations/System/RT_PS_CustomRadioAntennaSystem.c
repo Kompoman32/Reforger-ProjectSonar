@@ -12,6 +12,9 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	[RplProp()]
 	bool m_bAllowRadios = true;
 	
+	[RplProp()]
+	bool m_bAllowFixRadios = false;
+	
 	IEntity m_owner;
 
 	protected int m_iRadiostationsCount = 0;
@@ -391,13 +394,13 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	void Debug_On_Off_radios()
 	{		
-		Rpc(RPC_Do_Debug_Off_On_radios);
-		RPC_Do_Debug_Off_On_radios();
+		Rpc(RPC_DoDebug_OffOnRadios);
+		RPC_DoDebug_OffOnRadios();
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
-	void RPC_Do_Debug_Off_On_radios()
+	void RPC_DoDebug_OffOnRadios()
 	{		
 		m_bAllowRadios = !m_bAllowRadios;
 		
@@ -420,7 +423,20 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		
 
 	}
-
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_AllowFixRadios()
+	{		
+		Rpc(RPC_DoDebug_AllowFixRadios);
+		RPC_DoDebug_AllowFixRadios();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
+	void RPC_DoDebug_AllowFixRadios()
+	{		
+		m_bAllowFixRadios = !m_bAllowFixRadios;
+	}
 
 	//------------------------------------------------------------------------------------------------
 	override event protected void OnStarted()

@@ -9,7 +9,6 @@ GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStations
   ActionsManagerComponent "{648B0D0CA8D63DD1}" {
    additionalActions {
     RT_PS_CustomRadioAntennaDebugAction "{65B0FBD9734286EC}" {
-     m_bShowDebug 1
     }
    }
   }

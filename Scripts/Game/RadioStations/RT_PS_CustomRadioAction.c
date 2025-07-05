@@ -81,6 +81,8 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 			return m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF;
 		}
 		
+		if (m_eActionType == RT_PS_ECustomRadioAction.RESET && !m_RadioSystem.m_bAllowFixRadios) return false;
+		
 		if (!Enabled())
 		{
 			if (m_eActionType == RT_PS_ECustomRadioAction.CHANGE )

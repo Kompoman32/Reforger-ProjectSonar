@@ -50,7 +50,19 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      }
      CanAggregate 1
      "Sort Priority" 1
-     m_eActionType OnOff_RADIOS
+     m_eActionType ONOFF_RADIOS
+    }
+    RT_PS_CustomRadioAntennaDebugAction "{65CA6422AC1558B3}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo SCR_ActionContextUIInfo "{65CA6422AC1558ED}" {
+      Name "Allow fix actions"
+      m_sIconName "activate"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType ALLOW_FIX_RADIOS
     }
     RT_PS_CustomRadioAntennaChangeStationDebugAction "{65B0FBDC244306BD}" {
      ParentContextList {
@@ -61,7 +73,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
       m_sIconName "radio-signal"
      }
      CanAggregate 1
-     "Sort Priority" 2
+     "Sort Priority" 3
      "Max value" 99999
      m_fAdjustmentStep 1
      m_bLoopAction 1
@@ -75,7 +87,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
       m_sIconName "VON_frequency"
      }
      CanAggregate 1
-     "Sort Priority" 3
+     "Sort Priority" 4
      m_eActionType UPDATE_TRACK
     }
    }

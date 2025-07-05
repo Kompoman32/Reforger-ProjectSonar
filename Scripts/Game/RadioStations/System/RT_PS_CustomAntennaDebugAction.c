@@ -1,8 +1,9 @@
 enum RT_PS_ECustomRadioAntennaDebugAction 
 {
-	UPDATE_RADIOS = 1,
-	OnOff_RADIOS = 2,
-	UPDATE_TRACK = 3
+	UPDATE_RADIOS,
+	ONOFF_RADIOS,
+	ALLOW_FIX_RADIOS,
+	UPDATE_TRACK,
 }
 
 class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
@@ -81,9 +82,19 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				break;
 			}
 			
-			case RT_PS_ECustomRadioAntennaDebugAction.OnOff_RADIOS:
+			case RT_PS_ECustomRadioAntennaDebugAction.ONOFF_RADIOS:
 			{		
 				if (m_RadioSystem.m_bAllowRadios)
+					outName += ": #AR-UserAction_State_Off";
+				else
+					outName += ": #AR-UserAction_State_On";
+				
+				break;
+			}
+			
+			case RT_PS_ECustomRadioAntennaDebugAction.ALLOW_FIX_RADIOS:
+			{		
+				if (m_RadioSystem.m_bAllowFixRadios)
 					outName += ": #AR-UserAction_State_Off";
 				else
 					outName += ": #AR-UserAction_State_On";
@@ -132,11 +143,20 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				break;
 			}
 			
-			case RT_PS_ECustomRadioAntennaDebugAction.OnOff_RADIOS:
+			case RT_PS_ECustomRadioAntennaDebugAction.ONOFF_RADIOS:
 			{
 				if (m_RadioSystem) 
 				{
 					m_RadioSystem.Debug_On_Off_radios();
+				}
+				break;
+			}
+			
+			case RT_PS_ECustomRadioAntennaDebugAction.ALLOW_FIX_RADIOS:
+			{
+				if (m_RadioSystem) 
+				{
+					m_RadioSystem.Debug_AllowFixRadios();
 				}
 				break;
 			}
