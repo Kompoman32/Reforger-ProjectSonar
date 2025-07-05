@@ -307,6 +307,22 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	}
 	
 	//------------------------------------------------------------------------------------------------
+	string GetRadioStationTrackName(int pStationIndex) {
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count())	 {
+			return string.Empty;
+		}
+		
+		if (pStationIndex < 0 || pStationIndex >= m_aRadiostationsTracks.Count())	 {
+			return string.Empty;
+		}
+				
+		RT_PS_CustomRadioStation radioStation = m_aRadiostations[pStationIndex];
+		RT_PS_CustomRadioStationTrackInfo track = m_aRadiostationsTracks[pStationIndex];
+		
+		return radioStation.GetTrackName(track.m_iTrackIndex, track.m_bIsDJ);
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	void UpdateConnectedRadios(array<WorldTimestamp> pRadiostationsTimes) 
 	{		
 		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)

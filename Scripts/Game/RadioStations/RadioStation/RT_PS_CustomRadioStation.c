@@ -10,11 +10,17 @@ class RT_PS_CustomRadioStation
 	[Attribute("", UIWidgets.Slider, "Tracks Lengths", "1 3600 1")]
 	ref array<int> m_aTracksLengths;
 	
+	[Attribute("", UIWidgets.EditBox, "Tracks Names (WIP just for future maybe)")]
+	ref array<string> m_aTracksNames;
+	
 	[Attribute("0.2", UIWidgets.Slider, "DJ Tracks probability", "0 1 0.1")]
 	float m_fDjProbability;
 	
 	[Attribute("", UIWidgets.Slider, "DJ Tracks Lengths", "1 3600 1")]
 	ref array<int> m_aDjTracksLengths;
+	
+	[Attribute("", UIWidgets.EditBox, "DJ Tracks Names (WIP just for future maybe)")]
+	ref array<string> m_aDjTracksNames;
 	
 	protected int m_lLastTrackIndex = -1;
 	
@@ -23,9 +29,7 @@ class RT_PS_CustomRadioStation
 	
 	void RT_PS_CustomRadioStation() {
 		if (Replication.IsServer()) 
-		{
-			
-			
+		{		
 			foreach (int i, int value : m_aTracksLengths)
 			{
 				m_aTracksIndexes.Insert(i);
@@ -42,7 +46,6 @@ class RT_PS_CustomRadioStation
 			// Debug
 			string tracksOrderText =  string.Format("Music [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aTracksIndexes));
 			string tracksDjOrderText =  string.Format("DJ [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aDjTracksIndexes));
-			
 			
 			Print(string.Format("Station %1 tracks order: %2 %3", m_sRadiostationName, tracksOrderText, tracksDjOrderText), LogLevel.NORMAL)			
 		}
@@ -83,7 +86,7 @@ class RT_PS_CustomRadioStation
 		RT_PS_CustomRadioStationTrackInfo newTrack = new RT_PS_CustomRadioStationTrackInfo();
 		
 		newTrack.m_sProjectFile = m_StationAudioProject;
-		newTrack.m_iTrackIndex = tracksIndexes.Get(trackIndex);
+		newTrack.m_iTrackIndex = RT_PS_Utils.ArrayGet(tracksIndexes, trackIndex);
 		newTrack.m_iTrackSize = trackLength;
 		newTrack.m_bIsDJ = isDJ;
 		
@@ -116,6 +119,19 @@ class RT_PS_CustomRadioStation
 		}
 		
 		return index;		
+	}
+	
+	//------------------------------------------------------------------------------------------------	
+	string GetTrackName(int index, bool isDJ)
+	{
+		array<string> tracksNames = m_aTracksNames;
+		
+		if (isDJ)
+		{
+			tracksNames = m_aDjTracksNames;
+		}
+		
+		return RT_PS_Utils.ArrayGet(tracksNames, index);	
 	}
 	
 	

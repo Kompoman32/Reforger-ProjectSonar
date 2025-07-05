@@ -9,9 +9,6 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 {
 	[Attribute("0", UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(RT_PS_ECustomRadioAntennaDebugAction))]
 	RT_PS_ECustomRadioAntennaDebugAction m_eActionType;
-	
-	[Attribute("0", UIWidgets.CheckBox)]
-	bool m_bShowDebug;
 
 	protected IEntity m_Owner;
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
@@ -47,11 +44,7 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		switch (m_eActionType)
 		{
 			case RT_PS_ECustomRadioAntennaDebugAction.UPDATE_TRACK:
-			{
-				if (!m_bShowDebug) {
-					break;
-				}
-				
+			{				
 				int selectedRadioIndex = GetCurrentSelectedRadioStationIndex();
 				
 				if (selectedRadioIndex != 0 && !selectedRadioIndex) return false;
@@ -67,16 +60,20 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 				bool isDj = track.m_bIsDJ;
 				float timeLeft = m_RadioSystem.GetRadioStationTrackTimeLeft(selectedRadioIndex);
 
+				string trackName = m_RadioSystem.GetRadioStationTrackName(selectedRadioIndex);	
 				
-				string trackName;
-				
-				if (isDj)
+				if (trackName)
 				{
-					trackName = string.Format("DJ Track № %1", trackIndex);
-				}
+					trackName = string.Format("Track %1", trackName);
+				} 
 				else 
 				{
 					trackName = string.Format("Track № %1", trackIndex);
+				}
+				
+				if (isDj)
+				{
+					trackName = string.Format("DJ %1", trackName);
 				}
 
 				outName += string.Format(" %1 - %2s", trackName, timeLeft);

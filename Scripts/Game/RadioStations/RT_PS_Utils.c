@@ -16,4 +16,29 @@ class RT_PS_Utils {
 		
 		return result;
 	}
+	
+	static Managed ArrayGet(array<Managed> arr, int index)
+	{
+		if (index  < 0 || index >= arr.Count()) return null;
+		
+		return arr.Get(index);
+	}
+	
+	static string ArrayGet(array<string> arr, int index)
+	{
+		if (index  < 0 || index >= arr.Count()) {
+			return string.Empty;
+		} 
+		
+		return arr.Get(index);
+	}
+	
+	static int ArrayGet(array<int> arr, int index)
+	{
+		if (index  < 0 || index >= arr.Count()) {
+			return null;
+		} 
+		
+		return arr.Get(index);
+	}
 }
