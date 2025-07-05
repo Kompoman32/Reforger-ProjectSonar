@@ -2,11 +2,11 @@
 
 To create a new radio station, you need to do the following:
 
-1. [Create new Project in Arma Reforger Tools](#project-creation)
-2. [Duplicate audio project file CustomRadioBroadcast.acp](#duplicateing-audio-project-file)
-3. [Add music tracks to a new .acp file](#adding-music-tracks)
+1. [Create a new Project in Arma Reforger Tools](#project-creation)
+2. [Duplicate audio project file CustomRadioBroadcast.acp](#duplicating-audio-project-file)
+3. [Add music tracks to the new .acp file](#adding-music-tracks)
 4. [Override file SystemsConfig.conf and add new radiostation](#override-file-systemsconfigconf)
-   - [Getting a list of track lengths using a script](#getting-a-list-of-track-lengths-using-a-script-windows)
+   - [Getting a list of track lengths using a script](#getting-a-list-of-track-lengths-using-a-powershell-script-windows)
 5. [Test it](#testing)
 6. [Publish](#publishing)
 
@@ -24,7 +24,7 @@ You need to create a new Project in Arma Reforger Tools
 > You can also see more information about creating a project at [BI wiki](https://community.bohemia.net/wiki/Arma_Reforger:Mod_Project_Setup).
 
 
-## Duplicateing audio project file
+## Duplicating audio project file
 
 Duplicate CustomRadioBroadcast.acp to your project from \ProjectSonar\Sounds\RadioBroadcast\
 
@@ -39,7 +39,7 @@ Name the file as you like.
 
 ## Adding music tracks
 
-Find the newly created file in your system, create a Samples folder next to it (tracks will be there). If you need to add DJ tracks, you can create a subfolder for DJ tracks in it.
+Find the newly created file in your system, create a Samples folder next to it and place your tracks there. If you want to add DJ tracks, you can create a subfolder for DJ tracks inside the Samples folder.
 
 <picture><img src="./images/9.png" alt="image-9.png" style="width:auto; height: 200px"></picture>
 
@@ -50,9 +50,11 @@ Open created audio project file (.acp) and find Bank Music (or DJ) there.
 
 <picture><img src="./images/7.png" alt="image-7.png" style="width:auto; height: 300px"></picture>
 
-Scroll to Samples category. Clear the existing tracks there (it was a placeholder).
+Scroll to Samples category. Clear the existing placeholder tracks there.
 
 <picture><img src="./images/8.png" alt="image-8.png" style="width:auto; height: 300px"></picture>
+
+Drag your tracks from the Samples folder to Bank Music or DJ node.
 
 <picture><img src="./images/11.png" alt="image-11.png" style="width:auto; height: 300px"></picture>
 <picture><img src="./images/12.png" alt="image-12.png" style="width:auto; height: 300px"></picture>
@@ -78,7 +80,7 @@ Expand added RT_PS_CustomRadioStation.
 
 Fill **Radiostation Name**, **Station Audio Project** (select the previously created .acp file).
 
-Fill **Track Length** (DJ Tracks Length for DJ tracks) with leeght of your tracks (in seconds).
+Fill **Track Length** (DJ Tracks Length for DJ tracks) with length of your tracks (in seconds).
 
 > [!NOTE]
 > To get a list of all lengths you can use [powershell script](#getting-a-list-of-track-lengths-using-a-script-windows)
@@ -89,19 +91,21 @@ Fill **DJ Probability** to launch dj tracks with some probability.
 <picture><img src="./images/19.png" alt="image-19.png" style="width:auto; height: 300px"></picture>
 
 
-### Getting a list of track lengths using a script (Windows)
+### Getting a list of track lengths using a powershell script (Windows)
 
-0. if you know how to execute scripts go to point 4.
+0. if you know how to execute scripts see point 4.
 1. Open PowerShell as administrator.
 2. Check execution policy by ```Get-ExecutionPolicy``` and remember printed value (for further reverting).
 3. Set new execution policy by ```Set-ExecutionPolicy RemoteSigned``` and approve it by type ```A```.
 4. Download ```getTimes.ps1``` file.
 5. Go to directory with file ```getTimes.ps1``` by command ```cd <Path>```
 6. execute ```./getTimes.ps1``` with first argument of directory with music tracks **in brackets**
-7. If you need - revert old execution policy by ```Set-ExecutionPolicy <remembered-policy>```.
 
 > [!IMPORTANT]
->  Brackets around path and backslash at the end of the path is important
+>  Brackets around path and backslash at the end of the path are important
+
+7. If you need - revert old execution policy by ```Set-ExecutionPolicy <remembered-policy>```.
+
 
 <picture><img src="./images/25.png" alt="image-19.png" style="width:100%"></picture>
 
