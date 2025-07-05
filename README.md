@@ -3,12 +3,13 @@
 This is source code of the [ProjectSonarRadio](https://reforger.armaplatform.com/workshop/62E354B50264C08F-ProjectSonar-RadioStations) mod wich adds radio stations to in-vehicle and static radios.
 
 <picture><img src="./images/logo.png" alt="mod-logo" style="height:200px"></picture>
-<picture><img src="./images/1.jpg" alt="mod-review.jpg" style="height:200px"></picture>
-<picture><img src="./images/2.jpg" alt="mod-review.jpg" style="height:200px"></picture>
-<picture><img src="./images/3.jpg" alt="mod-review.jpg" style="height:200px"></picture>
-<picture><img src="./images/4.jpg" alt="mod-review.jpg" style="height:200px"></picture>
-<picture><img src="./images/5.jpg" alt="mod-review.jpg" style="height:200px"></picture>
-<picture><img src="./images/6.jpg" alt="mod-review.jpg" style="height:200px"></picture>
+<picture><img src="./images/1.jpg" alt="1.jpg" style="height:200px"></picture>
+<picture><img src="./images/2.jpg" alt="2.jpg" style="height:200px"></picture>
+<picture><img src="./images/3.jpg" alt="3.jpg" style="height:200px"></picture>
+<picture><img src="./images/4.jpg" alt="4.jpg" style="height:200px"></picture>
+<picture><img src="./images/5.jpg" alt="5.jpg" style="height:200px"></picture>
+<picture><img src="./images/6.jpg" alt="6.jpg" style="height:200px"></picture>
+<picture><img src="./images/7.png" alt="7.png" style="height:200px"></picture>
 
 This mod uses another mod and radio model from there [Car Radio 4 All 621D3771875C1D3D](https://reforger.armaplatform.com/workshop/621D3771875C1D3D-CarRadio4All)
 
