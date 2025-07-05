@@ -12,6 +12,26 @@ This is source code of the ProjectSonarRadio mod wich adding radio stations on r
 
 This mod use another mod and radio model from there [Car Radio 4 All 621D3771875C1D3D](https://reforger.armaplatform.com/workshop/621D3771875C1D3D-CarRadio4All)
 
+## Features
+
+This mod allows
+1. Turn on and off the radio in vehicles, such as cars, trucks, helicopters (as in [Car Radio 4 All](https://reforger.armaplatform.com/workshop/621D3771875C1D3D-CarRadio4All)) and in static radios around the world.
+2. Change volume of the radio.
+3. Change radio stations (if have other mods with it (see [Examples](#examples-radio-stations-by-me-and-friends)))
+4. Radio is synchronized between players in Multiplayer (on/off state, current selected station, volume, sound position, etc).
+5. The tracks play and switch regardless of whether the radio is on or not (like reallife radio).
+6. Ability to change radio station by calling to radio by phone in housees or phonebooth.
+7. For fixing some syncronization bugs (or other debug features) Game Master can spawn Antenna with Radio
+   
+   <picture><img src="./images/debug-1.jpg" alt="debug-1.jpg" style="height:200px"></picture>
+   <picture><img src="./images/debug-2.jpg" alt="debug-2.jpg" style="height:200px"></picture>
+
+    GM can:
+   - Update all active radio (syncronize them with the server).
+   - Turn On/Off ability to use radios.
+   - Show fix action on all radios. This action syncronize specific radio with server among other players.
+   - Change track to next one on specific radio station.
+
 ## Examples radio stations by me and friends
 <picture><a href="https://reforger.armaplatform.com/workshop/65B5407553C40DC8" target="_blank" ><img src="./images/atlantic.jpg" alt="Atlantic Radio Station" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/65B52CBBC2551296" target="_blank" ><img src="./images/dolce-vita.jpg" alt="Dolce Vita Radio Station" style="height:100px"></a></picture>
