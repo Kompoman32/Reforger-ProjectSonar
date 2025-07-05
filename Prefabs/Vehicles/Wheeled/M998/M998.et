@@ -24,16 +24,18 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{647F275B109A17FD}" {
+     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
       Name "#RT_PS-OnOffActionName"
+      m_sIconName "activate"
      }
     }
     RT_PS_CustomRadioVolumeAction "{64997DE856956FFB}" {
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{6483362772BCC09A}" {
+     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
       Name "#RT_PS-VolumeActionName"
+      m_sIconName "sound-on"
      }
      Duration -1
      CanAggregate 1
@@ -48,8 +50,9 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{647F27517F5C458F}" {
+     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
       Name "#RT_PS-StationActionName"
+      m_sIconName "radio-signal"
      }
      CanAggregate 1
      "Sort Priority" 2
@@ -59,8 +62,9 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{649F50FD91F7EDCB}" {
+     UIInfo SCR_ActionContextUIInfo "{649F50FD91F7EDCB}" {
       Name "#RT_PS-ResetActionName"
+      m_sIconName "repair"
      }
      CanAggregate 1
      "Sort Priority" 3

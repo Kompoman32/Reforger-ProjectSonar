@@ -29,8 +29,9 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      ParentContextList {
       "radio_call"
      }
-     UIInfo UIInfo "{65C7120D532270AF}" {
+     UIInfo SCR_ActionContextUIInfo "{65C7120D532270AF}" {
       Name "#RT_PS-CallToRadioActionName"
+      m_sIconName "microphone"
      }
      CanAggregate 1
     }

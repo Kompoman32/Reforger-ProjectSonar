@@ -33,8 +33,9 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      ParentContextList {
       "antenna"
      }
-     UIInfo UIInfo "{64971637DC5E6E73}" {
+     UIInfo SCR_ActionContextUIInfo "{64971637DC5E6E73}" {
       Name "Update all radios"
+      m_sIconName "repair"
      }
      CanAggregate 1
      m_eActionType UPDATE_RADIOS
@@ -43,8 +44,9 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      ParentContextList {
       "antenna"
      }
-     UIInfo UIInfo "{65B50A88496E765E}" {
+     UIInfo SCR_ActionContextUIInfo "{65B50A88496E765E}" {
       Name "All radios"
+      m_sIconName "activate"
      }
      CanAggregate 1
      "Sort Priority" 1
@@ -54,8 +56,9 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      ParentContextList {
       "antenna"
      }
-     UIInfo UIInfo "{65B0FBDEE3636F08}" {
+     UIInfo SCR_ActionContextUIInfo "{65B0FBDEE3636F08}" {
       Name "#RT_PS-StationActionName"
+      m_sIconName "radio-signal"
      }
      CanAggregate 1
      "Sort Priority" 2
@@ -67,8 +70,9 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      ParentContextList {
       "antenna"
      }
-     UIInfo UIInfo "{65B0FBD973428725}" {
+     UIInfo SCR_ActionContextUIInfo "{65B0FBD973428725}" {
       Name "Change"
+      m_sIconName "VON_frequency"
      }
      CanAggregate 1
      "Sort Priority" 3

@@ -22,8 +22,6 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {
     UserActionContext "{649A0B374E79C808}" {
-     UIInfo SCR_ActionContextUIInfo "{64B7394A34C53D02}" {
-     }
      ContextName "CustomRadio"
      Position PointInfo "{649A0B374E79C87B}" {
       Offset -0.129 0.0296 0.0486
@@ -37,17 +35,20 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{647F275B109A17FD}" {
+     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
       Name "#RT_PS-OnOffActionName"
+      m_sIconName "activate"
      }
+     CanAggregate 1
      m_bInStaticProp 1
     }
     RT_PS_CustomRadioVolumeAction "{649A0B3714AF8CED}" {
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{6483362772BCC09A}" {
+     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
       Name "#RT_PS-VolumeActionName"
+      m_sIconName "sound-on"
      }
      Duration -1
      CanAggregate 1
@@ -63,8 +64,9 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{647F27517F5C458F}" {
+     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
       Name "#RT_PS-StationActionName"
+      m_sIconName "radio-signal"
      }
      CanAggregate 1
      "Sort Priority" 2
@@ -75,8 +77,9 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
      ParentContextList {
       "CustomRadio"
      }
-     UIInfo UIInfo "{64B7394A05CE2283}" {
+     UIInfo SCR_ActionContextUIInfo "{64B7394A05CE2283}" {
       Name "#RT_PS-ResetActionName"
+      m_sIconName "repair"
      }
      CanAggregate 1
      "Sort Priority" 3
