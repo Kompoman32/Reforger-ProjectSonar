@@ -37,8 +37,8 @@ Additionally:
 ## Examples: radio stations by me and friends
 <picture><a href="https://reforger.armaplatform.com/workshop/65B5407553C40DC8" target="_blank" ><img src="./images/atlantic.jpg" alt="Atlantic Radio Station" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/65B52CBBC2551296" target="_blank" ><img src="./images/dolce-vita.jpg" alt="Dolce Vita Radio Station" style="height:100px"></a></picture>
-<picture><a href="https://reforger.armaplatform.com/workshop/64C327610D57AE60" target="_blank" ><img src="./images/phonk.jpg" alt="PhonkFM" style="height:100px"></a></picture>
-<picture><a href="https://reforger.armaplatform.com/workshop/64C54E100E1B89CB" target="_blank" ><img src="./images/govnovoz.jpg" alt="GovnovozFM" style="height:100px"></a></picture>
+<picture><a href="https://reforger.armaplatform.com/workshop/64C327610D57AE60" target="_blank" ><img src="./images/phonk.png" alt="PhonkFM" style="height:100px"></a></picture>
+<picture><a href="https://reforger.armaplatform.com/workshop/64C54E100E1B89CB" target="_blank" ><img src="./images/govnovoz.png" alt="GovnovozFM" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/65ACCE73483B2D24" target="_blank" ><img src="./images/arabic.jpg" alt="ArabicFM" style="height:100px"></a></picture>
 
 
