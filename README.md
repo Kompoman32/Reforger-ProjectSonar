@@ -1,8 +1,8 @@
 # Project Sonar - Radio Stations
 
-This is source code of the ProjectSonarRadio mod wich adding radio stations on radio in vehicles and static radios.
+This is source code of the [ProjectSonarRadio](https://reforger.armaplatform.com/workshop/62E354B50264C08F-ProjectSonar-RadioStations) mod wich adding radio stations on radio in vehicles and static radios.
 
-<picture><img src="./images/preview.jpg" alt="mod-review.jpg" style="height:200px"></picture>
+<picture><img src="./images/logo.png" alt="mod-logo" style="height:200px"></picture>
 <picture><img src="./images/1.jpg" alt="mod-review.jpg" style="height:200px"></picture>
 <picture><img src="./images/2.jpg" alt="mod-review.jpg" style="height:200px"></picture>
 <picture><img src="./images/3.jpg" alt="mod-review.jpg" style="height:200px"></picture>
