@@ -28,13 +28,13 @@ You need to create a new Project in Arma Reforger Tools
 
 Duplicate CustomRadioBroadcast.acp to your project from \ProjectSonar\Sounds\RadioBroadcast\
 
-<picture><img src="./images/3.png" alt="image-3.png" style="width:auto; height: 300px"></picture>
-<picture><img src="./images/4.png" alt="image-4.png" style="width:auto; height: 300px"></picture>
-<picture><img src="./images/5.png" alt="image-5.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/3.png" alt="image-3.png" style="width:auto; height: 350px"></picture>
+<picture><img src="./images/4.png" alt="image-4.png" style="width:auto; height: 350px"></picture>
+<picture><img src="./images/5.png" alt="image-5.png" style="width:auto; height: 350px"></picture>
 
 Name the file as you like.
 
-<picture><img src="./images/6.png" alt="image-6.png" style="width:auto; height: 200px"></picture>
+<picture><img src="./images/6.png" alt="image-6.png" style="width:auto; height: 150px"></picture>
 
 
 ## Adding music tracks
@@ -68,21 +68,22 @@ Drag your tracks from the Samples folder to Bank Music or DJ node.
 
 Override SystemsConfig.conf in your project from \ProjectSonar\Configs\Systems\SystemsConfig.conf
 
-<picture><img src="./images/14.png" alt="image-14.png" style="width:auto; height: 300px"></picture>
-<picture><img src="./images/15.png" alt="image-15.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/14.png" alt="image-14.png" style="width:auto; height: 350px"></picture>
+<picture><img src="./images/15.png" alt="image-15.png" style="width:auto; height: 350px"></picture>
 
 Expand Systems > RT_PS_CustomRadioAntennaSystem > Radiostations.
 Add a new radio station by clicking on +.
 Expand added RT_PS_CustomRadioStation.
 
-<picture><img src="./images/16.png" alt="image-16.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/16.png" alt="image-16.png" style="width:auto; height: 400px"></picture>
+
 <picture><img src="./images/17.png" alt="image-17.png" style="width:auto; height: 300px"></picture>
 
 Fill **Radiostation Name**, **Station Audio Project** (select the previously created .acp file).
 
 Fill **Track Length** (DJ Tracks Length for DJ tracks) with length of your tracks (in seconds).
 
-> [!NOTE]
+> [!NOTE]ф
 > To get a list of all lengths you can use [powershell script](#getting-a-list-of-track-lengths-using-a-script-windows)
 
 Fill **DJ Probability** to launch dj tracks with some probability.
@@ -102,7 +103,7 @@ Fill **DJ Probability** to launch dj tracks with some probability.
 6. execute ```./getTimes.ps1``` with first argument of directory with music tracks **in brackets**
 
 > [!IMPORTANT]
->  Brackets around path and backslash at the end of the path are important
+>  Quotes around path and backslash at the end of the path are important
 
 7. If you need - revert old execution policy by ```Set-ExecutionPolicy <remembered-policy>```.
 
@@ -118,12 +119,12 @@ To test your radio station, you can open the existing world in the ProjectSonarR
 
 Go to any vehicle or radio and check the functionality of your radio station.
 
-<picture><img src="./images/22.png" alt="image-22.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/22.png"ффalt="image-22.png" style="width:auto; height: 400px"></picture>
 
 ## Publishing
 
 > [!TIP]
 > The publishing process is best described at [BI wiki](https://community.bistudio.com/wiki/Arma_Reforger:Mod_Publishing_Process)
 
-<picture><img src="./images/23.png" alt="image-23.png" style="width:auto; height: 300px"></picture>
-<picture><img src="./images/24.png" alt="image-24.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/23.png" alt="image-23.png" style="width:auto; height: 350px"></picture>
+<picture><img src="./images/24.png" alt="image-24.png" style="width:auto; height: 350px"></picture>
