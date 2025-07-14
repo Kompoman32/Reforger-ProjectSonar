@@ -241,6 +241,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		if (!radio) return;
 	
 		radio.Disable();
+		radio.ResetPlay();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -338,7 +339,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 				radio.ResetPlay();
 			}
 			
-			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 0.1) {
+			// 5 second may fix desync when we have a lot of radios, maybe a better solution can be found later
+			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 5) {
 				radio.ResetPlay();
 			}			
 		}
