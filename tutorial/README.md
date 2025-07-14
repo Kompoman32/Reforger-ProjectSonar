@@ -85,7 +85,7 @@ Fill **Radiostation Name**, **Station Audio Project** (select the previously cre
 Fill **Track Length** with length of your tracks (in seconds).
 
 > [!NOTE]
-> To get a list of all lengths you can use [powershell script](#getting-a-list-of-track-lengths-using-a-script-windows)
+> To get a list of all lengths you can use [powershell script](#getting-a-list-of-track-lengths-using-a-powershell-script-windows)
 
 > [!TIP]
 > If **not** need DJ tracks. You can leave **DJ Tracks Length** empty or set **DJ Probability** to 0
