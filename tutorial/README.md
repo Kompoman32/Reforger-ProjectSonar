@@ -2,13 +2,14 @@
 
 To create a new radio station, you need to do the following:
 
-1. [Create a new Project in Arma Reforger Tools](#project-creation)
-2. [Duplicate audio project file CustomRadioBroadcast.acp](#duplicating-audio-project-file)
-3. [Add music tracks to the new .acp file](#adding-music-tracks)
-4. [Override file SystemsConfig.conf and add new radiostation](#override-file-systemsconfigconf)
-   - [Getting a list of track lengths using a script](#getting-a-list-of-track-lengths-using-a-powershell-script-windows)
-5. [Test it](#testing)
-6. [Publish](#publishing)
+- [Tutorial to create your own](#tutorial-to-create-your-own)
+  - [Project creation](#project-creation)
+  - [Duplicating audio project file](#duplicating-audio-project-file)
+  - [Adding music tracks](#adding-music-tracks)
+  - [Override file SystemsConfig.conf](#override-file-systemsconfigconf)
+    - [Getting a list of track lengths using a powershell script (Windows)](#getting-a-list-of-track-lengths-using-a-powershell-script-windows)
+  - [Testing](#testing)
+  - [Publishing](#publishing)
 
 ## Project creation
 
@@ -81,12 +82,19 @@ Expand added RT_PS_CustomRadioStation.
 
 Fill **Radiostation Name**, **Station Audio Project** (select the previously created .acp file).
 
-Fill **Track Length** (DJ Tracks Length for DJ tracks) with length of your tracks (in seconds).
+Fill **Track Length** with length of your tracks (in seconds).
 
-> [!NOTE]ф
+> [!NOTE]
 > To get a list of all lengths you can use [powershell script](#getting-a-list-of-track-lengths-using-a-script-windows)
 
-Fill **DJ Probability** to launch dj tracks with some probability.
+> [!TIP]
+> If **not** need DJ tracks. You can leave **DJ Tracks Length** empty or set **DJ Probability** to 0
+
+> [!TIP] 
+> If you need DJ tracks.
+> Fill **DJ Tracks Length** with length of your tracks.
+> Fill **DJ Probability** to launch dj tracks with some probability.
+
 
 <picture><img src="./images/18.png" alt="image-18.png" style="width:auto; height: 300px"></picture>
 <picture><img src="./images/19.png" alt="image-19.png" style="width:auto; height: 300px"></picture>
@@ -119,7 +127,7 @@ To test your radio station, you can open the existing world in the ProjectSonarR
 
 Go to any vehicle or radio and check the functionality of your radio station.
 
-<picture><img src="./images/22.png"ффalt="image-22.png" style="width:auto; height: 400px"></picture>
+<picture><img src="./images/22.png" alt="image-22.png" style="width:auto; height: 300px"></picture>
 
 ## Publishing
 
