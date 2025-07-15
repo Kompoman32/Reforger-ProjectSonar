@@ -185,20 +185,20 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 				RT_PS_CustomRadioStationTrackInfo track;
 				string trackText;
 				
-				if (i < pRadiostationsTracks.Count() - 1)
+				if (i < pRadiostationsTracks.Count())
 				{
 					track = pRadiostationsTracks[i];
 				}
 				
 				if (track) 
 				{
-					trackText = string.Format("%1 (%2s)", track.m_iTrackIndex, track.m_iTrackSize);
+					trackText = string.Format("%1 (%2s/%3s)", track.m_iTrackIndex, GetRadioStationTrackTimeLeft(i), track.m_iTrackSize);
 				} else {
 					trackText = "null";
 				}
 				
 				WorldTimestamp time;
-				if (i < newRadiostationsTimes.Count() - 1)
+				if (i < newRadiostationsTimes.Count())
 				{
 					time = newRadiostationsTimes[i];
 				}
@@ -339,8 +339,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 				radio.ResetPlay();
 			}
 			
-			// 5 second may fix desync when we have a lot of radios, maybe a better solution can be found later
-			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 5) {
+			// 5 second may fix track jumping when we have a lot of radios, maybe a better solution can be found later
+			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 5000) {
 				radio.ResetPlay();
 			}			
 		}

@@ -28,14 +28,6 @@ class RT_PS_CallToRadioAction: ScriptedUserAction
 	{
 		return false;
 	}	
-	
-	//------------------------------------------------------------------------------------------------
-	override bool CanBeShownScript(IEntity user)
-	{
-		if (SCR_ConfigurableDialogUi.GetCurrentDialog()) return false;
-		
-		return true;
-	}
 
 	//------------------------------------------------------------------------------------------------
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {

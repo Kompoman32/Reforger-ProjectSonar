@@ -23,8 +23,12 @@ class RT_PS_CallToRadioComponent: ScriptComponent {
 	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
 	protected void RPC_DoOpenDialog()
 	{
-		RT_PS_CallToRadioDialog dialog = new RT_PS_CallToRadioDialog(m_RadioSystem.m_aRadiostations);
-		dialog.m_OnConfirm.Insert(OnConfirm);
+		RT_PS_CallToRadioDialog menu = RT_PS_CallToRadioDialog.Cast(GetGame().GetMenuManager().OpenMenu(ChimeraMenuPreset.CallToTheRadio));
+		
+		if (menu) 
+		{
+			menu.m_OnConfirm.Insert(OnConfirm);
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------

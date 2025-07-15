@@ -383,7 +383,6 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	{
 		bool state;
 		int radioStationIndex, volume;
-		bool aloneInGroup;
 		
 		reader.ReadBool(state);
 		reader.ReadInt(radioStationIndex);

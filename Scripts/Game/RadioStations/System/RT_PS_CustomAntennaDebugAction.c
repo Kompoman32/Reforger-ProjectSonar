@@ -105,15 +105,6 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 		
 		return true;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	override bool CanBeShownScript(IEntity user)
-	{
-		if (SCR_ConfigurableDialogUi.GetCurrentDialog()) return false;
-		
-		return true;
-	}
-	
 
 	//------------------------------------------------------------------------------------------------
 	override bool CanBroadcastScript()

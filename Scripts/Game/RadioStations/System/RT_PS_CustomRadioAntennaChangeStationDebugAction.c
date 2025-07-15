@@ -31,9 +31,7 @@ class RT_PS_CustomRadioAntennaChangeStationDebugAction extends SCR_AdjustSignalA
 	
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
-	{
-		if (SCR_ConfigurableDialogUi.GetCurrentDialog()) return false;
-		
+	{		
 		if (!m_RadioSystem) return false;
 		
 		return true;
