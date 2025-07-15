@@ -28,6 +28,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       Name "#RT_PS-OnOffActionName"
       m_sIconName "activate"
      }
+     CanAggregate 1
     }
     RT_PS_CustomRadioVolumeAction "{64997DE82C446426}" {
      ParentContextList {

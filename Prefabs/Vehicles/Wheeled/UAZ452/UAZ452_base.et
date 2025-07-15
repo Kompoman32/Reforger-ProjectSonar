@@ -27,10 +27,6 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     }
    }
    additionalActions {
-    SCR_RefuelAtSupportStationAction "{5B02B547EDCF6F99}" {
-    }
-    SCR_RefuelAtSupportStationAction "{5B02B547EDCF6F99}" {
-    }
     RT_PS_CustomRadioAction "{64997DE90570E950}" {
      ParentContextList {
       "CustomRadio"
@@ -39,6 +35,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
       Name "#RT_PS-OnOffActionName"
       m_sIconName "activate"
      }
+     CanAggregate 1
     }
     RT_PS_CustomRadioVolumeAction "{64997DE9031C03C9}" {
      ParentContextList {
