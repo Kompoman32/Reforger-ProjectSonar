@@ -98,7 +98,7 @@ class RT_PS_CustomRadioStation
 	{
 		array<int> tracks = m_aTracksIndexes;
 		
-		if (pIsDj) tracks = m_aTracksIndexes;
+		if (pIsDj) tracks = m_aDjTracksIndexes;
 		
 		if (tracks.Count() == 1) return 0;
 		
