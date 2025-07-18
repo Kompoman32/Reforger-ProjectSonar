@@ -18,7 +18,7 @@ This mod uses another mod and radio model from there [Car Radio 4 All 621D377187
 This mod allows to:
 1. Turn on and off the radio in vehicles, such as cars, trucks, helicopters (as in [Car Radio 4 All](https://reforger.armaplatform.com/workshop/621D3771875C1D3D-CarRadio4All)) and in static radios around the world.
 2. Change volume of the radio.
-3. Change radio stations (if having other mods with it (see [Examples](#examples-radio-stations-by-me-and-friends)))
+3. Change radio stations (if having other mods with it<!-- (see [Examples](#examples-radio-stations-by-me-and-friends)) -->)
 4. Enjoy the same tracks with all your friends or enemies in Multiplayer (on/off state, current selected station, volume, sound position, etc).
 
 Additionally:
@@ -35,12 +35,12 @@ Additionally:
    - Show fix action on all radios. This action syncronizes a specific radio between the server and all players.
    - Change to next track on one specific radio station.
 
-## Examples: radio stations by me and friends
+<!-- ## Examples: radio stations by me and friends
 <picture><a href="https://reforger.armaplatform.com/workshop/65B5407553C40DC8" target="_blank" ><img src="./images/atlantic.jpg" alt="Atlantic Radio Station" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/65B52CBBC2551296" target="_blank" ><img src="./images/dolce-vita.jpg" alt="Dolce Vita Radio Station" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/64C327610D57AE60" target="_blank" ><img src="./images/phonk.png" alt="Phonk FM" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/64C54E100E1B89CB" target="_blank" ><img src="./images/govnovoz.png" alt="Govnovoz FM" style="height:100px"></a></picture>
-<picture><a href="https://reforger.armaplatform.com/workshop/65ACCE73483B2D24" target="_blank" ><img src="./images/arabic.png" alt="Arabic FM" style="height:100px"></a></picture>
+<picture><a href="https://reforger.armaplatform.com/workshop/65ACCE73483B2D24" target="_blank" ><img src="./images/arabic.png" alt="Arabic FM" style="height:100px"></a></picture> -->
 
 
 ## Create your own RadioStation
