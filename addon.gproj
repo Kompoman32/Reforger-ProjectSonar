@@ -9,60 +9,66 @@ GameProject {
   GameProjectConfig PC {
    WidgetManagerSettings WidgetManagerSettings "{AC4BE58770485E02}" {
     StringTables {
-     StringTableDefinition "{64852ED5690A72C5}" {
-      StringTableSource "{91E0F6253032266E}Language/localization.st"
+     StringTableDefinition "{65EF366C3787F72B}" {
+      StringTableSource "{91E0F6253032266E}Language/RT_PS-localization.st"
       Languages {
-       LanguageDefinition "{64852ED567A04426}" {
-        Code "cs_cz"
-        StringTableRuntime "{742561DC41395FDB}Language/localization.cs_cz.conf"
-       }
-       LanguageDefinition "{64852ED567A04468}" {
-        Code "de_de"
-        StringTableRuntime "{A15B7BEF529A4EFB}Language/localization.de_de.conf"
-       }
-       LanguageDefinition "{64852ED567A04497}" {
-        Code "en_us"
-        StringTableRuntime "{FFABF1A438694BFC}Language/localization.en_us.conf"
-       }
-       LanguageDefinition "{64852ED567A0448B}" {
-        Code "es_es"
-        StringTableRuntime "{3AE7BC2DD66B20E5}Language/localization.es_es.conf"
-       }
-       LanguageDefinition "{64852ED567A044B7}" {
+       LanguageDefinition "{65EF366C37870D12}" {
         Code "fr_fr"
-        StringTableRuntime "{814F491A30E8C3E7}Language/localization.fr_fr.conf"
+        StringTableRuntime "{22CCF714F6C3EE75}Language/RT_PS-localization.fr_fr.conf"
        }
-       LanguageDefinition "{64852ED567A044A4}" {
+       LanguageDefinition "{65EF366C37870D1A}" {
         Code "it_it"
-        StringTableRuntime "{0153C62E9DCA4020}Language/localization.it_it.conf"
+        StringTableRuntime "{A2D078205BE16D8C}Language/RT_PS-localization.it_it.conf"
        }
-       LanguageDefinition "{64852ED567A044D6}" {
-        Code "ja_jp"
-        StringTableRuntime "{11487BBCA3BB70B5}Language/localization.ja_jp.conf"
+       LanguageDefinition "{65EF366C37870D1F}" {
+        Code "de_de"
+        StringTableRuntime "{02D8C5E194B16369}Language/RT_PS-localization.de_de.conf"
        }
-       LanguageDefinition "{64852ED567A044CB}" {
-        Code "ko_kr"
-        StringTableRuntime "{B1F653103096738C}Language/localization.ko_kr.conf"
+       LanguageDefinition "{65EF366C37870D62}" {
+        Code "es_es"
+        StringTableRuntime "{9964022310400D77}Language/RT_PS-localization.es_es.conf"
        }
-       LanguageDefinition "{64852ED567A044FF}" {
+       LanguageDefinition "{65EF366C37870D64}" {
+        Code "cs_cz"
+        StringTableRuntime "{D7A6DFD287127249}Language/RT_PS-localization.cs_cz.conf"
+       }
+       LanguageDefinition "{65EF366C37870D69}" {
         Code "pl_pl"
-        StringTableRuntime "{ED87F5EA8E79EFF8}Language/localization.pl_pl.conf"
+        StringTableRuntime "{4E044BE44852C264}Language/RT_PS-localization.pl_pl.conf"
        }
-       LanguageDefinition "{64852ED567A044EE}" {
-        Code "pt_br"
-        StringTableRuntime "{38F06F26B587254E}Language/localization.pt_br.conf"
-       }
-       LanguageDefinition "{64852ED567A04718}" {
+       LanguageDefinition "{65EF366C37870D6B}" {
         Code "ru_ru"
-        StringTableRuntime "{6DB17B8E28FE403C}Language/localization.ru_ru.conf"
+        StringTableRuntime "{CE32C580EED56DA8}Language/RT_PS-localization.ru_ru.conf"
        }
-       LanguageDefinition "{64852ED567A04707}" {
-        Code "uk_ua"
-        StringTableRuntime "{E7E92E7844D0FE6F}Language/localization.uk_ua.conf"
+       LanguageDefinition "{65EF366C37870D6E}" {
+        Code "ja_jp"
+        FontOverride "{D3E75BCBECEB273E}UI/Fonts/NotoSans/NotoSans-Enhanced-Regular-JP-KOR-SC-LAT.fnt"
+        LanguageGroup EastAsian
+        StringTableRuntime "{B2CBC5B265905D27}Language/RT_PS-localization.ja_jp.conf"
        }
-       LanguageDefinition "{64852ED567A0473A}" {
+       LanguageDefinition "{65EF366C37870D76}" {
+        Code "ko_kr"
+        FontOverride "{D3E75BCBECEB273E}UI/Fonts/NotoSans/NotoSans-Enhanced-Regular-JP-KOR-SC-LAT.fnt"
+        LanguageGroup EastAsian
+        StringTableRuntime "{1275ED1EF6BD5E18}Language/RT_PS-localization.ko_kr.conf"
+       }
+       LanguageDefinition "{65EF366C37870D7A}" {
+        Code "pt_br"
+        StringTableRuntime "{9B73D12873AC08DE}Language/RT_PS-localization.pt_br.conf"
+       }
+       LanguageDefinition "{65EF366C37870D7F}" {
         Code "zh_cn"
-        StringTableRuntime "{3D5940457D702E74}Language/localization.zh_cn.conf"
+        FontOverride "{D3E75BCBECEB273E}UI/Fonts/NotoSans/NotoSans-Enhanced-Regular-JP-KOR-SC-LAT.fnt"
+        LanguageGroup EastAsian
+        StringTableRuntime "{9EDAFE4BBB5B03E0}Language/RT_PS-localization.zh_cn.conf"
+       }
+       LanguageDefinition "{65EF366C37870D40}" {
+        Code "uk_ua"
+        StringTableRuntime "{446A907682FBD3FD}Language/RT_PS-localization.uk_ua.conf"
+       }
+       LanguageDefinition "{65EF366C37870D54}" {
+        Code "en_us"
+        StringTableRuntime "{5C284FAAFE426668}Language/RT_PS-localization.en_us.conf"
        }
       }
      }

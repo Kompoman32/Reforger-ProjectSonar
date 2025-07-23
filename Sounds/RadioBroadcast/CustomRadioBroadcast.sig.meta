@@ -1,5 +1,5 @@
 MetaFileClass {
- Name "{A1230FDA0E11F461}Sounds/RadioBroadcast/RadioBroadcast.sig"
+ Name "{C3E05BC9953729B5}Sounds/RadioBroadcast/CustomRadioBroadcast.sig"
  Configurations {
   AudioSignalResourceClass PC {
   }
