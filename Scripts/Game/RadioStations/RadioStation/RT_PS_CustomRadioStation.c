@@ -47,7 +47,7 @@ class RT_PS_CustomRadioStation
 			string tracksOrderText =  string.Format("Music [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aTracksIndexes));
 			string tracksDjOrderText =  string.Format("DJ [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aDjTracksIndexes));
 			
-			Print(string.Format("Station %1 tracks order: %2 %3", m_sRadiostationName, tracksOrderText, tracksDjOrderText), LogLevel.NORMAL)			
+			Print(string.Format("[SONAR] Station %1 tracks order: %2 %3", m_sRadiostationName, tracksOrderText, tracksDjOrderText), LogLevel.DEBUG)			
 		}
 	}
 

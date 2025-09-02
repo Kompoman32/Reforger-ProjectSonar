@@ -66,7 +66,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	protected void InitOnServer()
 	{		
-		Print(string.Format("Antenna on Server Inited %1", this), LogLevel.NORMAL);
+		Print(string.Format("[SONAR] Antenna on Server Inited %1", this), LogLevel.DEBUG);
 
 		array<string> names = {};
 		
@@ -75,7 +75,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			names.Insert(x.m_sRadiostationName);
 		}
 		
-		Print(string.Format("RadioStations: %1", names), LogLevel.NORMAL);
+		Print(string.Format("[SONAR] RadioStations: %1", names), LogLevel.DEBUG);
 		
 		SCR_BaseGameMode gm = SCR_BaseGameMode.Cast(GetGame().GetGameMode());
 		if (gm)
@@ -128,9 +128,9 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		RT_PS_CustomRadioStationTrackInfo newTrack = radiostation.GetNewTrack();
 		
 		if (newTrack){
-			Print(string.Format("UpdateTrack %1:(%2) - tInd: %3, tLen: %4", pIndex, radiostation.m_sRadiostationName, newTrack.m_iTrackIndex, newTrack.m_iTrackSize), LogLevel.NORMAL);
+			Print(string.Format("[SONAR] UpdateTrack %1:(%2) - tInd: %3, tLen: %4", pIndex, radiostation.m_sRadiostationName, newTrack.m_iTrackIndex, newTrack.m_iTrackSize), LogLevel.DEBUG);
 		} else {
-			Print(string.Format("UpdateTrack %1:(%2) - tInd: null, tLen: null", pIndex, radiostation.m_sRadiostationName), LogLevel.NORMAL);
+			Print(string.Format("[SONAR] UpdateTrack %1:(%2) - tInd: null, tLen: null", pIndex, radiostation.m_sRadiostationName), LogLevel.DEBUG);
 		}
 		
 		m_aRadiostationsTracks.Set(pIndex, newTrack);
@@ -209,7 +209,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			}
 		}
 		
-		Print(string.Format("Tracks Updated.\nStations:\n[\n%1]", radioStationsText), LogLevel.NORMAL);
+		Print(string.Format("[SONAR] Tracks Updated.\nStations:\n[\n%1]", radioStationsText), LogLevel.DEBUG);
 		
 		UpdateConnectedRadios(oldRadiostationsTimes);
 	}
