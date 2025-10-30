@@ -7,69 +7,26 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
   RadioBroadcastComponent "{620B2138EBF2399B}" {
    Enabled 0
   }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_body"
+     Offset 0.4817 0.7176 0.4695
+     Angles 0 180 0
+     Enabled 1
+    }
+    EntitySlotInfo radio {
+     Enabled 0
+    }
+   }
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{648A958C5148D874}" {
-     UIInfo SCR_ActionContextUIInfo "{64B73949937CD413}" {
-     }
-     ContextName "CustomRadio"
-     Position PointInfo "{50AB795F40C207FC}" {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
       PivotID "v_body"
       Offset 0.4082 0.707 0.4463
      }
-    }
-   }
-   additionalActions {
-    RT_PS_CustomRadioAction "{64997DE82E721121}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
-      Name "#RT_PS-OnOffActionName"
-      m_sIconName "activate"
-     }
-     CanAggregate 1
-    }
-    RT_PS_CustomRadioVolumeAction "{64997DE82C446426}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
-      Name "#RT_PS-VolumeActionName"
-      m_sIconName "sound-on"
-     }
-     Duration -1
-     CanAggregate 1
-     PerformPerFrame 1
-     "Sort Priority" 1
-     "Max value" 20
-     m_fAdjustmentStep 1
-     m_bManualAdjustment 1
-     m_sActionDecrease "DeselectAction"
-    }
-    RT_PS_CustomRadioAction "{64997DE82D6A372A}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
-      Name "#RT_PS-StationActionName"
-      m_sIconName "radio-signal"
-     }
-     CanAggregate 1
-     "Sort Priority" 2
-     m_eActionType CHANGE
-    }
-    RT_PS_CustomRadioAction "{649F50FDB5ECF537}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{649F50FDB5ECF5EB}" {
-      Name "#RT_PS-ResetActionName"
-      m_sIconName "repair"
-     }
-     CanAggregate 1
-     "Sort Priority" 3
-     m_eActionType RESET
     }
    }
   }

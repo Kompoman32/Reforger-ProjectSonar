@@ -1,9 +1,6 @@
-Vehicle : "{256CF92D598E7163}Prefabs/Vehicles/Wheeled/M998/M998_uncovered_base.et" {
+Vehicle : "{33AB44A084BAA0CD}Prefabs/Vehicles/Wheeled/M998/M1025_base.et" {
  ID "BBCBA43A9778AE21"
  components {
-  RadioBroadcastSoundComponent "{620B2138199A41EC}" {
-   Enabled 0
-  }
   RadioBroadcastComponent "{620B213802F8DE27}" {
    Enabled 0
   }

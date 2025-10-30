@@ -9,70 +9,12 @@ Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
-    UserActionContext "{648A958C8DE8BEE4}" {
-     UIInfo SCR_ActionContextUIInfo "{648A958C8DE8B14E}" {
-     }
-     ContextName "CustomRadio"
-     Position PointInfo "{648A958C8DE8B14A}" {
-      PivotID "v_light_switch"
-      Offset 1.0574 -0.0543 0.0115
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_body"
+      Offset 0.2591 0.9751 0.7237
       Angles 0 180 0
      }
-     Height 0
-     Omnidirectional 0
-    }
-   }
-   additionalActions {
-    RT_PS_CustomRadioAction "{64997DE8630016C5}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
-      Name "#RT_PS-OnOffActionName"
-      m_sIconName "activate"
-     }
-     CanAggregate 1
-    }
-    RT_PS_CustomRadioVolumeAction "{64997DE8603827E4}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
-      Name "#RT_PS-VolumeActionName"
-      m_sIconName "sound-on"
-     }
-     Duration -1
-     CanAggregate 1
-     PerformPerFrame 1
-     "Sort Priority" 1
-     "Max value" 20
-     m_fAdjustmentStep 1
-     m_bManualAdjustment 1
-     m_sActionDecrease "DeselectAction"
-    }
-    RT_PS_CustomRadioAction "{64997DE87E640F87}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
-      Name "#RT_PS-StationActionName"
-      m_sIconName "radio-signal"
-     }
-     CanAggregate 1
-     "Sort Priority" 2
-     m_eActionType CHANGE
-    }
-    RT_PS_CustomRadioAction "{649F50FD874F0EC5}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{649F50FD874F0132}" {
-      Name "#RT_PS-ResetActionName"
-      m_sIconName "repair"
-     }
-     CanAggregate 1
-     "Sort Priority" 3
-     m_eActionType RESET
     }
    }
   }

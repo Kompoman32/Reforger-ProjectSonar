@@ -7,71 +7,27 @@ Vehicle : "{CBD8C2393BE87581}Prefabs/Vehicles/Core/Helicopter_Base.et" {
   RadioBroadcastComponent "{620B213E8516E597}" {
    Enabled 0
   }
-  ActionsManagerComponent "{C97BE5489221AE18}" {
-   ActionContexts {
-    UserActionContext "{64997DEB806BFEB7}" {
-     UIInfo SCR_ActionContextUIInfo "{64997DEB806BFEE8}" {
-     }
-     ContextName "CustomRadio"
-     Position PointInfo "{64997DEB806BFEE4}" {
-      PivotID "v_body"
-      Offset -0.3773 -3.0145 0.9115
-     }
-     Radius 0.5
-     Height 0
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_body"
+     Offset -0.3043 -3.0372 0.9181
+     Angles 80.2884 0 180
+     Enabled 1
+    }
+    RegisteringComponentSlotInfo RADIO {
+     Enabled 0
     }
    }
-   additionalActions {
-    RT_PS_CustomRadioAction "{64997DEBDBB3F685}" {
-     ParentContextList {
-      "CustomRadio"
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_body"
+      Offset -0.3774 -3.0132 0.9115
+      Angles 90 0 0
      }
-     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
-      Name "#RT_PS-OnOffActionName"
-      m_sIconName "activate"
-     }
-     CanAggregate 1
-    }
-    RT_PS_CustomRadioVolumeAction "{64997DEA2A7368F7}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
-      Name "#RT_PS-VolumeActionName"
-      m_sIconName "sound-on"
-     }
-     Duration -1
-     CanAggregate 1
-     PerformPerFrame 1
-     "Sort Priority" 1
-     "Max value" 20
-     m_fAdjustmentStep 1
-     m_bManualAdjustment 1
-     m_sActionDecrease "DeselectAction"
-    }
-    RT_PS_CustomRadioAction "{64997DEA245EBE7D}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
-      Name "#RT_PS-StationActionName"
-      m_sIconName "radio-signal"
-     }
-     CanAggregate 1
-     "Sort Priority" 2
-     m_eActionType CHANGE
-    }
-    RT_PS_CustomRadioAction "{649F50FE32A7D9D0}" {
-     ParentContextList {
-      "CustomRadio"
-     }
-     UIInfo SCR_ActionContextUIInfo "{649F50FE32A7D837}" {
-      Name "#RT_PS-ResetActionName"
-      m_sIconName "repair"
-     }
-     CanAggregate 1
-     "Sort Priority" 3
-     m_eActionType RESET
     }
    }
   }

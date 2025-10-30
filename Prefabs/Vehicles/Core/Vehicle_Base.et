@@ -1,0 +1,80 @@
+Vehicle {
+ ID "BBCBA43A9778AE21"
+ components {
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     Enabled 0
+     Prefab "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et"
+     DisablePhysicsInteraction 1
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     UIInfo SCR_ActionContextUIInfo "{64997DE9E76B1E7E}" {
+     }
+     ContextName "CustomRadio"
+     Position PointInfo "{64997DE9E76B1E79}" {
+     }
+     Radius 0.35
+     Omnidirectional 0
+    }
+   }
+   additionalActions {
+    RT_PS_CustomRadioAction "{66BCF747E4E3CE65}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo SCR_ActionContextUIInfo "{647F275B109A17FD}" {
+      Name "#RT_PS-OnOffActionName"
+      m_sIconName "activate"
+     }
+     CanAggregate 1
+    }
+    RT_PS_CustomRadioVolumeAction "{66BCF747FCC3EBEB}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo SCR_ActionContextUIInfo "{6483362772BCC09A}" {
+      Name "#RT_PS-VolumeActionName"
+      m_sIconName "sound-on"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 1
+     "Max value" 20
+     m_fAdjustmentStep 1
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
+    RT_PS_CustomRadioAction "{66BCF747E139B76F}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo SCR_ActionContextUIInfo "{647F27517F5C458F}" {
+      Name "#RT_PS-StationActionName"
+      m_sIconName "radio-signal"
+     }
+     CanAggregate 1
+     "Sort Priority" 2
+     m_eActionType CHANGE
+    }
+    RT_PS_CustomRadioAction "{66BCF747FAB86496}" {
+     ParentContextList {
+      "CustomRadio"
+     }
+     UIInfo SCR_ActionContextUIInfo "{649F50FDA2A536A2}" {
+      Name "#RT_PS-ResetActionName"
+      m_sIconName "repair"
+     }
+     CanAggregate 1
+     "Sort Priority" 3
+     m_eActionType RESET
+    }
+   }
+  }
+ }
+}
