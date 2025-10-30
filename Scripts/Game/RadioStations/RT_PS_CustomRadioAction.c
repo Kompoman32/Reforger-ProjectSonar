@@ -12,10 +12,15 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	
 	[Attribute("0", UIWidgets.CheckBox)]
 	bool m_bInStaticProp;
+	
+	[Attribute("CustomRadio", UIWidgets.EditBox)]
+	string m_sSlotName;
 
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	protected RT_PS_CustomRadioComponent m_RadioComponent;
 	protected IEntity p_OwnerEntity;
+	
+	static const ref array<string> PossibleSlotName = {"CustomRadio", "RADIO", "radio"};
 
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
@@ -28,7 +33,10 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		
 		if (!m_bInStaticProp) {m_RadioComponent = null;}
 		
-		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) 
+		{
+			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(pOwnerEntity, m_sSlotName);
+		};
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		if (world) 
@@ -42,24 +50,7 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	{
 		return m_eActionType != RT_PS_ECustomRadioAction.RESET;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void FindRadioComponent(IEntity pOwnerEntity)
-	{		
-		if (m_RadioComponent) return;
-		
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
-		if (!slotManager) return;
-		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
-		if (!slot) {
-			slot = slotManager.GetSlotByName("radio");
-		};
-		if (!slot) return;
-		IEntity attachedEntity = slot.GetAttachedEntity();
-		if (!attachedEntity) return;
 
-		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
-	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected bool Enabled()
@@ -73,7 +64,9 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	//------------------------------------------------------------------------------------------------
 	override bool CanBeShownScript(IEntity user)
 	{		
-		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) {
+			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(p_OwnerEntity, m_sSlotName);
+		};
 		
 		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) {
 			return m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF;
@@ -182,5 +175,40 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		}
 
 		return false;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioComponent FindRadioComponent(IEntity pOwnerEntity, string pSlotName = "CustomRadio")
+	{		
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return null;
+		
+		EntitySlotInfo slot = FindRadioSlot(pOwnerEntity, pSlotName);		
+		if (!slot) return null;
+		
+		IEntity attachedEntity = slot.GetAttachedEntity();
+		if (!attachedEntity) return null;
+
+		return RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static EntitySlotInfo FindRadioSlot(IEntity pOwnerEntity, string pSlotName = "CustomRadio")
+	{
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return null;
+		
+		EntitySlotInfo slot = slotManager.GetSlotByName(pSlotName);
+		
+		if (slot && slot.IsEnabled()) return slot;
+		
+		foreach (string possibleName : RT_PS_CustomRadioAction.PossibleSlotName)
+		{
+			slot = slotManager.GetSlotByName(possibleName);
+			
+			if (slot && slot.IsEnabled()) return slot;
+		}
+		
+		return null;
 	}
 }

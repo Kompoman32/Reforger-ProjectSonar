@@ -21,17 +21,18 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	protected ref array<WorldTimestamp> m_aRadiostationsTimes = {};
 	protected ref map<EntityID, RT_PS_CustomRadioComponent> m_activeRadios = new map<EntityID, RT_PS_CustomRadioComponent>;
 
-	//------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------	
 	override static void InitInfo(WorldSystemInfo outInfo)
 	{
-		super.InitInfo(outInfo);
-		outInfo.SetAbstract(true);
+		outInfo
+			.SetAbstract(false)
+			.AddPoint(ESystemPoint.Frame);
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	override protected void OnUpdate(ESystemPoint point)
+	override protected void OnUpdate(WorldSystemPoint point)
 	{
-		super.OnUpdate();
+		super.OnUpdate(point);
 		
 		const RplId systemRplid = Replication.FindId(this);
 		const RplNode systemRplNode = Replication.FindNode(systemRplid);

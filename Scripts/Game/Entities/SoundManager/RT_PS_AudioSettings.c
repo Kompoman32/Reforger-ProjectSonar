@@ -15,11 +15,11 @@ modded class SCR_AudioSettingsSubMenu
 	}
 }
 
-modded class SCR_SoundManagerEntity
+modded class SCR_SoundManagerModule
 {
-	override void EOnInit(IEntity owner)
+	override void OnInit()
 	{	
-		super.EOnInit(owner);
+		super.OnInit();
 		
 		GetGame().OnUserSettingsChangedInvoker().Insert(SetRadioVolumeBoostSignalValue);
 	}
@@ -37,12 +37,13 @@ modded class SCR_SoundManagerEntity
 	protected void UpdateConnectedRadios()
 	{
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
-		RT_PS_CustomRadioAntennaSystem radioSystem;
 		
-		if (world) 
-		{
-			radioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
-			radioSystem.ForceUpdateConnectedRadios();
-		}			
+		if (!world) return;			
+		
+		RT_PS_CustomRadioAntennaSystem radioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
+		
+		if (!radioSystem) return;
+
+		radioSystem.ForceUpdateConnectedRadios();			
 	}
 }

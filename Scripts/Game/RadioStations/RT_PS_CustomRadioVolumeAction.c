@@ -2,6 +2,9 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 {
 	[Attribute("0", UIWidgets.CheckBox)]
 	bool m_bInStaticProp;
+	
+	[Attribute("CustomRadio", UIWidgets.EditBox)]
+	string m_sSlotName;
 
 	IEntity p_OwnerEntity;
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
@@ -16,7 +19,10 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		p_OwnerEntity = pOwnerEntity;	
 		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(pOwnerEntity.FindComponent(RT_PS_CustomRadioComponent));
 		
-		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(pOwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) 
+		{
+			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(pOwnerEntity, m_sSlotName);
+		};
 		
 		if (m_RadioComponent) 
 		{
@@ -29,24 +35,6 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 			m_RadioSystem = RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));
 		}
 	}
-	
-	void FindRadioComponent(IEntity pOwnerEntity)
-	{		
-		if (m_RadioComponent) return;
-		
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
-		if (!slotManager) return;
-		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
-		if (!slot) {
-			slot = slotManager.GetSlotByName("radio");
-		};
-		if (!slot) return;
-		IEntity attachedEntity = slot.GetAttachedEntity();
-		if (!attachedEntity) return;
-
-		m_RadioComponent = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
-	}
-	
 
 	override protected bool OnLoadActionData(ScriptBitReader reader)
 	{		
@@ -76,7 +64,11 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 	
 	override bool CanBeShownScript(IEntity user)
 	{
-		if (!m_RadioComponent && !m_bInStaticProp) FindRadioComponent(p_OwnerEntity);
+		if (!m_RadioComponent && !m_bInStaticProp) 
+		{
+			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(p_OwnerEntity, m_sSlotName);
+		};
+		
 		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) return false;
 		
 		return m_RadioComponent.Enabled();

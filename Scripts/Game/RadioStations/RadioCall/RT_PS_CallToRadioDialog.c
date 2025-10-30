@@ -5,7 +5,7 @@ modded enum ChimeraMenuPreset
 
 class RT_PS_CallToRadioDialog: MenuBase
 {
-	ref RT_PS_CustomRadioAntennaSystem m_RadioSystem;
+	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	ref array<ref RT_PS_CustomRadioStation> m_aStations= {};
 	
 	SCR_ComboBoxComponent m_Combobox;

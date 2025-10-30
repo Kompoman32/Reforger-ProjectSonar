@@ -272,14 +272,14 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		
 		pSignalValues.Insert(volume);
 		
-		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
+		// SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
 		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();	
 	
-		pSignalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
-		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
-	
-		pSignalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
-		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));
+//		pSignalNames.Insert(SCR_SoundManagerEntity.G_INTERIOR_SIGNAL_NAME);
+//		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetGInteriorSignalIdx()));
+//	
+//		pSignalNames.Insert(SCR_SoundManagerEntity.G_ROOM_SIZE);
+//		pSignalValues.Insert(gameSignalsManager.GetSignalValue(soundManagerEntity.GetRoomSizeIdx()));
 		
 		pSignalNames.Insert(SCR_AudioSource.INTERIOR_SIGNAL_NAME);
 		pSignalValues.Insert(gameSignalsManager.GetSignalValue(m_fSignalInterionValue));
@@ -317,7 +317,6 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	{
 		if (!m_bState) return;
 
-		SCR_SoundManagerEntity soundManagerEntity = GetGame().GetSoundManagerEntity();
 		GameSignalsManager gameSignalsManager = GetGame().GetSignalsManager();
 	
 		if (m_fVolume == 0) return;
