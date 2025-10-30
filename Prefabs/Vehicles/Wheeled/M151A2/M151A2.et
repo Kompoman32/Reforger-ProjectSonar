@@ -26,6 +26,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
      Position PointInfo "{64997DE9E76B1E79}" {
       PivotID "v_body"
       Offset 0.4082 0.707 0.4463
+      Angles 0 180 0
      }
     }
    }
