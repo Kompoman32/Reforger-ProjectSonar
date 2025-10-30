@@ -102,7 +102,11 @@ class RT_PS_CustomRadioStation
 		
 		if (tracks.Count() == 1) return 0;
 		
-		if (tracks.Count() == 2) return 2 - m_lLastTrackIndex - 1;
+		if (tracks.Count() == 2) {
+			if (m_lLastTrackIndex == -1) return 0;
+			
+			return 2 - m_lLastTrackIndex - 1;
+		}
 		
 		/*
 		int index = Math.RandomInt(0, tracks.Count());
