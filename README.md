@@ -47,6 +47,9 @@ Additionally:
 
 To create your own radiostation go and check [tutorial README.md](./tutorial)
 
+## Add radio to your vehicle
+
+To add radio to your vehicle go and check [tutorial README_Vehicle.md](./tutorial/README_Vehicle.md)
 
 # License
 <a rel="license" href="https://www.bohemia.net/community/licenses/arma-public-license" target="_blank" ><img src="https://data.bistudio.com/images/license/APL.png"><br>This work is licensed under the Arma Public License</a>

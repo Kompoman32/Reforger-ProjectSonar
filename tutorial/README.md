@@ -1,4 +1,4 @@
-# Tutorial to create your own 
+# Tutorial to create your own radio station
 
 To create a new radio station, you need to do the following:
 
@@ -43,11 +43,14 @@ Name the file as you like.
 Find the newly created file in your system, create a Samples folder next to it and place your tracks there. If you want to add DJ tracks, you can create a subfolder for DJ tracks inside the Samples folder.
 
 > [!IMPORTANT]
-> Only .wav files can be used
+> ~~Only .wav files can be used~~
 
 > [!TIP]
-> .wav are uncompressed audio and their size can be very large. You can reduce their SampleRate or SampleSize or BitRate to reduce file sizes. I usually use Audacity or AIMP to do it.
-> **Ex:** a 3 minute track with sample rate of 48kHz, sample size of 32b, bit rate of 3072kbps is 66 MB. I reduce it to sr: 11.025 kHz, sz: 32, br: 705kbps, at these settings the size is 15.1MB. These quality settings are similar to a real radio, which does not transmit in lossless quality
+> ~~.wav are uncompressed audio and their size can be very large. You can reduce their SampleRate or SampleSize or BitRate to reduce file sizes. I usually use Audacity or AIMP to do it.~~
+> ~~**Ex:** a 3 minute track with sample rate of 48kHz, sample size of 32b, bit rate of 3072kbps is 66 MB. I reduce it to sr: 11.025 kHz, sz: 32, br: 705kbps, at these settings the size is 15.1MB. These quality settings are similar to a real radio, which does not transmit in lossless quality~~
+
+> [!IMPORTANT]
+> You can convert your wav files to Snd (OPUS) format. See [bohemia news page](https://reforger.armaplatform.com/news/modding-update-october-9-2025). Screenshots below represent only wav files.
 
 <picture><img src="./images/9.png" alt="image-9.png" style="width:auto; height: 200px"></picture>
 
