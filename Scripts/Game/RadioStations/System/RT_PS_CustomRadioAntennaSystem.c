@@ -222,27 +222,26 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			return;
 		
 		IEntity vehicle = pDamageManager.GetOwner();
-	
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(vehicle.FindComponent(SlotManagerComponent));
-		if (!slotManager) return;
 		
-		EntitySlotInfo slot = slotManager.GetSlotByName("RADIO");
-		if (!slot) 
+		array<RT_PS_CustomRadioComponent> radios = {};
+		RT_PS_Utils.FindAllRadioComponentsInSlots(vehicle, radios);
+		
+		foreach (RT_PS_CustomRadioComponent radio: radios)
 		{
-			slot = slotManager.GetSlotByName("radio");
-		};
+			radio.Disable();
+			radio.ResetPlay();
+			
+			SCR_EntityHelper.DeleteEntityAndChildren(radio.GetOwner());
+		}
 		
-		if (!slot) return;
-		
-		IEntity attachedEntity = slot.GetAttachedEntity();
-		if (!attachedEntity) return;
-
-		RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
-	
-		if (!radio) return;
-	
-		radio.Disable();
-		radio.ResetPlay();
+		RT_PS_CustomRadioComponent radioInEntity = RT_PS_Utils.FindRadioComponentInEntity(vehicle);
+		if (radioInEntity)
+		{
+			radioInEntity.Disable();
+			radioInEntity.ResetPlay();
+			
+			radioInEntity.Deactivate(radioInEntity.GetOwner());
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------

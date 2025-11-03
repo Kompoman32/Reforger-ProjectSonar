@@ -41,4 +41,127 @@ class RT_PS_Utils {
 		
 		return arr.Get(index);
 	}
+
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioComponent FindRadioComponent(IEntity pEntity, string pSlotName = "CustomRadio")
+	{		
+		if (!pEntity) return null;
+				
+		RT_PS_CustomRadioComponent radioComp;
+		
+		radioComp = RT_PS_Utils.FindRadioComponentInEntity(pEntity);
+		if (radioComp) return radioComp;
+		
+		radioComp = RT_PS_Utils.FindRadioComponentBySlotName(pEntity, pSlotName);
+		if (radioComp) return radioComp;
+		
+		radioComp = RT_PS_Utils.FindRadioComponentInAnySlot(pEntity);
+		if (radioComp) return radioComp;
+		
+		return null;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioComponent FindRadioComponentInEntity(IEntity pEntity)
+	{
+		return RT_PS_CustomRadioComponent.Cast(pEntity.FindComponent(RT_PS_CustomRadioComponent));
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static void FindAllRadioComponentsInSlots(IEntity pEntity, notnull out array<RT_PS_CustomRadioComponent> radioComps)
+	{		
+		if (!pEntity) return;
+		
+		RT_PS_CustomRadioComponent radioComp;
+		
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return;
+		
+		IEntity attachedEntity;
+		
+		array<EntitySlotInfo> slots = {};		
+		slotManager.GetSlotInfos(slots);
+		
+		foreach (EntitySlotInfo slot : slots)
+		{			
+			attachedEntity = slot.GetAttachedEntity();
+			
+			if (!attachedEntity) continue;
+			
+			radioComp = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+			
+			if (!radioComp) continue;
+			
+			radioComps.Insert(radioComp);
+		}
+		
+		return;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioComponent FindRadioComponentBySlotName(IEntity pEntity, string pSlotName = "CustomRadio")
+	{	
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return null;
+		
+		RT_PS_CustomRadioComponent radio;
+		IEntity attachedEntity;
+		
+		EntitySlotInfo slot = slotManager.GetSlotByName(pSlotName);
+		
+		if (slot && slot.IsEnabled()) {
+			attachedEntity = slot.GetAttachedEntity();
+			
+			if (attachedEntity) {
+				radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+				
+				if (radio) return radio;
+			}
+		};
+				
+		foreach (string possibleName : RT_PS_CustomRadioAction.PossibleSlotName)
+		{
+			slot = slotManager.GetSlotByName(possibleName);
+			
+			if (!slot || !slot.IsEnabled()) continue;			
+			
+			attachedEntity = slot.GetAttachedEntity();
+			
+			if (!attachedEntity) continue;
+						
+			radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+			
+			if (radio) return radio;
+		}
+
+		return null;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioComponent FindRadioComponentInAnySlot(IEntity pEntity)
+	{	
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return null;
+		
+		RT_PS_CustomRadioComponent radio;
+		IEntity attachedEntity;
+		
+		array<EntitySlotInfo> slots = {};		
+		slotManager.GetSlotInfos(slots);
+		
+		foreach (EntitySlotInfo slot : slots)
+		{
+			if (!slot.IsEnabled()) continue;
+			
+			attachedEntity = slot.GetAttachedEntity();
+			
+			if (!attachedEntity) continue;
+						
+			radio = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+			
+			if (radio) return radio;
+		}
+		
+		return null;
+	}
 }

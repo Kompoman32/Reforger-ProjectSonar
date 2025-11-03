@@ -21,7 +21,7 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		
 		if (!m_RadioComponent && !m_bInStaticProp) 
 		{
-			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(pOwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_Utils.FindRadioComponent(pOwnerEntity, m_sSlotName);
 		};
 		
 		if (m_RadioComponent) 
@@ -66,7 +66,7 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 	{
 		if (!m_RadioComponent && !m_bInStaticProp) 
 		{
-			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(p_OwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_Utils.FindRadioComponent(p_OwnerEntity, m_sSlotName);
 		};
 		
 		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) return false;

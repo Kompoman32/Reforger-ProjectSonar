@@ -35,7 +35,7 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		
 		if (!m_RadioComponent && !m_bInStaticProp) 
 		{
-			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(pOwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_Utils.FindRadioComponent(pOwnerEntity, m_sSlotName);
 		};
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
@@ -65,8 +65,13 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	override bool CanBeShownScript(IEntity user)
 	{		
 		if (!m_RadioComponent && !m_bInStaticProp) {
-			m_RadioComponent = RT_PS_CustomRadioAction.FindRadioComponent(p_OwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_Utils.FindRadioComponent(p_OwnerEntity, m_sSlotName);
 		};
+		
+		if (m_RadioComponent && !m_RadioComponent.IsActive())
+		{
+			return false;
+		}
 		
 		if (!m_RadioComponent || !m_RadioSystem || !m_RadioSystem.m_bAllowRadios) {
 			return m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF;
@@ -176,39 +181,5 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 
 		return false;
 	}
-	
-	//------------------------------------------------------------------------------------------------
-	static RT_PS_CustomRadioComponent FindRadioComponent(IEntity pOwnerEntity, string pSlotName = "CustomRadio")
-	{		
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
-		if (!slotManager) return null;
-		
-		EntitySlotInfo slot = FindRadioSlot(pOwnerEntity, pSlotName);		
-		if (!slot) return null;
-		
-		IEntity attachedEntity = slot.GetAttachedEntity();
-		if (!attachedEntity) return null;
 
-		return RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	static EntitySlotInfo FindRadioSlot(IEntity pOwnerEntity, string pSlotName = "CustomRadio")
-	{
-		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pOwnerEntity.FindComponent(SlotManagerComponent));
-		if (!slotManager) return null;
-		
-		EntitySlotInfo slot = slotManager.GetSlotByName(pSlotName);
-		
-		if (slot && slot.IsEnabled()) return slot;
-		
-		foreach (string possibleName : RT_PS_CustomRadioAction.PossibleSlotName)
-		{
-			slot = slotManager.GetSlotByName(possibleName);
-			
-			if (slot && slot.IsEnabled()) return slot;
-		}
-		
-		return null;
-	}
 }
