@@ -34,6 +34,12 @@ Additionally:
    - Turn On/Off ability to use radios.
    - Show fix action on all radios. This action syncronizes a specific radio between the server and all players.
    - Change to next track on one specific radio station.
+   - GM can Turn On/Off radio, Change radio station, Change volume in Edit Entity Menu
+   - GM can Turn On/Off radio, Change radio station in Context Menu
+
+   <picture><img src="./images/feature-3.png" alt="feature-1.png" style="height:200px"></picture>
+   <picture><img src="./images/feature-1.png" alt="feature-2.png" style="height:200px"></picture>
+   <picture><img src="./images/feature-2.png" alt="feature-3.png" style="height:200px"></picture>
 
 <!-- ## Examples: radio stations by me and friends
 <picture><a href="https://reforger.armaplatform.com/workshop/65B5407553C40DC8" target="_blank" ><img src="./images/atlantic.jpg" alt="Atlantic Radio Station" style="height:100px"></a></picture>
