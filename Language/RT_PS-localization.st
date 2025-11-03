@@ -77,6 +77,46 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{66C6C6D3118EA584}" {
+   Id "RT_PS-Editor_Attribute_RadioState_Name"
+   Target_en_us "Radio State"
+   Target_ru_ru "Состояние радио"
+   Modified 1724316470
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C700DF94F0CA55}" {
+   Id "RT_PS-Editor_Attribute_RadioState_Off_Name"
+   Target_en_us "Off"
+   Target_ru_ru "Выкл"
+   Modified 1724318661
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C700DF81C9CE04}" {
+   Id "RT_PS-Editor_Attribute_RadioState_On_Name"
+   Target_en_us "On"
+   Target_ru_ru "Вкл"
+   Modified 1724318640
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C700DF7156E1B2}" {
+   Id "RT_PS-Editor_Attribute_RadioStation_Name"
+   Target_en_us "Station"
+   Target_ru_ru "Станция"
+   Modified 1724318613
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C700DF7F6CDF0B}" {
+   Id "RT_PS-Editor_Attribute_RadioVolume_Name"
+   Target_en_us "Volume"
+   Target_ru_ru "Громкость"
+   Modified 1724318592
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_PS-OnOffActionName"
    Target_en_us "Radio"

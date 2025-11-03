@@ -164,4 +164,30 @@ class RT_PS_Utils {
 		
 		return null;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	static void GetRadioComponentFromAttribute(Managed item, out bool isValid = false, out RT_PS_CustomRadioAntennaSystem pSystem = null, out RT_PS_CustomRadioComponent pRadio = null, out int pCurrentRadioIndex = -1)
+	{
+		SCR_EditableEntityComponent comp = SCR_EditableEntityComponent.Cast(item);
+		if (!comp) return;		
+		
+		IEntity entity = comp.GetOwner();
+		
+		if (!entity) return;
+		
+		RT_PS_CustomRadioComponent radio = RT_PS_Utils.FindRadioComponent(entity);
+		if (!radio) return;
+		
+		RT_PS_CustomRadioAntennaSystem system = RT_PS_CustomRadioAntennaSystem.GetInstance();
+		if (!system) return;
+		
+		isValid = true;
+		pSystem = system;
+		pRadio = radio;
+		
+		int index = system.m_aRadiostations.Find(radio.m_RadioStation);
+		if (index < 0) return;
+		
+		pCurrentRadioIndex = index;
+	}
 }

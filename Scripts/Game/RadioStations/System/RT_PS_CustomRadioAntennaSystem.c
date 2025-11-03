@@ -483,4 +483,12 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		if (onVehicleDamageStateChanged)
 			onVehicleDamageStateChanged.Remove(OnVehicleDamaged);
 	}
+	
+	static RT_PS_CustomRadioAntennaSystem GetInstance()
+	{
+		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
+		if (!world) return null;
+		
+		return RT_PS_CustomRadioAntennaSystem.Cast(world.FindSystem(RT_PS_CustomRadioAntennaSystem));	
+	}
 }

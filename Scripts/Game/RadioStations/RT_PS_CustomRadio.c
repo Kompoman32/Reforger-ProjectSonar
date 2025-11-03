@@ -96,7 +96,7 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	void ActionChangeStation() {		
+	void ActionChangeStation(int stationIndex = -1) {		
 		if (Replication.IsClient()) {
 			return;
 		}
@@ -106,7 +106,14 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 			return;
 		}
 		
-		++m_iRadioStationIndex;
+		if (stationIndex >= 0)
+		{
+			m_iRadioStationIndex = stationIndex;
+		}
+		else 
+		{
+			++m_iRadioStationIndex;
+		}
 		
 		if (m_iRadioStationIndex >= m_RadioSystem.GetRadiostaionsCount()) 
 		{
