@@ -35,7 +35,7 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 		
 		if (!m_RadioComponent && !m_bInStaticProp) 
 		{
-			m_RadioComponent = RT_PS_Utils.FindRadioComponent(pOwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_CustomRadioComponent.FindRadioComponent(pOwnerEntity, m_sSlotName);
 		};
 		
 		const ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
@@ -65,7 +65,7 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 	override bool CanBeShownScript(IEntity user)
 	{		
 		if (!m_RadioComponent && !m_bInStaticProp) {
-			m_RadioComponent = RT_PS_Utils.FindRadioComponent(p_OwnerEntity, m_sSlotName);
+			m_RadioComponent = RT_PS_CustomRadioComponent.FindRadioComponent(p_OwnerEntity, m_sSlotName);
 		};
 		
 		if (m_RadioComponent && !m_RadioComponent.IsActive())
