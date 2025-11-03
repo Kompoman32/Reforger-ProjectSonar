@@ -2,8 +2,19 @@
 [BaseContainerProps(), SCR_BaseEditorAttributeCustomTitle()]
 class RT_PS_Radio_Attribute_Enabled: SCR_BaseFloatValueHolderEditorAttribute
 {	
+	[Attribute("0", "Should this attribute shows on Vehicle or Entity Tab")]
+	protected bool m_bIsVehicleAttribute;
+	
 	override SCR_BaseEditorAttributeVar ReadVariable(Managed item, SCR_AttributesManagerEditorComponent manager)
 	{
+		SCR_EditableEntityComponent editableEntity = SCR_EditableEntityComponent.Cast(item);
+		if (!editableEntity)
+			return null;
+		
+		Vehicle vehicleEntity = Vehicle.Cast(editableEntity.GetOwner());
+		
+		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
+		
 		bool isValid = false;
 		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
@@ -46,8 +57,19 @@ class RT_PS_Radio_Attribute_Enabled: SCR_BaseFloatValueHolderEditorAttribute
 [BaseContainerProps(), SCR_BaseEditorAttributeCustomTitle()]
 class RT_PS_Radio_Attribute_Volume: SCR_BaseValueListEditorAttribute
 {	
+	[Attribute("0", "Should this attribute shows on Vehicle or Entity Tab")]
+	protected bool m_bIsVehicleAttribute;
+	
 	override SCR_BaseEditorAttributeVar ReadVariable(Managed item, SCR_AttributesManagerEditorComponent manager)
 	{	
+		SCR_EditableEntityComponent editableEntity = SCR_EditableEntityComponent.Cast(item);
+		if (!editableEntity)
+			return null;
+		
+		Vehicle vehicleEntity = Vehicle.Cast(editableEntity.GetOwner());
+		
+		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
+		
 		bool isValid = false;
 		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
@@ -77,10 +99,21 @@ class RT_PS_Radio_Attribute_Volume: SCR_BaseValueListEditorAttribute
 [BaseContainerProps(), SCR_BaseEditorAttributeCustomTitle()]
 class RT_PS_Radio_Attribute_RadioStations: SCR_BaseFloatValueHolderEditorAttribute
 {	
+	[Attribute("0", "Should this attribute shows on Vehicle or Entity Tab")]
+	protected bool m_bIsVehicleAttribute;
+	
 	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
 	
 	override SCR_BaseEditorAttributeVar ReadVariable(Managed item, SCR_AttributesManagerEditorComponent manager)
 	{		
+		SCR_EditableEntityComponent editableEntity = SCR_EditableEntityComponent.Cast(item);
+		if (!editableEntity)
+			return null;
+		
+		Vehicle vehicleEntity = Vehicle.Cast(editableEntity.GetOwner());
+		
+		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
+		
 		bool isValid = false;
 		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;

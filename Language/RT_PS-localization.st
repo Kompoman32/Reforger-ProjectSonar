@@ -117,6 +117,30 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{66C70435CC67170E}" {
+   Id "RT_PS-Editor_ContextAction_ChangeStation_Name"
+   Target_en_us "Change radio station"
+   Target_ru_ru "Сменить радиостанцию"
+   Modified 1724322376
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C70437B400F433}" {
+   Id "RT_PS-Editor_ContextAction_FixRadio_Name"
+   Target_en_us "Fix radio"
+   Target_ru_ru "Починить радио"
+   Modified 1724322596
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{66C70435936EE2A6}" {
+   Id "RT_PS-Editor_ContextAction_ToggleRadio_Name"
+   Target_en_us "Toggle Radio"
+   Target_ru_ru "Переключить радио"
+   Modified 1724321366
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_PS-OnOffActionName"
    Target_en_us "Radio"
