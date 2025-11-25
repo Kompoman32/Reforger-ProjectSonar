@@ -3,7 +3,7 @@ GameProject {
  GUID "62E354B50264C08F"
  TITLE "Project Sonar - Car Radio Stations"
  Dependencies {
-  "58D0FB3206B6F859" "621D3771875C1D3D"
+  "58D0FB3206B6F859"
  }
  Configurations {
   GameProjectConfig PC {

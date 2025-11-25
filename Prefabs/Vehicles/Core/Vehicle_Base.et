@@ -5,7 +5,7 @@ Vehicle {
    Slots {
     EntitySlotInfo CustomRadio {
      Enabled 0
-     Prefab "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et"
+     Prefab "{F12AE57766D0C58D}Prefabs/Props/Civilian/MyNewCarRadio.et"
      DisablePhysicsInteraction 1
     }
    }

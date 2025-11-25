@@ -1,0 +1,20 @@
+GenericEntity {
+ ID "66F2CA04B819BBEB"
+ components {
+  MeshObject "{66F2CA05BCA8155E}" {
+   Object "{88846BCD51E322AE}Assets/Props/Signs/Industrial/SignIndustrial_30x100_01_NoParking.xob"
+  }
+  RT_PS_CustomRadioComponent "{66F2CA0475C0A251}" {
+  }
+  RigidBody "{66F2CA045EA87944}" {
+   ResponseIndex "TinyDestructible"
+   ModelGeometry 1
+  }
+  RplComponent "{66F2CA0449084D15}" {
+   "Rpl State Override" Runtime
+  }
+  Hierarchy "{66F2CA047B02E170}" {
+  }
+ }
+ coords -1.48 -1.905 -0.197
+}
