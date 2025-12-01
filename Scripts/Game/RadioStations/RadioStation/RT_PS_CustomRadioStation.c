@@ -23,6 +23,7 @@ class RT_PS_CustomRadioStation
 	ref array<string> m_aDjTracksNames;
 	
 	protected int m_lLastTrackIndex = -1;
+	protected int m_lLastDJTrackIndex = -1;
 	
 	ref array<int> m_aTracksIndexes = {};
 	ref array<int> m_aDjTracksIndexes = {};
@@ -81,7 +82,15 @@ class RT_PS_CustomRadioStation
 		auto trackIndex = GetNewTrackIndex(isDJ);
 		auto trackLength = tracks.Get(tracksIndexes.Get(trackIndex));
 		
-		m_lLastTrackIndex = trackIndex;
+		if (isDJ) 
+		{
+			m_lLastDJTrackIndex = trackIndex;
+		}
+		else 
+		{
+			m_lLastTrackIndex = trackIndex;
+		}
+		
 		
 		RT_PS_CustomRadioStationTrackInfo newTrack = new RT_PS_CustomRadioStationTrackInfo();
 		
@@ -98,26 +107,32 @@ class RT_PS_CustomRadioStation
 	{
 		array<int> tracks = m_aTracksIndexes;
 		
-		if (pIsDj) tracks = m_aDjTracksIndexes;
+		int lastTrackIndex = m_lLastTrackIndex;
+		
+		if (pIsDj)
+		{
+			tracks = m_aDjTracksIndexes;
+			lastTrackIndex = m_lLastDJTrackIndex;
+		}
 		
 		if (tracks.Count() == 1) return 0;
 		
 		if (tracks.Count() == 2) {
-			if (m_lLastTrackIndex == -1) return 0;
+			if (lastTrackIndex == -1) return 0;
 			
-			return 2 - m_lLastTrackIndex - 1;
+			return 2 - lastTrackIndex - 1;
 		}
 		
 		/*
 		int index = Math.RandomInt(0, tracks.Count());
 		
-		while(index == m_lLastTrackIndex) 
+		while(index == lastTrackIndex) 
 		{
 			index = Math.RandomInt(0, tracks.Count());
 		}
 		*/
 		
-		int index = m_lLastTrackIndex + 1;
+		int index = lastTrackIndex + 1;
 		if (index > tracks.Count() - 1) {
 			index = 0;
 		}
