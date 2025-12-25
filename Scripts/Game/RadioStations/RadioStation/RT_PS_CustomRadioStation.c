@@ -28,9 +28,10 @@ class RT_PS_CustomRadioStation
 	ref array<int> m_aTracksIndexes = {};
 	ref array<int> m_aDjTracksIndexes = {};
 	
-	void RT_PS_CustomRadioStation() {
+	void RT_PS_CustomRadioStation() 
+	{
 		if (Replication.IsServer()) 
-		{		
+		{
 			foreach (int i, int value : m_aTracksLengths)
 			{
 				m_aTracksIndexes.Insert(i);
@@ -40,7 +41,17 @@ class RT_PS_CustomRadioStation
 			{
 				m_aDjTracksIndexes.Insert(i);
 			}
-			
+		}
+	}
+	
+	void InitBySettings()
+	{
+		if (Replication.IsClient()) return;
+		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();	
+		
+		if (settings.m_RandomizationMethod == E_RT_PS_RadiostationRandomizationMethod.SHUFFLE_ONCE) 
+		{			
 			SCR_ArrayHelperT<int>.Shuffle(m_aTracksIndexes, 1);
 			SCR_ArrayHelperT<int>.Shuffle(m_aDjTracksIndexes, 1);
 			
@@ -48,7 +59,7 @@ class RT_PS_CustomRadioStation
 			string tracksOrderText =  string.Format("Music [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aTracksIndexes));
 			string tracksDjOrderText =  string.Format("DJ [%1]", RT_PS_Utils.ArrayJoinStringInt(m_aDjTracksIndexes));
 			
-			Print(string.Format("[SONAR] Station %1 tracks order: %2 %3", m_sRadiostationName, tracksOrderText, tracksDjOrderText), LogLevel.DEBUG)			
+			Print(string.Format("[SONAR] Station %1 tracks order: %2 %3", m_sRadiostationName, tracksOrderText, tracksDjOrderText), LogLevel.DEBUG);
 		}
 	}
 
@@ -104,7 +115,7 @@ class RT_PS_CustomRadioStation
 	
 	//------------------------------------------------------------------------------------------------	
 	protected int GetNewTrackIndex(bool pIsDj)
-	{
+	{		
 		array<int> tracks = m_aTracksIndexes;
 		
 		int lastTrackIndex = m_lLastTrackIndex;
@@ -123,20 +134,28 @@ class RT_PS_CustomRadioStation
 			return 2 - lastTrackIndex - 1;
 		}
 		
-		/*
-		int index = Math.RandomInt(0, tracks.Count());
-		
-		while(index == lastTrackIndex) 
-		{
-			index = Math.RandomInt(0, tracks.Count());
-		}
-		*/
-		
 		int index = lastTrackIndex + 1;
 		if (index > tracks.Count() - 1) {
 			index = 0;
 		}
 		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		
+		if (settings.m_RandomizationMethod == E_RT_PS_RadiostationRandomizationMethod.TRUE_RANDOM) 
+		{
+			index = Math.RandomInt(0, tracks.Count());
+		}
+		
+		if (settings.m_RandomizationMethod == E_RT_PS_RadiostationRandomizationMethod.RANDOM_WITHOUT_CONSECUTIVE_REPEATS) 
+		{
+			index = Math.RandomInt(0, tracks.Count());
+			
+			while(index == lastTrackIndex) 
+			{
+				index = Math.RandomInt(0, tracks.Count());
+			}	
+		}
+
 		return index;		
 	}
 	

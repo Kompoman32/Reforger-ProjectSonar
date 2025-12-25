@@ -1,0 +1,7 @@
+enum E_RT_PS_RadiostationRandomizationMethod
+{
+	SHUFFLE_ONCE = 0,
+	NO_SHUFFLE = 1,
+	TRUE_RANDOM = 2,
+	RANDOM_WITHOUT_CONSECUTIVE_REPEATS = 3,
+}

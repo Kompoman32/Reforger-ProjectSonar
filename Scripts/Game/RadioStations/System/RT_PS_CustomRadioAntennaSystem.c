@@ -15,18 +15,29 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	[RplProp()]
 	bool m_bAllowFixRadios = false;
 	
+	bool m_bInited = false;
+	
 	IEntity m_owner;
 
 	protected int m_iRadiostationsCount = 0;
 	protected ref array<WorldTimestamp> m_aRadiostationsTimes = {};
 	protected ref map<EntityID, RT_PS_CustomRadioComponent> m_activeRadios = new map<EntityID, RT_PS_CustomRadioComponent>;
-
+	
+	[RplProp()]
+	protected ref array<int> m_aSettingsRadiostationIndexes = {};
+	
+	[RplProp()]
+	bool m_bSettingsHideTelephoneAction = false;
+	
 	//------------------------------------------------------------------------------------------------	
 	override static void InitInfo(WorldSystemInfo outInfo)
 	{
-		outInfo
-			.SetAbstract(false)
-			.AddPoint(ESystemPoint.Frame);
+		WorldSystemInfo info = outInfo.SetAbstract(false);
+		
+		if (Replication.IsServer()) 
+		{
+			info.AddPoint(ESystemPoint.Frame);
+		}		
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -34,10 +45,10 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	{
 		super.OnUpdate(point);
 		
-		const RplId systemRplid = Replication.FindId(this);
-		const RplNode systemRplNode = Replication.FindNode(systemRplid);
-		
-		if (systemRplNode.GetRole() == RplRole.Proxy) return;
+		if (!m_bInited || Replication.IsClient()) 
+		{
+			return;
+		}
 		
 		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
 		
@@ -89,17 +100,32 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		ScriptInvoker onVehicleDamageStateChanged = SCR_VehicleDamageManagerComponent.GetOnVehicleDamageStateChanged();
 		if (onVehicleDamageStateChanged)
 			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
+		
+		m_bInited = true;
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void InitOnClient()
 	{
-				
+		m_bInited = true;
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void InitRadioStations()
-	{								
+	{		
+		// rebuild m_aRadiostations applied by settings
+		array<ref RT_PS_CustomRadioStation> newRadiostations = {};
+		
+		foreach (int i, RT_PS_CustomRadioStation x: m_aRadiostations)
+		{
+			if (m_aSettingsRadiostationIndexes.Contains(i)) 
+			{
+				newRadiostations.Insert(x);
+			}
+		}
+		
+		m_aRadiostations = newRadiostations;
+			
 		ChimeraWorld world = ChimeraWorld.CastFrom(GetGame().GetWorld());
 		WorldTimestamp t;
 		
@@ -108,12 +134,59 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		}
 		
 		foreach (auto x: m_aRadiostations)
-		{
+		{			
 			m_aRadiostationsTimes.Insert(t);
 			m_aRadiostationsTracks.Insert(null);
 		}
 		
 		m_iRadiostationsCount = m_aRadiostations.Count();
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void InitRadioStationsClient()
+	{
+
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	protected void InitSettings()
+	{
+		if (!Replication.IsServer()) return;
+		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		
+		m_bSettingsHideTelephoneAction = settings.m_bHideTelephoneAction;
+		
+		/* Init radiostaions by settings */
+		bool isWhiteList = settings.m_aWhitelist.Count() > 0;
+		bool isBlackList = !isWhiteList && settings.m_aBlacklist.Count() > 0;
+		
+		bool isValid;
+		
+		foreach (int i, RT_PS_CustomRadioStation x: m_aRadiostations)
+		{
+			isValid = true;
+			
+			if (isWhiteList)
+			{
+				isValid = settings.m_aWhitelist.Contains(x.m_sRadiostationName);
+			}
+			else if (isBlackList)
+			{
+				isValid = !settings.m_aBlacklist.Contains(x.m_sRadiostationName);
+			}
+			
+			if (isValid)
+			{
+				m_aSettingsRadiostationIndexes.Insert(i);
+			}
+			
+			x.InitBySettings();
+		}
+		
+
+		
+		Replication.BumpMe();
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -443,6 +516,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	override event protected void OnStarted()
 	{
+		InitSettings();
 		InitRadioStations();
 		
 		if (Replication.IsServer()) 

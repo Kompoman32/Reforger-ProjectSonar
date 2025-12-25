@@ -28,6 +28,15 @@ class RT_PS_CallToRadioAction: ScriptedUserAction
 	{
 		return false;
 	}	
+	
+	//------------------------------------------------------------------------------------------------
+	override bool CanBeShownScript(IEntity user)
+	{	
+		if (!m_RadioSystem) return false;
+		
+		return !m_RadioSystem.m_bSettingsHideTelephoneAction;
+	}
+	
 
 	//------------------------------------------------------------------------------------------------
 	override void PerformAction(IEntity pOwnerEntity, IEntity pUserEntity) {
