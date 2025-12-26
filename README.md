@@ -24,7 +24,8 @@ This mod allows to:
 Additionally:
 1. The tracks continue and switch regardless of whether the radio is on or off (like reallife radio).
 2. Ability to change radio station by calling to radio by phone in houses or phonebooth.
-3. For fixing some syncronization bugs (or other debug features) Game Master can spawn Antenna with Radio
+3. You can change volume of the radio in Audio Settings.
+4. For fixing some syncronization bugs (or other debug features) Game Master can spawn Antenna with Radio
    
    <picture><img src="./images/debug-1.jpg" alt="debug-1.jpg" style="height:200px"></picture>
    <picture><img src="./images/debug-2.jpg" alt="debug-2.jpg" style="height:200px"></picture>
@@ -48,6 +49,34 @@ Additionally:
 <picture><a href="https://reforger.armaplatform.com/workshop/64C54E100E1B89CB" target="_blank" ><img src="./images/govnovoz.png" alt="Govnovoz FM" style="height:100px"></a></picture>
 <picture><a href="https://reforger.armaplatform.com/workshop/65ACCE73483B2D24" target="_blank" ><img src="./images/arabic.png" alt="Arabic FM" style="height:100px"></a></picture> -->
 
+## Settings
+
+You can modify some settings in the server config in missionHeader as field <code>m_ProjectSonar_Settings</code>.
+
+Available Settings:
+
+|Field|Value type|Description|
+|:---|:---|:---|
+|<code>m_aBlacklist</code>|[ <code>"Array"</code> , <code>"Of"</code> , <code>"Names"</code> ]|Stations that should not be available to use (Station names). **Default:** <code>[]</code> |
+|<code>m_aWhitelist</code>|[ <code>"Array"</code> , <code>"Of"</code> , <code>"Names"</code> ]|Stations that should be available to use (Station names). **If filled in, it is used as a list of used stations.** **Default:** <code>[]</code>|
+|<code>m_bHideTelephoneAction</code>|<code>true</code> or <code>false</code>|Hides action to call to the radio on telephones. **Default:** <code>false</code>|
+|<code>m_RandomizationMethod</code>|<ul><li><code>0</code> (SHUFFLE_ONCE)</li><li><code>1</code> (NO_SHUFFLE)</li><li><code>2</code> (TRUE_RANDOM)</li><li><code>3</code> (RANDOM_WITHOUT_CONSECUTIVE_REPEATS)</li></ul>|Randomization method applied to the track list at stations. **Default:** <code>0</code>|
+
+**missionHeader** Example:
+```
+"missionHeader": {
+    "m_ProjectSonar_Settings": {
+      "m_aBlacklist": [
+         "Radio Everon",
+         "Playback FM"
+      ],
+      "m_aWhitelist": [         
+      ],
+      "m_bHideTelephoneAction": true,
+      "m_RandomizationMethod": 2
+    }
+}
+```
 
 ## Create your own RadioStation
 
