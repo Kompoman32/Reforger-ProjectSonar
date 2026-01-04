@@ -151,7 +151,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	protected void InitSettings()
 	{
-		if (!Replication.IsServer()) return;
+		if (Replication.IsClient()) return;
 		
 		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
 		
@@ -183,8 +183,6 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			
 			x.InitBySettings();
 		}
-		
-
 		
 		Replication.BumpMe();
 	}
