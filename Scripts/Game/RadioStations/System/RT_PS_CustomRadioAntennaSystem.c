@@ -45,10 +45,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	{
 		super.OnUpdate(point);
 		
-		if (!m_bInited || Replication.IsClient()) 
-		{
-			return;
-		}
+		if (!m_bInited || Replication.IsClient())  return;
 		
 		WorldTimestamp timeNow_s = ChimeraWorld.CastFrom(GetGame().GetWorld()).GetServerTimestamp();
 		
@@ -77,8 +74,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	
 	//------------------------------------------------------------------------------------------------
 	protected void InitOnServer()
-	{		
-		Print(string.Format("[SONAR] Antenna on Server Inited %1", this), LogLevel.DEBUG);
+	{				
+		InitRadioStations();
 
 		array<string> names = {};
 		
@@ -102,17 +99,21 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 			onVehicleDamageStateChanged.Insert(OnVehicleDamaged);
 		
 		m_bInited = true;
+		
+		Print(string.Format("[SONAR] Antenna on Server Inited %1", this), LogLevel.DEBUG);
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void InitOnClient()
 	{
+		InitRadioStations();
+		
 		m_bInited = true;
 	}
 	
 	//------------------------------------------------------------------------------------------------
 	protected void InitRadioStations()
-	{		
+	{
 		// rebuild m_aRadiostations applied by settings
 		array<ref RT_PS_CustomRadioStation> newRadiostations = {};
 		
@@ -140,12 +141,6 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		}
 		
 		m_iRadiostationsCount = m_aRadiostations.Count();
-	}
-	
-	//------------------------------------------------------------------------------------------------
-	protected void InitRadioStationsClient()
-	{
-
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -230,7 +225,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Broadcast)]
 	protected void RpcDo_UpdateTracks(array<ref RT_PS_CustomRadioStationTrackInfo> pRadiostationsTracks, array<ref RT_PS_CustomRadioStationTrackInfoTimestampWrapper> pRadiostationsTimes)
-	{	
+	{
 		array<WorldTimestamp> newRadiostationsTimes = {};
 		
 		foreach (RT_PS_CustomRadioStationTrackInfoTimestampWrapper x: pRadiostationsTimes)
@@ -353,7 +348,13 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	
 	//------------------------------------------------------------------------------------------------
 	float GetRadioStationTrackOffset(int pStationIndex) {
-		if (pStationIndex < 0 || pStationIndex >= m_aRadiostations.Count() || !m_aRadiostationsTracks[pStationIndex])	 {
+		if (
+			pStationIndex < 0 
+			|| pStationIndex >= m_aRadiostations.Count()
+			|| pStationIndex >= m_aRadiostationsTracks.Count()
+			|| pStationIndex >= m_aRadiostationsTimes.Count()
+			|| !m_aRadiostationsTracks[pStationIndex]
+		)	 {
 			return 0;
 		}
 		
@@ -400,15 +401,20 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	//------------------------------------------------------------------------------------------------
 	void UpdateConnectedRadios(array<WorldTimestamp> pRadiostationsTimes) 
 	{		
+		if (!pRadiostationsTimes) return;
+		
 		foreach (EntityID radioId, RT_PS_CustomRadioComponent radio: m_activeRadios)
 		{
-			int radioStationIndex = radio.m_iRadioStationIndex;
-			
-			auto time = pRadiostationsTimes[radioStationIndex];
-			
 			if (Replication.IsServer()) {
 				radio.ResetPlay();
+				continue;
 			}
+			
+			int radioStationIndex = radio.m_iRadioStationIndex;
+			
+			if (radioStationIndex >= pRadiostationsTimes.Count() || radioStationIndex >= m_aRadiostationsTimes.Count()) continue;
+			
+			auto time = pRadiostationsTimes[radioStationIndex];
 			
 			// 5 second may fix track jumping when we have a lot of radios, maybe a better solution can be found later
 			if (Math.AbsFloat(time.DiffMilliseconds(m_aRadiostationsTimes[radioStationIndex])) > 5000) {
@@ -515,7 +521,6 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	override event protected void OnStarted()
 	{
 		InitSettings();
-		InitRadioStations();
 		
 		if (Replication.IsServer()) 
 		{

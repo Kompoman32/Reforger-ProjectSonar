@@ -40,9 +40,7 @@ class RT_PS_CallToRadioComponent: ScriptComponent {
 	//------------------------------------------------------------------------------------------------
 	[RplRpc(RplChannel.Reliable, RplRcver.Server)]
 	protected void RPC_AskUpdateTrackOnRadios(int selectedRadioIndex) 
-	{				
-		PrintFormat("RPC_AskUpdateTrackOnRadios %1", selectedRadioIndex);
-		
+	{		
 		m_RadioSystem.Debug_UpdateTrack(selectedRadioIndex);
 		
 		GetGame().GetCallqueue().CallLater(m_RadioSystem.Debug_UpdateTrack_2, 100, false, selectedRadioIndex );		
