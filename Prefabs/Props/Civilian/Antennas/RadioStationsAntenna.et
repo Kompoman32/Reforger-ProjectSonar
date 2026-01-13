@@ -1,13 +1,15 @@
 GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_02_base.et" {
  ID "F0DBA538AC2A0552"
  components {
+  SignalsManagerComponent "{685B0E4356A55C56}" {
+  }
   SCR_EditableEntityComponent "{64851B9EA6BEFFD5}" {
    m_UIInfo SCR_EditableEntityUIInfo "{64851B9D882F212F}" {
     Name "#RT_PS-AntennaPropName"
     Icon "{3587F629EF942F58}UI/Textures/Editor/ContentBrowser/ContentBrowser_Theme_Infrastructure.edds"
     m_Image "{9AD6A77A64A91177}UI/Textures/EditorPreviews/Auto/Props/Military/Compositions/USSR/E_Antenna_01_USSR.edds"
     m_aAuthoredLabels {
-     1 13 35
+     ENTITYTYPE_OBJECT FACTION_CIV TRAIT_RADIO
     }
     m_aAutoLabels {
     }
@@ -24,8 +26,10 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     UserActionContext "{648B0D0CA4DFED48}" {
      ContextName "antenna"
      Position PointInfo "{648B0D0CBEBE40CA}" {
-      Offset 0 1.5737 0.1406
+      Offset 0.5142 0.9608 0.289
      }
+     Radius 0.7
+     Height 0.74
     }
    }
    additionalActions {
@@ -77,6 +81,7 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      "Max value" 99999
      m_fAdjustmentStep 1
      m_bLoopAction 1
+     m_sActionDecrease "DeselectAction"
     }
     RT_PS_CustomRadioAntennaDebugAction "{65B0FBD9734286EC}" {
      ParentContextList {
@@ -90,10 +95,96 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
      "Sort Priority" 4
      m_eActionType UPDATE_TRACK
     }
+    RT_PS_CustomRadioAntennaSeekTrackDebugAction "{685AF3264A83843C}" {
+     ParentContextList {
+      "antenna"
+     }
+     UIInfo SCR_ActionContextUIInfo "{685AF32685274CFC}" {
+      Name "Seek track: "
+      m_sIconName "rearm"
+     }
+     Duration -1
+     CanAggregate 1
+     PerformPerFrame 1
+     "Sort Priority" 5
+     "Signal name" "adjust1"
+     "Max value" 60
+     m_fAdjustmentStep 5
+     m_bManualAdjustment 1
+     m_sActionDecrease "DeselectAction"
+    }
    }
   }
   RplComponent "{5CB6D5B3749D59BC}" {
    "Rpl State Override" Runtime
+  }
+ }
+ {
+  GenericEntity : "{172DD50ACF177B9E}Prefabs/Props/Military/Furniture/ChairMilitary_USSR_01.et" {
+   ID "685AF3270D7D9C15"
+   coords 1.045 0.036 0.479
+   angles 0 -97.674 0
+  }
+  GenericEntity : "{3CF7EAA0F05546FF}Prefabs/Props/Furniture/PhoneTable_01_Base.et" {
+   ID "685AE899451F6D4F"
+   components {
+    ActionsManagerComponent "{65C7120E3A327FCA}" {
+     ActionContexts {
+      UserActionContext "{65C7120E3B0FEF1F}" {
+       Radius 0.2
+      }
+     }
+    }
+   }
+   coords 0.542 0.931 0.922
+   angles 0 87.176 0
+  }
+  GenericEntity : "{6415B7923DE28C1B}Prefabs/Weapons/Rifles/SVD/Rifle_SVD_PSO.et" {
+   ID "685AF3270D7D6255"
+   components {
+    ActionsManagerComponent "{A29AE67FF4D82B0F}" {
+     Enabled 0
+    }
+   }
+   coords 0.01 0.326 0.252
+   angles 77.654 53.991 87.354
+  }
+  GenericEntity : "{A764DBC76C2A2FED}Prefabs/Compositions/Misc/SubCompositions/Furniture/Table_RadioStation_FIA_02_CombatSupport.et" {
+   ID "685AE898C9DC6DE8"
+   coords 0.6 0 0.306
+   angles 0 61.057 0
+   {
+    GenericEntity {
+     ID "65C4830EC38C044D"
+     components {
+      ActionsManagerComponent "{508AB5952B584B2E}" {
+       Enabled 0
+      }
+     }
+    }
+   }
+  }
+  GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
+   ID "685AF3270D7D5C16"
+   components {
+    ActionsManagerComponent "{52E71719F5BE5EBB}" {
+     ActionContexts {
+      UserActionContext "{52E71719FB29C551}" {
+       Radius 0
+      }
+      UserActionContext "{649A0B374E79C808}" {
+       Radius 0.2
+      }
+     }
+    }
+   }
+   coords 1.029 0.919 -0.042
+   angles 0 -8.338 0
+  }
+  GenericEntity : "{FCBEDECB2A39B6BC}Prefabs/Props/Military/Generators/GeneratorPortable_USSR_01.et" {
+   ID "685B1E01F3FC48D6"
+   coords -0.21 0 -0.568
+   angles 0 18.075 0
   }
  }
 }

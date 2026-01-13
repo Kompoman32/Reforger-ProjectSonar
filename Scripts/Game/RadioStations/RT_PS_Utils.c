@@ -190,4 +190,28 @@ class RT_PS_Utils {
 		
 		pCurrentRadioIndex = index;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	static RT_PS_CustomRadioAntennaChangeStationDebugAction GetDebugActionCurrentSelectedRadioStation(RT_PS_CustomRadioAntennaSystem pRadioSystem, IEntity pOwnerEntity)
+	{		
+		if (!pRadioSystem) return null;
+		
+		ActionsManagerComponent am = ActionsManagerComponent.Cast(pOwnerEntity.FindComponent(ActionsManagerComponent));
+		
+		if (!am) return null;
+		
+		array<BaseUserAction> actions = {};				
+		am.GetActionsList(actions);
+		
+		foreach(BaseUserAction action: actions)
+		{
+			RT_PS_CustomRadioAntennaChangeStationDebugAction csAction = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(action);
+			if (csAction) 
+			{
+				return csAction;
+			}
+		}
+		
+		return null;
+	}
 }

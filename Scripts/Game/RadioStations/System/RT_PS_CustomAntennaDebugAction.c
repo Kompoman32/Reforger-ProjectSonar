@@ -13,6 +13,7 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 
 	protected IEntity m_Owner;
 	protected RT_PS_CustomRadioAntennaSystem m_RadioSystem;
+	protected RT_PS_CustomRadioAntennaChangeStationDebugAction m_CurrentSelectedRadioStationAction;
 	
 	//------------------------------------------------------------------------------------------------
 	override void Init(IEntity pOwnerEntity, GenericComponent pManagerComponent)
@@ -77,7 +78,7 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 					trackName = string.Format("DJ %1", trackName);
 				}
 
-				outName += string.Format(" %1 - %2s", trackName, timeLeft);
+				outName += string.Format(" %1 - %2s", trackName, timeLeft.ToString(lenDec: 1));
 				
 				break;
 			}
@@ -166,25 +167,14 @@ class RT_PS_CustomRadioAntennaDebugAction: ScriptedUserAction
 	
 	protected int GetCurrentSelectedRadioStationIndex()
 	{
-		if (!m_RadioSystem) return null;
-		
-		ActionsManagerComponent am = ActionsManagerComponent.Cast(m_Owner.FindComponent(ActionsManagerComponent));
-		
-		if (!am) return null;
-		
-		array<BaseUserAction> actions = {};				
-		am.GetActionsList(actions);
-		
-		foreach(BaseUserAction action: actions)
+		if (!m_CurrentSelectedRadioStationAction)
 		{
-			RT_PS_CustomRadioAntennaChangeStationDebugAction csAction = RT_PS_CustomRadioAntennaChangeStationDebugAction.Cast(action);
-			if (csAction) 
-			{
-				return csAction.m_iSelectedRadioIndex;
-			}
+			m_CurrentSelectedRadioStationAction = RT_PS_Utils.GetDebugActionCurrentSelectedRadioStation(m_RadioSystem, m_Owner);
 		}
 		
-		return null;
+		if (!m_RadioSystem || !m_CurrentSelectedRadioStationAction) return null;
+		
+		return m_CurrentSelectedRadioStationAction.m_iSelectedRadioIndex;
 	}
 	
 	//------------------------------------------------------------------------------------------------

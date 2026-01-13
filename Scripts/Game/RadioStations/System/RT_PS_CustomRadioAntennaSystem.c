@@ -516,6 +516,18 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	{		
 		m_bAllowFixRadios = !m_bAllowFixRadios;
 	}
+	
+	//------------------------------------------------------------------------------------------------
+	void Debug_SeekCurrentTrack(int pRadioStationIndex, float pSeekValue)
+	{		
+		if (pRadioStationIndex > m_aRadiostationsTimes.Count()) return;
+		if (!pSeekValue) return;
+		
+		m_aRadiostationsTimes[pRadioStationIndex] = m_aRadiostationsTimes[pRadioStationIndex].PlusSeconds(-pSeekValue);
+		
+		SendTimesToClients();
+	}
+		
 
 	//------------------------------------------------------------------------------------------------
 	override event protected void OnStarted()
