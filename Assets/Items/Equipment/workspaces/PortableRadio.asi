@@ -1,0 +1,121 @@
+AnimSetInstanceSource "{685CC0057C2705A8}" {
+ Template "{CD49DFB1187DF938}Assets/Items/Equipment/workspaces/PortableRadio.ast"
+ Lines {
+  AnimSetInstanceSource_Line "PortableRadio.Cro.Idle" {
+   Resource "{AC7A51EC76EECAA2}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_cro_supplies_kit_idle.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.Idle" {
+   Resource "{215E3CCDCBC16958}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_erc_supplies_kit_IK.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.Fingers" {
+   Resource "{1D4FE712BF51D5B4}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_medical_kit_finger_pose.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.ErcAdj.Idle" {
+   Resource "{69F57676E4777222}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_erc_supplies_kit_adj_IK.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Pne.Idle" {
+   Resource "{AC6851881F2CC515}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_pne_supplies_kit_IK.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.CroAdj.Idle" {
+   Resource "{AC7A51EC76EECAA2}Assets/Items/Equipment/Kits/MedicalKit_01/anims/p_cro_supplies_kit_idle.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunF" {
+   Resource "{311B6F671B5D6E59}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunF" {
+   Resource "{90424589994985A6}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunB" {
+   Resource "{0E9B0641E2280EF5}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunB_Down" {
+   Resource "{7461BB5264EF6480}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_down_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunF_Down" {
+   Resource "{EAB8F89A1F8EEFD3}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_down_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkB_Down" {
+   Resource "{BD37E2F471A34408}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_down_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkF_Down" {
+   Resource "{23EEA13C0AC2CF5B}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_down_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunB_Up" {
+   Resource "{3EA0D2A9EAB7AA78}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_up_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.RunF_Up" {
+   Resource "{A079916191D6212B}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_up_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkB_Up" {
+   Resource "{B1DC14328C5029BF}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_up_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkF_Up" {
+   Resource "{2F0557FAF731A2EC}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_slope_up_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkB" {
+   Resource "{204F753AA2D62A8E}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Cro.WalkF" {
+   Resource "{BE9636F2D9B7A1DD}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_cro_Jerrycan_una_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunB" {
+   Resource "{AFC22CAF603CE50A}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunB_Down" {
+   Resource "{D28F87202A184ED3}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_down_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunF_Down" {
+   Resource "{4C56C4E85179C580}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_down_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkB_Down" {
+   Resource "{A559211787EEE9E2}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_down_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkF_Down" {
+   Resource "{3B8062DFFC8F62B1}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_down_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunB_Up" {
+   Resource "{ED7C59325B39B663}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_up_runB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.RunF_Up" {
+   Resource "{73A51AFA20583D30}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_up_runF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkB_Up" {
+   Resource "{E0843295FFCDB907}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_up_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkF_Up" {
+   Resource "{7E5D715D84AC3254}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_slope_up_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkB" {
+   Resource "{01156E6C43269C0E}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_walkB.anm"
+  }
+  AnimSetInstanceSource_Line "PortableRadio.Erc.WalkF" {
+   Resource "{9FCC2DA43847175D}Assets/Items/Fuel/Jerrycan_01/anims/anm/p_erc_Jerrycan_una_walkF.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.CroErc.Pose" {
+   Resource "{880128AAAE3928BC}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_cro_una_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.CroAdj.Pose" {
+   Resource "{028167A27A9B04E4}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_cro_adj_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.Cro.Pose" {
+   Resource "{771E9F34837D6FBF}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_cro_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.ErcAdj.Pose" {
+   Resource "{E487F2895EEC8E50}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_erc_adj_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.Erc.Pose" {
+   Resource "{8B6AA10B5AE6462F}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_erc_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.ErcLow.Pose" {
+   Resource "{6E07BD818A4EA208}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_erc_una_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.PneLow.Pose" {
+   Resource "{8394DE49808DA43A}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_inspection_pne_una_pose.anm"
+  }
+  AnimSetInstanceSource_Line "Inspection.Pne.Pose" {
+   Resource "{7A057348F49F39FF}Assets/Items/Equipment/Radios/Radio_ANPRC68/anims/anm/p_ANPRC68_pne_pose.anm"
+  }
+ }
+ RBF AnimSetInstanceSourceRBFArray "{685CC005F3600B56}" {
+ }
+}

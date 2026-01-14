@@ -141,6 +141,22 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{685CF10A5560511A}" {
+   Id "RT_PS-Item_PortableRadio_Description"
+   Target_en_us "Take your favorite stations with you!"
+   Target_ru_ru "Возьмите с собой свои любимые радиостанции!"
+   Modified 1750926519
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
+  CustomStringTableItem "{685CF10A5F63DF0A}" {
+   Id "RT_PS-Item_PortableRadio_Name"
+   Target_en_us "Portable Radio"
+   Target_ru_ru "Портативное радио"
+   Modified 1750926534
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_PS-OnOffActionName"
    Target_en_us "Radio"

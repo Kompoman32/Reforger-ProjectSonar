@@ -14,6 +14,10 @@ GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStations
  coords 6455.7 162.12 6477.992
  angles 0 18.922 0
 }
+GenericEntity : "{1353C6EAD1DCFE43}Prefabs/Weapons/Handguns/M9/Handgun_M9.et" {
+ coords 6456.509 163.061 6489.927
+ angles 0 0 -83.632
+}
 Vehicle LAV25_base1 : "{1B8EB269EECA2DF9}Prefabs/Vehicles/Wheeled/LAV25/LAV25_base.et" {
  components {
   ActionsManagerComponent "{C97BE5489221AE18}" {
@@ -56,8 +60,16 @@ GenericEntity : "{288DE4D40D893C91}Prefabs/Props/Furniture/PhoneTable_01/PhoneTa
  coords 6459.677 163.011 6492.667
  angles -0.394 -164.749 -2.03
 }
+GenericEntity : "{318B415001435B17}Prefabs/Props/Civilian/PortableRadio_01_black.et" {
+ coords 6456.25 163.045 6489.493
+ angles 0 66.777 0
+}
 GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
  coords 6452.414 162.306 6495.781
+}
+GenericEntity : "{392C260026E5B037}Prefabs/Props/Civilian/PortableRadio_01_red.et" {
+ coords 6456.708 163.052 6490.373
+ angles 0 157.491 0
 }
 GenericEntity : "{3CF7EAA0F05546FF}Prefabs/Props/Furniture/PhoneTable_01_Base.et" {
  coords 6459.623 163.007 6492.275
@@ -107,10 +119,6 @@ GenericEntity : "{6645BAF208F04426}Prefabs/Props/Furniture/PhoneTable_02.et" {
 GenericEntity : "{77787EE24EC156F0}PrefabLibrary/DefaultLibrary/Props/Civilian/TableOld_01/TableOld_01.et" {
  coords 6456.431 162.149 6489.955
  angles 1.222 -60.164 -0.331
-}
-GenericEntity : "{818571DF82B787FF}PrefabsEditable/Auto/Props/Civilian/E_RadioSmall_01_black.et" {
- coords 6456.258 163.045 6489.473
- angles -0.887 91.577 0.932
 }
 Vehicle UAZ452_base1 : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
  coords 6445.843 162.327 6496.559
@@ -1901,10 +1909,6 @@ Vehicle M998_covered1 : "{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_co
 SCR_DestructibleBuildingEntity : "{B5963E922C972A4A}Prefabs/Structures/Infrastructure/Landlines/PhoneBooth_E/PhoneBooth_E_01.et" {
  coords 6462.741 0.17 6490.185
  angles 0 64.723 0
-}
-GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
- coords 6456.708 163.051 6490.345
- angles -1.167 142.995 -0.378
 }
 Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
  coords 6510.53 161.781 6470.365
@@ -3723,14 +3727,4 @@ SCR_DestructibleEntity : "{E116180B5DCD5EFF}PrefabLibrary/DefaultLibrary/Props/C
 Vehicle M151A1 : "{F649585ABB3706C4}Prefabs/Vehicles/Wheeled/M151A2/M151A2.et" {
  coords 6438.177 162.219 6493.614
  angles 0 -15 0
-}
-$grp GenericEntity : "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et" {
- {
-  coords 6456.854 163.344 6475.891
-  angles 0 80.262 0
- }
- {
-  coords 6456.174 163.344 6480.14
-  angles 0 80.262 0
- }
 }

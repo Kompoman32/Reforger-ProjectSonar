@@ -1,0 +1,999 @@
+AnimSrcGraphFile {
+ Sheets {
+  AnimSrcGraphSheet PortableRadio {
+   Nodes {
+    AnimSrcNodeSourceSync "WalkB_Up_Anim 14483" {
+     EditorPos 44.902 30.842
+     Source "PortableRadio.WalkB_Up"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeBlendN "WalkF_Slope_BlendN 12483" {
+     EditorPos 32.102 30.042
+     NodeGroup ""
+     BlendWeight "( FloorAngle * cos(rad(MovementDirection)) ) + ( FloorAngleLateral * sin(rad(MovementDirection)) )"
+     Thresholds {
+      -30 0 30
+     }
+     Children {
+      "WalkF_Down_Anim 30001" "WalkF_Anim 21245" "WalkF_Up_Anim 22541"
+     }
+     SelectMainPath 1
+    }
+    AnimSrcNodeCtxEnd "Ctx End 11300" {
+     EditorPos 21.602 26.642
+     Child "Blend 29606"
+    }
+    AnimSrcNodeBufferUse "Buffer Use 16675" {
+     EditorPos 25.032 27.633
+     BufferName "FullBody"
+    }
+    AnimSrcNodePose "Pose 12414" {
+     EditorPos 31.441 10.644
+     Source "PortableRadio.Erc.Fingers"
+    }
+    AnimSrcNodeBlend "Blend 31891" {
+     EditorPos 32.202 21.942
+     BlendWeight "ADSAdjust"
+     Child0 "AimY_Compensate_ErcAdjF 15788"
+     Child1 "AimY_Compensate_ErcF 10835"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeSourceSync "RunF_Down_Anim 36554" {
+     EditorPos 36.002 31.042
+     Source "PortableRadio.RunF_Down"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeSourceSync "WalkB_Anim 12537" {
+     EditorPos 43.802 31.742
+     Source "PortableRadio.WalkB"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeGroupSelect "Group Select 20854" {
+     EditorPos 39.302 25.642
+     Child "Blend 34593"
+     Group "PortableRadio"
+     Column "Cro"
+    }
+    AnimSrcNodeBlend "Blend 29771" {
+     EditorPos 44.302 21.942
+     BlendWeight "ADSAdjust"
+     Child0 "AimY_Compensate_ErcAdjB 13844"
+     Child1 "AimY_Compensate_ErcB 12117"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeEvent "Equip Sound 13000" {
+     EditorPos 28.302 0.742
+     Child "MasterControl_old 41780"
+     Events {
+      AnimSrcEventGeneric "{5E24F9C7E7C2A474}" {
+       Name "Sound"
+       InitOnly 0
+       Condition "true"
+       Once 1
+       UserString "SOUND_CHAR_MEDIC_KIT_EQUIP.lefthand"
+      }
+     }
+    }
+    AnimSrcNodeBlend "Blend 32122" {
+     EditorPos 46.602 28.142
+     BlendWeight "normalize(MovementSpeed, 1, 2)"
+     Child0 "WalkB_Slope_BlendN 22406"
+     Child1 "RunB_Slope_BlendN 41484"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 31738" {
+     EditorPos 21.602 25.642
+     Child "Ctx End 11300"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftArm"
+       Space Pivot
+       Op Rotate
+       Amount "-0.3"
+       PivotBone "Spine5"
+      }
+     }
+    }
+    AnimSrcNodeGroupSelect "Group Select 29192" {
+     EditorPos 25.702 21.742
+     Child "Pose 18595"
+     Group "PortableRadio"
+     Column "Pne"
+    }
+    AnimSrcNodeGroupSelect "Group Select 24911" {
+     EditorPos 34.102 25.542
+     Child "Blend 34593"
+     Group "PortableRadio"
+     Column "Erc"
+    }
+    AnimSrcNodeSourceSync "WalkF_Up_Anim 22541" {
+     EditorPos 33.302 31.042
+     Source "PortableRadio.WalkF_Up"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeSourceSync "RunB_Down_Anim 14631" {
+     EditorPos 47.802 30.942
+     Source "PortableRadio.RunB_Down"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodePose "Pose 18595" {
+     EditorPos 21.802 34.142
+     Source "PortableRadio.Idle"
+    }
+    AnimSrcNodeGroupSelect "Group Select 41320" {
+     EditorPos 51.402 25.442
+     Child "Blend 32122"
+     Group "PortableRadio"
+     Column "Cro"
+    }
+    AnimSrcNodeSourceSync "RunF_Up_Anim 41071" {
+     EditorPos 38.402 31.042
+     Source "PortableRadio.RunF_Up"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeBlendN "WalkB_Slope_BlendN 22406" {
+     EditorPos 43.802 30.042
+     NodeGroup ""
+     BlendWeight "( FloorAngle * cos(rad(MovementDirection)) ) + ( FloorAngleLateral * sin(rad(MovementDirection)) )"
+     Thresholds {
+      -30 0 30
+     }
+     Children {
+      "WalkB_Down_Anim 31743" "WalkB_Anim 12537" "WalkB_Up_Anim 14483"
+     }
+     SelectMainPath 1
+    }
+    AnimSrcNodeBlend "FingerPoseB 25899" {
+     EditorPos 28.141 9.344
+     BlendWeight "1"
+     Child0 "Blend T 17907"
+     Child1 "Pose 12414"
+     Optimization "Always eval both"
+    }
+    AnimSrcNodeSourceSync "WalkF_Down_Anim 30001" {
+     EditorPos 31.002 31.042
+     Source "PortableRadio.WalkF_Down"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeIK2Target "IK2 Target 37949" {
+     EditorPos 21.493 24.642
+     Child "AimY_Compensate_ErcAdj 31738"
+     Chains {
+      AnimSrcIkTargetBinding "{5F08BB4F5335CF95}" {
+       IkTarget "LeftArmIK"
+       IkChain "LeftArm"
+      }
+     }
+    }
+    AnimSrcNodeBlend MasterControl {
+     EditorPos 28.228 -0.658
+     BlendWeight "1"
+     Child0 "Buffer Use 17081"
+     Child1 "Equip Sound 13000"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdjF 15788" {
+     EditorPos 31.102 24.342
+     Child "Group Select 35327"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.2"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Y
+       Space Model
+       Op Rotate
+       Amount "-0.3* sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeStateMachine "LocoPoseSTM 16319" {
+     EditorPos 35.002 18.542
+     states {
+      AnimSrcNodeState Erc {
+       EditorPos 32.202 20.242
+       Child "Blend 31891"
+       StartCondition "Stance == 0"
+      }
+      AnimSrcNodeState Cro {
+       EditorPos 39.202 20.242
+       Child "AimY_Compensate_CroF 11256"
+       StartCondition "Stance == 1"
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5DC8E0711DD745EB}" {
+       FromState "Erc"
+       ToState "Cro"
+       Duration "0.2"
+       Condition "Stance == 1"
+      }
+      AnimSrcNodeTransition "{5DD49551A692E496}" {
+       FromState "Cro"
+       ToState "Erc"
+       Duration "0.2"
+       Condition "Stance == 0"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_CroF 11256" {
+     EditorPos 39.202 24.442
+     Child "Group Select 20854"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.2"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Y
+       Space Model
+       Op Rotate
+       Amount "-0.15* sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeBlendT "Blend T 17907" {
+     EditorPos 28.202 12.042
+     BlendTime "0.4"
+     Condition "MovementSpeed > 0"
+     Child0 "IK 23461"
+     Child1 "Time Use 15495"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeSourceSync "RunF_Anim 14766" {
+     EditorPos 37.302 31.842
+     Source "PortableRadio.RunF"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeIK2 "IK 23461" {
+     EditorPos 23.502 14.042
+     Child "IdlePoseSTM 34654"
+     Chains {
+      AnimSrcIkBinding "{5F08BB4F630C8BCD}" {
+       IkTarget "LeftArmIK"
+       IkChain "LeftArm"
+      }
+     }
+     Solver AnimSrcNodeIK2TwoBoneSolver "{5F08BB4F6598921E}" {
+     }
+     Version 1
+    }
+    AnimSrcNodeTimeUse "Time Use 15495" {
+     EditorPos 36.902 12.642
+     Child "LocomotionSTM 37584"
+     TimeName "LocomotionTime"
+     TimeType "Normalized Time"
+    }
+    AnimSrcNodeGroupSelect "Group Select 35327" {
+     EditorPos 31.102 25.542
+     Child "Blend 34593"
+     Group "PortableRadio"
+     Column "Cro"
+    }
+    AnimSrcNodeBlendN "RunF_Slope_BlendN 38656" {
+     EditorPos 37.202 30.042
+     NodeGroup ""
+     BlendWeight "( FloorAngle * cos(rad(MovementDirection)) ) + ( FloorAngleLateral * sin(rad(MovementDirection)) )"
+     Thresholds {
+      -30 0 30
+     }
+     Children {
+      "RunF_Down_Anim 36554" "RunF_Anim 14766" "RunF_Up_Anim 41071"
+     }
+     SelectMainPath 1
+    }
+    AnimSrcNodeGroupSelect "Group Select 38208" {
+     EditorPos 46.202 25.542
+     Child "Blend 32122"
+     Group "PortableRadio"
+     Column "Erc"
+    }
+    AnimSrcNodePose "Pose 17526" {
+     EditorPos 21.702 30.042
+     Source "PortableRadio.Idle"
+     Time "ADSAdjust"
+    }
+    AnimSrcNodeSourceSync "WalkF_Anim 21245" {
+     EditorPos 32.102 31.842
+     Source "PortableRadio.WalkF"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeStateMachine "MasterControl_old 41780" {
+     EditorPos 28.402 6.033
+     states {
+      AnimSrcNodeState Idle {
+       EditorPos 28.26 7.196
+       Child "FingerPoseB 25899"
+       StartCondition "true"
+       TimeStorage "Real Time"
+      }
+      AnimSrcNodeState Inspecting {
+       EditorPos 38.139 7.22
+       Child "AimY_Compensate_ErcAdj 12886"
+       TimeStorage "Real Time"
+       IsExit 1
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5DC896C0C28D9751}" {
+       FromState "Idle"
+       ToState "Inspecting"
+       Duration "0.25"
+       Condition "ItemInspectionState != 0"
+       BlendFn "S"
+       Events {
+        AnimSrcEventGeneric "{685CE252E09B0D97}" {
+         Name "Sound"
+         UserString "SOUND_CHAR_MOVEMENT_RADIO_INSPECT.LeftHand"
+        }
+       }
+      }
+      AnimSrcNodeTransition "{5DC896C0C28D974A}" {
+       FromState "Inspecting"
+       ToState "Idle"
+       Duration "0.25"
+       Condition "RemainingTimeLess(0.3) || ItemInspectionState == 0"
+       BlendFn "S"
+       PostEval 1
+       Events {
+        AnimSrcEventGeneric "{685CE253174C24BC}" {
+         Name "Sound"
+         UserString "SOUND_CHAR_MOVEMENT_RADIO_INSPECT_OUT.LeftHand"
+        }
+       }
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 35081" {
+     EditorPos 16.502 24.442
+     Child "Group Select 24887"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.2"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Z
+       Space Model
+       Op Rotate
+       Amount "-0.05"
+      }
+     }
+    }
+    AnimSrcNodeBlendN "RunB_Slope_BlendN 41484" {
+     EditorPos 49.002 30.042
+     NodeGroup ""
+     BlendWeight "( FloorAngle * cos(rad(MovementDirection)) ) + ( FloorAngleLateral * sin(rad(MovementDirection)) )"
+     Thresholds {
+      -30 0 30
+     }
+     Children {
+      "RunB_Down_Anim 14631" "RunB_Anim 24626" "RunB_Up_Anim 27041"
+     }
+     SelectMainPath 1
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_Erc 40051" {
+     EditorPos 24.102 24.542
+     Child "Ctx End 11300"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.12"
+      }
+     }
+    }
+    AnimSrcNodeSourceSync "RunB_Up_Anim 27041" {
+     EditorPos 50.202 30.942
+     Source "PortableRadio.RunB_Up"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeGroupSelect "Group Select 42168" {
+     EditorPos 43.202 25.542
+     Child "Blend 32122"
+     Group "PortableRadio"
+     Column "Cro"
+    }
+    AnimSrcNodeSourceSync "WalkB_Down_Anim 31743" {
+     EditorPos 42.702 30.942
+     Source "PortableRadio.WalkB_Down"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeProcTransform "Procedural 19254" {
+     EditorPos 21.402 23.442
+     Child "IK2 Target 37949"
+     Expression "normalize(AimY, 30, -90)"
+     IkTargets {
+      AnimSrcNodeProcTrIkTargetItem "{5F08BB4F44C81DF6}" {
+       IkTarget "LeftArmIK"
+       Axis Y
+       Op Translate
+       Amount "-0.2"
+      }
+     }
+    }
+    AnimSrcNodeBufferUse "Buffer Use 17081" {
+     EditorPos 24.902 0.542
+     BufferName "FullbodyGadget"
+    }
+    AnimSrcNodeBlend "Blend 29606" {
+     EditorPos 21.799 27.585
+     BlendWeight "1"
+     Child0 "Buffer Use 16675"
+     Child1 "Group Select 13015"
+     Optimization "Always eval both"
+    }
+    AnimSrcNodeBlend "Blend 18953" {
+     EditorPos 21.802 22.242
+     BlendWeight "ADSAdjust"
+     Child0 "Procedural 19254"
+     Child1 "AimY_Compensate_Erc 40051"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_Erc 12383" {
+     EditorPos 19.002 23.142
+     Child "Group Select 28637"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.12"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Z
+       Space Model
+       Op Rotate
+       Amount "-0.05"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcB 12117" {
+     EditorPos 46.102 24.542
+     Child "Group Select 38208"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.12"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Z
+       Space Model
+       Op Rotate
+       Amount "0.08 * sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeGroupSelect "Group Select 28637" {
+     EditorPos 19.002 24.242
+     Child "Pose 18595"
+     Group "PortableRadio"
+     Column "Erc"
+    }
+    AnimSrcNodeBlend "Blend 34593" {
+     EditorPos 34.902 28.042
+     BlendWeight "normalize(MovementSpeed, 1, 2)"
+     Child0 "WalkF_Slope_BlendN 12483"
+     Child1 "RunF_Slope_BlendN 38656"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeSourceSync "RunB_Anim 24626" {
+     EditorPos 49.002 31.742
+     Source "PortableRadio.RunB"
+     Looptype Loop
+     SyncLine "WalkRun"
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 26641" {
+     EditorPos 16.502 23.142
+     Child "AimY_Compensate_ErcAdj 35081"
+     Expression "1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Z
+       Space Model
+       Op Rotate
+       Amount "0.25"
+      }
+     }
+    }
+    AnimSrcNodeStateMachine "LocoPoseSTM 34396" {
+     EditorPos 47.002 18.542
+     states {
+      AnimSrcNodeState Erc {
+       EditorPos 44.202 20.242
+       Child "Blend 29771"
+       StartCondition "Stance == 0"
+      }
+      AnimSrcNodeState Cro {
+       EditorPos 51.202 20.242
+       Child "AimY_Compensate_CroB 12935"
+       StartCondition "Stance == 1"
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5DC8E0711DD745EB}" {
+       FromState "Erc"
+       ToState "Cro"
+       Duration "0.2"
+       Condition "Stance == 1"
+      }
+      AnimSrcNodeTransition "{5DD49551A692E496}" {
+       FromState "Cro"
+       ToState "Erc"
+       Duration "0.2"
+       Condition "Stance == 0"
+      }
+     }
+    }
+    AnimSrcNodeGroupSelect "Group Select 24887" {
+     EditorPos 16.502 25.642
+     Child "Pose 18595"
+     Group "PortableRadio"
+     Column "ErcAdj"
+    }
+    AnimSrcNodeStateMachine "LocomotionSTM 37584" {
+     EditorPos 36.902 13.842
+     NodeGroup ""
+     states {
+      AnimSrcNodeState Forward {
+       EditorPos 35.302 15.042
+       NodeGroup ""
+       Child "LocoPoseSTM 16319"
+       StartCondition "inRange(MovementDirection, -100, 100)"
+       TimeStorage Inherit
+       IsExit 0
+      }
+      AnimSrcNodeState Back {
+       EditorPos 46.602 15.042
+       NodeGroup ""
+       Child "LocoPoseSTM 34396"
+       StartCondition "!inRange(MovementDirection, -100, 100)"
+       TimeStorage Inherit
+       IsExit 0
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5190AC4BE1BF1930}" {
+       FromState "Forward"
+       ToState "Back"
+       Duration "0.3"
+       StartTime ""
+       Condition "MovementDirection < -93 "\
+       "||"\
+       "MovementDirection > 93"
+       BlendFn "S"
+       PostEval 1
+       MotionVecBlend 0x33 0
+      }
+      AnimSrcNodeTransition "{5190AC4BE1BF193F}" {
+       FromState "Back"
+       ToState "Forward"
+       Duration "0.3"
+       StartTime ""
+       Condition "MovementDirection > -93 && MovementDirection < 93"
+       BlendFn "S"
+       PostEval 1
+       MotionVecBlend 0x33 0
+      }
+     }
+    }
+    AnimSrcNodeBlend "Blend 32421" {
+     EditorPos 17.302 21.742
+     BlendWeight "ADSAdjust"
+     Child0 "AimY_Compensate_ErcAdj 26641"
+     Child1 "AimY_Compensate_Erc 12383"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeCtxBegin "Ctx Begin 14603" {
+     EditorPos 21.602 21.342
+     Child "Blend 18953"
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcF 10835" {
+     EditorPos 34.002 24.242
+     Child "Group Select 24911"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.12"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Z
+       Space Model
+       Op Rotate
+       Amount "-0.08 * sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeStateMachine "IdlePoseSTM 34654" {
+     EditorPos 21.502 18.442
+     states {
+      AnimSrcNodeState Erc {
+       EditorPos 17.502 20.142
+       Child "Blend 32421"
+       StartCondition "Stance == 0"
+       TimeStorage "Real Time"
+       IsExit 1
+      }
+      AnimSrcNodeState Cro {
+       EditorPos 21.302 19.842
+       Child "Ctx Begin 14603"
+       StartCondition "Stance == 1"
+       TimeStorage "Real Time"
+       IsExit 1
+      }
+      AnimSrcNodeState Pne {
+       EditorPos 25.602 20.142
+       Child "Group Select 29192"
+       StartCondition "Stance == 2"
+       TimeStorage "Real Time"
+       IsExit 1
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5DC8E0711DD745EB}" {
+       FromState "Erc"
+       ToState "Cro"
+       Duration "0.2"
+       Condition "Stance == 1"
+      }
+      AnimSrcNodeTransition "{5DD49551A692E496}" {
+       FromState "Cro"
+       ToState "Erc"
+       Duration "0.2"
+       Condition "Stance == 0"
+      }
+      AnimSrcNodeTransition "{5DD49551A692E485}" {
+       FromState "Cro"
+       ToState "Pne"
+      }
+      AnimSrcNodeTransition "{5DD49551A692E4BE}" {
+       FromState "Pne"
+       ToState "Cro"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_CroB 12935" {
+     EditorPos 51.202 24.242
+     Child "Group Select 41320"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.2"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Y
+       Space Model
+       Op Rotate
+       Amount "0.15* sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdjB 13844" {
+     EditorPos 43.202 24.442
+     Child "Group Select 42168"
+     Expression "rad(AimY)"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5DDA78EE6513B65A}" {
+       Bone "LeftArm"
+       Space Model
+       Op Rotate
+       Amount "-0.2"
+      }
+      AnimSrcNodeProcTrBoneItem "{5DDC8AADBB827CC6}" {
+       Bone "LeftArm"
+       Axis Y
+       Space Model
+       Op Rotate
+       Amount "0.3* sin(rad(MovementDirection))"\
+       ""\
+       "// fixes bad roll of left hand when strafing"
+      }
+     }
+    }
+    AnimSrcNodeGroupSelect "Group Select 13015" {
+     EditorPos 21.602 28.642
+     Child "Pose 17526"
+     Group "PortableRadio"
+     Column "CroAdj"
+    }
+    AnimSrcNodeGroupSelect "Group Select 41296" {
+     EditorPos 60.064 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "ErcAdj"
+    }
+    AnimSrcNodeGroupSelect "CroLowG 37346" {
+     EditorPos 64.864 24.892
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Erc"
+    }
+    AnimSrcNodeGroupSelect "Group Select 11396" {
+     EditorPos 62.364 24.892
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Erc"
+    }
+    AnimSrcNodeGroupSelect "Group Select 19964" {
+     EditorPos 79.964 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Erc"
+    }
+    AnimSrcNodeStateMachine InspectionLowRas {
+     EditorPos 70.864 14.192
+     states {
+      AnimSrcNodeState Ras {
+       EditorPos 67.764 14.892
+       Child "InspectionRas"
+       StartCondition "!Low"
+      }
+      AnimSrcNodeState Low {
+       EditorPos 74.864 14.892
+       Child "InspectionLow"
+       StartCondition "Low"
+      }
+     }
+     transitions {
+      AnimSrcNodeTransition "{5AEAF62E83BC3853}" {
+       FromState "Ras"
+       ToState "Low"
+       Duration "0.3"
+       Condition "Low && HasVariableChanged(Low)"
+       PostEval 1
+      }
+      AnimSrcNodeTransition "{5AEAF62E83BC3842}" {
+       FromState "Low"
+       ToState "Ras"
+       Duration "0.3"
+       Condition "!Low && HasVariableChanged(Low) "
+       PostEval 1
+      }
+     }
+    }
+    AnimSrcNodeStateMachine InspectionRas {
+     EditorPos 64.964 21.592
+     states {
+      AnimSrcNodeState ErcRas {
+       Tags {
+        "rass"
+       }
+       EditorPos 62.064 22.392
+       Child "Blend 16449"
+       StartCondition "Stance == 0"
+       IsExit 1
+      }
+      AnimSrcNodeState CroRas {
+       EditorPos 65.064 22.392
+       Child "Blend 29093"
+       StartCondition "Stance == 1"
+       IsExit 1
+      }
+      AnimSrcNodeState PneRas {
+       EditorPos 67.764 22.392
+       Child "Group Select 25923"
+       StartCondition "Stance == 2"
+       IsExit 1
+      }
+     }
+    }
+    AnimSrcNodeGroupSelect "Group Select 25840" {
+     EditorPos 82.564 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "PneLow"
+    }
+    AnimSrcNodeBlend "Blend 14496" {
+     EditorPos 75.164 23.492
+     BlendWeight "ADSAdjust"
+     Child0 "Group Select 16364"
+     Child1 "Group Select 14888"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeGroupSelect "CroLowG 40010" {
+     EditorPos 77.764 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Erc"
+    }
+    AnimSrcNodeBlend "Blend 34856" {
+     EditorPos 78.064 23.492
+     BlendWeight "ADSAdjust"
+     Child0 "CroLowG 40010"
+     Child1 "Group Select 19964"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeGroupSelect "Group Select 16364" {
+     EditorPos 73.164 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "ErcAdj"
+    }
+    AnimSrcNodeBlend "Blend 29093" {
+     EditorPos 65.064 23.892
+     BlendWeight "ADSAdjust"
+     Child0 "CroLowG 37346"
+     Child1 "Group Select 40288"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeGroupSelect "Group Select 14888" {
+     EditorPos 75.464 24.792
+     Child "Source 28854"
+     Group "Inspection"
+     Column "ErcLow"
+    }
+    AnimSrcNodeGroupSelect "Group Select 25923" {
+     EditorPos 69.464 24.892
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Pne"
+    }
+    AnimSrcNodeSource "Source 28854" {
+     EditorPos 73.364 28.592
+     Source "Inspection.Pose"
+     Looptype Loop
+    }
+    AnimSrcNodeGroupSelect "Group Select 40288" {
+     EditorPos 67.064 24.892
+     Child "Source 28854"
+     Group "Inspection"
+     Column "Cro"
+    }
+    AnimSrcNodeBlend "Blend 16449" {
+     EditorPos 61.964 23.792
+     BlendWeight "ADSAdjust"
+     Child0 "Group Select 41296"
+     Child1 "Group Select 11396"
+     Optimization "Skip blended out"
+    }
+    AnimSrcNodeStateMachine InspectionLow {
+     EditorPos 77.964 21.792
+     states {
+      AnimSrcNodeState PneLow {
+       EditorPos 81.064 22.492
+       Child "Group Select 25840"
+       StartCondition "Stance == 2"
+       IsExit 1
+      }
+      AnimSrcNodeState ErcLow {
+       Tags {
+        "low"
+       }
+       EditorPos 75.164 22.392
+       Child "Blend 14496"
+       StartCondition "Stance == 0 && Low"
+       IsExit 1
+      }
+      AnimSrcNodeState CroLow {
+       EditorPos 78.064 22.492
+       Child "Blend 34856"
+       StartCondition "Stance == 1"
+       IsExit 1
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 33912" {
+     EditorPos 65.96 9.991
+     Child "InspectionLowRas"
+     Expression "0.1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftHandProp"
+       Space Pivot
+       Op Translate
+       Amount "0.10"
+       PivotBone "LeftHand"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 33880" {
+     EditorPos 66.105 9.121
+     Child "AimY_Compensate_ErcAdj 33912"
+     Expression "0.1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftHandProp"
+       Axis Z
+       Op Rotate
+       Amount "43"
+       PivotBone "LeftHand"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 12886" {
+     EditorPos 66.279 6.532
+     Child "AimY_Compensate_ErcAdj 29235"
+     Expression "0.1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftHandProp"
+       Axis Y
+       Op Translate
+       Amount "-2.75"
+       PivotBone "LeftHand"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 34074" {
+     EditorPos 66.215 8.067
+     Child "AimY_Compensate_ErcAdj 33880"
+     Expression "0.1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftHandProp"
+       Axis Y
+       Op Rotate
+       Amount "-30"
+       PivotBone "LeftHand"
+      }
+     }
+    }
+    AnimSrcNodeProcTransform "AimY_Compensate_ErcAdj 29235" {
+     EditorPos 66.261 7.346
+     Child "AimY_Compensate_ErcAdj 34074"
+     Expression "0.1"
+     Bones {
+      AnimSrcNodeProcTrBoneItem "{5F08BB4D99EEF1B9}" {
+       Bone "LeftHandProp"
+       Op Translate
+       Amount "-0.9"
+       PivotBone "LeftHand"
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,88 @@
+GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
+ ID "5246C095726F8F40"
+ components {
+  InventoryItemComponent "{685C9B6CA33C8EC4}" {
+   Attributes SCR_ItemAttributeCollection "{685C9B6CB5D74DB5}" {
+    ItemDisplayName SCR_InventoryUIInfo "{5DD4DBE3C105B86B}" {
+     Name "#RT_PS-Item_PortableRadio_Name"
+     Description "#RT_PS-Item_PortableRadio_Description"
+    }
+    ItemPhysAttributes ItemPhysicalAttributes "{5DD4DBE3B2A2ED67}" {
+     Weight 2.7
+     SizeSetupStrategy Manual
+     ItemVolume 7686
+     ActivePhysicalSimulation Collision
+    }
+    ItemAnimationAttributes ItemAnimationAttributes "{5DDCF8290918210C}" {
+     AnimationAttachments {
+      AnimationAttachmentInfo "{685CC00B36F8091F}" {
+       AnimGraph "{9F2252F56A0B7A78}Assets/Items/Equipment/workspaces/PortalRadio.agr"
+       AnimInstance "{32D1EC6A33B17F25}Assets/Items/Equipment/workspaces/PortableRadio.asi"
+       BindingName "Gadget"
+      }
+     }
+     HandAdditiveTranslation 0 -0.03 0
+     AllowInspection 1
+    }
+    CustomAttributes {
+     CharacterModifierAttributes "{5DDCF82A5028B807}" {
+      SpeedLimit 9999
+      ADSSpeedLimit 9999
+      SpeedLimitItemPrimaryAction 9999
+      SpeedLimitHighready 9999
+      AllowReloadingWithRoll 1
+     }
+     PreviewRenderAttributes "{5DD4DBE3A542A70B}" {
+      CameraDistanceToItem 0.4
+     }
+     SCR_SelectionMenuPreviewAttributes "{685CA28D8B7FAECC}" {
+      m_fCustomFov 25
+      m_fIconSizeXMultiplier 1.25
+     }
+    }
+    CommonItemType "RADIO"
+    m_Size SLOT_2x2
+    m_eQuickSlotSize SLOT_1x1
+    m_SlotType SLOT_GADGETS_STORAGE
+    m_bStackable 1
+   }
+  }
+  RT_PS_PortableRadioGadgetComponent "{685CA28329707856}" {
+   m_eAnimVariable ADRIANOV
+  }
+  ActionsManagerComponent "{52E71719F5BE5EBB}" {
+   ActionContexts {
+    UserActionContext "{649A0B374E79C808}" {
+     Position PointInfo "{649A0B374E79C87B}" {
+      Offset -0.1296 0.029 0.0487
+     }
+     Radius 0.1
+     Omnidirectional 1
+     VisibilityAngle 0
+     LineOfSightCheck 1
+    }
+    UserActionContext "{685CF1091079360B}" {
+     ContextName "default"
+     Position PointInfo "{685CF1092446D7A5}" {
+      Offset 0.0002 0.2686 0.0116
+     }
+     Radius 0.2
+    }
+   }
+   additionalActions {
+    SCR_PickUpItemAction "{685C9B6D74C16CCA}" {
+     ParentContextList {
+      "default"
+     }
+     UIInfo UIInfo "{685C9B6D89D0D68C}" {
+      Name "#AR-Inventory_PickUp"
+     }
+     VisibilityRange -1
+     CanAggregate 1
+     "Sort Priority" -100
+    }
+   }
+  }
+ }
+ coords 0 0 0
+}

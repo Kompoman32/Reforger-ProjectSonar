@@ -1,0 +1,48 @@
+AnimSetTemplateSource {
+ Groups {
+  AnimSetTemplateSource_AnimationGroup "{685CDEAF050B6163}" {
+   Name "Inspection"
+   Animations {
+    "In"
+    "Out"
+    "Pose"
+   }
+   Columns {
+    "Cro"
+    "CroAdj"
+    "CroErc"
+    "Erc"
+    "ErcAdj"
+    "ErcLow"
+    "Pne"
+    "PneLow"
+   }
+  }
+  AnimSetTemplateSource_AnimationGroup "{685CC007476B0C78}" {
+   Name "PortableRadio"
+   Animations {
+    "Fingers"
+    "Idle"
+    "RunB"
+    "RunB_Down"
+    "RunB_Up"
+    "RunF"
+    "RunF_Down"
+    "RunF_Up"
+    "WalkB"
+    "WalkB_Down"
+    "WalkB_Up"
+    "WalkF"
+    "WalkF_Down"
+    "WalkF_Up"
+   }
+   Columns {
+    "Cro"
+    "CroAdj"
+    "Erc"
+    "ErcAdj"
+    "Pne"
+   }
+  }
+ }
+}

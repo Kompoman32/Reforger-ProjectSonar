@@ -1,0 +1,98 @@
+AnimSrcGraph {
+ AnimSetTemplate "{CD49DFB1187DF938}Assets/Items/Equipment/workspaces/PortableRadio.ast"
+ AnimSyncTable "{1441CB0682DD58CE}Assets/Items/Fuel/workspaces/Jerrycan_SyncTable.asy"
+ ControlTemplate AnimSrcGCT "{685CC00539CDC484}" {
+  Variables {
+   AnimSrcGCTVarFloat MovementSpeed {
+    MaxValue 3
+   }
+   AnimSrcGCTVarFloat ADSAdjust {
+    DefaultValue 1
+    MaxValue 1
+   }
+   AnimSrcGCTVarInt Stance {
+    MaxValue 2
+   }
+   AnimSrcGCTVarFloat AimY {
+    MinValue -90
+    MaxValue 90
+   }
+   AnimSrcGCTVarFloat MovementDirection {
+    MinValue -180
+    MaxValue 180
+   }
+   AnimSrcGCTVarFloat FloorAngle {
+    MinValue -30
+    MaxValue 30
+   }
+   AnimSrcGCTVarFloat FloorAngleLateral {
+    MinValue -60
+    MaxValue 60
+   }
+   AnimSrcGCTVarBool HasLocomotionInput {
+   }
+   AnimSrcGCTVarBool Low {
+   }
+   AnimSrcGCTVarBool ItemInspectionState {
+   }
+  }
+  Commands {
+   AnimSrcGCTCmd CMD_Item_Action {
+   }
+  }
+  IkChains {
+   AnimSrcGCTIkChain LeftArm {
+    Joints {
+     "leftarm"
+     "leftarmtwist"
+     "leftforearm"
+     "leftforearmtwist"
+     "lefthand"
+    }
+    MiddleJoint "leftforearm"
+    ChainAxis "+y"
+   }
+   AnimSrcGCTIkChain LeftLeg {
+    Joints {
+     "leftleg"
+     "leftlegtwist"
+     "leftknee"
+     "leftkneetwist"
+     "leftfoot"
+    }
+    MiddleJoint "leftknee"
+    ChainAxis "+y"
+   }
+   AnimSrcGCTIkChain RightLeg {
+    Joints {
+     "rightleg"
+     "rightlegtwist"
+     "rightknee"
+     "rightkneetwist"
+     "rightfoot"
+    }
+    MiddleJoint "rightknee"
+    ChainAxis "-y"
+   }
+  }
+  BoneMasks {
+   AnimSrcGCTBoneMask LeftHand {
+    Bones {
+     "LeftShoulder"
+     "LeftArm"
+    }
+   }
+   AnimSrcGCTBoneMask leftProp {
+    Bones {
+     "LeftHandProp"
+    }
+   }
+  }
+ }
+ Debug AnimSrcGD "{685CC00539CDC4B5}" {
+ }
+ GraphFilesResourceNames {
+  "{F0B5A70BB11B44FB}Assets/Items/Equipment/workspaces/PortableRadio.agf"
+ }
+ DefaultRunNode "MasterControl"
+}

@@ -1,0 +1,17 @@
+GenericEntity : "{810A4F91EC58951A}Prefabs/Props/Civilian/PortableRadio_01_Base.et" {
+ ID "5246C095726F8F40"
+ components {
+  MeshObject "{5872F0EB7FA40561}" {
+   Materials {
+    MaterialAssignClass "{685CF10BF550E84F}" {
+     SourceMaterial "MLOD"
+     AssignedMaterial "{564BF5C68F409414}Assets/Props/Civilian/RadioSmall_01/Data/RadioSmall_01_Black_MLOD.emat"
+    }
+    MaterialAssignClass "{685CF10BF550E872}" {
+     SourceMaterial "main"
+     AssignedMaterial "{C7EA82CC7F146C1E}Assets/Props/Civilian/RadioSmall_01/Data/RadioSmall_01_Black.emat"
+    }
+   }
+  }
+ }
+}
