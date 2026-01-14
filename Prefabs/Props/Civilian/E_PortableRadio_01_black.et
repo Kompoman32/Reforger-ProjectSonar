@@ -13,5 +13,11 @@ GenericEntity : "{810A4F91EC58951A}Prefabs/Props/Civilian/PortableRadio_01_Base.
     }
    }
   }
+  SCR_EditableEntityComponent "{685D2C77436D5F95}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{685D2C779A4EA30A}" {
+    Name "#AR-EditableEntity_RadioSmall_01_black_Name"
+    m_Image "{5F27F1E24582AD5B}UI/Textures/EditorPreviews/Auto/Props/Civilian/E_RadioSmall_01_black.edds"
+   }
+  }
  }
 }

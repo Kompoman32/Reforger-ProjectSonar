@@ -32,20 +32,30 @@ class RT_PS_PortableRadioGadgetComponent : SCR_GadgetComponent
 		{
 			RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(m_Owner.FindComponent(RT_PS_CustomRadioComponent));	
 			
-			if (!radio || radio.IsActive()) return;	
+			if (!radio || !radio.m_RadioSystem || radio.IsActive()) return;	
 			
 			radio.Activate(m_Owner);
-			
-			return;
 		}
 		
 		if (mode == EGadgetMode.IN_STORAGE)
 		{
 			RT_PS_CustomRadioComponent radio = RT_PS_CustomRadioComponent.Cast(m_Owner.FindComponent(RT_PS_CustomRadioComponent));	
 			
-			if (!radio || !radio.IsActive()) return;	
+			if (!radio || !radio.m_RadioSystem) return;	
 			
-			radio.Deactivate(m_Owner);
+			if (radio.m_RadioSystem.m_bPortableRadioPlaysFromInventory)
+			{
+				if (!radio.IsActive()) {
+					radio.Activate(m_Owner);
+				}	
+			}
+			else 
+			{
+				if (radio.IsActive()) {
+					radio.Deactivate(m_Owner);
+				}	
+			}
+			
 		}
 	}
 }

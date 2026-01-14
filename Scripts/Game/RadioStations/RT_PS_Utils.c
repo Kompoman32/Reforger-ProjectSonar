@@ -1,4 +1,6 @@
 class RT_PS_Utils {
+	static const ref RT_PS_ItemWithRadioComponentPredicate ITEM_WITH_RADIO_PREDICATE = new RT_PS_ItemWithRadioComponentPredicate();
+	
 	static string ArrayJoinStringInt(array<int> arr) {
 		int count = arr.Count();
 	
@@ -68,11 +70,47 @@ class RT_PS_Utils {
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	static void FindAllRadioComponentsInSlots(IEntity pEntity, notnull out array<RT_PS_CustomRadioComponent> radioComps)
+	static bool HasRadioComponents(IEntity pEntity)
+	{		
+		if (!pEntity) return false;
+		
+		RT_PS_CustomRadioComponent radioComp = RT_PS_CustomRadioComponent.Cast(pEntity.FindComponent(RT_PS_CustomRadioComponent));
+		
+		if (radioComp) return true;
+		
+		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pEntity.FindComponent(SlotManagerComponent));
+		if (!slotManager) return false;
+		
+		IEntity attachedEntity;
+		
+		array<EntitySlotInfo> slots = {};		
+		slotManager.GetSlotInfos(slots);
+		
+		foreach (EntitySlotInfo slot : slots)
+		{			
+			attachedEntity = slot.GetAttachedEntity();
+			
+			if (!attachedEntity) continue;
+			
+			radioComp = RT_PS_CustomRadioComponent.Cast(attachedEntity.FindComponent(RT_PS_CustomRadioComponent));
+			
+			if (!radioComp) continue;
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static void FindAllRadioComponents(IEntity pEntity, notnull out array<RT_PS_CustomRadioComponent> radioComps)
 	{		
 		if (!pEntity) return;
 		
-		RT_PS_CustomRadioComponent radioComp;
+		RT_PS_CustomRadioComponent radioComp = RT_PS_Utils.FindRadioComponentInEntity(pEntity);
+		
+		if (radioComp)
+			radioComps.Insert(radioComp);
 		
 		SlotManagerComponent slotManager = SlotManagerComponent.Cast(pEntity.FindComponent(SlotManagerComponent));
 		if (!slotManager) return;
@@ -96,6 +134,25 @@ class RT_PS_Utils {
 		}
 		
 		return;
+	}
+	
+	//------------------------------------------------------------------------------------------------
+	static void FindAllPortableRadioComponentsInInvetory(IEntity pEntity, notnull out array<RT_PS_CustomRadioComponent> radioComps)
+	{		
+		if (!pEntity) return;
+		
+		InventoryStorageManagerComponent invComp = InventoryStorageManagerComponent.Cast(pEntity.FindComponent(InventoryStorageManagerComponent));
+		if (!invComp)
+			return;
+		
+		array<IEntity> foundItems = {};
+
+		invComp.FindItems(foundItems, ITEM_WITH_RADIO_PREDICATE);
+		
+		foreach(IEntity item: foundItems)
+		{			
+			RT_PS_Utils.FindAllRadioComponents(item, radioComps);
+		}
 	}
 	
 	//------------------------------------------------------------------------------------------------
@@ -213,5 +270,14 @@ class RT_PS_Utils {
 		}
 		
 		return null;
+	}
+}
+
+class RT_PS_ItemWithRadioComponentPredicate : InventorySearchPredicate
+{
+	//------------------------------------------------------------------------------------------------
+	override protected bool IsMatch(BaseInventoryStorageComponent storage, IEntity item, array<GenericComponent> queriedComponents, array<BaseItemAttributeData> queriedAttributes)
+	{
+		return RT_PS_Utils.HasRadioComponents(item);
 	}
 }

@@ -50,6 +50,9 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
   RT_PS_PortableRadioGadgetComponent "{685CA28329707856}" {
    m_eAnimVariable ADRIANOV
   }
+  SCR_EditableEntityComponent "{685D2C77436D5F95}" {
+   m_Flags 28672
+  }
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {
     UserActionContext "{649A0B374E79C808}" {

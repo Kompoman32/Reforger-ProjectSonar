@@ -157,6 +157,14 @@ StringTable {
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }
+  CustomStringTableItem "{685D21D4BB198954}" {
+   Id "RT_PS-Item_Radio_Base_Name"
+   Target_en_us "Radio"
+   Target_ru_ru "Радио"
+   Modified 1750935683
+   Author "Kompoman32"
+   LastChanged "Kompoman32"
+  }
   CustomStringTableItem "{64852ED364D7E339}" {
    Id "RT_PS-OnOffActionName"
    Target_en_us "Radio"

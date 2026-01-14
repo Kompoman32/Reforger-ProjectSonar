@@ -1,5 +1,5 @@
 MetaFileClass {
- Name "{392C260026E5B037}Prefabs/Props/Civilian/PortableRadio_01_red.et"
+ Name "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et"
  Configurations {
   EntityTemplateResourceClass PC {
   }

@@ -29,6 +29,9 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	[RplProp()]
 	bool m_bSettingsHideTelephoneAction = false;
 	
+	[RplProp()]
+	bool m_bPortableRadioPlaysFromInventory = false;
+	
 	//------------------------------------------------------------------------------------------------	
 	override static void InitInfo(WorldSystemInfo outInfo)
 	{
@@ -151,6 +154,7 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
 		
 		m_bSettingsHideTelephoneAction = settings.m_bHideTelephoneAction;
+		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
 		
 		/* Init radiostaions by settings */
 		bool isWhiteList = settings.m_aWhitelist.Count() > 0;
@@ -290,7 +294,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		IEntity vehicle = pDamageManager.GetOwner();
 		
 		array<RT_PS_CustomRadioComponent> radios = {};
-		RT_PS_Utils.FindAllRadioComponentsInSlots(vehicle, radios);
+		RT_PS_Utils.FindAllRadioComponents(vehicle, radios);
+		RT_PS_Utils.FindAllPortableRadioComponentsInInvetory(vehicle, radios);
 		
 		foreach (RT_PS_CustomRadioComponent radio: radios)
 		{

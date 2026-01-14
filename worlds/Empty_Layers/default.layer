@@ -1910,6 +1910,10 @@ SCR_DestructibleBuildingEntity : "{B5963E922C972A4A}Prefabs/Structures/Infrastru
  coords 6462.741 0.17 6490.185
  angles 0 64.723 0
 }
+GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et" {
+ coords 6456.713 162.143 6489.834
+ angles 0 123.873 0
+}
 Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
  coords 6510.53 161.781 6470.365
 }

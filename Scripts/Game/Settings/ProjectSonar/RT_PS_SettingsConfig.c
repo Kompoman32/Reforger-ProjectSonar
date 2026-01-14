@@ -16,6 +16,9 @@ class RT_PS_SettingsConfig
 	[Attribute("0", desc: "Randomization method applied to the track list at stations", uiwidget: UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(E_RT_PS_RadiostationRandomizationMethod))]
 	E_RT_PS_RadiostationRandomizationMethod m_RandomizationMethod;	
 	
+	[Attribute("0", desc: "Allows Portable Radio to play inside inventory")]
+	bool m_bPortableRadioPlaysFromInventory = false;
+	
 	void SetFromHeader(notnull RT_PS_MissionHeaderSettings settings)
 	{		
 		if (settings.m_aBlacklist)
@@ -30,5 +33,6 @@ class RT_PS_SettingsConfig
 		
 		m_bHideTelephoneAction = settings.m_bHideTelephoneAction;
 		m_RandomizationMethod = settings.m_RandomizationMethod;
+		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
 	}
 }

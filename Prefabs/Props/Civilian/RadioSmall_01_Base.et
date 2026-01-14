@@ -1,4 +1,4 @@
-GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et" {
+GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/DestructibleMultiPhase_Props_Base.et" {
  ID "5246C095726F8F40"
  components {
   SignalsManagerComponent "{54B2D26FB0868A48}" {
@@ -18,6 +18,21 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/Destructible_Props_Base.et
   }
   RigidBody "{5872F0EB7DFB5A9D}" {
    Static 0
+  }
+  SCR_EditableEntityComponent "{685D2C77436D5F95}" {
+   m_UIInfo SCR_EditableEntityUIInfo "{685D2C779A4EA30A}" {
+    Name "#AR-EditableEntity_RadioSmall_01_red_Name"
+    m_Image "{F8FC85311B0396F2}UI/Textures/EditorPreviews/Auto/Props/Civilian/E_RadioSmall_01_red.edds"
+    m_aAuthoredLabels {
+    }
+    m_aAutoLabels {
+     ENTITYTYPE_OBJECT SIZE_XS
+    }
+   }
+   m_bAutoRegister ALWAYS
+   m_fMaxDrawDistance 200
+   m_AccessKey DEFAULT
+   m_Flags NON_DELETABLE
   }
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {

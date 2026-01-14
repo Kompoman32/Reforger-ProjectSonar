@@ -1,0 +1,8 @@
+GenericEntity : "{F76340CCD79DCC5A}Prefabs/Props/Civilian/RadioSmall_01_red.et" {
+ ID "55DAD3EB503C5D5A"
+ components {
+  SCR_EditableEntityComponent "{685D2C77436D5F95}" {
+   Enabled 0
+  }
+ }
+}
