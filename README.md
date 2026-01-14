@@ -25,7 +25,12 @@ Additionally:
 1. The tracks continue and switch regardless of whether the radio is on or off (like reallife radio).
 2. Ability to change radio station by calling to radio by phone in houses or phonebooth.
 3. You can change volume of the radio in Audio Settings.
-4. For fixing some syncronization bugs (or other debug features) Game Master can spawn Antenna with Radio
+4. Bring a radio with you by getting a portable radio from the arsenal.
+   
+<picture><img src="./images/feature-4.png" alt="feature-4.png" style="height:200px"></picture>
+<picture><img src="./images/feature-5.png" alt="feature-5.png" style="height:200px"></picture>
+
+5. For fixing some syncronization bugs (or other debug features) Game Master can spawn Antenna with Radio 
    
    <picture><img src="./images/debug-1.jpg" alt="debug-1.jpg" style="height:200px"></picture>
    <picture><img src="./images/debug-2.jpg" alt="debug-2.jpg" style="height:200px"></picture>
@@ -61,6 +66,7 @@ Available Settings:
 |<code>m_aWhitelist</code>|[ <code>"Array"</code> , <code>"Of"</code> , <code>"Names"</code> ]|Stations that should be available to use (Station names). **If filled in, it is used as a list of used stations.** **Default:** <code>[]</code>|
 |<code>m_bHideTelephoneAction</code>|<code>true</code> or <code>false</code>|Hides action to call to the radio on telephones. **Default:** <code>false</code>|
 |<code>m_RandomizationMethod</code>|<ul><li><code>0</code> (SHUFFLE_ONCE)</li><li><code>1</code> (NO_SHUFFLE)</li><li><code>2</code> (TRUE_RANDOM)</li><li><code>3</code> (RANDOM_WITHOUT_CONSECUTIVE_REPEATS)</li></ul>|Randomization method applied to the track list at stations. **Default:** <code>0</code>|
+|<code>m_bPortableRadioPlaysFromInventory</code>|<code>true</code> or <code>false</code>|Allows Portable Radio to play inside inventory. **Default:** <code>false</code>|
 
 **missionHeader** Example:
 ```
@@ -73,7 +79,8 @@ Available Settings:
       "m_aWhitelist": [         
       ],
       "m_bHideTelephoneAction": true,
-      "m_RandomizationMethod": 2
+      "m_RandomizationMethod": 2,
+      "m_bPortableRadioPlaysFromInventory": true
     }
 }
 ```
