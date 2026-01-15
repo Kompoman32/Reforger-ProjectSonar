@@ -2,7 +2,8 @@
 
 To create a new radio station, you need to do the following:
 
-- [Tutorial to create your own](#tutorial-to-create-your-own)
+- [Tutorial to create your own radio station](#tutorial-to-create-your-own-radio-station)
+  - [Adding dependencies](#adding-dependencies)
   - [Project creation](#project-creation)
   - [Duplicating audio project file](#duplicating-audio-project-file)
   - [Adding music tracks](#adding-music-tracks)
@@ -11,15 +12,31 @@ To create a new radio station, you need to do the following:
   - [Testing](#testing)
   - [Publishing](#publishing)
 
-## Project creation
+## Adding dependencies
 
-You need to create a new Project in Arma Reforger Tools
+Download Project Sonar from the workshop.
+
+<picture><img src="./images/0.png" alt="image-0.png" style="width:auto; height: 200px"></picture>
+
+Then find the folder with your mods. By default it is:
+
+<code>%UserProfile%\Documents\My Games\ArmaReforger\profile\addons</code>
+
+if you didnt change it.
+
+You need to add two mods as existed project in Arma Reforger Tools.
 
 <picture><img src="./images/1.png" alt="image-1.png" style="width:auto; height: 300px"></picture>
-<picture><img src="./images/2.png" alt="image-2.png" style="width:auto; height: 300px"></picture>
 
 > [!IMPORTANT]
-> Add ProjectSonarRadio as a dependency.
+> Add **CarRadio4All_621D3771875C1D3D** and **ProjectSonar-RadioStations_62E354B50264C08F**.
+
+## Project creation
+
+You need to create a new Project in Arma Reforger Tools and add **ProjectSonarRadio** and **CarStereo1986** as a dependecnies.
+
+
+<picture><img src="./images/2.png" alt="image-2.png" style="width:auto; height: 300px"></picture>
 
 > [!TIP]
 > You can also see more information about creating a project at [BI wiki](https://community.bohemia.net/wiki/Arma_Reforger:Mod_Project_Setup).
