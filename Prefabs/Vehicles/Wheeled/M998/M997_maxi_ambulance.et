@@ -8,6 +8,7 @@ Vehicle : "{B1C4A3DA3987202E}Prefabs/Vehicles/Wheeled/M998/M997_maxi_ambulance_b
    Slots {
     EntitySlotInfo radio {
      Enabled 0
+     Prefab ""
     }
    }
   }

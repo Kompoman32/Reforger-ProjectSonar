@@ -11,6 +11,7 @@ Vehicle : "{256CF92D598E7163}Prefabs/Vehicles/Wheeled/M998/M998_uncovered_base.e
    Slots {
     EntitySlotInfo radio {
      Enabled 0
+     Prefab ""
     }
    }
   }

@@ -17,6 +17,7 @@ Vehicle : "{4AE9D080927D3CB9}Prefabs/Vehicles/Wheeled/S1203/S1203_base.et" {
     }
     EntitySlotInfo radio {
      Enabled 0
+     Prefab ""
     }
    }
   }

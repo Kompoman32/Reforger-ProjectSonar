@@ -53,6 +53,22 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
   SCR_EditableEntityComponent "{685D2C77436D5F95}" {
    m_Flags 28672
   }
+  SCR_SoundDataComponent "{68DABCF5CCCC2F60}" {
+   m_aAudioSourceConfiguration {
+    SCR_AudioSourceConfiguration "{68DABCF5C171C4D2}" {
+     m_sSoundProject "{12A94705DF2BFD25}Sounds/Items/_SharedData/PickUp/Items_PickUp_Generic.acp"
+     m_sSoundEventName "SOUND_PICK_UP"
+    }
+    SCR_AudioSourceConfiguration "{68DABCF5DE7F388A}" {
+     m_sSoundProject "{12A94705DF2BFD25}Sounds/Items/_SharedData/PickUp/Items_PickUp_Generic.acp"
+     m_sSoundEventName "SOUND_EQUIP"
+    }
+    SCR_AudioSourceConfiguration "{68DABCF5DE032C33}" {
+     m_sSoundProject "{AB8565C1703DB914}Sounds/Items/_SharedData/Drop/Items_Drop_RearmKit.acp"
+     m_sSoundEventName "SOUND_DROP"
+    }
+   }
+  }
   ActionsManagerComponent "{52E71719F5BE5EBB}" {
    ActionContexts {
     UserActionContext "{649A0B374E79C808}" {

@@ -17,6 +17,7 @@ Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
     }
     EntitySlotInfo radio {
      Enabled 0
+     Prefab ""
     }
    }
   }

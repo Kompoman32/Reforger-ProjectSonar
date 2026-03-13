@@ -1215,14 +1215,6 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
      RegisterDamage 1
      RegisterCompartments 1
     }
-    EntitySlotInfo radio {
-     PivotID "v_body"
-     Offset 0 0.618 0.7623
-     Angles 0 180 0
-     Enabled 0
-     Prefab "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et"
-     DisablePhysicsInteraction 1
-    }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
@@ -3228,13 +3220,6 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
      MergePhysics 1
      Prefab "{8C29E423099B0C5A}Prefabs/Props/Military/SupplyBox/SupplyPortableContainers/SupplyPortableContainer_01/SupplyPortableContainers_01_medium_Vehicle.et"
     }
-    EntitySlotInfo radio {
-     PivotID "v_body"
-     Offset 0.0435 0.7944 1.6783
-     Angles 18.7307 -180 0
-     Prefab "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et"
-     DisablePhysicsInteraction 1
-    }
    }
   }
   ActionsManagerComponent "{C97BE5489221AE18}" {
@@ -3708,9 +3693,6 @@ Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.
      Offset -0.008 -0.4982 0.4569
      Angles 24.0476 0 180
      Enabled 1
-    }
-    EntitySlotInfo radio {
-     Enabled 0
     }
    }
   }
