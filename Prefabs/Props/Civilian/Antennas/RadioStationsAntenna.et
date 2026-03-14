@@ -122,6 +122,15 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
  {
   GenericEntity : "{172DD50ACF177B9E}Prefabs/Props/Military/Furniture/ChairMilitary_USSR_01.et" {
    ID "685AF3270D7D9C15"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     "Parent Node From Parent Entity" 0
+     AutoHierarchy 1
+    }
+    Hierarchy "{68DD576A51F3CE36}" {
+     MergePhysics 1
+    }
+   }
    coords 1.045 0.036 0.479
    angles 0 -97.674 0
   }
@@ -135,6 +144,13 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
       }
      }
     }
+    RplComponent "{5624A88DC2D9928D}" {
+     "Parent Node From Parent Entity" 0
+     AutoHierarchy 1
+    }
+    Hierarchy "{68DD576A6D36FCC5}" {
+     MergePhysics 1
+    }
    }
    coords 0.542 0.931 0.922
    angles 0 87.176 0
@@ -145,15 +161,47 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
     ActionsManagerComponent "{A29AE67FF4D82B0F}" {
      Enabled 0
     }
+    RplComponent "{E052E71DCB007AF2}" {
+     "Rpl State Override" None
+     AutoHierarchy 1
+    }
+    Hierarchy "{E893278B93B2D937}" {
+     MergePhysics 1
+    }
    }
    coords 0.01 0.326 0.252
    angles 77.654 53.991 87.354
   }
   GenericEntity : "{A764DBC76C2A2FED}Prefabs/Compositions/Misc/SubCompositions/Furniture/Table_RadioStation_FIA_02_CombatSupport.et" {
    ID "685AE898C9DC6DE8"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     "Parent Node From Parent Entity" 0
+     AutoHierarchy 1
+    }
+    Hierarchy "{68DD576A62699833}" {
+     MergePhysics 1
+    }
+   }
    coords 0.6 0 0.306
    angles 0 61.057 0
    {
+    GenericEntity {
+     ID "65C4830EC38C0448"
+     components {
+      Hierarchy "{68DD59672569D559}" {
+       MergePhysics 1
+      }
+     }
+    }
+    GenericEntity {
+     ID "65C4830EC38C0449"
+     components {
+      Hierarchy "{68DD596735B94680}" {
+       MergePhysics 1
+      }
+     }
+    }
     GenericEntity {
      ID "65C4830EC38C044D"
      components {
@@ -183,6 +231,15 @@ GenericEntity : "{ECC9B3FF4D1C478B}Prefabs/Props/Military/Compositions/Antenna_0
   }
   GenericEntity : "{FCBEDECB2A39B6BC}Prefabs/Props/Military/Generators/GeneratorPortable_USSR_01.et" {
    ID "685B1E01F3FC48D6"
+   components {
+    RplComponent "{5624A88DC2D9928D}" {
+     "Parent Node From Parent Entity" 0
+     AutoHierarchy 1
+    }
+    Hierarchy "{68DD576A7F92EE32}" {
+     MergePhysics 1
+    }
+   }
    coords -0.21 0 -0.568
    angles 0 18.075 0
   }

@@ -12,6 +12,9 @@ GenericEntity : "{10C26F96EF7A8CF5}Prefabs/Props/Core/Props_Base.et" {
   RplComponent "{68DA862BEC0C76C7}" {
    "Rpl State Override" Runtime
   }
+  Hierarchy "{68DD5967481AEE1D}" {
+   MergePhysics 1
+  }
  }
  coords 4.131 1.603 -3.456
 }

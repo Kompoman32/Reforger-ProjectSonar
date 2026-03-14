@@ -105,6 +105,7 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/DestructibleMultiPhase_Pro
   }
   RplComponent "{5624A88DC2D9928D}" {
    "Rpl State Override" Runtime
+   "Parent Node From Parent Entity" 0
   }
  }
 }
