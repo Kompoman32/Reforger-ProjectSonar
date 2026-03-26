@@ -91,6 +91,14 @@ Drag your tracks from the Samples folder to Bank Music or DJ node.
 > [!IMPORTANT]
 > Bank files **Music** and **DJ** **MUST** have atleast 1 track.
 
+> [!NOTE]
+> Sometimes if you can't check your sounds like it didn't work. If you see something like this in the console:
+> <picture><img src="./images/13-1.png" alt="image-13-1.png" style="width:auto; height: 100px"></picture>
+
+You need to set RadioVolume signal in Signal simulation.
+
+<picture><img src="./images/13-2.png" alt="image-13-2.png" style="width:auto; height: 300px"></picture>
+<picture><img src="./images/13-3.png" alt="image-13-3.png" style="width:auto; height: 300px"></picture>
 
 ## Override file SystemsConfig.conf
 
