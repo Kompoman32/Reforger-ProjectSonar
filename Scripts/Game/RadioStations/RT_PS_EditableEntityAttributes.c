@@ -16,10 +16,8 @@ class RT_PS_Radio_Attribute_Enabled: SCR_BaseFloatValueHolderEditorAttribute
 		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
 		
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio);
 		
 		if (!isValid) return null;
 		
@@ -29,10 +27,8 @@ class RT_PS_Radio_Attribute_Enabled: SCR_BaseFloatValueHolderEditorAttribute
 	override void WriteVariable(Managed item, SCR_BaseEditorAttributeVar var, SCR_AttributesManagerEditorComponent manager, int playerID)
 	{
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio);
 		
 		if (!isValid) return;
 		
@@ -71,10 +67,8 @@ class RT_PS_Radio_Attribute_Volume: SCR_BaseValueListEditorAttribute
 		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
 		
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio);
 		
 		if (!isValid) return null;
 		
@@ -84,10 +78,8 @@ class RT_PS_Radio_Attribute_Volume: SCR_BaseValueListEditorAttribute
 	override void WriteVariable(Managed item, SCR_BaseEditorAttributeVar var, SCR_AttributesManagerEditorComponent manager, int playerID)
 	{
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio);
 		
 		if (!isValid) return;
 		
@@ -102,8 +94,6 @@ class RT_PS_Radio_Attribute_RadioStations: SCR_BaseFloatValueHolderEditorAttribu
 	[Attribute("0", "Should this attribute shows on Vehicle or Entity Tab")]
 	protected bool m_bIsVehicleAttribute;
 	
-	RT_PS_CustomRadioAntennaSystem m_RadioSystem;
-	
 	override SCR_BaseEditorAttributeVar ReadVariable(Managed item, SCR_AttributesManagerEditorComponent manager)
 	{		
 		SCR_EditableEntityComponent editableEntity = SCR_EditableEntityComponent.Cast(item);
@@ -115,14 +105,11 @@ class RT_PS_Radio_Attribute_RadioStations: SCR_BaseFloatValueHolderEditorAttribu
 		if (m_bIsVehicleAttribute != (!!vehicleEntity)) return null;
 		
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
 		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio, index);
 		
 		if (!isValid) return null;
-		
-		m_RadioSystem = system;
 				
 		return SCR_BaseEditorAttributeVar.CreateInt(index);
 	}
@@ -130,10 +117,8 @@ class RT_PS_Radio_Attribute_RadioStations: SCR_BaseFloatValueHolderEditorAttribu
 	override void WriteVariable(Managed item, SCR_BaseEditorAttributeVar var, SCR_AttributesManagerEditorComponent manager, int playerID)
 	{
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		int index = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, system, radio, index);
+		RT_PS_Utils.GetRadioComponentFromAttribute(item, isValid, radio);
 		
 		if (!isValid) return;
 		
@@ -150,14 +135,14 @@ class RT_PS_Radio_Attribute_RadioStations: SCR_BaseFloatValueHolderEditorAttribu
 	
 	//------------------------------------------------------------------------------------------------
 	protected void FillValues()
-	{				
-		if (!m_RadioSystem) return;
+	{
+		if (!RT_PS_CustomRadioAntennaSystem.GetInstance()) return;
 		
 		m_aValues.Clear();
 				
 		SCR_EditorAttributeFloatStringValueHolder value;
 		
-		foreach (int i, RT_PS_CustomRadioStation radioStation: m_RadioSystem.m_aRadiostations)
+		foreach (int i, RT_PS_CustomRadioStation radioStation: RT_PS_CustomRadioAntennaSystem.GetInstance().m_aRadiostations)
 		{
 			value = new SCR_EditorAttributeFloatStringValueHolder();
 			value.SetName(radioStation.m_sRadiostationName);

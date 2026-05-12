@@ -223,7 +223,7 @@ class RT_PS_Utils {
 	}
 	
 	//------------------------------------------------------------------------------------------------
-	static void GetRadioComponentFromAttribute(Managed item, out bool isValid = false, out RT_PS_CustomRadioAntennaSystem pSystem = null, out RT_PS_CustomRadioComponent pRadio = null, out int pCurrentRadioIndex = -1)
+	static void GetRadioComponentFromAttribute(Managed item, out bool isValid = false, out RT_PS_CustomRadioComponent pRadio = null, out int pCurrentRadioIndex = -1)
 	{
 		SCR_EditableEntityComponent comp = SCR_EditableEntityComponent.Cast(item);
 		if (!comp) return;		
@@ -239,7 +239,6 @@ class RT_PS_Utils {
 		if (!system) return;
 		
 		isValid = true;
-		pSystem = system;
 		pRadio = radio;
 		
 		int index = system.m_aRadiostations.Find(radio.m_RadioStation);

@@ -6,7 +6,7 @@ class RT_PS_ToggleRadioContextAction : SCR_SelectedEntitiesContextAction
 	{
 		bool isValid = false;
 		RT_PS_CustomRadioComponent radio = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, pRadio: radio);
+		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, radio);
 
 		return isValid && radio.IsActive();
 	}
@@ -20,7 +20,7 @@ class RT_PS_ToggleRadioContextAction : SCR_SelectedEntitiesContextAction
 	{		
 		bool isValid = false;
 		RT_PS_CustomRadioComponent radio = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, pRadio: radio);
+		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, radio);
 		
 		if (!isValid) return;
 		
@@ -35,18 +35,19 @@ class RT_PS_ChangeRadiostationContextAction : RT_PS_ToggleRadioContextAction
 	override bool CanBePerformed(SCR_EditableEntityComponent selectedEntity, vector cursorWorldPosition, int flags)
 	{
 		bool isValid = false;
-		RT_PS_CustomRadioAntennaSystem system = null;
 		RT_PS_CustomRadioComponent radio = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, system, radio);
+		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, radio);
 		
-		return radio.Enabled() && system.GetRadiostaionsCount() > 1;
+		if (!isValid) return false;
+		
+		return radio.Enabled() && RT_PS_CustomRadioAntennaSystem.GetInstance().GetRadiostaionsCount() > 1;
 	}
 	
 	override void Perform(SCR_EditableEntityComponent selectedEntity, vector cursorWorldPosition)
 	{		
 		bool isValid = false;
 		RT_PS_CustomRadioComponent radio = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, pRadio: radio);
+		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, radio);
 		
 		if (!isValid) return;
 		
@@ -62,7 +63,7 @@ class RT_PS_FixRadioContextAction : RT_PS_ToggleRadioContextAction
 	{		
 		bool isValid = false;
 		RT_PS_CustomRadioComponent radio = null;
-		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, pRadio: radio);
+		RT_PS_Utils.GetRadioComponentFromAttribute(selectedEntity, isValid, radio);
 		
 		if (!isValid) return;
 		
