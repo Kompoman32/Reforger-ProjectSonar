@@ -60,14 +60,19 @@ GenericEntity : "{288DE4D40D893C91}Prefabs/Props/Furniture/PhoneTable_01/PhoneTa
  coords 6459.677 163.011 6492.667
  angles -0.394 -164.749 -2.03
 }
-GenericEntity : "{318B415001435B17}Prefabs/Props/Civilian/PortableRadio_01_black.et" {
+GenericEntity : "{318B415001435B17}Prefabs/Props/Civilian/E_PortableRadio_01_black.et" {
  coords 6456.25 163.045 6489.493
  angles 0 66.777 0
 }
 GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
  coords 6452.414 162.306 6495.781
 }
-GenericEntity : "{392C260026E5B037}Prefabs/Props/Civilian/PortableRadio_01_red.et" {
+GenericEntity : "{392C260026E5B037}Prefabs/Props/Civilian/E_PortableRadio_01_red.et" {
+ components {
+  RT_PS_PortalbeRadioPlaceableItemComponent "{6966A33798E7E9CE}" {
+   m_fMaxPlacementDistance 2
+  }
+ }
  coords 6456.708 163.052 6490.373
  angles 0 157.491 0
 }
@@ -1909,8 +1914,23 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
 Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
  coords 6510.53 161.781 6470.365
 }
+$grp GenericEntity : "{C72C9E090CED8B05}PrefabsEditable/Mines/E_Mine_M14.et" {
+ {
+  coords 6460.01 162.292 6498.73
+ }
+ {
+  coords 6460.352 162.292 6498.978
+ }
+ {
+  coords 6459.839 162.303 6499.082
+ }
+}
 Vehicle UH1H_base1 : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_base.et" {
  coords 6470.556 162.031 6460.481
+}
+GenericEntity : "{D0E4F05E07E40B24}Prefabs/Structures/Signs/Military/SignMinefield_01/SignMinefield_01.et" {
+ coords 6459.963 162.285 6498.182
+ angles 0 180 0
 }
 Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S1203/S1203_transport_base.et" {
  components {

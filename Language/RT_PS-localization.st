@@ -143,9 +143,9 @@ StringTable {
   }
   CustomStringTableItem "{685CF10A5560511A}" {
    Id "RT_PS-Item_PortableRadio_Description"
-   Target_en_us "Take your favorite stations with you!"
-   Target_ru_ru "Возьмите с собой свои любимые радиостанции!"
-   Modified 1750926519
+   Target_en_us "Take your favorite music with you!"
+   Target_ru_ru "Возьмите с собой свою любимую музыку!"
+   Modified 1768364324
    Author "Kompoman32"
    LastChanged "Kompoman32"
   }

@@ -49,6 +49,14 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
   }
   RT_PS_PortableRadioGadgetComponent "{685CA28329707856}" {
    m_eAnimVariable ADRIANOV
+   m_eUseMask FROM_ACTION
+  }
+  RT_PS_PortalbeRadioPlaceableItemComponent "{6966A33798E7E9CE}" {
+   m_fMaxAllowedTilt 35
+   m_eIgnoredPhysicsLayers 17301504
+   m_eMeasurementMethod FROM_ORIGIN
+   m_fMaxPlacementDistance 2
+   m_ePlacementType XYZ
   }
   SCR_EditableEntityComponent "{685D2C77436D5F95}" {
    m_Flags 28672
