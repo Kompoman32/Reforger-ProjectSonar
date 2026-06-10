@@ -22,6 +22,8 @@ class RT_PS_CustomRadioStation
 	[Attribute("", UIWidgets.EditBox, "DJ Tracks Names (WIP just for future maybe)")]
 	ref array<string> m_aDjTracksNames;
 	
+	protected int m_iDJCooldownCounter = 0;
+	
 	protected int m_lLastTrackIndex = -1;
 	protected int m_lLastDJTrackIndex = -1;
 	
@@ -69,6 +71,8 @@ class RT_PS_CustomRadioStation
 			return null;
 		}
 		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		
 		array<int> tracks = m_aTracksLengths;
 		array<int> tracksIndexes = m_aTracksIndexes;
 		bool isDJ = false;
@@ -80,9 +84,18 @@ class RT_PS_CustomRadioStation
 		
 		if (Math.RandomFloat01() < m_fDjProbability) 
 		{
-			isDJ = true;
-			tracks = m_aDjTracksLengths;
-			tracksIndexes = m_aDjTracksIndexes;
+			if (m_iDJCooldownCounter >= settings.m_iDJCooldown || djProbability == 1) {				
+				isDJ = true;
+				tracks = m_aDjTracksLengths;
+				tracksIndexes = m_aDjTracksIndexes;
+				
+				m_iDJCooldownCounter = 0;
+			}
+			else 
+			{
+				m_iDJCooldownCounter += 1;
+			}
+			
 		}
 		
 		if (tracks.Count() == 0) 

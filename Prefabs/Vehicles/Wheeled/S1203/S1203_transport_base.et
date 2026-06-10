@@ -4,6 +4,13 @@ Vehicle : "{4AE9D080927D3CB9}Prefabs/Vehicles/Wheeled/S1203/S1203_base.et" {
   RadioBroadcastSoundComponent "{620B21395BE4F088}" {
    Enabled 0
   }
+  SCR_VehicleSoundComponent "{55C2E66AD4EF2CA6}" {
+   components {
+    RadioBroadcastSoundComponent "{65AB0CB6B62B0A3B}" {
+     Enabled 0
+    }
+   }
+  }
   RadioBroadcastComponent "{620B21395E0F6DDD}" {
    Enabled 0
   }

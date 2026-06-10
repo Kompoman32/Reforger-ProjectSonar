@@ -1,0 +1,54 @@
+GenericEntity : "{0CD61254B8AD1918}Prefabs/Props/Civilian/Antennas/RadioStationsAntenna.et" {
+ coords 976.456 10 878.203
+}
+SCR_EditorImagePositionEntity Position_Objects2 : "{6827E4D6141D8F9F}Prefabs/Editor/Common/AssetImagePosition.et" {
+ coords 1000 10 1000
+ angles 0 90 0
+ m_Labels {
+  ENTITYTYPE_OBJECT
+  TRAIT_RADIO
+ }
+ m_iPriority 9999
+ m_PreviewMesh "{89023586575D956E}Assets/Props/Furniture/Piano_01/Piano_01.xob"
+ m_aCameraNames {
+  "Camera_Objects_16"
+  "Camera_Objects_17"
+  "Camera_Objects_18"
+  "Camera_Objects_19"
+  "Camera_Objects_20"
+ }
+ m_fLatitude -7.964
+ m_fLongitude -27.311
+ m_fTime 0.448
+ m_iYear 1989
+ m_iMonth 8
+ {
+  $grp SCR_CameraBase {
+   Camera_Objects_16 {
+    coords 5.962 4.194 7.62
+    angles -19.977 -141.281 1.195
+    FOV 20
+   }
+   Camera_Objects_17 {
+    coords 15.123 10.466 18.962
+    angles -21.708 -141.454 1.21
+    FOV 20
+   }
+   Camera_Objects_18 {
+    coords 0.637 0.344 0.765
+    angles -15.994 -140.392 1.16
+    FOV 20
+   }
+   Camera_Objects_19 {
+    coords 1.521 0.849 1.947
+    angles -16.626 -142.145 1.182
+    FOV 20
+   }
+   Camera_Objects_20 {
+    coords 3.497 2.354 4.555
+    angles -17.677 -142.97 1.197
+    FOV 20
+   }
+  }
+ }
+}

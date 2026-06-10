@@ -4,6 +4,13 @@ Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
   RadioBroadcastSoundComponent "{620B213913B42255}" {
    Enabled 0
   }
+  SCR_VehicleSoundComponent "{55C2E66AD4EF2CA6}" {
+   components {
+    RadioBroadcastSoundComponent "{65AB0CB6E60A211B}" {
+     Enabled 0
+    }
+   }
+  }
   RadioBroadcastComponent "{620B21391724A76E}" {
    Enabled 0
   }

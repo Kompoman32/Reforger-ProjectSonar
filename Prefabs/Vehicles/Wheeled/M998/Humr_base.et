@@ -1,6 +1,13 @@
 Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
  ID "BBCBA43A9778AE21"
  components {
+  SCR_VehicleSoundComponent "{55C2E66AD4EF2CA6}" {
+   components {
+    RadioBroadcastSoundComponent "{66E14B9A034ECB6E}" {
+     Enabled 0
+    }
+   }
+  }
   SlotManagerComponent "{55BCE45E438E4CFF}" {
    Slots {
     EntitySlotInfo CustomRadio {

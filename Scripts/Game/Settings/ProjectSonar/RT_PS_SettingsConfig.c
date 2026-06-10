@@ -14,7 +14,10 @@ class RT_PS_SettingsConfig
 	bool m_bHideTelephoneAction;
 	
 	[Attribute("0", desc: "Randomization method applied to the track list at stations", uiwidget: UIWidgets.ComboBox, enums: ParamEnumArray.FromEnum(E_RT_PS_RadiostationRandomizationMethod))]
-	E_RT_PS_RadiostationRandomizationMethod m_RandomizationMethod;	
+	E_RT_PS_RadiostationRandomizationMethod m_RandomizationMethod;
+	
+	[Attribute("0", desc: "The minimum number of MUSIC tracks that need to be played to play another DJ track")]
+	int m_iDJCooldown = 0;
 	
 	[Attribute("0", desc: "Allows Portable Radio to play inside inventory")]
 	bool m_bPortableRadioPlaysFromInventory = false;
@@ -33,6 +36,7 @@ class RT_PS_SettingsConfig
 		
 		m_bHideTelephoneAction = settings.m_bHideTelephoneAction;
 		m_RandomizationMethod = settings.m_RandomizationMethod;
+		m_iDJCooldown = settings.m_iDJCooldown;
 		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
 	}
 }

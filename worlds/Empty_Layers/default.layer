@@ -820,7 +820,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
   }
   VehicleWheeledSimulation "{731B26FCA2F19855}" {
    Simulation Wheeled "{4D8B26DEA5F25978}" {
-    Engine Engine Engine : "{8086989600B08180}Prefabs/Vehicles/Core/Configs/Engines/Engine_UMZ452MI.conf" {
+    Engine Engine Engine : "{8086989600B08181}Prefabs/Vehicles/Core/Configs/Engines/Engine_UMZ452MI.conf" {
      Output "Clutch"
     }
     Clutch Clutch Clutch {
@@ -862,7 +862,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
        BrakeTorque 22000
        HandbrakeTorqueFactor 2
       }
-      Tyre Tyre "{4D8B26DFFD85E58F}" : "{E3FA972AED2374FE}Prefabs/Vehicles/Wheeled/UAZ469/VehicleSimulationTire_UAZ469.conf" {
+      Tyre Tyre "{4D8B26DFFD85E58F}" {
       }
       WheelPositions {
        WheelPosition Wheel_L01 {
@@ -894,7 +894,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
        BrakeTorque 2500
        HandbrakeTorqueFactor 2
       }
-      Tyre Tyre "{4D8B26DF33F76974}" : "{E3FA972AED2374FE}Prefabs/Vehicles/Wheeled/UAZ469/VehicleSimulationTire_UAZ469.conf" {
+      Tyre Tyre "{4D8B26DF33F76974}" {
       }
       WheelPositions {
        WheelPosition Wheel_L02 {
@@ -1007,7 +1007,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
        Offset 0 1.2548 1.1624
       }
      }
-     ThrottleCurve +{
+     ThrottleCurve {
      }
      ReverseCurve +{
      }
@@ -1742,162 +1742,9 @@ Vehicle Mi8MT_base1 : "{AFF6067A5CE8A853}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8M
  coords 6486.945 161.981 6463.781
  angles 0.895 0.014 0.895
 }
-Vehicle M1025_armed_base1 : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" {
- components {
-  RadioBroadcastSoundComponent "{620B2138199A41EC}" {
-   Enabled 0
-   IncludeInactive 1
-  }
-  SCR_VehicleSoundComponent "{55C2E66AD4EF2CA6}" {
-   Filenames +{
-   }
-  }
-  BaseLightManagerComponent "{51E210F17D2534F7}" {
-   LightSlots {
-    BaseLightSlot "{51E210F3B1CB7E19}" {
-     LightPositionInfo EntitySlotInfo "{51DAAC8FC2824EEC}" {
-      Offset -0.4998 0.9447 2.1307
-     }
-    }
-    BaseLightSlot "{51E210F3B0547F5D}" {
-     LightPositionInfo EntitySlotInfo "{51DAAC8FC2824EEC}" {
-      Offset 0.499 0.9405 2.1378
-     }
-    }
-    BaseLightSlot "{51E210F3B5B66F36}" {
-     LightPositionInfo EntitySlotInfo "{51E17746999D1D6E}" {
-      Offset 0.499 0.9405 2.1378
-     }
-    }
-    BaseLightSlot "{51E210F3B4D32037}" {
-     LightPositionInfo EntitySlotInfo "{51E17746999D1D6E}" {
-      Offset -0.4998 0.9447 2.1307
-     }
-    }
-   }
-   EmissiveSurfaceSlots {
-    SCR_EmissiveLightSurfaceSlot LBreaklight {
-     ConfigurationsOverride {
-      SurfaceLightConfigItem "{551CDACEBC38564B}" {
-      }
-      SurfaceLightConfigItem "{551CDACEB68383CF}" {
-      }
-      SurfaceLightConfigItem "{592A6961521CB4A4}" {
-      }
-     }
-    }
-    SCR_EmissiveLightSurfaceSlot RBreaklight {
-     ConfigurationsOverride {
-      SurfaceLightConfigItem "{551CDACEA308BB0F}" {
-      }
-      SurfaceLightConfigItem "{551CDACEA2868D2B}" {
-      }
-      SurfaceLightConfigItem "{592A6961599655AD}" {
-      }
-     }
-    }
-   }
-  }
-  RadioBroadcastComponent "{620B213802F8DE27}" {
-   TurnOnAction SCR_TurnOnAction "{620B213801CEF98B}" {
-    ParentContextList {
-    }
-   }
-  }
-  RigidBody "{51DAA09FECF52BBF}" {
-   Mass 2836
-  }
-  SCR_BaseCompartmentManagerComponent "{20FB66C5DCB8DF72}" {
-   CompartmentSlots {
-    PilotCompartmentSlot PilotCompartment {
-     SwitchSeatAction SCR_SwitchSeatAction "{509D56667885A8DC}" {
-      ParentContextList +{
-      }
-      CanAggregate 1
-     }
-    }
-    CargoCompartmentSlot Passenger_r01 {
-     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
-      ParentContextList +{
-      }
-     }
-    }
-    CargoCompartmentSlot Passenger_l02 {
-     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
-      ParentContextList +{
-      }
-     }
-    }
-    CargoCompartmentSlot Passenger_r02 {
-     SwitchSeatAction SCR_SwitchSeatAction "{509D56665850650D}" {
-      ParentContextList +{
-      }
-     }
-    }
-   }
-  }
-  SCR_EditableVehicleComponent "{50DEB7C26B5EB312}" {
-   m_UIInfo SCR_EditableVehicleUIInfo "{5298E609432D192D}" {
-    m_aAuthoredLabels +{
-    }
-    m_aOccupantFillCompartmentTypes +{
-    }
-   }
-  }
-  SCR_WheeledDamageManagerComponent "{141326E9FD94FE40}" {
-   m_fVehicleDestroyDamage 11053
-  }
-  VehicleWheeledSimulation "{731B26FCA2F19855}" {
-   Simulation Wheeled "{4D8B26DEA5F25978}" {
-    Aerodynamics Aerodynamics "{5562A623B55A4C07}" {
-     DragCoefficient 0.62
-    }
-   }
-  }
-  ActionsManagerComponent "{C97BE5489221AE18}" {
-   ActionContexts {
-    UserActionContext "{620B4177848B6B55}" {
-     UIInfo SCR_ActionContextUIInfo "{620B21370E95E066}" {
-     }
-     ContextName "RADIO"
-     Position PointInfo "{620B2137E581321E}" {
-      PivotID "v_light_switch"
-      Offset 0.7297 0.0311 -0.001
-      Angles 0 180 0
-     }
-     Height 0
-     Omnidirectional 0
-    }
-    UserActionContext "{66706CE19274B8B2}" {
-     UIInfo SCR_ActionContextUIInfo "{66706CE3D83B7BCB}" {
-     }
-     ContextName "gunner_SwitchSeat"
-     Position PointInfo "{51ACFBB061993925}" {
-      PivotID "v_turret_01"
-      Offset 0 0.2 0
-      Angles 90 0 0
-     }
-     Omnidirectional 0
-    }
-    UserActionContext "{620B213744238931}" {
-     UIInfo SCR_ActionContextUIInfo "{620B21370E95E066}" {
-      Name ""
-      Description ""
-     }
-     ContextName "RADIO"
-     Position PointInfo "{620B2137E581321E}" {
-      PivotID "v_light_switch"
-      Offset 0.7297 0.0311 -0.001
-      Angles 0 180 0
-     }
-     Height 0
-     Omnidirectional 0
-    }
-   }
-  }
- }
- coords 6433.685 162.183 6492.715
- angles -0.232 -14.997 -0.865
+Vehicle M1025_armed_base2 : "{B120CDDBEF8DB007}Prefabs/Vehicles/Wheeled/M998/M1025_armed_base.et" {
+ coords 6433.461 162.179 6492.507
+ angles 0 -18.133 0
 }
 Vehicle M998_covered1 : "{B55C6990A6A9411B}Prefabs/Vehicles/Wheeled/M998/M998_covered.et" {
  coords 6416.13 161.904 6487.583
@@ -2783,7 +2630,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
        Mass 20
        HandbrakeTorqueFactor 2
       }
-      Tyre Tyre "{58DE8399ABE63447}" : "{3ADBD25950B59FE8}Prefabs/Vehicles/Wheeled/S1203/VehicleSimulationTire_S1203.conf" {
+      Tyre Tyre "{58DE8399ABE63447}" {
       }
       Swaybar Swaybar "{59B6CEF3B196D047}" {
       }
@@ -2815,7 +2662,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
        Mass 20
        HandbrakeTorqueFactor 2
       }
-      Tyre Tyre "{5EEAF5D388BFCE67}" : "{3ADBD25950B59FE8}Prefabs/Vehicles/Wheeled/S1203/VehicleSimulationTire_S1203.conf" {
+      Tyre Tyre "{5EEAF5D388BFCE67}" {
       }
       WheelPositions {
        WheelPosition Wheel_L02 {
@@ -2921,7 +2768,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
        Offset -0.1523 0.9317 1.2776
       }
      }
-     ThrottleCurve +{
+     ThrottleCurve {
      }
      ReverseCurve +{
      }
