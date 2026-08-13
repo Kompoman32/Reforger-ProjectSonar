@@ -14,12 +14,26 @@ Vehicle : "{E03D5609EEA6E03D}Prefabs/Vehicles/Core/Wheeled_Truck_Base.et" {
   RadioBroadcastComponent "{620B21389E117A26}" {
    Enabled 0
   }
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_body"
+     Offset 0.395 0.9775 0.7471
+     Angles 0 180 0
+     Enabled 1
+    }
+    EntitySlotInfo radio {
+     Enabled 0
+     Prefab ""
+    }
+   }
+  }
   ActionsManagerComponent "{C97BE5489221AE18}" {
    ActionContexts {
     UserActionContext "{66BCF75D7D031D9D}" {
      Position PointInfo "{64997DE9E76B1E79}" {
       PivotID "v_body"
-      Offset 0.2591 0.9751 0.7237
+      Offset 0.3213 0.9672 0.7236
       Angles 0 180 0
      }
     }

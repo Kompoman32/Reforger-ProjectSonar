@@ -91,11 +91,11 @@ class RT_PS_CustomRadioStation
 				
 				m_iDJCooldownCounter = 0;
 			}
-			else 
-			{
-				m_iDJCooldownCounter += 1;
-			}
-			
+		}
+
+		if (!isDJ) 
+		{
+			m_iDJCooldownCounter += 1;
 		}
 		
 		if (tracks.Count() == 0) 

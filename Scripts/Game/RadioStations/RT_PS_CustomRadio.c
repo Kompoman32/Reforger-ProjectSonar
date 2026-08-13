@@ -67,7 +67,7 @@ class RT_PS_CustomRadioComponent: ScriptComponent
 		{				
 			RT_PS_CustomRadioInteriorRequestCallback rirc = new RT_PS_CustomRadioInteriorRequestCallback(this);
 			
-			m_SoundWorld.CalculateInterirorAt(m_vOwnerTransform, rirc);	
+			m_SoundWorld.CalculateInterirorAt(m_vOwnerTransform[3], rirc);	
 		}			
 	}
 	
