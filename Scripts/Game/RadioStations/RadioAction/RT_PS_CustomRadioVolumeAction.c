@@ -74,6 +74,20 @@ class RT_PS_CustomRadioVolumeAction extends SCR_AdjustSignalAction
 		return m_RadioComponent.Enabled();
 	}
 	
+	//------------------------------------------------------------------------------------------------
+	override bool CanBePerformedScript(IEntity user)
+	{
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		if (settings.m_bPilotOnlyRadio) {
+			if (!RT_PS_Utils.CanBePerformedRadioForPilotOnlySetting(user, Vehicle.Cast(GetOwner().GetRootParent()))) {
+				m_sCannotPerformReason = "#AR-UserAction_ControlledByDriver";
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	override void OnActionStart(IEntity pUserEntity)
 	{
 		super.OnActionStart(pUserEntity);

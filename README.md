@@ -64,6 +64,7 @@ Available Settings:
 |:---|:---|:---|
 |<code>m_aBlacklist</code>|[ <code>"Array"</code> , <code>"Of"</code> , <code>"Names"</code> ]|Stations that should not be available to use (Station names). **Default:** <code>[]</code> |
 |<code>m_aWhitelist</code>|[ <code>"Array"</code> , <code>"Of"</code> , <code>"Names"</code> ]|Stations that should be available to use (Station names). **If filled in, it is used as a list of used stations.** **Default:** <code>[]</code>|
+|<code>m_bPilotOnlyRadio</code>|<code>true</code> or <code>false</code>|Disables radio use for passengers if the pilot's seat is occupied. **Default:** <code>false</code>|
 |<code>m_bHideTelephoneAction</code>|<code>true</code> or <code>false</code>|Hides action to call to the radio on telephones. **Default:** <code>false</code>|
 |<code>m_RandomizationMethod</code>|<ul><li><code>0</code> (SHUFFLE_ONCE)</li><li><code>1</code> (NO_SHUFFLE)</li><li><code>2</code> (TRUE_RANDOM)</li><li><code>3</code> (RANDOM_WITHOUT_CONSECUTIVE_REPEATS)</li></ul>|Randomization method applied to the track list at stations. **Default:** <code>0</code>|
 |<code>m_iDJCooldown</code>|<code>Number</code>|The minimum number of MUSIC tracks that need to be played to play another DJ track. **Default:** <code>0</code>|

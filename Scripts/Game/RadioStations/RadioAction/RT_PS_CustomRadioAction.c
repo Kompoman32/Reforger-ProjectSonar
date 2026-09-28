@@ -115,6 +115,14 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 			return false;
 		}
 		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		if (settings.m_bPilotOnlyRadio) {
+			if (!RT_PS_Utils.CanBePerformedRadioForPilotOnlySetting(user, Vehicle.Cast(GetOwner().GetRootParent()))) {
+				m_sCannotPerformReason = "#AR-UserAction_ControlledByDriver";
+				return false;
+			}
+		}		
+		
 		if (m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF && Enabled())
 		{
 			return true;

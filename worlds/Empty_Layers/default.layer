@@ -65,7 +65,9 @@ GenericEntity : "{318B415001435B17}Prefabs/Props/Civilian/E_PortableRadio_01_bla
  angles 0 66.777 0
 }
 GenericEntity : "{36A9D53ACA3A3D48}Prefabs/Props/Civilian/CAR_RADIO.et" {
- coords 6452.414 162.306 6495.781
+ coords 6454.777 163.879 6502.395
+ angles 0 170.346 0
+ scale 16.469
 }
 GenericEntity : "{392C260026E5B037}Prefabs/Props/Civilian/E_PortableRadio_01_red.et" {
  components {

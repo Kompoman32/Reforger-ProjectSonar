@@ -223,6 +223,26 @@ class RT_PS_Utils {
 	}
 	
 	//------------------------------------------------------------------------------------------------
+	static bool CanBePerformedRadioForPilotOnlySetting(IEntity pUser, Vehicle pVehicle)
+	{
+		if (!pVehicle) return false;
+		
+		ChimeraCharacter char = ChimeraCharacter.Cast(pUser);
+		
+		if (!char) return false;
+
+		CompartmentAccessComponent compartment = char.GetCompartmentAccessComponent();
+		if (!compartment) return false;
+
+		BaseCompartmentSlot slot = compartment.GetCompartment();	
+		
+		if (!pVehicle.GetPilotCompartmentSlot().IsOccupied() || !!PilotCompartmentSlot.Cast(slot)) 
+			return true;
+		
+		return false;
+	}
+	
+	//------------------------------------------------------------------------------------------------
 	static void GetRadioComponentFromAttribute(Managed item, out bool isValid = false, out RT_PS_CustomRadioComponent pRadio = null, out int pCurrentRadioIndex = -1)
 	{
 		SCR_EditableEntityComponent comp = SCR_EditableEntityComponent.Cast(item);

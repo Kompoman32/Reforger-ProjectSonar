@@ -10,6 +10,9 @@ class RT_PS_SettingsConfig
 	[Attribute(desc: "Stations that should be available to use (Station names). If filled in, it is used as a list of used stations")]
 	ref array<string> m_aWhitelist;
 	
+	[Attribute("0", desc: "Disables radio use for passengers if the pilot's seat is occupied")]
+	bool m_bPilotOnlyRadio = false;
+	
 	[Attribute("0", desc: "Hides action to call to the radio on telephones")]
 	bool m_bHideTelephoneAction;
 	
@@ -34,6 +37,7 @@ class RT_PS_SettingsConfig
 			m_aWhitelist = settings.m_aWhitelist;
 		}
 		
+		m_bPilotOnlyRadio = settings.m_bPilotOnlyRadio;
 		m_bHideTelephoneAction = settings.m_bHideTelephoneAction;
 		m_RandomizationMethod = settings.m_RandomizationMethod;
 		m_iDJCooldown = settings.m_iDJCooldown;
