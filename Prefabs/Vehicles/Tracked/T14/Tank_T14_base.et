@@ -1,0 +1,26 @@
+RHS_Tank : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
+ ID "5CDE8068D49AAEBB"
+ components {
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_body"
+     Offset -1.0342 0.1427 2.2627
+     Angles 0 90 0
+     Enabled 1
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_body"
+      Offset -1.0103 0.1331 2.188
+      Angles 0 120 0
+     }
+    }
+   }
+  }
+ }
+}

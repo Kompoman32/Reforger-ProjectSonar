@@ -1,0 +1,26 @@
+Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_root"
+     Offset 0.2351 1.4876 0.6941
+     Angles 0 172.54491 0
+     Enabled 1
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_root"
+      Offset 0.1651 1.4775 0.6607
+      Angles 90 0 0
+     }
+    }
+   }
+  }
+ }
+}
