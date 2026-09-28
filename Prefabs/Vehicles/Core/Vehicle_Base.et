@@ -18,7 +18,7 @@ Vehicle {
      ContextName "CustomRadio"
      Position PointInfo "{64997DE9E76B1E79}" {
      }
-     Radius 0.35
+     Radius 0.15
      Omnidirectional 0
     }
    }
