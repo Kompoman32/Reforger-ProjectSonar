@@ -25,6 +25,9 @@ class RT_PS_SettingsConfig
 	[Attribute("0", desc: "Allows Portable Radio to play inside inventory")]
 	bool m_bPortableRadioPlaysFromInventory = false;
 	
+	[Attribute("1", desc: "Enables conversion of static radios to portable versions (Pickup Action)")]
+	bool m_bStaticRadioConvertion = true;
+	
 	void SetFromHeader(notnull RT_PS_MissionHeaderSettings settings)
 	{		
 		if (settings.m_aBlacklist)
@@ -42,5 +45,6 @@ class RT_PS_SettingsConfig
 		m_RandomizationMethod = settings.m_RandomizationMethod;
 		m_iDJCooldown = settings.m_iDJCooldown;
 		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
+		m_bStaticRadioConvertion = settings.m_bStaticRadioConvertion;
 	}
 }

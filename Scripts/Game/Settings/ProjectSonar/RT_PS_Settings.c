@@ -21,4 +21,7 @@ class RT_PS_MissionHeaderSettings
 	
 	[Attribute("0", desc: "Allows Portable Radio to play inside inventory")]
 	bool m_bPortableRadioPlaysFromInventory = false;
+	
+	[Attribute("1", desc: "Enables conversion of static radios to portable versions (Pickup Action)")]
+	bool m_bStaticRadioConvertion = true;
 }

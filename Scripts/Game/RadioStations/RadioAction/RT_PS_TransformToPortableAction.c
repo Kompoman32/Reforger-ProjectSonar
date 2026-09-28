@@ -28,6 +28,11 @@ class RT_PS_TransformToPortableAction: ScriptedUserAction
 	{		
 		if (!m_sPortableRadioPrefab) return false;
 		
+		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
+		if (!settings.m_bStaticRadioConvertion) {
+			return false;
+		}
+		
 		return true;
 	}
 	
