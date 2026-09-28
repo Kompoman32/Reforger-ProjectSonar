@@ -44,6 +44,13 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/DestructibleMultiPhase_Pro
      Radius 1.5
      Omnidirectional 0
     }
+    UserActionContext "{6A78EB6A4107444F}" {
+     ContextName "pickupAsPortable"
+     Position PointInfo "{6A78EB6A63C774E8}" {
+      Offset 0.0002 0.2686 0.0116
+     }
+     Radius 0.2
+    }
    }
    additionalActions {
     RT_PS_CustomRadioAction "{649A0B371C18C37F}" {
@@ -100,6 +107,17 @@ GenericEntity : "{4CC2C69DE1AEF103}Prefabs/Props/Core/DestructibleMultiPhase_Pro
      "Sort Priority" 3
      m_eActionType RESET
      m_bInStaticProp 1
+    }
+    RT_PS_TransformToPortableAction "{6A78F7C71964FA00}" {
+     ParentContextList {
+      "pickupAsPortable"
+     }
+     UIInfo UIInfo "{6A78F7C71964FA46}" {
+      Name "#AR-Inventory_PickUp"
+     }
+     CanAggregate 1
+     "Sort Priority" 4
+     m_sPortableRadioPrefab "{392C260026E5B037}Prefabs/Props/Civilian/E_PortableRadio_01_red.et"
     }
    }
   }

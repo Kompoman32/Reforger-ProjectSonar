@@ -7,5 +7,12 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
     m_Image "{5F27F1E24582AD5B}UI/Textures/EditorPreviews/Auto/Props/Civilian/E_RadioSmall_01_black.edds"
    }
   }
+  ActionsManagerComponent "{52E71719F5BE5EBB}" {
+   additionalActions {
+    RT_PS_TransformToPortableAction "{6A78F7C71964FA00}" {
+     m_sPortableRadioPrefab "{318B415001435B17}Prefabs/Props/Civilian/E_PortableRadio_01_black.et"
+    }
+   }
+  }
  }
 }

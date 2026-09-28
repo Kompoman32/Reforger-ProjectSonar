@@ -117,3 +117,56 @@ modded class SCR_AvailableActionsConditionData
 		}
 	}
 }
+
+modded class SCR_ChimeraCharacter: ChimeraCharacter
+{
+	protected int m_iCheckGeneratedRadioCounter;
+	protected const int CheckGeneratedRadioMaxCounter = 20;
+	protected const int MaxDistanceToAbortPickupRadio = 25; // 5m
+	
+	void RT_PS_PickupRadioAfterTransform_S(IEntity radio)
+	{		
+		RplComponent rpl = RplComponent.Cast(radio.FindComponent(RplComponent));
+		
+		Rpc(RT_PS_PickupRadioAfterTransform_O, rpl.Id())
+	}
+	
+	[RplRpc(RplChannel.Reliable, RplRcver.Owner)]
+	protected void RT_PS_PickupRadioAfterTransform_O(RplId radioRplId)
+	{
+		GetGame().GetCallqueue().Remove(RT_PS_PickupRadioAfterTransform_O_Delayed);
+		
+		SCR_InventoryStorageManagerComponent pInventoryManager = SCR_InventoryStorageManagerComponent.Cast(FindComponent(SCR_InventoryStorageManagerComponent));
+		if (!pInventoryManager) return;
+		
+		pInventoryManager.SetReturnCodeDefault();
+		
+		m_iCheckGeneratedRadioCounter = 0;
+		
+		GetGame().GetCallqueue().CallLater(RT_PS_PickupRadioAfterTransform_O_Delayed, 100, true, pInventoryManager, radioRplId);
+	}
+	
+	protected void RT_PS_PickupRadioAfterTransform_O_Delayed(SCR_InventoryStorageManagerComponent pInventoryManager, RplId radioRplId)
+	{
+		if (m_iCheckGeneratedRadioCounter > CheckGeneratedRadioMaxCounter) {
+			GetGame().GetCallqueue().Remove(RT_PS_PickupRadioAfterTransform_O_Delayed);
+		}
+		
+		RplComponent rpl = RplComponent.Cast(Replication.FindItem(radioRplId));
+		if (!rpl || rpl == RplId.Invalid()) return;
+
+		if (vector.DistanceSq(rpl.GetEntity().GetOrigin(), GetOrigin()) > MaxDistanceToAbortPickupRadio
+			|| !pInventoryManager.CanInsertItem(rpl.GetEntity(), EStoragePurpose.PURPOSE_DEPOSIT)
+		) {
+			GetGame().GetCallqueue().Remove(RT_PS_PickupRadioAfterTransform_O_Delayed);
+			return;
+		}
+
+		if (!pInventoryManager.IsAnimationReady())
+			return;
+
+		pInventoryManager.InsertItem(rpl.GetEntity());
+		
+		GetGame().GetCallqueue().Remove(RT_PS_PickupRadioAfterTransform_O_Delayed);
+	}
+}
