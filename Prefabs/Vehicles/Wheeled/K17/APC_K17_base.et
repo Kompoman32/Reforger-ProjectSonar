@@ -19,6 +19,7 @@ Vehicle : "{543A50BF3A42AD47}Prefabs/Vehicles/Core/Wheeled_APC_Base.et" {
       Offset -0.0684 1.7479 2.903
       Angles 0 -120 0
      }
+     Radius 0.25
     }
    }
   }
