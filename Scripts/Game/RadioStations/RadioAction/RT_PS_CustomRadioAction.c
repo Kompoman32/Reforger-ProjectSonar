@@ -109,19 +109,18 @@ class RT_PS_CustomRadioAction: ScriptedUserAction
 			return false;
 		}
 		
-		if (m_RadioComponent.Enabled() && m_eActionType == RT_PS_ECustomRadioAction.CHANGE && m_RadioSystem.GetRadiostaionsCount() == 1)
-		{
-			m_sCannotPerformReason = "#RT_PS-CannotPerform_OneStation";
-			return false;
-		}
-		
-		RT_PS_SettingsConfig settings = ArmaReforgerScripted.RT_PS_GetSettingsConfig();
-		if (settings.m_bPilotOnlyRadio) {
+		if (m_RadioSystem.m_bPilotOnlyRadio) {
 			if (!RT_PS_Utils.CanBePerformedRadioForPilotOnlySetting(user, Vehicle.Cast(GetOwner().GetRootParent()))) {
 				m_sCannotPerformReason = "#AR-UserAction_ControlledByDriver";
 				return false;
 			}
-		}		
+		}	
+		
+		if (m_RadioComponent.Enabled() && m_eActionType == RT_PS_ECustomRadioAction.CHANGE && m_RadioSystem.GetRadiostaionsCount() == 1)
+		{
+			m_sCannotPerformReason = "#RT_PS-CannotPerform_OneStation";
+			return false;
+		}	
 		
 		if (m_eActionType == RT_PS_ECustomRadioAction.TURN_ON_OFF && Enabled())
 		{

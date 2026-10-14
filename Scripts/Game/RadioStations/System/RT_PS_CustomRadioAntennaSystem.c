@@ -32,6 +32,12 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	[RplProp()]
 	bool m_bPortableRadioPlaysFromInventory = false;
 	
+	[RplProp()]
+	bool m_bStaticRadioConvertion = true;
+	
+	[RplProp()]
+	bool m_bPilotOnlyRadio = false;
+	
 	//------------------------------------------------------------------------------------------------	
 	override static void InitInfo(WorldSystemInfo outInfo)
 	{
@@ -155,6 +161,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		
 		m_bSettingsHideTelephoneAction = settings.m_bHideTelephoneAction;
 		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
+		m_bStaticRadioConvertion = settings.m_bStaticRadioConvertion;
+		m_bPilotOnlyRadio = settings.m_bPilotOnlyRadio;
 		
 		/* Init radiostaions by settings */
 		bool isWhiteList = settings.m_aWhitelist.Count() > 0;

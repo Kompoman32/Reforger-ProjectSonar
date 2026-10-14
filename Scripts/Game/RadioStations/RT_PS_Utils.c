@@ -225,14 +225,14 @@ class RT_PS_Utils {
 	//------------------------------------------------------------------------------------------------
 	static bool CanBePerformedRadioForPilotOnlySetting(IEntity pUser, Vehicle pVehicle)
 	{
-		if (!pVehicle) return false;
+		if (!pVehicle) return true;
 		
 		ChimeraCharacter char = ChimeraCharacter.Cast(pUser);
 		
-		if (!char) return false;
+		if (!char) return true;
 
 		CompartmentAccessComponent compartment = char.GetCompartmentAccessComponent();
-		if (!compartment) return false;
+		if (!compartment) return true;
 
 		BaseCompartmentSlot slot = compartment.GetCompartment();	
 		

@@ -11,7 +11,7 @@ class RT_PS_SettingsConfig
 	ref array<string> m_aWhitelist;
 	
 	[Attribute("0", desc: "Disables radio use for passengers if the pilot's seat is occupied")]
-	bool m_bPilotOnlyRadio = false;
+	bool m_bPilotOnlyRadio;
 	
 	[Attribute("0", desc: "Hides action to call to the radio on telephones")]
 	bool m_bHideTelephoneAction;
@@ -23,10 +23,10 @@ class RT_PS_SettingsConfig
 	int m_iDJCooldown = 0;
 	
 	[Attribute("0", desc: "Allows Portable Radio to play inside inventory")]
-	bool m_bPortableRadioPlaysFromInventory = false;
+	bool m_bPortableRadioPlaysFromInventory;
 	
 	[Attribute("1", desc: "Enables conversion of static radios to portable versions (Pickup Action)")]
-	bool m_bStaticRadioConvertion = true;
+	bool m_bStaticRadioConvertion;
 	
 	void SetFromHeader(notnull RT_PS_MissionHeaderSettings settings)
 	{		
