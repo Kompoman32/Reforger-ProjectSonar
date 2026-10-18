@@ -33,6 +33,12 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 	bool m_bPortableRadioPlaysFromInventory = false;
 	
 	[RplProp()]
+	bool m_bPortableRadioArsenalAvailable = true;
+	
+	[RplProp()]
+	bool m_bPortableRadioOnlyCIVArsenal = true;
+	
+	[RplProp()]
 	bool m_bStaticRadioConvertion = true;
 	
 	[RplProp()]
@@ -161,6 +167,8 @@ class RT_PS_CustomRadioAntennaSystem: GameSystem
 		
 		m_bSettingsHideTelephoneAction = settings.m_bHideTelephoneAction;
 		m_bPortableRadioPlaysFromInventory = settings.m_bPortableRadioPlaysFromInventory;
+		m_bPortableRadioArsenalAvailable = settings.m_bPortableRadioArsenalAvailable;
+		m_bPortableRadioOnlyCIVArsenal = settings.m_bPortableRadioOnlyCIVArsenal;
 		m_bStaticRadioConvertion = settings.m_bStaticRadioConvertion;
 		m_bPilotOnlyRadio = settings.m_bPilotOnlyRadio;
 		

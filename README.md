@@ -69,6 +69,8 @@ Available Settings:
 |<code>m_RandomizationMethod</code>|<ul><li><code>0</code> (SHUFFLE_ONCE)</li><li><code>1</code> (NO_SHUFFLE)</li><li><code>2</code> (TRUE_RANDOM)</li><li><code>3</code> (RANDOM_WITHOUT_CONSECUTIVE_REPEATS)</li></ul>|Randomization method applied to the track list at stations. **Default:** <code>0</code>|
 |<code>m_iDJCooldown</code>|<code>Number</code>|The minimum number of MUSIC tracks that need to be played to play another DJ track. **Default:** <code>0</code>|
 |<code>m_bPortableRadioPlaysFromInventory</code>|<code>true</code> or <code>false</code>|Allows Portable Radio to play inside inventory. **Default:** <code>false</code>|
+|<code>m_bPortableRadioArsenalAvailable</code>|<code>true</code> or <code>false</code>|Allows Portable Radio in arsenals. **Default:** <code>true</code>|
+|<code>m_bPortableRadioOnlyCIVArsenal</code>|<code>true</code> or <code>false</code>|Allows Portable Radio only in civilian arsenals. **Default:** <code>false</code>|
 |<code>m_bStaticRadioConvertion</code>|<code>true</code> or <code>false</code>|Enables conversion of static radios to portable versions (Pickup Action). **Default:** <code>true</code>|
 
 **missionHeader** Example:
