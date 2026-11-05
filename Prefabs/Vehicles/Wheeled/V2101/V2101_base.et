@@ -1,0 +1,27 @@
+Vehicle : "{1F9BB80C3EC3C891}Prefabs/Vehicles/Core/Wheeled_Car_Base.et" {
+ ID "BBCBA43A9778AE21"
+ components {
+  SlotManagerComponent "{55BCE45E438E4CFF}" {
+   Slots {
+    EntitySlotInfo CustomRadio {
+     PivotID "v_body"
+     Offset 0.2097 -0.7652 0.4146
+     Angles 90 0 180
+     Enabled 1
+     Prefab "{B1BB9DA7234D37B6}Prefabs/Props/Radio/CustomCarRadio_01_Hanging.et"
+    }
+   }
+  }
+  ActionsManagerComponent "{C97BE5489221AE18}" {
+   ActionContexts {
+    UserActionContext "{66BCF75D7D031D9D}" {
+     Position PointInfo "{64997DE9E76B1E79}" {
+      PivotID "v_body"
+      Offset 0.1364 -0.743 0.4041
+      Angles 90 0 0
+     }
+    }
+   }
+  }
+ }
+}

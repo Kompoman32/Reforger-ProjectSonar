@@ -18,6 +18,13 @@ GenericEntity : "{1353C6EAD1DCFE43}Prefabs/Weapons/Handguns/M9/Handgun_M9.et" {
  coords 6456.509 163.061 6489.927
  angles 0 0 -83.632
 }
+Vehicle V2101_rally_04_fullkit1 : "{16263A0FF0BF552C}Prefabs/Vehicles/Wheeled/V2101/V2101_rally_04_fullkit.et" {
+ coords 6476.186 162.062 6491.387
+}
+Vehicle V2101_green1 : "{1B416443AC87C8C1}Prefabs/Vehicles/Wheeled/V2101/V2101_green.et" {
+ coords 6476.221 162.062 6484.782
+ angles 0 180 0
+}
 Vehicle LAV25_base1 : "{1B8EB269EECA2DF9}Prefabs/Vehicles/Wheeled/LAV25/LAV25_base.et" {
  components {
   ActionsManagerComponent "{C97BE5489221AE18}" {
@@ -126,6 +133,9 @@ GenericEntity : "{6645BAF208F04426}Prefabs/Props/Furniture/PhoneTable_02.et" {
 GenericEntity : "{77787EE24EC156F0}PrefabLibrary/DefaultLibrary/Props/Civilian/TableOld_01/TableOld_01.et" {
  coords 6456.431 162.149 6489.955
  angles 1.222 -60.164 -0.331
+}
+Vehicle Z7211_red_CIV1 : "{939AC713213C2BA1}Prefabs/Vehicles/Wheeled/Z7211/Z7211_red_CIV.et" {
+ coords 6482.461 162.062 6491.696
 }
 Vehicle UAZ452_base1 : "{988A61BA68420AFE}Prefabs/Vehicles/Wheeled/UAZ452/UAZ452_base.et" {
  coords 6445.843 162.327 6496.559
@@ -761,12 +771,6 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
   SCR_VehicleCameraDataComponent "{216DA82C75CDD94B}" {
    m_fAngleFirstPerson 12
   }
-  SCR_VehicleDustPerWheel "{5476BC43E4910F64}" {
-   m_aWheels +{
-   }
-   m_fDustStartSpeed 10
-   m_fDustTopSpeed 80
-  }
   SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
    "faction affiliation" "USSR"
   }
@@ -859,6 +863,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
        MaxTravelDown 0.12
       }
       Wheel Wheel "{4D8B26DFFE211745}" {
+       Parent "Diff_01"
        Radius 0.4
        Mass 38.6
        BrakeTorque 22000
@@ -891,6 +896,7 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
        MaxTravelDown 0.14
       }
       Wheel Wheel "{4D8B26DF30A4E4D7}" {
+       Parent "Diff_02"
        Radius 0.4
        Mass 38.6
        BrakeTorque 2500
@@ -914,9 +920,11 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
      ReferenceArea 2.7
      DragCoefficient 0.56
     }
-    Pacejka Pacejka "{54D53AE3BC404A0C}" : "{FE6D317BB79B59AA}Prefabs/Vehicles/Core/Configs/PacejkaTire_Offroad.conf" {
-    }
    }
+  }
+  SCR_VehicleDustPerWheel "{5476BC43E4910F64}" {
+   m_fDustStartSpeed 10
+   m_fDustTopSpeed 80
   }
   BaseFlattenGrassComponent "{55FCDD8048D3AE17}" {
    ParametersCollection {
@@ -1015,8 +1023,6 @@ Vehicle UAZ469_base1 : "{99F1610551D54D17}Prefabs/Vehicles/Wheeled/UAZ469/UAZ469
      }
      ClutchUncoupleTime 0.35
      ClutchCoupleTime 0.45
-     ClutchUncoupleRpm 1800
-     ClutchCoupleRpm 2200
      Latency 0.5
      UpShiftRpm 2000
      DownShiftRpm 1800
@@ -1737,8 +1743,11 @@ Vehicle M998_covered_long1 : "{9B1BF9644E0378D6}Prefabs/Vehicles/Wheeled/M998/M9
  coords 6411.584 161.751 6485.91
  angles -0.865 -15.003 0.232
 }
+Vehicle T601_rally_05_fullkit1 : "{9C4D241A3902F800}Prefabs/Vehicles/Wheeled/T601/T601_rally_05_fullkit.et" {
+ coords 6479.128 162.062 6491.435
+}
 Vehicle Mi8_base1 : "{AFF6067A5CE8A852}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8_base.et" {
- coords 6489.137 162.025 6495.241
+ coords 6505.679 161.716 6501.427
 }
 Vehicle Mi8MT_base1 : "{AFF6067A5CE8A853}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_base.et" {
  coords 6486.945 161.981 6463.781
@@ -1763,6 +1772,9 @@ GenericEntity : "{B68D3829D4442F80}Prefabs/Props/Civilian/RadioSmall_01_Base.et"
 Vehicle Mi8MT_unarmed_base1 : "{B6B8C164FD6377EA}Prefabs/Vehicles/Helicopters/Mi8MT/Mi8MT_unarmed_base.et" {
  coords 6510.53 161.781 6470.365
 }
+Vehicle S105_rally_06_fullkit1 : "{C03AB8E9395EEE70}Prefabs/Vehicles/Wheeled/S105/S105_rally_06_fullkit.et" {
+ coords 6473.209 162.062 6491.461
+}
 $grp GenericEntity : "{C72C9E090CED8B05}PrefabsEditable/Mines/E_Mine_M14.et" {
  {
   coords 6460.01 162.292 6498.73
@@ -1779,6 +1791,10 @@ Vehicle UH1H_base1 : "{D03C0F6044DB5208}Prefabs/Vehicles/Helicopters/UH1H/UH1H_b
 }
 GenericEntity : "{D0E4F05E07E40B24}Prefabs/Structures/Signs/Military/SignMinefield_01/SignMinefield_01.et" {
  coords 6459.963 162.285 6498.182
+ angles 0 180 0
+}
+Vehicle T601_orange1 : "{D6D6234A989BE564}Prefabs/Vehicles/Wheeled/T601/T601_orange.et" {
+ coords 6479.124 162.092 6485.199
  angles 0 180 0
 }
 Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S1203/S1203_transport_base.et" {
@@ -2396,12 +2412,6 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
    m_fDist_Min 4
    m_fDist_Desired 4.4
   }
-  SCR_VehicleDustPerWheel "{5476BC43E4910F64}" {
-   m_aWheels +{
-   }
-   m_fDustStartSpeed 10
-   m_fDustTopSpeed 80
-  }
   SCR_VehicleFactionAffiliationComponent "{5882CBD9AC741CEC}" {
    "faction affiliation" "US"
   }
@@ -2628,6 +2638,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
        MaxTravelDown 0.09
       }
       Wheel Wheel "{4D8B26DFFE211745}" {
+       Parent ""
        Radius 0.32
        Mass 20
        HandbrakeTorqueFactor 2
@@ -2660,6 +2671,7 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
        MaxTravelDown 0.09
       }
       Wheel Wheel "{4D8B26DF30A4E4D7}" {
+       Parent "Diff_02"
        Radius 0.32
        Mass 20
        HandbrakeTorqueFactor 2
@@ -2682,9 +2694,11 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
      ReferenceArea 1.987
      DragCoefficient 0.7
     }
-    Pacejka Pacejka "{5EEAF5D391C5C4FE}" : "{2D0D99CD3C443B5E}Prefabs/Vehicles/Core/Configs/PacejkaTire_Road.conf" {
-    }
    }
+  }
+  SCR_VehicleDustPerWheel "{5476BC43E4910F64}" {
+   m_fDustStartSpeed 10
+   m_fDustTopSpeed 80
   }
   BaseFlattenGrassComponent "{55FCDD8048D3AE17}" {
    ParametersCollection {
@@ -2776,7 +2790,6 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
      }
      ClutchUncoupleTime 0.35
      ClutchCoupleTime 0.45
-     ClutchCoupleRpm 2600
      Latency 0.5
      UpShiftRpm 2300
      DownShiftRpm 2000
@@ -3550,8 +3563,8 @@ Vehicle S1203_transport_base1 : "{D7663936ABF75FB0}Prefabs/Vehicles/Wheeled/S120
    "Parent Node From Parent Entity" 0
   }
  }
- coords 6468.11 162.062 6483.126
- angles 0 -171.952 0
+ coords 6469.824 162.062 6484.61
+ angles 0 -178.21 0
 }
 Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.et" {
  components {
@@ -3572,7 +3585,7 @@ Vehicle S105_base1 : "{DA79E34823120087}Prefabs/Vehicles/Wheeled/S105/S105_base.
    }
   }
  }
- coords 6463.434 161.969 6477.39
+ coords 6473.086 162.062 6484.421
  angles 0 -177.924 0
 }
 SCR_DestructibleEntity : "{E116180B5DCD5EFF}PrefabLibrary/DefaultLibrary/Props/Civilian/PicnicTable_01.et" {

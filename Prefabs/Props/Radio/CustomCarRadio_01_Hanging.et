@@ -1,0 +1,31 @@
+GenericEntity : "{41A25B38C6413A81}Prefabs/Props/Radio/CustomCarRadio_01_Base.et" {
+ ID "F0DBA538AC2A0552"
+ components {
+  RigidBody "{5872F0EB7DFB5A9D}" {
+   Enabled 0
+   ResponseIndex "Normal"
+   ModelGeometry 1
+  }
+  RplComponent "{68DA862BEC0C76C7}" {
+   Enabled 0
+  }
+ }
+ {
+  GenericEntity {
+   ID "6ACB0EA60C595B80"
+   components {
+    MeshObject "{6ACB0EA609B7F989}" {
+     Object "{66FC6BE91BE72BC8}Assets/Radio/RadioFrame.xob"
+     InheritSkeleton 1
+     InheritVisibility 1
+     InheritLOD 1
+    }
+    RigidBody "{6ACB0EA61771FB17}" {
+    }
+    Hierarchy "{6ACB0EA633CC2CDE}" {
+    }
+   }
+   coords 0 0 -0.097
+  }
+ }
+}
